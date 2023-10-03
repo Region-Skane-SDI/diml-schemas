@@ -1,0 +1,268 @@
+<xs:schema xmlns="https://github.com/Region-Skane-SDI/diml/graph" targetNamespace="https://github.com/Region-Skane-SDI/diml/graph" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
+  <xs:element name="graph" type="graph" />
+  <xs:complexType name="graph">
+    <xs:annotation>
+      <xs:documentation>TODO: Add description</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
+      <xs:element name="node" type="node" minOccurs="1" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:attribute name="dimlId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Ett unikt id som representerar en graf.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="node">
+    <xs:annotation>
+      <xs:documentation>TODO: Add description</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="names" type="names" minOccurs="1" maxOccurs="1" />
+      <xs:element name="descriptions" type="descriptions" minOccurs="1" maxOccurs="1" />
+      <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
+      <xs:element name="nodeLinks" type="nodeLinks" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+    <xs:attribute name="id" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Ett unikt id som representerar en nod.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="nodeLinks">
+    <xs:sequence>
+      <xs:element name="nodeLink" type="nodeLink" minOccurs="1" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="nodeLink">
+    <xs:annotation>
+      <xs:documentation>TODO: Add description</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="names" type="names" minOccurs="1" maxOccurs="1" />
+      <xs:element name="descriptions" type="descriptions" minOccurs="1" maxOccurs="1" />
+      <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+    <xs:attribute name="id" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Ett unikt id som representerar en nod-länk.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="targetNode" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>DimlId av nod som skall länkas.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="names">
+    <xs:sequence>
+      <xs:element name="name" type="name" minOccurs="1" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="name">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:annotation>
+          <xs:documentation>Används för att namnge ett Diml-objekt på olika språk.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="language" type="xs:string" use="required">
+          <xs:annotation>
+            <xs:documentation>En representation av vilket språk som används för namnet. Exempelvärde: sv</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="descriptions">
+    <xs:sequence>
+      <xs:element name="description" type="description" minOccurs="1" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="description">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:annotation>
+          <xs:documentation>Används för att beskriva ett Diml-objekt i olika format och språk.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="language" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation>TODO: Add description</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="type" type="descriptionType" use="required">
+          <xs:annotation>
+            <xs:documentation>TODO: Add description</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="traits">
+    <xs:sequence>
+      <xs:element name="trait" type="trait" minOccurs="1" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="trait">
+    <xs:annotation>
+      <xs:documentation>Används för att specificera egenskaper på ett Diml-objekt.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="traitParameter" type="traitParameter" minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+    <xs:attribute name="class" type="traitClass" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger tillgängliga klasser för en Trait.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="subclass" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>TODO: Add description</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="traitParameter">
+    <xs:annotation>
+      <xs:documentation>TODO: Add description</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="value" type="traitParameterValue" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:attribute name="key" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>TODO: Add description</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="value" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>TODO: Add description</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:simpleType name="traitParameterValue">
+    <xs:restriction base="xs:string" />
+  </xs:simpleType>
+  <xs:simpleType name="stringType">
+    <xs:restriction base="xs:string" />
+  </xs:simpleType>
+  <xs:simpleType name="traitClass">
+    <xs:annotation>
+      <xs:documentation>Anger tillgängliga klasser för en Trait.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[cC][aA][tT][eE][gG][oO][rR][yY]|[cC][oO][lL][uU][mM][nN][sS][oO][uU][rR][cC][eE][sS]|[dD][eE][fF][aA][uU][lL][tT][cC][oO][nN][fF][iI][gG][nN][aA][mM][eE][sS][pP][aA][cC][eE]|[eE][xX][tT][eE][nN][sS][iI][oO][nN]|[gG][eE][nN][eE][rR][aA][tT][eE][kK][eE][yY][hH][aA][sS][hH]|[gG][eE][nN][eE][rR][aA][tT][eE][rR][oO][wW][hH][aA][sS][hH]|[gG][uU][iI][dD]|[iI][cC][oO][nN]|[iI][nN][fF][dD][oO][mM]|[iI][nN][fF][oO][cC][lL][aA][sS][sS]|[iI][nN][fF][oO][mM][rR]|[iI][sS][gG][rR][eE][aA][tT][eE][rR][tT][hH][aA][nN]|[iI][sS][uU][nN][lL][iI][sS][tT][eE][dD]|[iI][sS][vV][iI][rR][tT][uU][aA][lL]|[pP][iI][iI]|[tT][aA][bB][lL][eE][nN][aA][mM][eE][pP][rR][eE][fF][iI][xX]|[tT][aA][bB][lL][eE][nN][aA][mM][eE][sS][uU][fF][fF][iI][xX]|[tT][aA][bB][lL][eE][sS][cC][hH][eE][mM][aA]|[tT][aA][bB][lL][eE][uU][pP][dD][aA][tT][eE][tT][yY][pP][eE]|[tT][aA][rR][gG][eE][tT][uU][pP][tT][iI][mM][eE][pP][eE][rR][cC][eE][nN][tT]|" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="formatType">
+    <xs:annotation>
+      <xs:documentation>Anger kompatibla utdataformat.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[bB][iI][nN][aA][rR][yY]|[jJ][sS][oO][nN]|[xX][mM][lL]|" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="sqlOutputType">
+    <xs:annotation>
+      <xs:documentation>Anger utdatatyper som är kompatibla med sqlOutput.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[sS][pP][aA][rR][qQ][lL]|[tT][sS][qQ][lL]|" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="fileFormat">
+    <xs:annotation>
+      <xs:documentation>Anger kompatibla filformat.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[cC][sS][vV]|[cC][uU][sS][tT][oO][mM]|[pP][aA][rR][qQ][uU][eE][tT]|" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="apiOutputType">
+    <xs:annotation>
+      <xs:documentation>Anger utdatatyper som är kompatibla med apiOutput.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[oO][dD][aA][tT][aA]|" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="dataTypeClass">
+    <xs:annotation>
+      <xs:documentation>Ett enum som beskriver alla tillgängliga datatyper i Diml.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[aA][gG][eE]|[bB][iI][gG][iI][nN][tT][eE][gG][eE][rR]|[bB][iI][nN][aA][rR][yY]|[bB][iI][nN][aA][rR][yY][fF][iI][xX][eE][dD]|[bB][oO][oO][lL]|[bB][oO][oO][lL][eE][aA][nN]|[cC][uU][sS][tT][oO][mM]|[dD][aA][tT][eE]|[dD][aA][tT][eE][tT][iI][mM][eE]|[dD][aA][tT][eE][tT][iI][mM][eE][oO][fF][fF][sS][eE][tT]|[dD][eE][cC][iI][mM][aA][lL]|[dD][oO][uU][bB][lL][eE]|[fF][lL][oO][aA][tT]|[fF][uU][lL][lL][nN][aA][mM][eE]|[gG][uU][iI][dD]|[iI][mM][aA][gG][eE]|[iI][nN][tT][1][6]|[iI][nN][tT][3][2]|[iI][nN][tT][6][4]|[iI][nN][tT][8]|[iI][nN][tT][eE][gG][eE][rR]|[sS][mM][aA][lL][lL][iI][nN][tT][eE][gG][eE][rR]|[sS][sS][nN]|[sS][tT][rR][iI][nN][gG]|[sS][tT][rR][iI][nN][gG][fF][iI][xX][eE][dD]|[sS][tT][rR][iI][nN][gG][wW]|[sS][tT][rR][iI][nN][gG][wW][fF][iI][xX][eE][dD]|[tT][eE][xX][tT]|[tT][iI][mM][eE]|[tT][iI][mM][eE][sS][pP][aA][nN]|[tT][iI][mM][eE][sS][tT][aA][mM][pP]|[tT][iI][nN][yY][iI][nN][tT][eE][gG][eE][rR]|[uU][iI][nN][tT][1][6]|[uU][iI][nN][tT][3][2]|[uU][iI][nN][tT][6][4]|[uU][iI][nN][tT][8]|[xX][mM][lL]|" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="dataStageMaterialization">
+    <xs:annotation>
+      <xs:documentation>TODO: Add description</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[tT][aA][bB][lL][eE]|[vV][iI][eE][wW]|" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="dataStageRole">
+    <xs:annotation>
+      <xs:documentation>TODO: Add description</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[iI][nN][pP][uU][tT]|[nN][oO][nN][eE]|[oO][uU][tT][pP][uU][tT]|[tT][rR][aA][nN][sS][fF][oO][rR][mM][aA][tT][iI][oO][nN]|" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="semanticLinkType">
+    <xs:annotation>
+      <xs:documentation>TODO: Add description</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[hH][aA][sS]|" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="dcatAccessRightsType">
+    <xs:annotation>
+      <xs:documentation>Anger vilka åtkomsträttigheter som finns för dataprodukten i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en/#5.5</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[nN][oO][nN][pP][uU][bB][lL][iI][cC]|[pP][uU][bB][lL][iI][cC]|[rR][eE][sS][tT][rR][iI][cC][tT][eE][dD]|" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="dcatAvailabilityType">
+    <xs:annotation>
+      <xs:documentation>Anger dataproduktens tillgänglighet i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en/#5.9</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[aA][vV][aA][iI][lL][aA][bB][lL][eE]|[eE][xX][pP][eE][rR][iI][mM][eE][nN][tT][aA][lL]|[sS][tT][aA][bB][lL][eE]|[tT][eE][mM][pP][oO][rR][aA][rR][yY]|" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="dcatDataThemeType">
+    <xs:annotation>
+      <xs:documentation>Anger vilket datatema dataprodukten tillhör i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en/#5.2</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[eE][cC][oO][nN]|[eE][dD][uU][cC]|[eE][nN][eE][rR]|[eE][nN][vV][iI]|[gG][oO][vV][eE]|[hH][eE][aA][lL]|[iI][nN][tT][rR]|[jJ][uU][sS][tT]|[oO][pP][_][dD][aA][tT][pP][rR][oO]|[rR][eE][gG][iI]|[sS][oO][cC][iI]|[tT][eE][cC][hH]|[tT][rR][aA][nN]|" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="dcatStatusType">
+    <xs:annotation>
+      <xs:documentation>Anger dataproduktens status i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en/#5.8</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[cC][oO][mM][pP][lL][eE][tT][eE][dD]|[dD][eE][pP][rR][eE][cC][aA][tT][eE][dD]|[uU][nN][dD][eE][rR][dD][eE][vV][eE][lL][oO][pP][mM][eE][nN][tT]|[wW][iI][tT][hH][dD][rR][aA][wW][nN]|" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="dcatUpdateFrequencyType">
+    <xs:annotation>
+      <xs:documentation>Anger dataproduktens uppdateringsfrekvens i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en/#5.4</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[aA][nN][nN][uU][aA][lL]|[aA][nN][nN][uU][aA][lL][2]|[bB][iI][eE][nN][nN][iI][aA][lL]|[bB][iI][mM][oO][nN][tT][hH][lL][yY]|[bB][iI][wW][eE][eE][kK][lL][yY]|[cC][oO][nN][tT][iI][nN][uU][oO][uU][sS]|[dD][aA][iI][lL][yY]|[dD][aA][iI][lL][yY][2]|[iI][rR][rR][eE][gG][uU][lL][aA][rR]|[mM][oO][nN][tT][hH][lL][yY]|[mM][oO][nN][tT][hH][lL][yY][2]|[mM][oO][nN][tT][hH][lL][yY][3]|[oO][tT][hH][eE][rR]|[qQ][uU][aA][rR][tT][eE][rR][lL][yY]|[tT][rR][iI][eE][nN][nN][iI][aA][lL]|[uU][nN][kK][nN][oO][wW][nN]|[uU][pP][dD][aA][tT][eE][_][cC][oO][nN][tT][iI][nN][uU][oO][uU][sS][lL][yY]|[wW][eE][eE][kK][lL][yY]|[wW][eE][eE][kK][lL][yY][2]|[wW][eE][eE][kK][lL][yY][3]|" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="descriptionType">
+    <xs:annotation>
+      <xs:documentation>TODO: Add description</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[lL][oO][gG][iI][cC][mM][dD]|[mM][dD]|[pP][lL][aA][iI][nN]|" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
