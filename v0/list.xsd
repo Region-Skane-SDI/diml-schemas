@@ -2,7 +2,7 @@
   <xs:element name="list" type="list" />
   <xs:complexType name="list">
     <xs:annotation>
-      <xs:documentation>TODO: Add description</xs:documentation>
+      <xs:documentation>Anger en lista.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="listItem" type="listItem" minOccurs="1" maxOccurs="unbounded" />
@@ -15,7 +15,7 @@
   </xs:complexType>
   <xs:complexType name="listItem">
     <xs:annotation>
-      <xs:documentation>TODO: Add description</xs:documentation>
+      <xs:documentation>Anger ett listobjekt inom en lista.</xs:documentation>
     </xs:annotation>
     <xs:all>
       <xs:element name="names" type="names" minOccurs="1" maxOccurs="1" />
@@ -60,12 +60,12 @@
         </xs:annotation>
         <xs:attribute name="language" type="xs:string" use="optional">
           <xs:annotation>
-            <xs:documentation>TODO: Add description</xs:documentation>
+            <xs:documentation>Anger språk för beskrivning.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="type" type="descriptionType" use="required">
           <xs:annotation>
-            <xs:documentation>TODO: Add description</xs:documentation>
+            <xs:documentation>Anger textformat för beskrivningen</xs:documentation>
           </xs:annotation>
         </xs:attribute>
       </xs:extension>
@@ -78,7 +78,7 @@
   </xs:complexType>
   <xs:complexType name="trait">
     <xs:annotation>
-      <xs:documentation>Används för att specificera egenskaper på ett Diml-objekt.</xs:documentation>
+      <xs:documentation>Används för att specificera egenskaper (traits) på ett Diml-objekt.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="traitParameter" type="traitParameter" minOccurs="0" maxOccurs="1" />
@@ -90,25 +90,25 @@
     </xs:attribute>
     <xs:attribute name="subclass" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>TODO: Add description</xs:documentation>
+        <xs:documentation>Anger subtyp för en Trait.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
   <xs:complexType name="traitParameter">
     <xs:annotation>
-      <xs:documentation>TODO: Add description</xs:documentation>
+      <xs:documentation>Anger värden på en trait.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="value" type="traitParameterValue" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
     <xs:attribute name="key" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>TODO: Add description</xs:documentation>
+        <xs:documentation>Anger nyckelvärde för traitParameter (default=value).</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="value" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>TODO: Add description</xs:documentation>
+        <xs:documentation>Anger värde/värden för nyckeln.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
@@ -168,7 +168,7 @@
   </xs:simpleType>
   <xs:simpleType name="dataStageMaterialization">
     <xs:annotation>
-      <xs:documentation>TODO: Add description</xs:documentation>
+      <xs:documentation>Anger om data ska materialiseras eller virtualiseras.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:pattern value="[tT][aA][bB][lL][eE]|[vV][iI][eE][wW]|" />
@@ -176,7 +176,7 @@
   </xs:simpleType>
   <xs:simpleType name="dataStageRole">
     <xs:annotation>
-      <xs:documentation>TODO: Add description</xs:documentation>
+      <xs:documentation>Anger vad som sker i dataStage.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:pattern value="[iI][nN][pP][uU][tT]|[nN][oO][nN][eE]|[oO][uU][tT][pP][uU][tT]|[tT][rR][aA][nN][sS][fF][oO][rR][mM][aA][tT][iI][oO][nN]|" />
@@ -184,7 +184,7 @@
   </xs:simpleType>
   <xs:simpleType name="semanticLinkType">
     <xs:annotation>
-      <xs:documentation>TODO: Add description</xs:documentation>
+      <xs:documentation>Anger hur andra produkter länkar till varandra.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:pattern value="[hH][aA][sS]|" />
@@ -232,7 +232,7 @@
   </xs:simpleType>
   <xs:simpleType name="descriptionType">
     <xs:annotation>
-      <xs:documentation>TODO: Add description</xs:documentation>
+      <xs:documentation>Anger textformat för beskrivningen</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:pattern value="[lL][oO][gG][iI][cC][mM][dD]|[mM][dD]|[pP][lL][aA][iI][nN]|" />

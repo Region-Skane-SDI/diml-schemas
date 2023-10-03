@@ -3,45 +3,45 @@
 Version 0.0.129
 
 ## trait
-Anv&#xE4;nds f&#xF6;r att specificera egenskaper p&#xE5; ett Diml-objekt.
+Anv&#xE4;nds f&#xF6;r att specificera egenskaper (traits) p&#xE5; ett Diml-objekt.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | class | [traitClass](#traitClass) | Ja |  |  | Anger tillg&#xE4;ngliga klasser f&#xF6;r en Trait. |
-| subclass | string | Nej |  |  | TODO: Add description |
+| subclass | string | Nej |  |  | Anger subtyp f&#xF6;r en Trait. |
 
 ## traitParameter
-TODO: Add description
+Anger v&#xE4;rden p&#xE5; en trait.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| key | string | Nej |  |  | TODO: Add description |
-| value | string | Nej |  |  | TODO: Add description |
+| key | string | Nej |  |  | Anger nyckelv&#xE4;rde f&#xF6;r traitParameter (default=value). |
+| value | string | Nej |  |  | Anger v&#xE4;rde/v&#xE4;rden f&#xF6;r nyckeln. |
 
 ## customFormat
 Beskriver ett egendefinierat utdataformat.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| customFormatId | string | Ja |  |  | Ett id f&#xF6;r det egendefinierade udataformatet. DimlId:et m&#xE5;ste vara unikt inom en DataProduct d&#xE5; det kommer att anv&#xE4;ndas som ett alias. |
+| customFormatId | string | Ja |  |  | Ett id f&#xF6;r det egendefinierade udataformatet. Id:et m&#xE5;ste vara unikt inom en dataproduktspecifikation d&#xE5; det kommer att anv&#xE4;ndas som ett alias. |
 | formatType | [formatType](#formatType) | Ja |  |  | Anger kompatibla utdataformat. |
 | mimeType | string | Nej |  |  | Anger en MIME-typ f&#xF6;r utdataformatet, om det &#xE4;r ett bin&#xE4;rformat. |
 | schemaLocation | string | Nej |  |  | Anger ett schema f&#xF6;r utdataformatet. |
 
 ## sqlOutput
-TODO: Add description
+Anger output som SQL kod i angiven dialekt, tex: TSQL eller Spark SQL.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| channelId | string | Ja |  |  | TODO: Add description |
+| channelId | string | Ja |  |  | Anger ett unikt id f&#xF6;r varje utkanaltyp t.ex sql,sql2 etc. |
 | sqlOutputType | [sqlOutputType](#sqlOutputType) | Ja |  |  | Anger utdatatyper som &#xE4;r kompatibla med sqlOutput. |
 
 ## fileOutput
-TODO: Add description
+Anger en fil som destination f&#xF6;r utdata med ett antal obligatoriska parametrar.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| channelId | string | Ja |  |  | TODO: Add description |
+| channelId | string | Ja |  |  | Anger ett unikt id f&#xF6;r varje utkanaltyp t.ex sql,sql2 etc. |
 | columnSeparator | string | Nej |  |  | Anger vilket/vilka tecken som ska anv&#xE4;ndas som kolumnavskiljare i utdatafilen, om filformatet &#xE4;r csv. |
 | customFormatId | string | Nej |  |  | Anger utdataformatet genom att referera till egendefinierat utdataformat i customFormats. |
 | encoding | string | Nej |  |  | Teckenkodningen f&#xF6;r utdatafilen, t.ex. UTF-8. |
@@ -50,38 +50,38 @@ TODO: Add description
 | rowSeparator | string | Nej |  |  | Anger vilket/vilka tecken som ska anv&#xE4;ndas som radavskiljare i utdatafilen, om filformatet &#xE4;r csv. |
 
 ## multiTableFileOutput
-TODO: Add description
+Anger en fil som inneh&#xE5;ller flera tabeller som output i definierat format (csv, parquet etc).
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 
 ## singleTableFileOutput
-TODO: Add description
+Anger en fil som output baserat p&#xE5; en tabell i definierat format (csv, parquet etc).
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| path | string | Ja |  |  | TODO: Add description |
-| table | string | Ja |  |  | TODO: Add description |
+| path | string | Ja |  |  | Anger filnamnet f&#xF6;r utdatafil |
+| table | string | Ja |  |  | Anger k&#xE4;lltabell filen ska baseras p&#xE5; |
 
 ## apiOutput
-TODO: Add description
+Anger API som utdataformat enligt en angiven standard.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | apiOutputType | [apiOutputType](#apiOutputType) | Ja |  |  | Anger utdatatyper som &#xE4;r kompatibla med apiOutput. |
-| channelId | string | Ja |  |  | TODO: Add description |
+| channelId | string | Ja |  |  | API Id |
 
 ## dataInput
-Anger en indatak&#xE4;lla f&#xF6;r en DataProduct, t.ex. en DataSource eller en annan DataProduct.
+Anger en indatak&#xE4;lla f&#xF6;r en dataproduktsspecifikation, t.ex. en DataSource eller en annan DataProduct.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| channelId | string | Ja |  |  | TODO: Add description |
+| channelId | string | Ja |  |  | Anger vilken typ av data som ska h&#xE4;mtas och i vilket format. |
 | dimlId | string | Ja |  |  | Ett globalt unikt dimlId f&#xF6;r indatak&#xE4;llan. |
 | id | string | Ja |  |  | Ett id f&#xF6;r indatak&#xE4;llan. Detta m&#xE5;ste vara unikt inom en DataProduct d&#xE5; det kommer att anv&#xE4;ndas som ett alias. |
 
 ## conditionalDataType
-Beskrivning saknas..
+Anv&#xE4;nds f&#xF6;r att evaluera vilken datatyp som ska tilldelas m&#xE5;lplattformen.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
@@ -111,7 +111,7 @@ Specificerar alla tillg&#xE4;ngliga Diml-datatyper samt konverteringslogiken mel
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 
 ## dimlDataType
-Anger en Diml-datatyp baserat p&#xE5; dom typer som finns definierade i dataTypes.
+Anger en Diml-datatyp baserat p&#xE5; dom typer som finns definierade i datatypsspecifikationen.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
@@ -125,7 +125,7 @@ Anv&#xE4;nds f&#xF6;r att definiera datatyper i Diml.
 | id | string | Ja |  |  | Anger datatypens namn i Diml. |
 
 ## platformDataTypeConfig
-Beskrivning saknas..
+Anger hur datatyperna konverteras fr&#xE5;n olika plattformar och format till Diml.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
@@ -135,16 +135,16 @@ Beskrivning saknas..
 | outputFormat | string | Nej |  |  | Anger vilket format m&#xE5;lplattformens datatyp skrivs ut i. |
 
 ## platformDataTypeParameter
-&#xC4;nv&#xE4;nds f&#xF6;r att f&#xE5;nga v&#xE4;rden fr&#xE5;n &#x27;dataTypes&#x27; &gt; &#x27;targetPlatforms&#x27; &gt; &#x27;platformDataTypeConfigs&#x27; &gt; &#x27;platformDataTypeConfig&#x27; &gt; &#x27;inputFormat&#x27; och h&#xE5;lla dessa inf&#xF6;r konvertering.
+&#xC4;nv&#xE4;nds f&#xF6;r att f&#xE5;nga parametrar fr&#xE5;n datatypsspecifikationens m&#xE5;lplattformar vid konvertering till Diml.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| id | string | Ja |  |  | Anger vilken parameter som ska anv&#xE4;ndas. Det som anges h&#xE4;r m&#xE5;ste matcha motsvarande v&#xE4;rde i &#x27;dataTypes&#x27; &gt; &#x27;attributes&#x27; &gt; &#x27;attribute&#x27; &gt; &#x27;id&#x27;. |
-| inputExpression | string | Nej |  |  | Anger ett C#-uttryck som definierar hur parametern konverteras fr&#xE5;n typen standardv&#xE4;rdet &#x27;string&#x27; till det v&#xE4;rde som finns angivet i &#x27;type&#x27;. |
+| id | string | Ja |  |  | Anger id f&#xF6;r en parameter i m&#xE5;lplattformen baserat p&#xE5; regulj&#xE4;rt-uttryck i platFormDataTypeConfig -&gt; InputFormat. |
+| inputExpression | string | Nej |  |  | Anger ett C#-uttryck som definierar hur parametern konverteras fr&#xE5;n standardv&#xE4;rdet &#x27;string&#x27; till det v&#xE4;rde som finns angivet i &#x27;type&#x27;. |
 | type | string | Ja |  |  | Anger parameterns datatyp. |
 
 ## targetDataType
-Anv&#xE4;nds f&#xF6;r att definiera konverteringslogiken fr&#xE5;n en DimlDataType till en PlatformDataType.
+Anv&#xE4;nds f&#xF6;r att definiera konverteringslogiken fr&#xE5;n Diml-datatyp till en m&#xE5;lplattform.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
@@ -152,7 +152,7 @@ Anv&#xE4;nds f&#xF6;r att definiera konverteringslogiken fr&#xE5;n en DimlDataTy
 | platform | string | Ja |  |  | Anger vilken m&#xE5;lplattform som datatypen tillh&#xF6;r. |
 
 ## targetParameter
-Beskrivning saknas..
+Tar olika inparametrar som anv&#xE4;nds f&#xF6;r olika typer av datak&#xE4;llor, t.ex databaser,filer eller api, till Diml och omv&#xE4;nt.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
@@ -160,14 +160,14 @@ Beskrivning saknas..
 | value | string | Ja |  |  | Ett C#-uttryck som anger v&#xE4;rdet f&#xF6;r parametern. |
 
 ## targetPlatform
-Beskrivning saknas..
+Anger m&#xE5;lplattform f&#xF6;r datatypen.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | platform | string | Ja |  |  | Anger vilken m&#xE5;lplattform som datatypen tillh&#xF6;r. |
 
 ## dataType
-
+Anger datatyp.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
@@ -176,45 +176,45 @@ Beskrivning saknas..
 | tSqlDataType | string | Nej |  |  | Anger datatyp i TSQL-format. |
 
 ## dataFlow
-TODO: Add description
+Anger fl&#xF6;det av data genom alla lager, samt egenskaper t.ex om en tabell ska materialiseras, uppdateras osv.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 
 ## dataIngest
-TODO: Add description
+Anger hur data ska inh&#xE4;mtas fr&#xE5;n k&#xE4;lla till destination.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| dataInputId | string | Ja |  |  | TODO: Add description |
-| id | string | Ja |  |  | TODO: Add description |
+| dataInputId | string | Ja |  |  | Ett unikt id som respesenterar en k&#xE4;lla. |
+| id | string | Ja |  |  | Ett unikt id som representerar ett dataIngest-fl&#xF6;de. |
 
 ## dataProduct
-Beskrivning saknas.
+Beskrivning av en dataprodukt med dess specifikationer.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | dimlId | string | Ja |  |  | Dataproduktens dimlId (id). |
 
 ## dataSource
-Beskrivning av datak&#xE4;lla (som kan anv&#xE4;ndas av dataprodukter)...
+Beskrivning av en datak&#xE4;lla (som kan anv&#xE4;ndas av dataprodukter).
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | dimlId | string | Ja |  |  | Datak&#xE4;llans DimlId (id). |
 
 ## dataStage
-TODO: Add description
+Anger de olika stadien f&#xF6;r data och dess egenskaper, tex. Om en tabell ska materialiseras eller inte, hur data ska uppdateras osv.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| id | string | Ja |  |  | TODO: Add description |
-| materialization | [dataStageMaterialization](#dataStageMaterialization) | Ja |  |  | TODO: Add description |
-| order | int32 | Ja |  |  | TODO: Add description |
-| role | [dataStageRole](#dataStageRole) | Nej |  |  | TODO: Add description |
+| id | string | Ja |  |  | Unikt id f&#xF6;r dataStage. |
+| materialization | [dataStageMaterialization](#dataStageMaterialization) | Ja |  |  | Anger om data ska materialiseras eller virtualiseras. |
+| order | int32 | Ja |  |  | Anger ordningen p&#xE5; dataStage, dvs vilket steg som ska ske f&#xF6;rst. |
+| role | [dataStageRole](#dataStageRole) | Nej |  |  | Anger vad som sker i dataStage. |
 
 ## relationColumns
-TODO: Explain what a relation columns is and what it is used for.
+Anger med vilka kolumner en tabell relaterar till en annan.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
@@ -222,13 +222,13 @@ TODO: Explain what a relation columns is and what it is used for.
 | targetColumnName | string | Ja |  |  | Anger relationkolumnens namn i den relaterade tabellen. |
 
 ## sampleDataRow
-TODO: Add description.
+Anger exempeldata.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 
 ## tableRelation
-TODO: Add description
+Anger eventuella tabellrelationer och hur de relaterar via relationsColumns.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
@@ -243,11 +243,11 @@ Beskriver en kolumn i en tabul&#xE4;r dataprodukt.
 | id | string | Ja |  |  | Kolumnens id. |
 
 ## includeTable
-TODO: Add description
+Anger vilka tabeller som ska inkluderas i output.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| id | string | Ja |  |  | TODO: Add description |
+| id | string | Ja |  |  | Ett unikt id som representerar tabellen. |
 
 ## table
 Beskriver en tabell i en tabul&#xE4;r dataprodukt.
@@ -257,7 +257,7 @@ Beskriver en tabell i en tabul&#xE4;r dataprodukt.
 | id | string | Ja |  |  | Tabellens id. |
 
 ## dcat
-TODO: Add decsription
+Inneh&#xE5;ller egenskaper f&#xF6;r DCAT vilket &#xE4;r en metadataspecifikation f&#xF6;r att beskriva datam&#xE4;ngder. Mer information finns h&#xE4;r: https://docs.dataportal.se/dcat/en/
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
@@ -272,65 +272,65 @@ Anv&#xE4;nds f&#xF6;r att beskriva ett Diml-objekt i olika format och spr&#xE5;k
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| language | string | Nej |  |  | TODO: Add description |
-| type | [descriptionType](#descriptionType) | Ja |  |  | TODO: Add description |
+| language | string | Nej |  |  | Anger spr&#xE5;k f&#xF6;r beskrivning. |
+| type | [descriptionType](#descriptionType) | Ja |  |  | Anger textformat f&#xF6;r beskrivningen |
 
 ## config
-Beskrivning av dimlconfig...
+Konfiguration av Diml-milj&#xF6; d&#xE4;r t.ex standardspr&#xE5;k anges.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| defaultLanguage | string | Nej |  |  | Anger standardspr&#xE5;k f&#xF6;r inneh&#xE5;llet i filen |
+| defaultLanguage | string | Nej |  |  | Anger standardspr&#xE5;k f&#xF6;r en Diml-milj&#xF6; |
 
 ## category
-TODO: Add description
+Anger kategorisering av dataprodukten t.ex namn, beskrivning och traits.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | id | string | Ja |  |  | Ett unikt id som representerar kategorin. |
 
 ## graph
-TODO: Add description
+Anger ett grafobjekt.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | dimlId | string | Ja |  |  | Ett unikt id som representerar en graf. |
 
 ## hierarchy
-TODO: Add description
+Definierar och beskriver hierarkier i Diml konfigfilen.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | dimlId | string | Ja |  |  | Ett unikt DimlId som representerar hierarkin. |
 
 ## list
-TODO: Add description
+Anger en lista.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | dimlId | string | Ja |  |  | Ett unikt id som representerar en lista. |
 
 ## listItem
-TODO: Add description
+Anger ett listobjekt inom en lista.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | id | string | Ja |  |  | Ett unikt id som representerar ett list item. |
 
 ## node
-TODO: Add description
+Anger en nod inom ett grafobjekt.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | id | string | Ja |  |  | Ett unikt id som representerar en nod. |
 
 ## nodeLink
-TODO: Add description
+Anger hur noder inom ett grafobjekt relaterar till varandra.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | id | string | Ja |  |  | Ett unikt id som representerar en nod-l&#xE4;nk. |
-| targetNode | string | Ja |  |  | DimlId av nod som skall l&#xE4;nkas. |
+| targetNode | string | Ja |  |  | Anger m&#xE5;lnod som skall l&#xE4;nkas. |
 
 ## name
 Anv&#xE4;nds f&#xF6;r att namnge ett Diml-objekt p&#xE5; olika spr&#xE5;k.
@@ -347,23 +347,23 @@ Anger tillg&#xE4;ngliga klasser f&#xF6;r en Trait.
 | ---- | ----------- |
 | category | Mappar till en kategori i DimlConfig. |
 | columnSources | Anv&#xE4;nds f&#xF6;r att specificera k&#xE4;llan till en kolumn i en dataprodukt. |
-| defaultConfigNamespace | Beskrivning saknas. |
+| defaultConfigNamespace | Default konfiguration. |
 | extension | Beskrivning saknas. |
-| generateKeyHash | Beskrivning saknas |
-| generateRowHash | Beskrivning saknas |
+| generateKeyHash | Genererar hashnyckel baserat p&#xE5; nyckelv&#xE4;rde. |
+| generateRowHash | Genererar hash baserat p&#xE5; angivna kolumnv&#xE4;rden. Kan t.ex anv&#xE4;ndas vid merge f&#xF6;r att hitta f&#xF6;r&#xE4;ndringar snabbt. |
 | guid | Beskrivning saknas. |
 | icon | Anger en ikon f&#xF6;r en datak&#xE4;lla eller dataprodukt. Anv&#xE4;nds bland annat i datakatalogen. |
-| infdom | Beskrivning saknas. |
+| infdom | Anv&#xE4;nds f&#xF6;r att beskriva informationsdom&#xE4;n f&#xF6;r en dataprodukt. |
 | infoClass | Anger informationsklassning i f&#xF6;ljande format: K[X]R[X]T[X], d&#xE4;r X = [1-4]. |
-| infomr | Beskrivning saknas. |
+| infomr | Anv&#xE4;nds f&#xF6;r att beskriva informationsomr&#xE5;de f&#xF6;r en dataprodukt. |
 | isGreaterThan | Anv&#xE4;nds f&#xF6;r att beskriva att ett v&#xE4;rde &#xE4;r st&#xF6;rre &#xE4;n ett annat. |
-| isUnlisted | Saknar beskrivning. |
+| isUnlisted | Anger om en dataprodukt ska visas i datakatlogen eller inte. |
 | isVirtual | Anger om en dataprodukt &#xE4;r virtuell. |
 | pii | Anv&#xE4;nds f&#xF6;r att beskriva att det finns personuppgifter i kotextet d&#xE4;r denna Trait appliceras. |
 | tableNamePrefix | Anv&#xE4;nds f&#xF6;r att specificera ett prefix f&#xF6;r alla tabellnamn i kotextet d&#xE4;r denna Trait anv&#xE4;nds. |
 | tableNameSuffix | Anv&#xE4;nds f&#xF6;r att specificera ett suffix f&#xF6;r alla tabellnamn i kotextet d&#xE4;r denna Trait anv&#xE4;nds. |
 | tableSchema | Anv&#xE4;nds f&#xF6;r att specificera ett schema f&#xF6;r alla tabeller i kotextet d&#xE4;r denna Trait anv&#xE4;nds. |
-| tableUpdateType | Beskrivning saknas |
+| tableUpdateType | Anger hur tabellen ska uppdateras. |
 | targetUptimePercent | Anger en procentuell sats f&#xF6;r vilken tillg&#xE4;nglighet som avses att levereras. |
 
 ## formatType
@@ -380,7 +380,7 @@ Anger utdatatyper som &#xE4;r kompatibla med sqlOutput.
 
 | Namn | Beskrivning |
 | ---- | ----------- |
-| sparql | SPARQL. |
+| sparql | SparkSQL. |
 | tsql | T-SQL. |
 
 ## fileFormat
@@ -388,9 +388,9 @@ Anger kompatibla filformat.
 
 | Namn | Beskrivning |
 | ---- | ----------- |
-| csv | CSV-format. |
+| csv | CSV &#xE4;r ett vanligt textfilsformat f&#xF6;r att spara och &#xF6;verf&#xF6;ra tabelldata. |
 | custom | Ett egendefinierat format. |
-| parquet | Parquet-format. |
+| parquet | Apache parquet &#xE4;r ett &#xF6;ppet k&#xE4;llkodsformat vilket &#xE4;r designat f&#xF6;r effektiv lagring och l&#xE4;sning. Mer information finns h&#xE4;r: (https://parquet.apache.org/).  |
 
 ## apiOutputType
 Anger utdatatyper som &#xE4;r kompatibla med apiOutput.
@@ -406,11 +406,11 @@ Ett enum som beskriver alla tillg&#xE4;ngliga datatyper i Diml.
 | ---- | ----------- |
 | age | Datatypen age bygger p&#xE5; datatypen integer och representerar en tidsintervall i &#xE5;r. |
 | bigInteger | Datatypen bigInteger &#xE4;r en numerisk heltalstyp som representerar en 64-bitars signerad integer med ett v&#xE4;rdeintervall p&#xE5; &#x2013;9223372036854775808 till 9223372036854775807. |
-| binary | TODO: Add description |
+| binary | Datatypen binary &#xE4;r en logisk datatyp som endast kan lagra tv&#xE5; m&#xF6;jliga v&#xE4;rden 0 eller 1 |
 | binaryFixed |  |
 | bool |  |
 | boolean | Datatypen boolean kan ha ett av f&#xF6;ljande tv&#xE5; v&#xE4;rden: true/false. |
-| custom | TODO: Add description |
+| custom | Anpassad datatyp |
 | date | Datatypen date representerar ett datum i f&#xF6;ljande format: yyyy-MM-dd. |
 | dateTime | Datatypen dateTime representerar ett datum och en tid i f&#xF6;ljande format: yyyy-MM-dd HH:mm:ss.fff |
 | dateTimeOffset | Datatypen dateTimeOffset representerar en dateTime som &#xE4;r relativ till Coordinated Universal time (UTC). |
@@ -443,29 +443,29 @@ Ett enum som beskriver alla tillg&#xE4;ngliga datatyper i Diml.
 | xml | Datatypen xml representerar data i XML-format. XML (Extensible Markup Language) &#xE4;r ett dataformat som anv&#xE4;nds f&#xF6;r att lagra, transportera och dela data. |
 
 ## dataStageMaterialization
-TODO: Add description
+Anger om data ska materialiseras eller virtualiseras.
 
 | Namn | Beskrivning |
 | ---- | ----------- |
-| table | TODO: Add description |
-| view | TODO: Add description |
+| table | Anger om data ska sparas som en tabell. |
+| view | Anger om data ska sparas som en vy. |
 
 ## dataStageRole
-TODO: Add description
+Anger vad som sker i dataStage.
 
 | Namn | Beskrivning |
 | ---- | ----------- |
-| input | TODO: Add description |
-| none | TODO: Add description |
-| output | TODO: Add description |
-| transformation | TODO: Add description |
+| input | Data kommer in. |
+| none | Inget. |
+| output | Data g&#xE5;r ut. |
+| transformation | Data transformeras enligt givna regler. |
 
 ## semanticLinkType
-TODO: Add description
+Anger hur andra produkter l&#xE4;nkar till varandra.
 
 | Namn | Beskrivning |
 | ---- | ----------- |
-| has | TODO: Add description |
+| has | Anger att en dataprodukt best&#xE5;r av en annan. |
 
 ## dcatAccessRightsType
 Anger vilka &#xE5;tkomstr&#xE4;ttigheter som finns f&#xF6;r dataprodukten i datakatalogen. F&#xF6;ljer standarden DCAT-AP, mer information finns h&#xE4;r: https://docs.dataportal.se/dcat/en/#5.5
@@ -483,7 +483,7 @@ Anger dataproduktens tillg&#xE4;nglighet i datakatalogen. F&#xF6;ljer standarden
 | ---- | ----------- |
 | available | Data finns tillg&#xE4;nglig f&#xF6;r n&#xE5;gra &#xE5;r, planering p&#xE5; medell&#xE5;ng sikt. |
 | experimental | Data &#xE4;r tillg&#xE4;nglig p&#xE5; f&#xF6;rs&#xF6;k f&#xF6;r en kort period, kortsiktig planering. |
-| stable | Data kommer att vara tillg&#xE4;ngliga p&#xE5; l&#xE5;ng sikt. |
+| stable | Data kommer att vara tillg&#xE4;nglig p&#xE5; l&#xE5;ng sikt. |
 | temporary | Data kan f&#xF6;rsvinna n&#xE4;r som helst, ingen planering. |
 
 ## dcatDataThemeType
@@ -510,10 +510,10 @@ Anger dataproduktens status i datakatalogen. F&#xF6;ljer standarden DCAT-AP, mer
 
 | Namn | Beskrivning |
 | ---- | ----------- |
-| completed | Saknar beskrivning. |
-| deprecated | Saknar beskrivning. |
-| underDevelopment | Saknar beskrivning. |
-| withdrawn | Saknar beskrivning. |
+| completed | Dataprodukten &#xE4;r f&#xE4;rdig. |
+| deprecated | Dataprodukten &#xE4;r avvecklad. |
+| underDevelopment | Dataprodukten &#xE4;r under utveckling. |
+| withdrawn | Dataprodukten &#xE4;r tillbakadragen. |
 
 ## dcatUpdateFrequencyType
 Anger dataproduktens uppdateringsfrekvens i datakatalogen. F&#xF6;ljer standarden DCAT-AP, mer information finns h&#xE4;r: https://docs.dataportal.se/dcat/en/#5.4
@@ -542,11 +542,11 @@ Anger dataproduktens uppdateringsfrekvens i datakatalogen. F&#xF6;ljer standarde
 | weekly3 | Uppdateras tre g&#xE5;nger i veckan. |
 
 ## descriptionType
-TODO: Add description
+Anger textformat f&#xF6;r beskrivningen
 
 | Namn | Beskrivning |
 | ---- | ----------- |
-| logicMd | TODO: Add description. |
+| logicMd | Logic markdown format. |
 | md | Markdown format. |
 | plain | Plain text format. |
 

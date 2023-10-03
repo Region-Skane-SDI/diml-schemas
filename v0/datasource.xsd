@@ -2,7 +2,7 @@
   <xs:element name="dataSource" type="dataSource" />
   <xs:complexType name="dataSource">
     <xs:annotation>
-      <xs:documentation>Beskrivning av datakälla (som kan användas av dataprodukter)...</xs:documentation>
+      <xs:documentation>Beskrivning av en datakälla (som kan användas av dataprodukter).</xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="names" type="names" minOccurs="1" maxOccurs="1" />
@@ -145,7 +145,7 @@
   </xs:complexType>
   <xs:complexType name="tableRelation">
     <xs:annotation>
-      <xs:documentation>TODO: Add description</xs:documentation>
+      <xs:documentation>Anger eventuella tabellrelationer och hur de relaterar via relationsColumns.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="relationColumns" type="relationColumns" minOccurs="1" maxOccurs="unbounded" />
@@ -163,7 +163,7 @@
   </xs:complexType>
   <xs:complexType name="relationColumns">
     <xs:annotation>
-      <xs:documentation>TODO: Explain what a relation columns is and what it is used for.</xs:documentation>
+      <xs:documentation>Anger med vilka kolumner en tabell relaterar till en annan.</xs:documentation>
     </xs:annotation>
     <xs:attribute name="columnName" type="xs:string" use="required">
       <xs:annotation>
@@ -183,7 +183,7 @@
   </xs:complexType>
   <xs:complexType name="sampleDataRow">
     <xs:annotation>
-      <xs:documentation>TODO: Add description.</xs:documentation>
+      <xs:documentation>Anger exempeldata.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="value" type="stringValueType" minOccurs="0" maxOccurs="unbounded" />
@@ -200,7 +200,7 @@
     </xs:annotation>
     <xs:attribute name="customFormatId" type="xs:string" use="required">
       <xs:annotation>
-        <xs:documentation>Ett id för det egendefinierade udataformatet. DimlId:et måste vara unikt inom en DataProduct då det kommer att användas som ett alias.</xs:documentation>
+        <xs:documentation>Ett id för det egendefinierade udataformatet. Id:et måste vara unikt inom en dataproduktspecifikation då det kommer att användas som ett alias.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="formatType" type="formatType" use="required">
@@ -232,7 +232,7 @@
   </xs:complexType>
   <xs:complexType name="fileOutput">
     <xs:annotation>
-      <xs:documentation>TODO: Add description</xs:documentation>
+      <xs:documentation>Anger en fil som destination för utdata med ett antal obligatoriska parametrar.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="singleTableFileOutput" type="singleTableFileOutput" minOccurs="0" maxOccurs="unbounded" />
@@ -240,7 +240,7 @@
     </xs:sequence>
     <xs:attribute name="channelId" type="xs:string" use="required">
       <xs:annotation>
-        <xs:documentation>TODO: Add description</xs:documentation>
+        <xs:documentation>Anger ett unikt id för varje utkanaltyp t.ex sql,sql2 etc.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="columnSeparator" type="xs:string" use="optional">
@@ -276,22 +276,22 @@
   </xs:complexType>
   <xs:complexType name="singleTableFileOutput">
     <xs:annotation>
-      <xs:documentation>TODO: Add description</xs:documentation>
+      <xs:documentation>Anger en fil som output baserat på en tabell i definierat format (csv, parquet etc).</xs:documentation>
     </xs:annotation>
     <xs:attribute name="path" type="xs:string" use="required">
       <xs:annotation>
-        <xs:documentation>TODO: Add description</xs:documentation>
+        <xs:documentation>Anger filnamnet för utdatafil</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="table" type="xs:string" use="required">
       <xs:annotation>
-        <xs:documentation>TODO: Add description</xs:documentation>
+        <xs:documentation>Anger källtabell filen ska baseras på</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
   <xs:complexType name="multiTableFileOutput">
     <xs:annotation>
-      <xs:documentation>TODO: Add description</xs:documentation>
+      <xs:documentation>Anger en fil som innehåller flera tabeller som output i definierat format (csv, parquet etc).</xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="includeTable" type="includeTable" minOccurs="1" maxOccurs="unbounded" />
@@ -304,11 +304,11 @@
   </xs:complexType>
   <xs:complexType name="sqlOutput">
     <xs:annotation>
-      <xs:documentation>TODO: Add description</xs:documentation>
+      <xs:documentation>Anger output som SQL kod i angiven dialekt, tex: TSQL eller Spark SQL.</xs:documentation>
     </xs:annotation>
     <xs:attribute name="channelId" type="xs:string" use="required">
       <xs:annotation>
-        <xs:documentation>TODO: Add description</xs:documentation>
+        <xs:documentation>Anger ett unikt id för varje utkanaltyp t.ex sql,sql2 etc.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="sqlOutputType" type="sqlOutputType" use="required">
@@ -324,11 +324,11 @@
   </xs:complexType>
   <xs:complexType name="includeTable">
     <xs:annotation>
-      <xs:documentation>TODO: Add description</xs:documentation>
+      <xs:documentation>Anger vilka tabeller som ska inkluderas i output.</xs:documentation>
     </xs:annotation>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
-        <xs:documentation>TODO: Add description</xs:documentation>
+        <xs:documentation>Ett unikt id som representerar tabellen.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
@@ -364,12 +364,12 @@
         </xs:annotation>
         <xs:attribute name="language" type="xs:string" use="optional">
           <xs:annotation>
-            <xs:documentation>TODO: Add description</xs:documentation>
+            <xs:documentation>Anger språk för beskrivning.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="type" type="descriptionType" use="required">
           <xs:annotation>
-            <xs:documentation>TODO: Add description</xs:documentation>
+            <xs:documentation>Anger textformat för beskrivningen</xs:documentation>
           </xs:annotation>
         </xs:attribute>
       </xs:extension>
@@ -382,7 +382,7 @@
   </xs:complexType>
   <xs:complexType name="trait">
     <xs:annotation>
-      <xs:documentation>Används för att specificera egenskaper på ett Diml-objekt.</xs:documentation>
+      <xs:documentation>Används för att specificera egenskaper (traits) på ett Diml-objekt.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="traitParameter" type="traitParameter" minOccurs="0" maxOccurs="1" />
@@ -394,25 +394,25 @@
     </xs:attribute>
     <xs:attribute name="subclass" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>TODO: Add description</xs:documentation>
+        <xs:documentation>Anger subtyp för en Trait.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
   <xs:complexType name="traitParameter">
     <xs:annotation>
-      <xs:documentation>TODO: Add description</xs:documentation>
+      <xs:documentation>Anger värden på en trait.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="value" type="stringValueType" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
     <xs:attribute name="key" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>TODO: Add description</xs:documentation>
+        <xs:documentation>Anger nyckelvärde för traitParameter (default=value).</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="value" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>TODO: Add description</xs:documentation>
+        <xs:documentation>Anger värde/värden för nyckeln.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
@@ -477,7 +477,7 @@
   </xs:simpleType>
   <xs:simpleType name="dataStageMaterialization">
     <xs:annotation>
-      <xs:documentation>TODO: Add description</xs:documentation>
+      <xs:documentation>Anger om data ska materialiseras eller virtualiseras.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:pattern value="[tT][aA][bB][lL][eE]|[vV][iI][eE][wW]" />
@@ -485,7 +485,7 @@
   </xs:simpleType>
   <xs:simpleType name="dataStageRole">
     <xs:annotation>
-      <xs:documentation>TODO: Add description</xs:documentation>
+      <xs:documentation>Anger vad som sker i dataStage.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:pattern value="[iI][nN][pP][uU][tT]|[nN][oO][nN][eE]|[oO][uU][tT][pP][uU][tT]|[tT][rR][aA][nN][sS][fF][oO][rR][mM][aA][tT][iI][oO][nN]" />
@@ -493,7 +493,7 @@
   </xs:simpleType>
   <xs:simpleType name="semanticLinkType">
     <xs:annotation>
-      <xs:documentation>TODO: Add description</xs:documentation>
+      <xs:documentation>Anger hur andra produkter länkar till varandra.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:pattern value="[hH][aA][sS]" />
@@ -541,7 +541,7 @@
   </xs:simpleType>
   <xs:simpleType name="descriptionType">
     <xs:annotation>
-      <xs:documentation>TODO: Add description</xs:documentation>
+      <xs:documentation>Anger textformat för beskrivningen</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:pattern value="[lL][oO][gG][iI][cC][mM][dD]|[mM][dD]|[pP][lL][aA][iI][nN]" />
