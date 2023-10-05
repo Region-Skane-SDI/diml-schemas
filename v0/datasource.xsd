@@ -424,7 +424,7 @@
       <xs:documentation>Anger en Diml-datatyp baserad på dom typer som finns beskrivna under dataTypes &gt; dimlDataTypeConfigs</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[sS][tT][rR][iI][nN][gG]|[bB][oO][oO][lL][eE][aA][nN]|[tT][iI][nN][yY][iI][nN][tT][eE][gG][eE][rR]|[sS][mM][aA][lL][lL][iI][nN][tT][eE][gG][eE][rR]|[iI][nN][tT][eE][gG][eE][rR]|[bB][iI][gG][iI][nN][tT][eE][gG][eE][rR]|[fF][lL][oO][aA][tT]|[dD][oO][uU][bB][lL][eE]|[dD][eE][cC][iI][mM][aA][lL]|[dD][aA][tT][eE]|[dD][aA][tT][eE][tT][iI][mM][eE]|[dD][aA][tT][eE][tT][iI][mM][eE][oO][fF][fF][sS][eE][tT]|[tT][iI][mM][eE]|[xX][mM][lL]|[bB][iI][nN][aA][rR][yY]|[sS][sS][nN]|[fF][uU][lL][lL][nN][aA][mM][eE]|[aA][gG][eE]|[gG][uU][iI][dD]" />
+      <xs:pattern value="[sS][tT][rR][iI][nN][gG]|[bB][oO][oO][lL][eE][aA][nN]|[tT][iI][nN][yY][iI][nN][tT][eE][gG][eE][rR]|[sS][mM][aA][lL][lL][iI][nN][tT][eE][gG][eE][rR]|[iI][nN][tT][eE][gG][eE][rR]|[bB][iI][gG][iI][nN][tT][eE][gG][eE][rR]|[fF][lL][oO][aA][tT]|[dD][oO][uU][bB][lL][eE]|[dD][eE][cC][iI][mM][aA][lL]|[dD][aA][tT][eE]|[dD][aA][tT][eE][tT][iI][mM][eE]|[dD][aA][tT][eE][tT][iI][mM][eE][oO][fF][fF][sS][eE][tT]|[tT][iI][mM][eE]|[xX][mM][lL]|[bB][iI][nN][aA][rR][yY]|[gG][uU][iI][dD]|[sS][sS][nN]|[fF][uU][lL][lL][nN][aA][mM][eE]|[aA][gG][eE]" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="traitClass">
