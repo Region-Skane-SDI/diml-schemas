@@ -4,56 +4,359 @@ Version 0.0.130
 
 
 
-<p style="white-space: pre-line">
-    ## DimlDatatyper
-    Används för att visa dimlDataTyper mappning till de olika platformar som datatypes filen stödjer.
 
-    | DimlDataTyper | default Attributes | T-SQL | .Net(C#) | Parquet | OpenAPI(Swagger) |
-    |-------------- | ------------------ | ----- | --------- | ------- | ---------------- |
-    | **string** | length = 50&lt;br /&gt;format = &lt;br /&gt;isFixedLength = false&lt;br /&gt;isWideChar = false&lt;br /&gt; | Conditional datatypes: &lt;br /&gt;&lt;br /&gt;Condition: &lt;br /&gt;isWideChar == true &amp;&amp; isFixedLength == false&lt;br /&gt; **nvarchar**&lt;br /&gt;Parameters:&lt;br /&gt;length = length &gt; 0 ? length.ToString() : &quot;max&quot;&lt;br /&gt;&lt;br /&gt;Condition: &lt;br /&gt;isWideChar == false &amp;&amp; isFixedLength == true&lt;br /&gt; **char**&lt;br /&gt;Parameters:&lt;br /&gt;length = length&lt;br /&gt;&lt;br /&gt;Condition: &lt;br /&gt;isWideChar == true &amp;&amp; isFixedLength == true&lt;br /&gt; **nchar**&lt;br /&gt;Parameters:&lt;br /&gt;length = length&lt;br /&gt;&lt;br /&gt;&lt;br /&gt; **varchar**&lt;br /&gt;Parameters:&lt;br /&gt;length = length &gt; 0 ? length.ToString() : &quot;max&quot;&lt;br /&gt;&lt;br /&gt; | Conditional datatypes: &lt;br /&gt;&lt;br /&gt;Condition: &lt;br /&gt;length == 1&lt;br /&gt; **char**&lt;br /&gt;Parameters:&lt;br /&gt;length = 1&lt;br /&gt;isFixedLength = true&lt;br /&gt;&lt;br /&gt;&lt;br /&gt; **string**&lt;br /&gt;&lt;br /&gt; | **STRING**&lt;br /&gt; | **string**&lt;br /&gt;format = format&lt;br /&gt;&#xA;| **boolean** |  | **bit**&lt;br /&gt; | **bool**&lt;br /&gt; | **BOOLEAN**&lt;br /&gt; | **boolean**&lt;br /&gt;&#xA;| **tinyInteger** | unsigned = false&lt;br /&gt; | **tinyint**&lt;br /&gt;unsigned = true&lt;br /&gt; | Conditional datatypes: &lt;br /&gt;&lt;br /&gt;Condition: &lt;br /&gt;unsigned == false&lt;br /&gt; **sbyte**&lt;br /&gt;&lt;br /&gt;&lt;br /&gt; **byte**&lt;br /&gt;&lt;br /&gt; | **INT(8, &#x2B; !unsigned &#x2B;)**&lt;br /&gt; | **integer**&lt;br /&gt;format = int32&lt;br /&gt;&#xA;| **smallInteger** | unsigned = false&lt;br /&gt; | **smallint**&lt;br /&gt; | Conditional datatypes: &lt;br /&gt;&lt;br /&gt;Condition: &lt;br /&gt;unsigned == false&lt;br /&gt; **short**&lt;br /&gt;&lt;br /&gt;&lt;br /&gt; **ushort**&lt;br /&gt;&lt;br /&gt; | **INT(16, &#x2B; !unsigned &#x2B;)**&lt;br /&gt; | **integer**&lt;br /&gt;format = int32&lt;br /&gt;&#xA;| **integer** | unsigned = false&lt;br /&gt; | **int**&lt;br /&gt; | Conditional datatypes: &lt;br /&gt;&lt;br /&gt;Condition: &lt;br /&gt;unsigned == false&lt;br /&gt; **int**&lt;br /&gt;&lt;br /&gt;&lt;br /&gt; **uint**&lt;br /&gt;&lt;br /&gt; | **INT(32, &#x2B; !unsigned &#x2B;)**&lt;br /&gt; | **integer**&lt;br /&gt;format = int32&lt;br /&gt;&#xA;| **bigInteger** | unsigned = false&lt;br /&gt; | **bigint**&lt;br /&gt; | Conditional datatypes: &lt;br /&gt;&lt;br /&gt;Condition: &lt;br /&gt;unsigned == false&lt;br /&gt; **long**&lt;br /&gt;&lt;br /&gt;&lt;br /&gt; **ulong**&lt;br /&gt;&lt;br /&gt; | **INT(64, &#x2B; !unsigned &#x2B;)**&lt;br /&gt; | **integer**&lt;br /&gt;format = int64&lt;br /&gt;&#xA;| **float** |  | **real**&lt;br /&gt; | **float**&lt;br /&gt; | **FLAOT**&lt;br /&gt; | **number**&lt;br /&gt;format = float&lt;br /&gt;&#xA;| **double** |  | **float**&lt;br /&gt; | **double**&lt;br /&gt; | **DOUBLE**&lt;br /&gt; | **number**&lt;br /&gt;format = double&lt;br /&gt;&#xA;| **decimal** | precision = 19&lt;br /&gt;scale = 4&lt;br /&gt; | Conditional datatypes: &lt;br /&gt;&lt;br /&gt;Condition: &lt;br /&gt;precision == 10 &amp;&amp; scale == 4&lt;br /&gt; **smallmoney**&lt;br /&gt;Parameters:&lt;br /&gt;precision = precision&lt;br /&gt;scale = scale&lt;br /&gt;&lt;br /&gt;Condition: &lt;br /&gt;precision == 19 &amp;&amp; scale == 4&lt;br /&gt; **money**&lt;br /&gt;Parameters:&lt;br /&gt;precision = precision&lt;br /&gt;scale = scale&lt;br /&gt;&lt;br /&gt;&lt;br /&gt; **numeric**&lt;br /&gt;&lt;br /&gt; | **decimal**&lt;br /&gt; | **DECIMAL**&lt;br /&gt;precision = precision&lt;br /&gt;scale = scale&lt;br /&gt; | **number**&lt;br /&gt;&#xA;| **date** |  | **date**&lt;br /&gt; | **DateOnly**&lt;br /&gt; | **DATE**&lt;br /&gt; | **string**&lt;br /&gt;format = date&lt;br /&gt;&#xA;| **dateTime** | precision = 0&lt;br /&gt;isUtcTime = false&lt;br /&gt; | Conditional datatypes: &lt;br /&gt;&lt;br /&gt;&lt;br /&gt; **datetime2**&lt;br /&gt;Parameters:&lt;br /&gt;precision = precision&lt;br /&gt;&lt;br /&gt; | **DateTime**&lt;br /&gt; | Conditional datatypes: &lt;br /&gt;&lt;br /&gt;Condition: &lt;br /&gt;precision &lt;= 3&lt;br /&gt; **TIMESTAMP(&#x2B; isUtcTime &#x2B;, MILLIS)**&lt;br /&gt;&lt;br /&gt;Condition: &lt;br /&gt;precision &lt;= 6&lt;br /&gt; **TIMESTAMP(&#x2B; isUtcTime &#x2B;, MICROS)**&lt;br /&gt;&lt;br /&gt;&lt;br /&gt; **TIMESTAMP(&#x2B; isUtcTime &#x2B;, NANOS)**&lt;br /&gt;&lt;br /&gt; | **string**&lt;br /&gt;format = date-time&lt;br /&gt;&#xA;| **dateTimeOffset** | precision = 0&lt;br /&gt; | **datetimeoffset**&lt;br /&gt;precision = precision&lt;br /&gt; | **DateTimeOffset**&lt;br /&gt; | Conditional datatypes: &lt;br /&gt;&lt;br /&gt;Condition: &lt;br /&gt;precision &lt;= 3&lt;br /&gt; **TIME(false, MILLIS)**&lt;br /&gt;&lt;br /&gt;Condition: &lt;br /&gt;precision &lt;= 6&lt;br /&gt; **TIME(false, MICROS)**&lt;br /&gt;&lt;br /&gt;&lt;br /&gt; **TIME(false, NANOS)**&lt;br /&gt;&lt;br /&gt; | **string**&lt;br /&gt;&#xA;| **time** | precision = 0&lt;br /&gt;isUtcTime = false&lt;br /&gt; | **time**&lt;br /&gt;precision = precision&lt;br /&gt; | **TimeSpan**&lt;br /&gt; | Conditional datatypes: &lt;br /&gt;&lt;br /&gt;Condition: &lt;br /&gt;precision &lt;= 3&lt;br /&gt; **TIME(&#x2B; isUtcTime &#x2B;, MILLIS)**&lt;br /&gt;&lt;br /&gt;Condition: &lt;br /&gt;precision &lt;= 6&lt;br /&gt; **TIME(&#x2B; isUtcTime &#x2B;, MICROS)**&lt;br /&gt;&lt;br /&gt;&lt;br /&gt; **TIME(&#x2B; isUtcTime &#x2B;, NANOS)**&lt;br /&gt;&lt;br /&gt; | **string**&lt;br /&gt;&#xA;| **xml** |  | **xml**&lt;br /&gt; | **string**&lt;br /&gt; | **string**&lt;br /&gt; | **string**&lt;br /&gt;&#xA;| **binary** | length = 32&lt;br /&gt;isFixedLength = false&lt;br /&gt; | Conditional datatypes: &lt;br /&gt;&lt;br /&gt;Condition: &lt;br /&gt;isFixedLength == true&lt;br /&gt; **varbinary**&lt;br /&gt;Parameters:&lt;br /&gt;isFixedLength = true&lt;br /&gt;&lt;br /&gt;&lt;br /&gt; **binary**&lt;br /&gt;Parameters:&lt;br /&gt;isFixedLength = false&lt;br /&gt;&lt;br /&gt; | **byte[]**&lt;br /&gt; | **BYTE_ARRAY**&lt;br /&gt; | **string**&lt;br /&gt;format = byte&lt;br /&gt;&#xA;| **guid** |  | **byte[16]**&lt;br /&gt; | **Guid**&lt;br /&gt; | **UUID**&lt;br /&gt; | **string**&lt;br /&gt;format = uuid&lt;br /&gt;&#xA;| **ssn** | length = 12&lt;br /&gt;format = \d{12}&lt;br /&gt;isFixedLength = true&lt;br /&gt; | Conditional datatypes: &lt;br /&gt;&lt;br /&gt;Condition: &lt;br /&gt;isWideChar == true &amp;&amp; isFixedLength == false&lt;br /&gt; **nvarchar**&lt;br /&gt;Parameters:&lt;br /&gt;length = length &gt; 0 ? length.ToString() : &quot;max&quot;&lt;br /&gt;&lt;br /&gt;Condition: &lt;br /&gt;isWideChar == false &amp;&amp; isFixedLength == true&lt;br /&gt; **char**&lt;br /&gt;Parameters:&lt;br /&gt;length = length&lt;br /&gt;&lt;br /&gt;Condition: &lt;br /&gt;isWideChar == true &amp;&amp; isFixedLength == true&lt;br /&gt; **nchar**&lt;br /&gt;Parameters:&lt;br /&gt;length = length&lt;br /&gt;&lt;br /&gt;&lt;br /&gt; **varchar**&lt;br /&gt;Parameters:&lt;br /&gt;length = length &gt; 0 ? length.ToString() : &quot;max&quot;&lt;br /&gt;&lt;br /&gt; | Conditional datatypes: &lt;br /&gt;&lt;br /&gt;Condition: &lt;br /&gt;length == 1&lt;br /&gt; **char**&lt;br /&gt;Parameters:&lt;br /&gt;length = 1&lt;br /&gt;isFixedLength = true&lt;br /&gt;&lt;br /&gt;&lt;br /&gt; **string**&lt;br /&gt;&lt;br /&gt; | **STRING**&lt;br /&gt; | **string**&lt;br /&gt;format = format&lt;br /&gt;&#xA;| **fullName** |  | Conditional datatypes: &lt;br /&gt;&lt;br /&gt;Condition: &lt;br /&gt;isWideChar == true &amp;&amp; isFixedLength == false&lt;br /&gt; **nvarchar**&lt;br /&gt;Parameters:&lt;br /&gt;length = length &gt; 0 ? length.ToString() : &quot;max&quot;&lt;br /&gt;&lt;br /&gt;Condition: &lt;br /&gt;isWideChar == false &amp;&amp; isFixedLength == true&lt;br /&gt; **char**&lt;br /&gt;Parameters:&lt;br /&gt;length = length&lt;br /&gt;&lt;br /&gt;Condition: &lt;br /&gt;isWideChar == true &amp;&amp; isFixedLength == true&lt;br /&gt; **nchar**&lt;br /&gt;Parameters:&lt;br /&gt;length = length&lt;br /&gt;&lt;br /&gt;&lt;br /&gt; **varchar**&lt;br /&gt;Parameters:&lt;br /&gt;length = length &gt; 0 ? length.ToString() : &quot;max&quot;&lt;br /&gt;&lt;br /&gt; | Conditional datatypes: &lt;br /&gt;&lt;br /&gt;Condition: &lt;br /&gt;length == 1&lt;br /&gt; **char**&lt;br /&gt;Parameters:&lt;br /&gt;length = 1&lt;br /&gt;isFixedLength = true&lt;br /&gt;&lt;br /&gt;&lt;br /&gt; **string**&lt;br /&gt;&lt;br /&gt; | **STRING**&lt;br /&gt; | **string**&lt;br /&gt;format = format&lt;br /&gt;&#xA;| **age** |  | **int**&lt;br /&gt; | Conditional datatypes: &lt;br /&gt;&lt;br /&gt;Condition: &lt;br /&gt;unsigned == false&lt;br /&gt; **int**&lt;br /&gt;&lt;br /&gt;&lt;br /&gt; **uint**&lt;br /&gt;&lt;br /&gt; | **INT(32, &#x2B; !unsigned &#x2B;)**&lt;br /&gt; | **integer**&lt;br /&gt;format = int32&lt;br /&gt;&#xA;
-</p>
+## DimlDatatyper
+Används för att visa dimlDataTyper mappning till de olika platformar som datatypes filen stödjer.
 
------------------------------------------------------------------------
------------------------------------------------------------------------
+| DimlDataTyper | default Attributes | T-SQL | .Net(C#) | Parquet | OpenAPI(Swagger) |
+|-------------- | ------------------ | ----- | --------- | ------- | ---------------- |
+ | **string** |  length = 50&#xA;        format = &#xA;        isFixedLength = false&#xA;        isWideChar = false&#xA;          | Conditional datatypes: &#xA;&#xA;**nvarchar**  if (isWideChar == true &amp;&amp; isFixedLength == false) &#xA;. *Parameters:* (&#xA;length = length &gt; 0 ? length.ToString() : &quot;max&quot;). &#xA;**char**  if (isWideChar == false &amp;&amp; isFixedLength == true) &#xA;. *Parameters:* (&#xA;length = length). &#xA;**nchar**  if (isWideChar == true &amp;&amp; isFixedLength == true) &#xA;. *Parameters:* (&#xA;length = length). &#xA;**varchar** &#xA;. *Parameters:* (&#xA;length = length &gt; 0 ? length.ToString() : &quot;max&quot;). &#xA;&#xA; | Conditional datatypes: &#xA;&#xA;**char**  if (length == 1) &#xA;. *Parameters:* (&#xA;length = 1, isFixedLength = true). &#xA;**string** &#xA;&#xA;&#xA; | **STRING**&#xA; | **string**&#xA;format = format&#xA;
+     | **boolean** |    | **bit**&#xA; | **bool**&#xA; | **BOOLEAN**&#xA; | **boolean**&#xA;
+     | **tinyInteger** |  unsigned = false&#xA;          | **tinyint**&#xA;unsigned = true&#xA; | Conditional datatypes: &#xA;&#xA;**sbyte**  if (unsigned == false) &#xA;&#xA;**byte** &#xA;&#xA;&#xA; | **INT(8, &#x2B; !unsigned &#x2B;)**&#xA; | **integer**&#xA;format = int32&#xA;
+     | **smallInteger** |  unsigned = false&#xA;          | **smallint**&#xA; | Conditional datatypes: &#xA;&#xA;**short**  if (unsigned == false) &#xA;&#xA;**ushort** &#xA;&#xA;&#xA; | **INT(16, &#x2B; !unsigned &#x2B;)**&#xA; | **integer**&#xA;format = int32&#xA;
+     | **integer** |  unsigned = false&#xA;          | **int**&#xA; | Conditional datatypes: &#xA;&#xA;**int**  if (unsigned == false) &#xA;&#xA;**uint** &#xA;&#xA;&#xA; | **INT(32, &#x2B; !unsigned &#x2B;)**&#xA; | **integer**&#xA;format = int32&#xA;
+     | **bigInteger** |  unsigned = false&#xA;          | **bigint**&#xA; | Conditional datatypes: &#xA;&#xA;**long**  if (unsigned == false) &#xA;&#xA;**ulong** &#xA;&#xA;&#xA; | **INT(64, &#x2B; !unsigned &#x2B;)**&#xA; | **integer**&#xA;format = int64&#xA;
+     | **float** |    | **real**&#xA; | **float**&#xA; | **FLAOT**&#xA; | **number**&#xA;format = float&#xA;
+     | **double** |    | **float**&#xA; | **double**&#xA; | **DOUBLE**&#xA; | **number**&#xA;format = double&#xA;
+     | **decimal** |  precision = 19&#xA;        scale = 4&#xA;          | Conditional datatypes: &#xA;&#xA;**smallmoney**  if (precision == 10 &amp;&amp; scale == 4) &#xA;. *Parameters:* (&#xA;precision = precision, scale = scale). &#xA;**money**  if (precision == 19 &amp;&amp; scale == 4) &#xA;. *Parameters:* (&#xA;precision = precision, scale = scale). &#xA;**numeric** &#xA;&#xA;&#xA; | **decimal**&#xA; | **DECIMAL**&#xA;precision = precision&#xA;scale = scale&#xA; | **number**&#xA;
+     | **date** |    | **date**&#xA; | **DateOnly**&#xA; | **DATE**&#xA; | **string**&#xA;format = date&#xA;
+     | **dateTime** |  precision = 0&#xA;        isUtcTime = false&#xA;          | Conditional datatypes: &#xA;&#xA;**datetime2** &#xA;. *Parameters:* (&#xA;precision = precision). &#xA;&#xA; | **DateTime**&#xA; | Conditional datatypes: &#xA;&#xA;**TIMESTAMP(&#x2B; isUtcTime &#x2B;, MILLIS)**  if (precision &lt;= 3) &#xA;&#xA;**TIMESTAMP(&#x2B; isUtcTime &#x2B;, MICROS)**  if (precision &lt;= 6) &#xA;&#xA;**TIMESTAMP(&#x2B; isUtcTime &#x2B;, NANOS)** &#xA;&#xA;&#xA; | **string**&#xA;format = date-time&#xA;
+     | **dateTimeOffset** |  precision = 0&#xA;          | **datetimeoffset**&#xA;precision = precision&#xA; | **DateTimeOffset**&#xA; | Conditional datatypes: &#xA;&#xA;**TIME(false, MILLIS)**  if (precision &lt;= 3) &#xA;&#xA;**TIME(false, MICROS)**  if (precision &lt;= 6) &#xA;&#xA;**TIME(false, NANOS)** &#xA;&#xA;&#xA; | **string**&#xA;
+     | **time** |  precision = 0&#xA;        isUtcTime = false&#xA;          | **time**&#xA;precision = precision&#xA; | **TimeSpan**&#xA; | Conditional datatypes: &#xA;&#xA;**TIME(&#x2B; isUtcTime &#x2B;, MILLIS)**  if (precision &lt;= 3) &#xA;&#xA;**TIME(&#x2B; isUtcTime &#x2B;, MICROS)**  if (precision &lt;= 6) &#xA;&#xA;**TIME(&#x2B; isUtcTime &#x2B;, NANOS)** &#xA;&#xA;&#xA; | **string**&#xA;
+     | **xml** |    | **xml**&#xA; | **string**&#xA; | **string**&#xA; | **string**&#xA;
+     | **binary** |  length = 32&#xA;        isFixedLength = false&#xA;          | Conditional datatypes: &#xA;&#xA;**varbinary**  if (isFixedLength == true) &#xA;. *Parameters:* (&#xA;isFixedLength = true). &#xA;**binary** &#xA;. *Parameters:* (&#xA;isFixedLength = false). &#xA;&#xA; | **byte[]**&#xA; | **BYTE_ARRAY**&#xA; | **string**&#xA;format = byte&#xA;
+     | **guid** |    | **byte[16]**&#xA; | **Guid**&#xA; | **UUID**&#xA; | **string**&#xA;format = uuid&#xA;
+     | **ssn** |  length = 12&#xA;        format = \d{12}&#xA;        isFixedLength = true&#xA;          | Conditional datatypes: &#xA;&#xA;**nvarchar**  if (isWideChar == true &amp;&amp; isFixedLength == false) &#xA;. *Parameters:* (&#xA;length = length &gt; 0 ? length.ToString() : &quot;max&quot;). &#xA;**char**  if (isWideChar == false &amp;&amp; isFixedLength == true) &#xA;. *Parameters:* (&#xA;length = length). &#xA;**nchar**  if (isWideChar == true &amp;&amp; isFixedLength == true) &#xA;. *Parameters:* (&#xA;length = length). &#xA;**varchar** &#xA;. *Parameters:* (&#xA;length = length &gt; 0 ? length.ToString() : &quot;max&quot;). &#xA;&#xA; | Conditional datatypes: &#xA;&#xA;**char**  if (length == 1) &#xA;. *Parameters:* (&#xA;length = 1, isFixedLength = true). &#xA;**string** &#xA;&#xA;&#xA; | **STRING**&#xA; | **string**&#xA;format = format&#xA;
+     | **fullName** |    | Conditional datatypes: &#xA;&#xA;**nvarchar**  if (isWideChar == true &amp;&amp; isFixedLength == false) &#xA;. *Parameters:* (&#xA;length = length &gt; 0 ? length.ToString() : &quot;max&quot;). &#xA;**char**  if (isWideChar == false &amp;&amp; isFixedLength == true) &#xA;. *Parameters:* (&#xA;length = length). &#xA;**nchar**  if (isWideChar == true &amp;&amp; isFixedLength == true) &#xA;. *Parameters:* (&#xA;length = length). &#xA;**varchar** &#xA;. *Parameters:* (&#xA;length = length &gt; 0 ? length.ToString() : &quot;max&quot;). &#xA;&#xA; | Conditional datatypes: &#xA;&#xA;**char**  if (length == 1) &#xA;. *Parameters:* (&#xA;length = 1, isFixedLength = true). &#xA;**string** &#xA;&#xA;&#xA; | **STRING**&#xA; | **string**&#xA;format = format&#xA;
+     | **age** |    | **int**&#xA; | Conditional datatypes: &#xA;&#xA;**int**  if (unsigned == false) &#xA;&#xA;**uint** &#xA;&#xA;&#xA; | **INT(32, &#x2B; !unsigned &#x2B;)**&#xA; | **integer**&#xA;format = int32&#xA;
+    
 
 
-        <p style="white-space: pre-line">
-            <br />
-            ## TSQL datatTyper:
-            Används för datatyp mappningen från TSQL platformen till dimldatatyper, visar också platformens parameterar samt detektionmösnter.
 
-            | TSQL DataTyp | DimlDataTyp | Plattform Parametrar | InputFormat |
-            | ------------- | ----------- | -------------------- | ----------- |
-             | varchar | string | length&lt;br /&gt; | (?i)varchar\s*\((?&#x27;length&#x27;.*?)\) | &#xA; | text | string | length&lt;br /&gt; | (?i)text\s*\((?&#x27;length&#x27;.*?)\) | &#xA; | nvarchar | string | length&lt;br /&gt; | (?i)nvarchar\((?&#x27;length&#x27;.*?)\) | &#xA; | ntext | string | length&lt;br /&gt; | (?i)ntext\s*\((?&#x27;length&#x27;.*?)\) | &#xA; | char | string | length&lt;br /&gt; | (?i)char\((?&#x27;length&#x27;.*?)\) | &#xA; | nchar | string | length&lt;br /&gt; | (?i)nchar\((?&#x27;length&#x27;.*?)\) | &#xA; | bit | boolean |  | bit | &#xA; | tinyint | tinyInteger |  | tinyint | &#xA; | smallint | smallInteger |  | smallint | &#xA; | int | integer |  | int | &#xA; | bigint | bigInteger |  | bigint | &#xA; | real | float |  | real | &#xA; | float | double | precision&lt;br /&gt; | (?i)float\s*\((?&#x27;precision&#x27;.*?)\) | &#xA; | smallmoney | decimal |  | smallmoney | &#xA; | money | decimal |  | smallmoney | &#xA; | decimal | decimal | precision&lt;br /&gt;scale&lt;br /&gt; | (?i)decimal\s*\((?&#x27;precision&#x27;.*?),\s*(?&#x27;scale&#x27;.*?)\) | &#xA; | numeric | decimal | precision&lt;br /&gt;scale&lt;br /&gt; | (?i)numeric\s*\((?&#x27;precision&#x27;.*?),\s*(?&#x27;scale&#x27;.*?)\) | &#xA; | date | date |  | date | &#xA; | smalldatetime | dateTime | precision&lt;br /&gt; | (?i)smalldatetime\s*\((?&#x27;precision&#x27;.*?)\) | &#xA; | datetime | dateTime | precision&lt;br /&gt; | (?i)datetime\s*\((?&#x27;precision&#x27;.*?)\) | &#xA; | datetime2 | dateTime | precision&lt;br /&gt; | (?i)datetime2\s*\((?&#x27;precision&#x27;.*?)\) | &#xA; | datetimeoffset | dateTimeOffset | precision&lt;br /&gt; | (?i)datetimeoffset\s*\((?&#x27;precision&#x27;.*?)\) | &#xA; | time | time | precision&lt;br /&gt; | (?i)time\s*\((?&#x27;precision&#x27;.*?)\) | &#xA; | binary | binary |  | binary | &#xA; | varbinary | binary |  | varbinary | &#xA; | xml | xml |  | xml | &#xA;
 
-        </p>
-        <p style="white-space: pre-line">
-            <br />
-            ## CSHARP datatTyper:
-            Används för datatyp mappningen från CSHARP platformen till dimldatatyper, visar också platformens parameterar samt detektionmösnter.
 
-            | CSHARP DataTyp | DimlDataTyp | Plattform Parametrar | InputFormat |
-            | ------------- | ----------- | -------------------- | ----------- |
-             | char | string |  | char | &#xA; | string | string |  | string | &#xA; | bool | boolean |  | bool | &#xA; | sbyte | tinyInteger |  | sbyte | &#xA; | byte | tinyInteger |  | byte | &#xA; | short | smallInteger |  | short | &#xA; | ushort | smallInteger |  | ushort | &#xA; | int | integer |  | int | &#xA; | uint | integer |  | uint | &#xA; | long | bigInteger |  | long | &#xA; | ulong | bigInteger |  | ulong | &#xA; | float | float |  | float | &#xA; | double | double |  | double | &#xA; | decimal | decimal |  | decimal | &#xA; | DateOnly | date |  | DateOnly | &#xA; | DateTime | datetime |  | DateTime | &#xA; | DateTimeOffset | dateTimeOffset |  | DateTimeOffset | &#xA; | TimeSpan | time |  | TimeSpan | &#xA; | byte[] | binary |  | byte[] | &#xA;
 
-        </p>
-        <p style="white-space: pre-line">
-            <br />
-            ## PARQUET datatTyper:
-            Används för datatyp mappningen från PARQUET platformen till dimldatatyper, visar också platformens parameterar samt detektionmösnter.
 
-            | PARQUET DataTyp | DimlDataTyp | Plattform Parametrar | InputFormat |
-            | ------------- | ----------- | -------------------- | ----------- |
-             | STRING | string |  | STRING | &#xA; | ENUM | string |  | ENUM | &#xA; | UUID | guid |  | UUID | &#xA; | BOOLEAN | boolean |  | BOOLEAN | &#xA; | INT | ConditionalDataTypes: &lt;br /&gt;&lt;br /&gt;Condition: bitWidth == 8&lt;br /&gt;**tinyInteger**&lt;br /&gt;&lt;br /&gt;Condition: bitWidth == 16&lt;br /&gt;**smallInteger**&lt;br /&gt;&lt;br /&gt;Condition: bitWidth == 32&lt;br /&gt;**integer**&lt;br /&gt;&lt;br /&gt;**bigInteger** | bitWidth&lt;br /&gt;isSigned&lt;br /&gt; | (?i)INT\s*\((?&#x27;bitWidth&#x27;.*?),\s*(?&#x27;isSigned&#x27;.*?)\) | &#xA; | FLOAT | float |  | FLOAT | &#xA; | DOUBLE | double |  | DOUBLE | &#xA; | DECIMAL | decimal |  | DECIMAL | &#xA; | DATE | date |  | DATE | &#xA; | TIME | time | isAdjustedToUTC&lt;br /&gt;unit&lt;br /&gt; | (?i)TIME\s*\((?&#x27;isAdjustedToUTC&#x27;.*?),\s*(?&#x27;unit&#x27;.*?)\) | &#xA; | TIMESTAMP | timeStamp | isAdjustedToUTC&lt;br /&gt;unit&lt;br /&gt; | (?i)TIMESTAMP\s*\((?&#x27;isAdjustedToUTC&#x27;.*?),\s*(?&#x27;unit&#x27;.*?)\) | &#xA; | byte[] | binary |  | byte[] | &#xA; | JSON | string |  | JSON | &#xA; | UTF8 | string |  | UTF8 | &#xA; | INT_8 | tinyInteger |  | INT_8 | &#xA; | INT_16 | smallInteger |  | INT_16 | &#xA; | INT_32 | integer |  | INT_32 | &#xA; | INT_64 | bigInteger |  | INT_64 | &#xA; | UINT_8 | tinyInteger |  | UINT_8 | &#xA; | UINT_16 | smallInteger |  | UINT_16 | &#xA; | UINT_32 | integer |  | UINT_32 | &#xA; | UINT_64 | bigInteger |  | UINT_64 | &#xA; | TIME_MILLIS | time |  | TIME_MILLIS | &#xA; | TIME_MICROS | time |  | TIME_MICROS | &#xA; | TIMESTAMP_MILLIS | timeStamp |  | TIMESTAMP_MILLIS | &#xA; | TIMESTAMP_MICROS | timeStamp |  | TIMESTAMP_MICROS | &#xA;
+## TSQL datatTyper:
+Används för datatyp mappningen från TSQL platformen till dimldatatyper, visar också platformens parameterar samt detektionmösnter.
+    
+| TSQL DataTyp | DimlDataTyp | Plattform Parametrar | InputFormat |
+| ------------- | ----------- | -------------------- | ----------- |
+| varchar | string | length   | (?i)varchar\s*\((?&#x27;length&#x27;.*?)\) |
+| text | string | length   | (?i)text\s*\((?&#x27;length&#x27;.*?)\) |
+| nvarchar | string | length   | (?i)nvarchar\((?&#x27;length&#x27;.*?)\) |
+| ntext | string | length   | (?i)ntext\s*\((?&#x27;length&#x27;.*?)\) |
+| char | string | length   | (?i)char\((?&#x27;length&#x27;.*?)\) |
+| nchar | string | length   | (?i)nchar\((?&#x27;length&#x27;.*?)\) |
+| bit | boolean |  | bit |
+| tinyint | tinyInteger |  | tinyint |
+| smallint | smallInteger |  | smallint |
+| int | integer |  | int |
+| bigint | bigInteger |  | bigint |
+| real | float |  | real |
+| float | double | precision   | (?i)float\s*\((?&#x27;precision&#x27;.*?)\) |
+| smallmoney | decimal |  | smallmoney |
+| money | decimal |  | smallmoney |
+| decimal | decimal | precision  scale   | (?i)decimal\s*\((?&#x27;precision&#x27;.*?),\s*(?&#x27;scale&#x27;.*?)\) |
+| numeric | decimal | precision  scale   | (?i)numeric\s*\((?&#x27;precision&#x27;.*?),\s*(?&#x27;scale&#x27;.*?)\) |
+| date | date |  | date |
+| smalldatetime | dateTime | precision   | (?i)smalldatetime\s*\((?&#x27;precision&#x27;.*?)\) |
+| datetime | dateTime | precision   | (?i)datetime\s*\((?&#x27;precision&#x27;.*?)\) |
+| datetime2 | dateTime | precision   | (?i)datetime2\s*\((?&#x27;precision&#x27;.*?)\) |
+| datetimeoffset | dateTimeOffset | precision   | (?i)datetimeoffset\s*\((?&#x27;precision&#x27;.*?)\) |
+| time | time | precision   | (?i)time\s*\((?&#x27;precision&#x27;.*?)\) |
+| binary | binary |  | binary |
+| varbinary | binary |  | varbinary |
+| xml | xml |  | xml |
+| char | string |  | char |
+| string | string |  | string |
+| bool | boolean |  | bool |
+| sbyte | tinyInteger |  | sbyte |
+| byte | tinyInteger |  | byte |
+| short | smallInteger |  | short |
+| ushort | smallInteger |  | ushort |
+| int | integer |  | int |
+| uint | integer |  | uint |
+| long | bigInteger |  | long |
+| ulong | bigInteger |  | ulong |
+| float | float |  | float |
+| double | double |  | double |
+| decimal | decimal |  | decimal |
+| DateOnly | date |  | DateOnly |
+| DateTime | datetime |  | DateTime |
+| DateTimeOffset | dateTimeOffset |  | DateTimeOffset |
+| TimeSpan | time |  | TimeSpan |
+| byte[] | binary |  | byte[] |
+| STRING | string |  | STRING |
+| ENUM | string |  | ENUM |
+| UUID | guid |  | UUID |
+| BOOLEAN | boolean |  | BOOLEAN |
+| INT |  ConditionalDataTypes:  Condition: bitWidth == 8  **tinyInteger**    Condition: bitWidth == 16  **smallInteger**    Condition: bitWidth == 32  **integer**    **bigInteger** | bitWidth  isSigned   | (?i)INT\s*\((?&#x27;bitWidth&#x27;.*?),\s*(?&#x27;isSigned&#x27;.*?)\) |
+| FLOAT | float |  | FLOAT |
+| DOUBLE | double |  | DOUBLE |
+| DECIMAL | decimal |  | DECIMAL |
+| DATE | date |  | DATE |
+| TIME | time | isAdjustedToUTC  unit   | (?i)TIME\s*\((?&#x27;isAdjustedToUTC&#x27;.*?),\s*(?&#x27;unit&#x27;.*?)\) |
+| TIMESTAMP | timeStamp | isAdjustedToUTC  unit   | (?i)TIMESTAMP\s*\((?&#x27;isAdjustedToUTC&#x27;.*?),\s*(?&#x27;unit&#x27;.*?)\) |
+| byte[] | binary |  | byte[] |
+| JSON | string |  | JSON |
+| UTF8 | string |  | UTF8 |
+| INT_8 | tinyInteger |  | INT_8 |
+| INT_16 | smallInteger |  | INT_16 |
+| INT_32 | integer |  | INT_32 |
+| INT_64 | bigInteger |  | INT_64 |
+| UINT_8 | tinyInteger |  | UINT_8 |
+| UINT_16 | smallInteger |  | UINT_16 |
+| UINT_32 | integer |  | UINT_32 |
+| UINT_64 | bigInteger |  | UINT_64 |
+| TIME_MILLIS | time |  | TIME_MILLIS |
+| TIME_MICROS | time |  | TIME_MICROS |
+| TIMESTAMP_MILLIS | timeStamp |  | TIMESTAMP_MILLIS |
+| TIMESTAMP_MICROS | timeStamp |  | TIMESTAMP_MICROS |
+| string |  ConditionalDataTypes:  Condition: format == &quot;date&quot;  **date**    Condition: format == &quot;date-time&quot;  **dateTime**    Condition: format == &quot;integer&quot;  **integer**    Condition: format == &quot;float&quot;  **float**    Condition: format == &quot;double&quot;  **double**    Condition: format == &quot;uuid&quot;  **guid**    **string** | format   | (?i)string\s*\((?&#x27;format&#x27;.*?)\) |
+| number |  ConditionalDataTypes:  Condition: format == &quot;float&quot;  **float**    Condition: format == &quot;double&quot;  **double**    **decimal** | format   | (?i)number\s*\((?&#x27;format&#x27;.*?)\) |
+| integer |  ConditionalDataTypes:  Condition: format == &quot;int64&quot;  **bigInteger**    **integer** | format   | (?i)integer\s*\((?&#x27;format&#x27;.*?)\) |
+| boolean | boolean |  | boolean |
 
-        </p>
-        <p style="white-space: pre-line">
-            <br />
-            ## OPENAPI datatTyper:
-            Används för datatyp mappningen från OPENAPI platformen till dimldatatyper, visar också platformens parameterar samt detektionmösnter.
+## CSHARP datatTyper:
+Används för datatyp mappningen från CSHARP platformen till dimldatatyper, visar också platformens parameterar samt detektionmösnter.
+    
+| CSHARP DataTyp | DimlDataTyp | Plattform Parametrar | InputFormat |
+| ------------- | ----------- | -------------------- | ----------- |
+| varchar | string | length   | (?i)varchar\s*\((?&#x27;length&#x27;.*?)\) |
+| text | string | length   | (?i)text\s*\((?&#x27;length&#x27;.*?)\) |
+| nvarchar | string | length   | (?i)nvarchar\((?&#x27;length&#x27;.*?)\) |
+| ntext | string | length   | (?i)ntext\s*\((?&#x27;length&#x27;.*?)\) |
+| char | string | length   | (?i)char\((?&#x27;length&#x27;.*?)\) |
+| nchar | string | length   | (?i)nchar\((?&#x27;length&#x27;.*?)\) |
+| bit | boolean |  | bit |
+| tinyint | tinyInteger |  | tinyint |
+| smallint | smallInteger |  | smallint |
+| int | integer |  | int |
+| bigint | bigInteger |  | bigint |
+| real | float |  | real |
+| float | double | precision   | (?i)float\s*\((?&#x27;precision&#x27;.*?)\) |
+| smallmoney | decimal |  | smallmoney |
+| money | decimal |  | smallmoney |
+| decimal | decimal | precision  scale   | (?i)decimal\s*\((?&#x27;precision&#x27;.*?),\s*(?&#x27;scale&#x27;.*?)\) |
+| numeric | decimal | precision  scale   | (?i)numeric\s*\((?&#x27;precision&#x27;.*?),\s*(?&#x27;scale&#x27;.*?)\) |
+| date | date |  | date |
+| smalldatetime | dateTime | precision   | (?i)smalldatetime\s*\((?&#x27;precision&#x27;.*?)\) |
+| datetime | dateTime | precision   | (?i)datetime\s*\((?&#x27;precision&#x27;.*?)\) |
+| datetime2 | dateTime | precision   | (?i)datetime2\s*\((?&#x27;precision&#x27;.*?)\) |
+| datetimeoffset | dateTimeOffset | precision   | (?i)datetimeoffset\s*\((?&#x27;precision&#x27;.*?)\) |
+| time | time | precision   | (?i)time\s*\((?&#x27;precision&#x27;.*?)\) |
+| binary | binary |  | binary |
+| varbinary | binary |  | varbinary |
+| xml | xml |  | xml |
+| char | string |  | char |
+| string | string |  | string |
+| bool | boolean |  | bool |
+| sbyte | tinyInteger |  | sbyte |
+| byte | tinyInteger |  | byte |
+| short | smallInteger |  | short |
+| ushort | smallInteger |  | ushort |
+| int | integer |  | int |
+| uint | integer |  | uint |
+| long | bigInteger |  | long |
+| ulong | bigInteger |  | ulong |
+| float | float |  | float |
+| double | double |  | double |
+| decimal | decimal |  | decimal |
+| DateOnly | date |  | DateOnly |
+| DateTime | datetime |  | DateTime |
+| DateTimeOffset | dateTimeOffset |  | DateTimeOffset |
+| TimeSpan | time |  | TimeSpan |
+| byte[] | binary |  | byte[] |
+| STRING | string |  | STRING |
+| ENUM | string |  | ENUM |
+| UUID | guid |  | UUID |
+| BOOLEAN | boolean |  | BOOLEAN |
+| INT |  ConditionalDataTypes:  Condition: bitWidth == 8  **tinyInteger**    Condition: bitWidth == 16  **smallInteger**    Condition: bitWidth == 32  **integer**    **bigInteger** | bitWidth  isSigned   | (?i)INT\s*\((?&#x27;bitWidth&#x27;.*?),\s*(?&#x27;isSigned&#x27;.*?)\) |
+| FLOAT | float |  | FLOAT |
+| DOUBLE | double |  | DOUBLE |
+| DECIMAL | decimal |  | DECIMAL |
+| DATE | date |  | DATE |
+| TIME | time | isAdjustedToUTC  unit   | (?i)TIME\s*\((?&#x27;isAdjustedToUTC&#x27;.*?),\s*(?&#x27;unit&#x27;.*?)\) |
+| TIMESTAMP | timeStamp | isAdjustedToUTC  unit   | (?i)TIMESTAMP\s*\((?&#x27;isAdjustedToUTC&#x27;.*?),\s*(?&#x27;unit&#x27;.*?)\) |
+| byte[] | binary |  | byte[] |
+| JSON | string |  | JSON |
+| UTF8 | string |  | UTF8 |
+| INT_8 | tinyInteger |  | INT_8 |
+| INT_16 | smallInteger |  | INT_16 |
+| INT_32 | integer |  | INT_32 |
+| INT_64 | bigInteger |  | INT_64 |
+| UINT_8 | tinyInteger |  | UINT_8 |
+| UINT_16 | smallInteger |  | UINT_16 |
+| UINT_32 | integer |  | UINT_32 |
+| UINT_64 | bigInteger |  | UINT_64 |
+| TIME_MILLIS | time |  | TIME_MILLIS |
+| TIME_MICROS | time |  | TIME_MICROS |
+| TIMESTAMP_MILLIS | timeStamp |  | TIMESTAMP_MILLIS |
+| TIMESTAMP_MICROS | timeStamp |  | TIMESTAMP_MICROS |
+| string |  ConditionalDataTypes:  Condition: format == &quot;date&quot;  **date**    Condition: format == &quot;date-time&quot;  **dateTime**    Condition: format == &quot;integer&quot;  **integer**    Condition: format == &quot;float&quot;  **float**    Condition: format == &quot;double&quot;  **double**    Condition: format == &quot;uuid&quot;  **guid**    **string** | format   | (?i)string\s*\((?&#x27;format&#x27;.*?)\) |
+| number |  ConditionalDataTypes:  Condition: format == &quot;float&quot;  **float**    Condition: format == &quot;double&quot;  **double**    **decimal** | format   | (?i)number\s*\((?&#x27;format&#x27;.*?)\) |
+| integer |  ConditionalDataTypes:  Condition: format == &quot;int64&quot;  **bigInteger**    **integer** | format   | (?i)integer\s*\((?&#x27;format&#x27;.*?)\) |
+| boolean | boolean |  | boolean |
 
-            | OPENAPI DataTyp | DimlDataTyp | Plattform Parametrar | InputFormat |
-            | ------------- | ----------- | -------------------- | ----------- |
-             | string | ConditionalDataTypes: &lt;br /&gt;&lt;br /&gt;Condition: format == &quot;date&quot;&lt;br /&gt;**date**&lt;br /&gt;&lt;br /&gt;Condition: format == &quot;date-time&quot;&lt;br /&gt;**dateTime**&lt;br /&gt;&lt;br /&gt;Condition: format == &quot;integer&quot;&lt;br /&gt;**integer**&lt;br /&gt;&lt;br /&gt;Condition: format == &quot;float&quot;&lt;br /&gt;**float**&lt;br /&gt;&lt;br /&gt;Condition: format == &quot;double&quot;&lt;br /&gt;**double**&lt;br /&gt;&lt;br /&gt;Condition: format == &quot;uuid&quot;&lt;br /&gt;**guid**&lt;br /&gt;&lt;br /&gt;**string** | format&lt;br /&gt; | (?i)string\s*\((?&#x27;format&#x27;.*?)\) | &#xA; | number | ConditionalDataTypes: &lt;br /&gt;&lt;br /&gt;Condition: format == &quot;float&quot;&lt;br /&gt;**float**&lt;br /&gt;&lt;br /&gt;Condition: format == &quot;double&quot;&lt;br /&gt;**double**&lt;br /&gt;&lt;br /&gt;**decimal** | format&lt;br /&gt; | (?i)number\s*\((?&#x27;format&#x27;.*?)\) | &#xA; | integer | ConditionalDataTypes: &lt;br /&gt;&lt;br /&gt;Condition: format == &quot;int64&quot;&lt;br /&gt;**bigInteger**&lt;br /&gt;&lt;br /&gt;**integer** | format&lt;br /&gt; | (?i)integer\s*\((?&#x27;format&#x27;.*?)\) | &#xA; | boolean | boolean |  | boolean | &#xA;
+## PARQUET datatTyper:
+Används för datatyp mappningen från PARQUET platformen till dimldatatyper, visar också platformens parameterar samt detektionmösnter.
+    
+| PARQUET DataTyp | DimlDataTyp | Plattform Parametrar | InputFormat |
+| ------------- | ----------- | -------------------- | ----------- |
+| varchar | string | length   | (?i)varchar\s*\((?&#x27;length&#x27;.*?)\) |
+| text | string | length   | (?i)text\s*\((?&#x27;length&#x27;.*?)\) |
+| nvarchar | string | length   | (?i)nvarchar\((?&#x27;length&#x27;.*?)\) |
+| ntext | string | length   | (?i)ntext\s*\((?&#x27;length&#x27;.*?)\) |
+| char | string | length   | (?i)char\((?&#x27;length&#x27;.*?)\) |
+| nchar | string | length   | (?i)nchar\((?&#x27;length&#x27;.*?)\) |
+| bit | boolean |  | bit |
+| tinyint | tinyInteger |  | tinyint |
+| smallint | smallInteger |  | smallint |
+| int | integer |  | int |
+| bigint | bigInteger |  | bigint |
+| real | float |  | real |
+| float | double | precision   | (?i)float\s*\((?&#x27;precision&#x27;.*?)\) |
+| smallmoney | decimal |  | smallmoney |
+| money | decimal |  | smallmoney |
+| decimal | decimal | precision  scale   | (?i)decimal\s*\((?&#x27;precision&#x27;.*?),\s*(?&#x27;scale&#x27;.*?)\) |
+| numeric | decimal | precision  scale   | (?i)numeric\s*\((?&#x27;precision&#x27;.*?),\s*(?&#x27;scale&#x27;.*?)\) |
+| date | date |  | date |
+| smalldatetime | dateTime | precision   | (?i)smalldatetime\s*\((?&#x27;precision&#x27;.*?)\) |
+| datetime | dateTime | precision   | (?i)datetime\s*\((?&#x27;precision&#x27;.*?)\) |
+| datetime2 | dateTime | precision   | (?i)datetime2\s*\((?&#x27;precision&#x27;.*?)\) |
+| datetimeoffset | dateTimeOffset | precision   | (?i)datetimeoffset\s*\((?&#x27;precision&#x27;.*?)\) |
+| time | time | precision   | (?i)time\s*\((?&#x27;precision&#x27;.*?)\) |
+| binary | binary |  | binary |
+| varbinary | binary |  | varbinary |
+| xml | xml |  | xml |
+| char | string |  | char |
+| string | string |  | string |
+| bool | boolean |  | bool |
+| sbyte | tinyInteger |  | sbyte |
+| byte | tinyInteger |  | byte |
+| short | smallInteger |  | short |
+| ushort | smallInteger |  | ushort |
+| int | integer |  | int |
+| uint | integer |  | uint |
+| long | bigInteger |  | long |
+| ulong | bigInteger |  | ulong |
+| float | float |  | float |
+| double | double |  | double |
+| decimal | decimal |  | decimal |
+| DateOnly | date |  | DateOnly |
+| DateTime | datetime |  | DateTime |
+| DateTimeOffset | dateTimeOffset |  | DateTimeOffset |
+| TimeSpan | time |  | TimeSpan |
+| byte[] | binary |  | byte[] |
+| STRING | string |  | STRING |
+| ENUM | string |  | ENUM |
+| UUID | guid |  | UUID |
+| BOOLEAN | boolean |  | BOOLEAN |
+| INT |  ConditionalDataTypes:  Condition: bitWidth == 8  **tinyInteger**    Condition: bitWidth == 16  **smallInteger**    Condition: bitWidth == 32  **integer**    **bigInteger** | bitWidth  isSigned   | (?i)INT\s*\((?&#x27;bitWidth&#x27;.*?),\s*(?&#x27;isSigned&#x27;.*?)\) |
+| FLOAT | float |  | FLOAT |
+| DOUBLE | double |  | DOUBLE |
+| DECIMAL | decimal |  | DECIMAL |
+| DATE | date |  | DATE |
+| TIME | time | isAdjustedToUTC  unit   | (?i)TIME\s*\((?&#x27;isAdjustedToUTC&#x27;.*?),\s*(?&#x27;unit&#x27;.*?)\) |
+| TIMESTAMP | timeStamp | isAdjustedToUTC  unit   | (?i)TIMESTAMP\s*\((?&#x27;isAdjustedToUTC&#x27;.*?),\s*(?&#x27;unit&#x27;.*?)\) |
+| byte[] | binary |  | byte[] |
+| JSON | string |  | JSON |
+| UTF8 | string |  | UTF8 |
+| INT_8 | tinyInteger |  | INT_8 |
+| INT_16 | smallInteger |  | INT_16 |
+| INT_32 | integer |  | INT_32 |
+| INT_64 | bigInteger |  | INT_64 |
+| UINT_8 | tinyInteger |  | UINT_8 |
+| UINT_16 | smallInteger |  | UINT_16 |
+| UINT_32 | integer |  | UINT_32 |
+| UINT_64 | bigInteger |  | UINT_64 |
+| TIME_MILLIS | time |  | TIME_MILLIS |
+| TIME_MICROS | time |  | TIME_MICROS |
+| TIMESTAMP_MILLIS | timeStamp |  | TIMESTAMP_MILLIS |
+| TIMESTAMP_MICROS | timeStamp |  | TIMESTAMP_MICROS |
+| string |  ConditionalDataTypes:  Condition: format == &quot;date&quot;  **date**    Condition: format == &quot;date-time&quot;  **dateTime**    Condition: format == &quot;integer&quot;  **integer**    Condition: format == &quot;float&quot;  **float**    Condition: format == &quot;double&quot;  **double**    Condition: format == &quot;uuid&quot;  **guid**    **string** | format   | (?i)string\s*\((?&#x27;format&#x27;.*?)\) |
+| number |  ConditionalDataTypes:  Condition: format == &quot;float&quot;  **float**    Condition: format == &quot;double&quot;  **double**    **decimal** | format   | (?i)number\s*\((?&#x27;format&#x27;.*?)\) |
+| integer |  ConditionalDataTypes:  Condition: format == &quot;int64&quot;  **bigInteger**    **integer** | format   | (?i)integer\s*\((?&#x27;format&#x27;.*?)\) |
+| boolean | boolean |  | boolean |
 
-        </p>
+## OPENAPI datatTyper:
+Används för datatyp mappningen från OPENAPI platformen till dimldatatyper, visar också platformens parameterar samt detektionmösnter.
+    
+| OPENAPI DataTyp | DimlDataTyp | Plattform Parametrar | InputFormat |
+| ------------- | ----------- | -------------------- | ----------- |
+| varchar | string | length   | (?i)varchar\s*\((?&#x27;length&#x27;.*?)\) |
+| text | string | length   | (?i)text\s*\((?&#x27;length&#x27;.*?)\) |
+| nvarchar | string | length   | (?i)nvarchar\((?&#x27;length&#x27;.*?)\) |
+| ntext | string | length   | (?i)ntext\s*\((?&#x27;length&#x27;.*?)\) |
+| char | string | length   | (?i)char\((?&#x27;length&#x27;.*?)\) |
+| nchar | string | length   | (?i)nchar\((?&#x27;length&#x27;.*?)\) |
+| bit | boolean |  | bit |
+| tinyint | tinyInteger |  | tinyint |
+| smallint | smallInteger |  | smallint |
+| int | integer |  | int |
+| bigint | bigInteger |  | bigint |
+| real | float |  | real |
+| float | double | precision   | (?i)float\s*\((?&#x27;precision&#x27;.*?)\) |
+| smallmoney | decimal |  | smallmoney |
+| money | decimal |  | smallmoney |
+| decimal | decimal | precision  scale   | (?i)decimal\s*\((?&#x27;precision&#x27;.*?),\s*(?&#x27;scale&#x27;.*?)\) |
+| numeric | decimal | precision  scale   | (?i)numeric\s*\((?&#x27;precision&#x27;.*?),\s*(?&#x27;scale&#x27;.*?)\) |
+| date | date |  | date |
+| smalldatetime | dateTime | precision   | (?i)smalldatetime\s*\((?&#x27;precision&#x27;.*?)\) |
+| datetime | dateTime | precision   | (?i)datetime\s*\((?&#x27;precision&#x27;.*?)\) |
+| datetime2 | dateTime | precision   | (?i)datetime2\s*\((?&#x27;precision&#x27;.*?)\) |
+| datetimeoffset | dateTimeOffset | precision   | (?i)datetimeoffset\s*\((?&#x27;precision&#x27;.*?)\) |
+| time | time | precision   | (?i)time\s*\((?&#x27;precision&#x27;.*?)\) |
+| binary | binary |  | binary |
+| varbinary | binary |  | varbinary |
+| xml | xml |  | xml |
+| char | string |  | char |
+| string | string |  | string |
+| bool | boolean |  | bool |
+| sbyte | tinyInteger |  | sbyte |
+| byte | tinyInteger |  | byte |
+| short | smallInteger |  | short |
+| ushort | smallInteger |  | ushort |
+| int | integer |  | int |
+| uint | integer |  | uint |
+| long | bigInteger |  | long |
+| ulong | bigInteger |  | ulong |
+| float | float |  | float |
+| double | double |  | double |
+| decimal | decimal |  | decimal |
+| DateOnly | date |  | DateOnly |
+| DateTime | datetime |  | DateTime |
+| DateTimeOffset | dateTimeOffset |  | DateTimeOffset |
+| TimeSpan | time |  | TimeSpan |
+| byte[] | binary |  | byte[] |
+| STRING | string |  | STRING |
+| ENUM | string |  | ENUM |
+| UUID | guid |  | UUID |
+| BOOLEAN | boolean |  | BOOLEAN |
+| INT |  ConditionalDataTypes:  Condition: bitWidth == 8  **tinyInteger**    Condition: bitWidth == 16  **smallInteger**    Condition: bitWidth == 32  **integer**    **bigInteger** | bitWidth  isSigned   | (?i)INT\s*\((?&#x27;bitWidth&#x27;.*?),\s*(?&#x27;isSigned&#x27;.*?)\) |
+| FLOAT | float |  | FLOAT |
+| DOUBLE | double |  | DOUBLE |
+| DECIMAL | decimal |  | DECIMAL |
+| DATE | date |  | DATE |
+| TIME | time | isAdjustedToUTC  unit   | (?i)TIME\s*\((?&#x27;isAdjustedToUTC&#x27;.*?),\s*(?&#x27;unit&#x27;.*?)\) |
+| TIMESTAMP | timeStamp | isAdjustedToUTC  unit   | (?i)TIMESTAMP\s*\((?&#x27;isAdjustedToUTC&#x27;.*?),\s*(?&#x27;unit&#x27;.*?)\) |
+| byte[] | binary |  | byte[] |
+| JSON | string |  | JSON |
+| UTF8 | string |  | UTF8 |
+| INT_8 | tinyInteger |  | INT_8 |
+| INT_16 | smallInteger |  | INT_16 |
+| INT_32 | integer |  | INT_32 |
+| INT_64 | bigInteger |  | INT_64 |
+| UINT_8 | tinyInteger |  | UINT_8 |
+| UINT_16 | smallInteger |  | UINT_16 |
+| UINT_32 | integer |  | UINT_32 |
+| UINT_64 | bigInteger |  | UINT_64 |
+| TIME_MILLIS | time |  | TIME_MILLIS |
+| TIME_MICROS | time |  | TIME_MICROS |
+| TIMESTAMP_MILLIS | timeStamp |  | TIMESTAMP_MILLIS |
+| TIMESTAMP_MICROS | timeStamp |  | TIMESTAMP_MICROS |
+| string |  ConditionalDataTypes:  Condition: format == &quot;date&quot;  **date**    Condition: format == &quot;date-time&quot;  **dateTime**    Condition: format == &quot;integer&quot;  **integer**    Condition: format == &quot;float&quot;  **float**    Condition: format == &quot;double&quot;  **double**    Condition: format == &quot;uuid&quot;  **guid**    **string** | format   | (?i)string\s*\((?&#x27;format&#x27;.*?)\) |
+| number |  ConditionalDataTypes:  Condition: format == &quot;float&quot;  **float**    Condition: format == &quot;double&quot;  **double**    **decimal** | format   | (?i)number\s*\((?&#x27;format&#x27;.*?)\) |
+| integer |  ConditionalDataTypes:  Condition: format == &quot;int64&quot;  **bigInteger**    **integer** | format   | (?i)integer\s*\((?&#x27;format&#x27;.*?)\) |
+| boolean | boolean |  | boolean |
