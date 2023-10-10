@@ -608,14 +608,6 @@
       <xs:pattern value="[oO][dD][aA][tT][aA]|" />
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="dataTypeClass">
-    <xs:annotation>
-      <xs:documentation>Ett enum som beskriver alla tillgängliga datatyper i Diml.</xs:documentation>
-    </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:pattern value="[aA][gG][eE]|[bB][iI][gG][iI][nN][tT][eE][gG][eE][rR]|[bB][iI][nN][aA][rR][yY]|[bB][iI][nN][aA][rR][yY][fF][iI][xX][eE][dD]|[bB][oO][oO][lL]|[bB][oO][oO][lL][eE][aA][nN]|[cC][uU][sS][tT][oO][mM]|[dD][aA][tT][eE]|[dD][aA][tT][eE][tT][iI][mM][eE]|[dD][aA][tT][eE][tT][iI][mM][eE][oO][fF][fF][sS][eE][tT]|[dD][eE][cC][iI][mM][aA][lL]|[dD][oO][uU][bB][lL][eE]|[fF][lL][oO][aA][tT]|[fF][uU][lL][lL][nN][aA][mM][eE]|[gG][uU][iI][dD]|[iI][mM][aA][gG][eE]|[iI][nN][tT][1][6]|[iI][nN][tT][3][2]|[iI][nN][tT][6][4]|[iI][nN][tT][8]|[iI][nN][tT][eE][gG][eE][rR]|[sS][mM][aA][lL][lL][iI][nN][tT][eE][gG][eE][rR]|[sS][sS][nN]|[sS][tT][rR][iI][nN][gG]|[sS][tT][rR][iI][nN][gG][fF][iI][xX][eE][dD]|[sS][tT][rR][iI][nN][gG][wW]|[sS][tT][rR][iI][nN][gG][wW][fF][iI][xX][eE][dD]|[tT][eE][xX][tT]|[tT][iI][mM][eE]|[tT][iI][mM][eE][sS][pP][aA][nN]|[tT][iI][mM][eE][sS][tT][aA][mM][pP]|[tT][iI][nN][yY][iI][nN][tT][eE][gG][eE][rR]|[uU][iI][nN][tT][1][6]|[uU][iI][nN][tT][3][2]|[uU][iI][nN][tT][6][4]|[uU][iI][nN][tT][8]|[xX][mM][lL]|" />
-    </xs:restriction>
-  </xs:simpleType>
   <xs:simpleType name="dataStageMaterialization">
     <xs:annotation>
       <xs:documentation>Anger om data ska materialiseras eller virtualiseras.</xs:documentation>

@@ -1,6 +1,6 @@
 
 # Diml klassdokumentation
-Version 0.0.130
+Version 0.0.131
 
 ## trait
 Anv&#xE4;nds f&#xF6;r att specificera egenskaper (traits) p&#xE5; ett Diml-objekt.
@@ -165,15 +165,6 @@ Anger m&#xE5;lplattform f&#xF6;r datatypen.
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | platform | string | Ja |  |  | Anger vilken m&#xE5;lplattform som datatypen tillh&#xF6;r. |
-
-## dataType
-Anger datatyp.
-
-| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
-| ---- | --- | ----- | ------------ | --------- | ----------- |
-| class | [dataTypeClass](#dataTypeClass) | Ja |  |  | Ett enum som beskriver alla tillg&#xE4;ngliga datatyper i Diml. |
-| isNullable | boolean | Ja |  |  | Anger om datatypen till&#xE5;ter null-v&#xE4;rden. |
-| tSqlDataType | string | Nej |  |  | Anger datatyp i TSQL-format. |
 
 ## dataFlow
 Anger fl&#xF6;det av data genom alla lager, samt egenskaper t.ex om en tabell ska materialiseras, uppdateras osv.
@@ -398,49 +389,6 @@ Anger utdatatyper som &#xE4;r kompatibla med apiOutput.
 | Namn | Beskrivning |
 | ---- | ----------- |
 | odata | ODATA. |
-
-## dataTypeClass
-Ett enum som beskriver alla tillg&#xE4;ngliga datatyper i Diml.
-
-| Namn | Beskrivning |
-| ---- | ----------- |
-| age | Datatypen age bygger p&#xE5; datatypen integer och representerar en tidsintervall i &#xE5;r. |
-| bigInteger | Datatypen bigInteger &#xE4;r en numerisk heltalstyp som representerar en 64-bitars signerad integer med ett v&#xE4;rdeintervall p&#xE5; &#x2013;9223372036854775808 till 9223372036854775807. |
-| binary | Datatypen binary &#xE4;r en logisk datatyp som endast kan lagra tv&#xE5; m&#xF6;jliga v&#xE4;rden 0 eller 1 |
-| binaryFixed |  |
-| bool |  |
-| boolean | Datatypen boolean kan ha ett av f&#xF6;ljande tv&#xE5; v&#xE4;rden: true/false. |
-| custom | Anpassad datatyp |
-| date | Datatypen date representerar ett datum i f&#xF6;ljande format: yyyy-MM-dd. |
-| dateTime | Datatypen dateTime representerar ett datum och en tid i f&#xF6;ljande format: yyyy-MM-dd HH:mm:ss.fff |
-| dateTimeOffset | Datatypen dateTimeOffset representerar en dateTime som &#xE4;r relativ till Coordinated Universal time (UTC). |
-| decimal | Datatypen decimal &#xE4;r en numerisk flyttalstyp med ett ungef&#xE4;rligt intervall p&#xE5; &#xB1;1.0 x 10 upph&#xF6;jt till -28 till &#xB1;7.9228 x 10 upph&#xF6;jt till 28, en precision p&#xE5; 28&#x2013;29 siffror samt en storlek p&#xE5; 16 bytes. |
-| double | Datatypen double &#xE4;r en numerisk flyttalstyp med ett ungef&#xE4;rligt intervall fr&#xE5;n &#xB1;5.0 &#xD7; 10 upph&#xF6;jt till &#x2212;324 till &#xB1;1.7 &#xD7; 10 upph&#xF6;jt till 308, en precision p&#xE5; ~15-17 siffror samt en storlek p&#xE5; 8 bytes. |
-| float | Datatypen float &#xE4;r en numerisk flyttalstyp med ett ungef&#xE4;rligt intervall fr&#xE5;n &#xB1;1.5 x 10 upph&#xF6;jt till &#x2212;45 till &#xB1;3.4 x 10 upph&#xF6;jt till 38, en precision p&#xE5; ~6-9 siffror samt en storlek p&#xE5; 4 bytes. |
-| fullName | Datatypen fullName bygger p&#xE5; datatypen string och representerar ett f&#xF6;r-och efternamn i f&#xF6;ljande format: John Doe. |
-| guid |  |
-| image |  |
-| int16 |  |
-| int32 |  |
-| int64 |  |
-| int8 |  |
-| integer | Datatypen integer &#xE4;r en numerisk heltalstyp som representerar en signerad 32-bitars integer med ett v&#xE4;rdeintervall fr&#xE5;n -2147483648 till 2147483647. |
-| smallInteger | Datatypen smallInteger &#xE4;r en numerisk heltalstyp som representerar en 16-bitars signerad integer med ett v&#xE4;rdeintervall fr&#xE5;n -32768 till 32767. |
-| ssn | Datatypen ssn bygger p&#xE5; datatypen string och representerar ett personnummer i f&#xF6;ljande format: yyyyMMdd-XXXX. |
-| string | Datatypen string &#xE4;r en sekventiell samling av tecken (UTF-16-kodenheter) som anv&#xE4;nds f&#xF6;r att representera text. Datatypen &#xE4;r skrivskyddad, vilket inneb&#xE4;r att en f&#xF6;r&#xE4;ndring av ett v&#xE4;rde som har datatypen string resulterar i ett nytt v&#xE4;rde som inneh&#xE5;ller f&#xF6;r&#xE4;ndringen. Max-storleken f&#xF6;r denna datatyp &#xE4;r 2GB, eller cirka 1 miljard tecken. |
-| stringFixed |  |
-| stringW |  |
-| stringWFixed |  |
-| text |  |
-| time | Datatypen time representerar en tid i f&#xF6;ljande format: HH:mm:ss.fff |
-| timeSpan |  |
-| timeStamp |  |
-| tinyInteger | Datatypen tinyInteger &#xE4;r en numerisk heltalstyp som representerar en 8-bitars signerad integer med ett v&#xE4;rdeintervall fr&#xE5;n -128 till 127. |
-| uInt16 |  |
-| uInt32 |  |
-| uInt64 |  |
-| uInt8 |  |
-| xml | Datatypen xml representerar data i XML-format. XML (Extensible Markup Language) &#xE4;r ett dataformat som anv&#xE4;nds f&#xF6;r att lagra, transportera och dela data. |
 
 ## dataStageMaterialization
 Anger om data ska materialiseras eller virtualiseras.
