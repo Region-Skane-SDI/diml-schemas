@@ -9,6 +9,7 @@
       <xs:element name="graphs" type="graphs" minOccurs="0" maxOccurs="1" />
       <xs:element name="lists" type="lists" minOccurs="0" maxOccurs="1" />
       <xs:element name="hierarchies" type="hierarchies" minOccurs="0" maxOccurs="1" />
+      <xs:element name="dataSystemColumns" type="dataSystemColumns" minOccurs="0" maxOccurs="1" />
     </xs:sequence>
     <xs:attribute name="defaultLanguage" type="xs:string" use="optional">
       <xs:annotation>
@@ -129,6 +130,104 @@
   </xs:simpleType>
   <xs:simpleType name="stringType">
     <xs:restriction base="xs:string" />
+  </xs:simpleType>
+  <xs:complexType name="dataSystemColumns">
+    <xs:sequence>
+      <xs:element name="dataSystemColumn" type="dataSystemColumn" minOccurs="1" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="dataSystemColumn">
+    <xs:annotation>
+      <xs:documentation>TODO: Saknar beskrivning.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="dimlDataType" type="dimlDataType" minOccurs="1" maxOccurs="1" />
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Ett unikt id som representerar en data systemkolumn.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="type" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>TODO: Saknar beskrivning.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="dimlDataType">
+    <xs:attribute name="id" type="dimlDataTypeConfigType" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger vilken Diml-datatyp som ska användas, baserat på ett ID från en dataTypeAttribute i dataTypes &gt; dataTypeAttributes.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="length" type="xs:int" use="optional">
+      <xs:annotation>
+        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="format" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="precision" type="xs:int" use="optional">
+      <xs:annotation>
+        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="scale" type="xs:int" use="optional">
+      <xs:annotation>
+        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="isFixedLength" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="isWideChar" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="unsigned" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="originalDataType" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="originalPlatform" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="isCaseSensitive" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="isNullable" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="isUtcTime" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:simpleType name="dimlDataTypeConfigType">
+    <xs:annotation>
+      <xs:documentation>Anger en Diml-datatyp baserad på dom typer som finns beskrivna under dataTypes &gt; dimlDataTypeConfigs</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[sS][tT][rR][iI][nN][gG]|[bB][oO][oO][lL][eE][aA][nN]|[tT][iI][nN][yY][iI][nN][tT][eE][gG][eE][rR]|[sS][mM][aA][lL][lL][iI][nN][tT][eE][gG][eE][rR]|[iI][nN][tT][eE][gG][eE][rR]|[bB][iI][gG][iI][nN][tT][eE][gG][eE][rR]|[fF][lL][oO][aA][tT]|[dD][oO][uU][bB][lL][eE]|[dD][eE][cC][iI][mM][aA][lL]|[dD][aA][tT][eE]|[dD][aA][tT][eE][tT][iI][mM][eE]|[dD][aA][tT][eE][tT][iI][mM][eE][oO][fF][fF][sS][eE][tT]|[tT][iI][mM][eE]|[xX][mM][lL]|[bB][iI][nN][aA][rR][yY]|[gG][uU][iI][dD]|[sS][sS][nN]|[fF][uU][lL][lL][nN][aA][mM][eE]|[aA][gG][eE]" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="traitClass">
     <xs:annotation>
