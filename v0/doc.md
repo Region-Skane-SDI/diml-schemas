@@ -1,6 +1,6 @@
 
 # Diml klassdokumentation
-Version 0.0.132
+Version 0.0.133
 
 ## trait
 Anv&#xE4;nds f&#xF6;r att specificera egenskaper (traits) p&#xE5; ett Diml-objekt.
@@ -122,6 +122,8 @@ Anv&#xE4;nds f&#xF6;r att definiera datatyper i Diml.
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | baseDataType | string | Nej |  |  | Anger vilken basdatatyp som datatypen &#xE4;rver fr&#xE5;n. |
+| detectionPattern | string | Nej |  |  | Anger ett regulj&#xE4;rt uttryck som anv&#xE4;nds f&#xF6;r att identifiera datatypen. |
+| detectionPriority | int32 | Nej |  |  | Anger en prioritetsordning f&#xF6;r det regulj&#xE4;ra uttrycket vid identifiering av datatypen. |
 | id | string | Ja |  |  | Anger datatypens namn i Diml. |
 
 ## platformDataTypeConfig
