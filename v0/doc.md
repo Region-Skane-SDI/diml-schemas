@@ -1,6 +1,6 @@
 
 # Diml klassdokumentation
-Version 0.0.131
+Version 0.0.132
 
 ## trait
 Anv&#xE4;nds f&#xF6;r att specificera egenskaper (traits) p&#xE5; ett Diml-objekt.
@@ -166,6 +166,14 @@ Anger m&#xE5;lplattform f&#xF6;r datatypen.
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | platform | string | Ja |  |  | Anger vilken m&#xE5;lplattform som datatypen tillh&#xF6;r. |
 
+## columnMapping
+TODO
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| columnId | string | Ja |  |  | TODO |
+| sourceColumnId | string | Ja |  |  | TODO |
+
 ## dataFlow
 Anger fl&#xF6;det av data genom alla lager, samt egenskaper t.ex om en tabell ska materialiseras, uppdateras osv.
 
@@ -225,6 +233,16 @@ Anger eventuella tabellrelationer och hur de relaterar via relationsColumns.
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | id | string | Ja |  |  | Ett unikt id f&#xF6;r tabellrelationen. |
 | targetTable | string | Ja |  |  | Anger vilken tabell som tabellrelationen relaterar till. |
+
+## tableToTableMapping
+TODO
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| allowSchemaDrift | boolean | Nej |  |  | TODO |
+| customSqlExpression | string | Nej |  |  | TODO |
+| sourceTableId | string | Ja |  |  | TODO |
+| tableId | string | Ja |  |  | TODO |
 
 ## column
 Beskriver en kolumn i en tabul&#xE4;r dataprodukt.
