@@ -37,6 +37,7 @@ Används för att visa dimlDataTyper mappning till de olika platformar som datat
 
 
 
+
 ## TSQL datatTyper:
 Används för datatyp mappningen från TSQL platformen till dimldatatyper, visar också platformens parameterar samt detektionmösnter.
     
@@ -68,87 +69,12 @@ Används för datatyp mappningen från TSQL platformen till dimldatatyper, visar
 | binary | binary |  | binary |
 | varbinary | binary |  | varbinary |
 | xml | xml |  | xml |
-| char | string |  | char |
-| string | string |  | string |
-| bool | boolean |  | bool |
-| sbyte | tinyInteger |  | sbyte |
-| byte | tinyInteger |  | byte |
-| short | smallInteger |  | short |
-| ushort | smallInteger |  | ushort |
-| int | integer |  | int |
-| uint | integer |  | uint |
-| long | bigInteger |  | long |
-| ulong | bigInteger |  | ulong |
-| float | float |  | float |
-| double | double |  | double |
-| decimal | decimal |  | decimal |
-| DateOnly | date |  | DateOnly |
-| DateTime | datetime |  | DateTime |
-| DateTimeOffset | dateTimeOffset |  | DateTimeOffset |
-| TimeSpan | time |  | TimeSpan |
-| byte[] | binary |  | byte[] |
-| STRING | string |  | STRING |
-| ENUM | string |  | ENUM |
-| UUID | guid |  | UUID |
-| BOOLEAN | boolean |  | BOOLEAN |
-| INT |  ConditionalDataTypes:  Condition: bitWidth == 8  **tinyInteger**    Condition: bitWidth == 16  **smallInteger**    Condition: bitWidth == 32  **integer**    **bigInteger** | bitWidth  isSigned   | (?i)INT\s*\((?&#x27;bitWidth&#x27;.*?),\s*(?&#x27;isSigned&#x27;.*?)\) |
-| FLOAT | float |  | FLOAT |
-| DOUBLE | double |  | DOUBLE |
-| DECIMAL | decimal |  | DECIMAL |
-| DATE | date |  | DATE |
-| TIME | time | isAdjustedToUTC  unit   | (?i)TIME\s*\((?&#x27;isAdjustedToUTC&#x27;.*?),\s*(?&#x27;unit&#x27;.*?)\) |
-| TIMESTAMP | timeStamp | isAdjustedToUTC  unit   | (?i)TIMESTAMP\s*\((?&#x27;isAdjustedToUTC&#x27;.*?),\s*(?&#x27;unit&#x27;.*?)\) |
-| byte[] | binary |  | byte[] |
-| JSON | string |  | JSON |
-| UTF8 | string |  | UTF8 |
-| INT_8 | tinyInteger |  | INT_8 |
-| INT_16 | smallInteger |  | INT_16 |
-| INT_32 | integer |  | INT_32 |
-| INT_64 | bigInteger |  | INT_64 |
-| UINT_8 | tinyInteger |  | UINT_8 |
-| UINT_16 | smallInteger |  | UINT_16 |
-| UINT_32 | integer |  | UINT_32 |
-| UINT_64 | bigInteger |  | UINT_64 |
-| TIME_MILLIS | time |  | TIME_MILLIS |
-| TIME_MICROS | time |  | TIME_MICROS |
-| TIMESTAMP_MILLIS | timeStamp |  | TIMESTAMP_MILLIS |
-| TIMESTAMP_MICROS | timeStamp |  | TIMESTAMP_MICROS |
-| string |  ConditionalDataTypes:  Condition: format == &quot;date&quot;  **date**    Condition: format == &quot;date-time&quot;  **dateTime**    Condition: format == &quot;integer&quot;  **integer**    Condition: format == &quot;float&quot;  **float**    Condition: format == &quot;double&quot;  **double**    Condition: format == &quot;uuid&quot;  **guid**    **string** | format   | (?i)string\s*\((?&#x27;format&#x27;.*?)\) |
-| number |  ConditionalDataTypes:  Condition: format == &quot;float&quot;  **float**    Condition: format == &quot;double&quot;  **double**    **decimal** | format   | (?i)number\s*\((?&#x27;format&#x27;.*?)\) |
-| integer |  ConditionalDataTypes:  Condition: format == &quot;int64&quot;  **bigInteger**    **integer** | format   | (?i)integer\s*\((?&#x27;format&#x27;.*?)\) |
-| boolean | boolean |  | boolean |
 
 ## CSHARP datatTyper:
 Används för datatyp mappningen från CSHARP platformen till dimldatatyper, visar också platformens parameterar samt detektionmösnter.
     
 | CSHARP DataTyp | DimlDataTyp | Plattform Parametrar | InputFormat |
 | ------------- | ----------- | -------------------- | ----------- |
-| varchar | string | length   | (?i)varchar\s*\((?&#x27;length&#x27;.*?)\) |
-| text | string | length   | (?i)text\s*\((?&#x27;length&#x27;.*?)\) |
-| nvarchar | string | length   | (?i)nvarchar\((?&#x27;length&#x27;.*?)\) |
-| ntext | string | length   | (?i)ntext\s*\((?&#x27;length&#x27;.*?)\) |
-| char | string | length   | (?i)char\((?&#x27;length&#x27;.*?)\) |
-| nchar | string | length   | (?i)nchar\((?&#x27;length&#x27;.*?)\) |
-| bit | boolean |  | bit |
-| tinyint | tinyInteger |  | tinyint |
-| smallint | smallInteger |  | smallint |
-| int | integer |  | int |
-| bigint | bigInteger |  | bigint |
-| real | float |  | real |
-| float | double | precision   | (?i)float\s*\((?&#x27;precision&#x27;.*?)\) |
-| smallmoney | decimal |  | smallmoney |
-| money | decimal |  | smallmoney |
-| decimal | decimal | precision  scale   | (?i)decimal\s*\((?&#x27;precision&#x27;.*?),\s*(?&#x27;scale&#x27;.*?)\) |
-| numeric | decimal | precision  scale   | (?i)numeric\s*\((?&#x27;precision&#x27;.*?),\s*(?&#x27;scale&#x27;.*?)\) |
-| date | date |  | date |
-| smalldatetime | dateTime | precision   | (?i)smalldatetime\s*\((?&#x27;precision&#x27;.*?)\) |
-| datetime | dateTime | precision   | (?i)datetime\s*\((?&#x27;precision&#x27;.*?)\) |
-| datetime2 | dateTime | precision   | (?i)datetime2\s*\((?&#x27;precision&#x27;.*?)\) |
-| datetimeoffset | dateTimeOffset | precision   | (?i)datetimeoffset\s*\((?&#x27;precision&#x27;.*?)\) |
-| time | time | precision   | (?i)time\s*\((?&#x27;precision&#x27;.*?)\) |
-| binary | binary |  | binary |
-| varbinary | binary |  | varbinary |
-| xml | xml |  | xml |
 | char | string |  | char |
 | string | string |  | string |
 | bool | boolean |  | bool |
@@ -168,87 +94,12 @@ Används för datatyp mappningen från CSHARP platformen till dimldatatyper, vis
 | DateTimeOffset | dateTimeOffset |  | DateTimeOffset |
 | TimeSpan | time |  | TimeSpan |
 | byte[] | binary |  | byte[] |
-| STRING | string |  | STRING |
-| ENUM | string |  | ENUM |
-| UUID | guid |  | UUID |
-| BOOLEAN | boolean |  | BOOLEAN |
-| INT |  ConditionalDataTypes:  Condition: bitWidth == 8  **tinyInteger**    Condition: bitWidth == 16  **smallInteger**    Condition: bitWidth == 32  **integer**    **bigInteger** | bitWidth  isSigned   | (?i)INT\s*\((?&#x27;bitWidth&#x27;.*?),\s*(?&#x27;isSigned&#x27;.*?)\) |
-| FLOAT | float |  | FLOAT |
-| DOUBLE | double |  | DOUBLE |
-| DECIMAL | decimal |  | DECIMAL |
-| DATE | date |  | DATE |
-| TIME | time | isAdjustedToUTC  unit   | (?i)TIME\s*\((?&#x27;isAdjustedToUTC&#x27;.*?),\s*(?&#x27;unit&#x27;.*?)\) |
-| TIMESTAMP | timeStamp | isAdjustedToUTC  unit   | (?i)TIMESTAMP\s*\((?&#x27;isAdjustedToUTC&#x27;.*?),\s*(?&#x27;unit&#x27;.*?)\) |
-| byte[] | binary |  | byte[] |
-| JSON | string |  | JSON |
-| UTF8 | string |  | UTF8 |
-| INT_8 | tinyInteger |  | INT_8 |
-| INT_16 | smallInteger |  | INT_16 |
-| INT_32 | integer |  | INT_32 |
-| INT_64 | bigInteger |  | INT_64 |
-| UINT_8 | tinyInteger |  | UINT_8 |
-| UINT_16 | smallInteger |  | UINT_16 |
-| UINT_32 | integer |  | UINT_32 |
-| UINT_64 | bigInteger |  | UINT_64 |
-| TIME_MILLIS | time |  | TIME_MILLIS |
-| TIME_MICROS | time |  | TIME_MICROS |
-| TIMESTAMP_MILLIS | timeStamp |  | TIMESTAMP_MILLIS |
-| TIMESTAMP_MICROS | timeStamp |  | TIMESTAMP_MICROS |
-| string |  ConditionalDataTypes:  Condition: format == &quot;date&quot;  **date**    Condition: format == &quot;date-time&quot;  **dateTime**    Condition: format == &quot;integer&quot;  **integer**    Condition: format == &quot;float&quot;  **float**    Condition: format == &quot;double&quot;  **double**    Condition: format == &quot;uuid&quot;  **guid**    **string** | format   | (?i)string\s*\((?&#x27;format&#x27;.*?)\) |
-| number |  ConditionalDataTypes:  Condition: format == &quot;float&quot;  **float**    Condition: format == &quot;double&quot;  **double**    **decimal** | format   | (?i)number\s*\((?&#x27;format&#x27;.*?)\) |
-| integer |  ConditionalDataTypes:  Condition: format == &quot;int64&quot;  **bigInteger**    **integer** | format   | (?i)integer\s*\((?&#x27;format&#x27;.*?)\) |
-| boolean | boolean |  | boolean |
 
 ## PARQUET datatTyper:
 Används för datatyp mappningen från PARQUET platformen till dimldatatyper, visar också platformens parameterar samt detektionmösnter.
     
 | PARQUET DataTyp | DimlDataTyp | Plattform Parametrar | InputFormat |
 | ------------- | ----------- | -------------------- | ----------- |
-| varchar | string | length   | (?i)varchar\s*\((?&#x27;length&#x27;.*?)\) |
-| text | string | length   | (?i)text\s*\((?&#x27;length&#x27;.*?)\) |
-| nvarchar | string | length   | (?i)nvarchar\((?&#x27;length&#x27;.*?)\) |
-| ntext | string | length   | (?i)ntext\s*\((?&#x27;length&#x27;.*?)\) |
-| char | string | length   | (?i)char\((?&#x27;length&#x27;.*?)\) |
-| nchar | string | length   | (?i)nchar\((?&#x27;length&#x27;.*?)\) |
-| bit | boolean |  | bit |
-| tinyint | tinyInteger |  | tinyint |
-| smallint | smallInteger |  | smallint |
-| int | integer |  | int |
-| bigint | bigInteger |  | bigint |
-| real | float |  | real |
-| float | double | precision   | (?i)float\s*\((?&#x27;precision&#x27;.*?)\) |
-| smallmoney | decimal |  | smallmoney |
-| money | decimal |  | smallmoney |
-| decimal | decimal | precision  scale   | (?i)decimal\s*\((?&#x27;precision&#x27;.*?),\s*(?&#x27;scale&#x27;.*?)\) |
-| numeric | decimal | precision  scale   | (?i)numeric\s*\((?&#x27;precision&#x27;.*?),\s*(?&#x27;scale&#x27;.*?)\) |
-| date | date |  | date |
-| smalldatetime | dateTime | precision   | (?i)smalldatetime\s*\((?&#x27;precision&#x27;.*?)\) |
-| datetime | dateTime | precision   | (?i)datetime\s*\((?&#x27;precision&#x27;.*?)\) |
-| datetime2 | dateTime | precision   | (?i)datetime2\s*\((?&#x27;precision&#x27;.*?)\) |
-| datetimeoffset | dateTimeOffset | precision   | (?i)datetimeoffset\s*\((?&#x27;precision&#x27;.*?)\) |
-| time | time | precision   | (?i)time\s*\((?&#x27;precision&#x27;.*?)\) |
-| binary | binary |  | binary |
-| varbinary | binary |  | varbinary |
-| xml | xml |  | xml |
-| char | string |  | char |
-| string | string |  | string |
-| bool | boolean |  | bool |
-| sbyte | tinyInteger |  | sbyte |
-| byte | tinyInteger |  | byte |
-| short | smallInteger |  | short |
-| ushort | smallInteger |  | ushort |
-| int | integer |  | int |
-| uint | integer |  | uint |
-| long | bigInteger |  | long |
-| ulong | bigInteger |  | ulong |
-| float | float |  | float |
-| double | double |  | double |
-| decimal | decimal |  | decimal |
-| DateOnly | date |  | DateOnly |
-| DateTime | datetime |  | DateTime |
-| DateTimeOffset | dateTimeOffset |  | DateTimeOffset |
-| TimeSpan | time |  | TimeSpan |
-| byte[] | binary |  | byte[] |
 | STRING | string |  | STRING |
 | ENUM | string |  | ENUM |
 | UUID | guid |  | UUID |
@@ -275,87 +126,12 @@ Används för datatyp mappningen från PARQUET platformen till dimldatatyper, vi
 | TIME_MICROS | time |  | TIME_MICROS |
 | TIMESTAMP_MILLIS | timeStamp |  | TIMESTAMP_MILLIS |
 | TIMESTAMP_MICROS | timeStamp |  | TIMESTAMP_MICROS |
-| string |  ConditionalDataTypes:  Condition: format == &quot;date&quot;  **date**    Condition: format == &quot;date-time&quot;  **dateTime**    Condition: format == &quot;integer&quot;  **integer**    Condition: format == &quot;float&quot;  **float**    Condition: format == &quot;double&quot;  **double**    Condition: format == &quot;uuid&quot;  **guid**    **string** | format   | (?i)string\s*\((?&#x27;format&#x27;.*?)\) |
-| number |  ConditionalDataTypes:  Condition: format == &quot;float&quot;  **float**    Condition: format == &quot;double&quot;  **double**    **decimal** | format   | (?i)number\s*\((?&#x27;format&#x27;.*?)\) |
-| integer |  ConditionalDataTypes:  Condition: format == &quot;int64&quot;  **bigInteger**    **integer** | format   | (?i)integer\s*\((?&#x27;format&#x27;.*?)\) |
-| boolean | boolean |  | boolean |
 
 ## OPENAPI datatTyper:
 Används för datatyp mappningen från OPENAPI platformen till dimldatatyper, visar också platformens parameterar samt detektionmösnter.
     
 | OPENAPI DataTyp | DimlDataTyp | Plattform Parametrar | InputFormat |
 | ------------- | ----------- | -------------------- | ----------- |
-| varchar | string | length   | (?i)varchar\s*\((?&#x27;length&#x27;.*?)\) |
-| text | string | length   | (?i)text\s*\((?&#x27;length&#x27;.*?)\) |
-| nvarchar | string | length   | (?i)nvarchar\((?&#x27;length&#x27;.*?)\) |
-| ntext | string | length   | (?i)ntext\s*\((?&#x27;length&#x27;.*?)\) |
-| char | string | length   | (?i)char\((?&#x27;length&#x27;.*?)\) |
-| nchar | string | length   | (?i)nchar\((?&#x27;length&#x27;.*?)\) |
-| bit | boolean |  | bit |
-| tinyint | tinyInteger |  | tinyint |
-| smallint | smallInteger |  | smallint |
-| int | integer |  | int |
-| bigint | bigInteger |  | bigint |
-| real | float |  | real |
-| float | double | precision   | (?i)float\s*\((?&#x27;precision&#x27;.*?)\) |
-| smallmoney | decimal |  | smallmoney |
-| money | decimal |  | smallmoney |
-| decimal | decimal | precision  scale   | (?i)decimal\s*\((?&#x27;precision&#x27;.*?),\s*(?&#x27;scale&#x27;.*?)\) |
-| numeric | decimal | precision  scale   | (?i)numeric\s*\((?&#x27;precision&#x27;.*?),\s*(?&#x27;scale&#x27;.*?)\) |
-| date | date |  | date |
-| smalldatetime | dateTime | precision   | (?i)smalldatetime\s*\((?&#x27;precision&#x27;.*?)\) |
-| datetime | dateTime | precision   | (?i)datetime\s*\((?&#x27;precision&#x27;.*?)\) |
-| datetime2 | dateTime | precision   | (?i)datetime2\s*\((?&#x27;precision&#x27;.*?)\) |
-| datetimeoffset | dateTimeOffset | precision   | (?i)datetimeoffset\s*\((?&#x27;precision&#x27;.*?)\) |
-| time | time | precision   | (?i)time\s*\((?&#x27;precision&#x27;.*?)\) |
-| binary | binary |  | binary |
-| varbinary | binary |  | varbinary |
-| xml | xml |  | xml |
-| char | string |  | char |
-| string | string |  | string |
-| bool | boolean |  | bool |
-| sbyte | tinyInteger |  | sbyte |
-| byte | tinyInteger |  | byte |
-| short | smallInteger |  | short |
-| ushort | smallInteger |  | ushort |
-| int | integer |  | int |
-| uint | integer |  | uint |
-| long | bigInteger |  | long |
-| ulong | bigInteger |  | ulong |
-| float | float |  | float |
-| double | double |  | double |
-| decimal | decimal |  | decimal |
-| DateOnly | date |  | DateOnly |
-| DateTime | datetime |  | DateTime |
-| DateTimeOffset | dateTimeOffset |  | DateTimeOffset |
-| TimeSpan | time |  | TimeSpan |
-| byte[] | binary |  | byte[] |
-| STRING | string |  | STRING |
-| ENUM | string |  | ENUM |
-| UUID | guid |  | UUID |
-| BOOLEAN | boolean |  | BOOLEAN |
-| INT |  ConditionalDataTypes:  Condition: bitWidth == 8  **tinyInteger**    Condition: bitWidth == 16  **smallInteger**    Condition: bitWidth == 32  **integer**    **bigInteger** | bitWidth  isSigned   | (?i)INT\s*\((?&#x27;bitWidth&#x27;.*?),\s*(?&#x27;isSigned&#x27;.*?)\) |
-| FLOAT | float |  | FLOAT |
-| DOUBLE | double |  | DOUBLE |
-| DECIMAL | decimal |  | DECIMAL |
-| DATE | date |  | DATE |
-| TIME | time | isAdjustedToUTC  unit   | (?i)TIME\s*\((?&#x27;isAdjustedToUTC&#x27;.*?),\s*(?&#x27;unit&#x27;.*?)\) |
-| TIMESTAMP | timeStamp | isAdjustedToUTC  unit   | (?i)TIMESTAMP\s*\((?&#x27;isAdjustedToUTC&#x27;.*?),\s*(?&#x27;unit&#x27;.*?)\) |
-| byte[] | binary |  | byte[] |
-| JSON | string |  | JSON |
-| UTF8 | string |  | UTF8 |
-| INT_8 | tinyInteger |  | INT_8 |
-| INT_16 | smallInteger |  | INT_16 |
-| INT_32 | integer |  | INT_32 |
-| INT_64 | bigInteger |  | INT_64 |
-| UINT_8 | tinyInteger |  | UINT_8 |
-| UINT_16 | smallInteger |  | UINT_16 |
-| UINT_32 | integer |  | UINT_32 |
-| UINT_64 | bigInteger |  | UINT_64 |
-| TIME_MILLIS | time |  | TIME_MILLIS |
-| TIME_MICROS | time |  | TIME_MICROS |
-| TIMESTAMP_MILLIS | timeStamp |  | TIMESTAMP_MILLIS |
-| TIMESTAMP_MICROS | timeStamp |  | TIMESTAMP_MICROS |
 | string |  ConditionalDataTypes:  Condition: format == &quot;date&quot;  **date**    Condition: format == &quot;date-time&quot;  **dateTime**    Condition: format == &quot;integer&quot;  **integer**    Condition: format == &quot;float&quot;  **float**    Condition: format == &quot;double&quot;  **double**    Condition: format == &quot;uuid&quot;  **guid**    **string** | format   | (?i)string\s*\((?&#x27;format&#x27;.*?)\) |
 | number |  ConditionalDataTypes:  Condition: format == &quot;float&quot;  **float**    Condition: format == &quot;double&quot;  **double**    **decimal** | format   | (?i)number\s*\((?&#x27;format&#x27;.*?)\) |
 | integer |  ConditionalDataTypes:  Condition: format == &quot;int64&quot;  **bigInteger**    **integer** | format   | (?i)integer\s*\((?&#x27;format&#x27;.*?)\) |
