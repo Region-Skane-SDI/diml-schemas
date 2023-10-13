@@ -1,6 +1,6 @@
 
 # DimlDataTyper mappning dokumentation
-Version 0.0.133
+Version 0.0.134
 
 
 
@@ -25,7 +25,7 @@ Används för att visa dimlDataTyper mappning till de olika platformar som datat
   | **time** |  precision = 0&#xA;        isUtcTime = false&#xA;         | **time**&#xA;precision = precision&#xA;| **TimeSpan**&#xA; | Conditional datatypes: &#xA;&#xA;**TIME(&#x2B; isUtcTime &#x2B;, MILLIS)**  if (precision &lt;= 3) **TIME(&#x2B; isUtcTime &#x2B;, MICROS)**  if (precision &lt;= 6) **TIME(&#x2B; isUtcTime &#x2B;, NANOS)** | **string**&#xA;
   | **xml** |   | **xml**&#xA;| **string**&#xA;| **string**&#xA;| **string**&#xA;
   | **binary** |  length = 32&#xA;        isFixedLength = false&#xA;          | Conditional datatypes: &#xA;&#xA;**varbinary**  if (isFixedLength == true) &#xA;. *Parameters:* (&#xA;isFixedLength = true). **binary** &#xA;. *Parameters:* (&#xA;isFixedLength = false). | **byte[]**&#xA;| **BYTE_ARRAY**&#xA;| **string**&#xA;format = byte&#xA;
-  | **guid** |   | **byte[16]**&#xA;| **Guid**&#xA;| **UUID**&#xA;| **string**&#xA;format = uuid&#xA;
+  | **guid** |   | **binary**&#xA;length = 16&#xA;| **Guid**&#xA;| **UUID**&#xA;| **string**&#xA;format = uuid&#xA;
   | **ssn** |  length = 12&#xA;        format = \d{12}&#xA;        isFixedLength = true&#xA;          | Conditional datatypes: &#xA;&#xA;**nvarchar**  if (isWideChar == true &amp;&amp; isFixedLength == false) &#xA;. *Parameters:* (&#xA;length = length &gt; 0 ? length.ToString() : &quot;max&quot;). **char**  if (isWideChar == false &amp;&amp; isFixedLength == true) &#xA;. *Parameters:* (&#xA;length = length). **nchar**  if (isWideChar == true &amp;&amp; isFixedLength == true) &#xA;. *Parameters:* (&#xA;length = length). **varchar** &#xA;. *Parameters:* (&#xA;length = length &gt; 0 ? length.ToString() : &quot;max&quot;).  | Conditional datatypes: &#xA;&#xA;**char**  if (length == 1) &#xA;. *Parameters:* (&#xA;length = 1, isFixedLength = true). **string** | **STRING**&#xA;| **string**&#xA;format = format&#xA;
   | **fullName** |    | Conditional datatypes: &#xA;&#xA;**nvarchar**  if (isWideChar == true &amp;&amp; isFixedLength == false) &#xA;. *Parameters:* (&#xA;length = length &gt; 0 ? length.ToString() : &quot;max&quot;). **char**  if (isWideChar == false &amp;&amp; isFixedLength == true) &#xA;. *Parameters:* (&#xA;length = length). **nchar**  if (isWideChar == true &amp;&amp; isFixedLength == true) &#xA;. *Parameters:* (&#xA;length = length). **varchar** &#xA;. *Parameters:* (&#xA;length = length &gt; 0 ? length.ToString() : &quot;max&quot;).  | Conditional datatypes: &#xA;&#xA;**char**  if (length == 1) &#xA;. *Parameters:* (&#xA;length = 1, isFixedLength = true). **string** | **STRING**&#xA;| **string**&#xA;format = format&#xA;
   | **age** |   | **int**&#xA; | Conditional datatypes: &#xA;&#xA;**int**  if (unsigned == false) **uint** | **INT(32, &#x2B; !unsigned &#x2B;)**&#xA;| **integer**&#xA;format = int32&#xA;
@@ -44,9 +44,7 @@ Används för datatyp mappningen från TSQL platformen till dimldatatyper, visar
 | TSQL DataTyp | DimlDataTyp | Plattform Parametrar | InputFormat |
 | ------------- | ----------- | -------------------- | ----------- |
 | varchar | string | length   | (?i)varchar\s*\((?&#x27;length&#x27;.*?)\) |
-| text | string | length   | (?i)text\s*\((?&#x27;length&#x27;.*?)\) |
 | nvarchar | string | length   | (?i)nvarchar\((?&#x27;length&#x27;.*?)\) |
-| ntext | string | length   | (?i)ntext\s*\((?&#x27;length&#x27;.*?)\) |
 | char | string | length   | (?i)char\((?&#x27;length&#x27;.*?)\) |
 | nchar | string | length   | (?i)nchar\((?&#x27;length&#x27;.*?)\) |
 | bit | boolean |  | bit |
@@ -69,6 +67,10 @@ Används för datatyp mappningen från TSQL platformen till dimldatatyper, visar
 | binary | binary |  | binary |
 | varbinary | binary |  | varbinary |
 | xml | xml |  | xml |
+| uniqueidentifier | guid |  | uniqueidentifier |
+| text | string | length   | text |
+| ntext | string | length   | ntext |
+| image | binary |  | image |
 
 ## CSHARP datatTyper:
 Används för datatyp mappningen från CSHARP platformen till dimldatatyper, visar också platformens parameterar samt detektionmösnter.
