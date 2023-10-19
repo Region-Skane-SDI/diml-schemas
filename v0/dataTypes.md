@@ -1,6 +1,6 @@
 
 # DimlDataTyper mappning dokumentation
-Version 0.0.136
+Version 0.0.137
 
 
 
@@ -17,8 +17,8 @@ Används för att visa dimlDataTyper mappning till de olika platformar som datat
   | **integer** |  unsigned = false&#xA;         | **int**&#xA; | Conditional datatypes: &#xA;&#xA;**int**  if (unsigned == false) **uint** | **INT(32, &#x2B; !unsigned &#x2B;)**&#xA;| **integer**&#xA;format = int32&#xA;
   | **bigInteger** |  unsigned = false&#xA;         | **bigint**&#xA; | Conditional datatypes: &#xA;&#xA;**long**  if (unsigned == false) **ulong** | **INT(64, &#x2B; !unsigned &#x2B;)**&#xA;| **integer**&#xA;format = int64&#xA;
   | **float** |   | **real**&#xA;| **float**&#xA;| **FLAOT**&#xA;| **number**&#xA;format = float&#xA;
-  | **double** |   | **float**&#xA;| **double**&#xA;| **DOUBLE**&#xA;| **number**&#xA;format = double&#xA;
-  | **decimal** |  precision = 19&#xA;        scale = 4&#xA;          | Conditional datatypes: &#xA;&#xA;**smallmoney**  if (precision == 10 &amp;&amp; scale == 4) &#xA;. *Parameters:* (&#xA;precision = precision, scale = scale). **money**  if (precision == 19 &amp;&amp; scale == 4) &#xA;. *Parameters:* (&#xA;precision = precision, scale = scale). **numeric** | **decimal**&#xA;| **DECIMAL**&#xA;precision = precision&#xA;scale = scale&#xA;| **number**&#xA;
+  | **double** |   | **float**&#xA;precision = precision&#xA;| **double**&#xA;| **DOUBLE**&#xA;| **number**&#xA;format = double&#xA;
+  | **decimal** |  precision = 19&#xA;        scale = 4&#xA;          | Conditional datatypes: &#xA;&#xA;**smallmoney**  if (precision == 10 &amp;&amp; scale == 4) &#xA;. *Parameters:* (&#xA;precision = precision, scale = scale). **money**  if (precision == 19 &amp;&amp; scale == 4) &#xA;. *Parameters:* (&#xA;precision = precision, scale = scale). **numeric** &#xA;. *Parameters:* (&#xA;precision = precision, scale = scale). | **decimal**&#xA;| **DECIMAL**&#xA;precision = precision&#xA;scale = scale&#xA;| **number**&#xA;
   | **date** |   | **date**&#xA;| **DateOnly**&#xA;| **DATE**&#xA;| **string**&#xA;format = date&#xA;
   | **dateTime** |  precision = 0&#xA;        isUtcTime = false&#xA;          | Conditional datatypes: &#xA;&#xA;**datetime2** &#xA;. *Parameters:* (&#xA;precision = precision). | **DateTime**&#xA; | Conditional datatypes: &#xA;&#xA;**TIMESTAMP(&#x2B; isUtcTime &#x2B;, MILLIS)**  if (precision &lt;= 3) **TIMESTAMP(&#x2B; isUtcTime &#x2B;, MICROS)**  if (precision &lt;= 6) **TIMESTAMP(&#x2B; isUtcTime &#x2B;, NANOS)** | **string**&#xA;format = date-time&#xA;
   | **dateTimeOffset** |  precision = 0&#xA;         | **datetimeoffset**&#xA;precision = precision&#xA;| **DateTimeOffset**&#xA; | Conditional datatypes: &#xA;&#xA;**TIME(false, MILLIS)**  if (precision &lt;= 3) **TIME(false, MICROS)**  if (precision &lt;= 6) **TIME(false, NANOS)** | **string**&#xA;
