@@ -1,6 +1,6 @@
 
 # Diml klassdokumentation
-Version 0.0.138
+Version 0.0.139
 
 ## trait
 Anv&#xE4;nds f&#xF6;r att specificera egenskaper (traits) p&#xE5; ett Diml-objekt.
@@ -195,11 +195,6 @@ Beskrivning av en dataprodukt med dess specifikationer.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| dcatAccessRights | string | Ja |  |  | Anger vilka &#xE5;tkomstr&#xE4;ttigheter som finns f&#xF6;r dataprodukten i datakatalogen |
-| dcatAvailability | string | Ja |  |  | Anger dataproduktens tillg&#xE4;nglighet i datakatalogen |
-| dcatDataTheme | string | Ja |  |  | Anger vilket datatema dataprodukten tillh&#xF6;r i datakatalogen |
-| dcatStatus | string | Ja |  |  | Anger dataproduktens status i datakatalogen |
-| dcatUpdateFrequency | string | Ja |  |  | Anger dataproduktens uppdateringsfrekvens i datakatalogen |
 | dimlId | string | Ja |  |  | Dataproduktens dimlId (id). |
 
 ## dataSource
@@ -218,6 +213,17 @@ Anger de olika stadien f&#xF6;r data och dess egenskaper, tex. Om en tabell ska 
 | materialization | [dataStageMaterialization](#dataStageMaterialization) | Ja |  |  | Anger om data ska materialiseras eller virtualiseras. |
 | order | int32 | Ja |  |  | Anger ordningen p&#xE5; dataStage, dvs vilket steg som ska ske f&#xF6;rst. |
 | role | [dataStageRole](#dataStageRole) | Nej |  |  | Anger vad som sker i dataStage. |
+
+## dcat
+Inneh&#xE5;ller egenskaper f&#xF6;r DCAT vilket &#xE4;r en metadataspecifikation f&#xF6;r att beskriva datam&#xE4;ngder. Mer information finns h&#xE4;r: https://docs.dataportal.se/dcat/en/
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| dcatAccessRights | string | Ja |  |  | Anger vilka &#xE5;tkomstr&#xE4;ttigheter som finns f&#xF6;r dataprodukten i datakatalogen. F&#xF6;ljer standarden DCAT-AP, mer information finns h&#xE4;r: https://docs.dataportal.se/dcat/en/#5.5 |
+| dcatAvailability | string | Ja |  |  | Anger dataproduktens tillg&#xE4;nglighet i datakatalogen. F&#xF6;ljer standarden DCAT-AP, mer information finns h&#xE4;r: https://docs.dataportal.se/dcat/en/#5.9 |
+| dcatDataTheme | string | Ja |  |  | Anger vilket datatema dataprodukten tillh&#xF6;r i datakatalogen. F&#xF6;ljer standarden DCAT-AP, mer information finns h&#xE4;r: https://docs.dataportal.se/dcat/en/#5.2 |
+| dcatStatus | string | Ja |  |  | Anger dataproduktens status i datakatalogen. F&#xF6;ljer standarden DCAT-AP, mer information finns h&#xE4;r: https://docs.dataportal.se/dcat/en/#5.8 |
+| dcatUpdateFrequency | string | Ja |  |  | Anger dataproduktens uppdateringsfrekvens i datakatalogen. F&#xF6;ljer standarden DCAT-AP, mer information finns h&#xE4;r: https://docs.dataportal.se/dcat/en/#5.4 |
 
 ## relationColumns
 Anger med vilka kolumner en tabell relaterar till en annan.

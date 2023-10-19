@@ -7,6 +7,7 @@
     <xs:sequence>
       <xs:element name="names" type="names" minOccurs="1" maxOccurs="1" />
       <xs:element name="descriptions" type="descriptions" minOccurs="1" maxOccurs="1" />
+      <xs:element name="dcat" type="dcat" minOccurs="1" maxOccurs="1" />
       <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
       <xs:element name="dataInputs" type="dataInputs" minOccurs="1" maxOccurs="1" />
       <xs:element name="tables" type="tables" minOccurs="0" maxOccurs="1" />
@@ -14,31 +15,6 @@
       <xs:element name="dataOutputs" type="dataOutputs" minOccurs="0" maxOccurs="1" />
       <xs:element name="dataFlow" type="dataFlow" minOccurs="0" maxOccurs="1" />
     </xs:sequence>
-    <xs:attribute name="dcatAccessRights" type="dcatAccessRightsType" use="required">
-      <xs:annotation>
-        <xs:documentation>Anger vilka åtkomsträttigheter som finns för dataprodukten i datakatalogen</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="dcatAvailability" type="dcatAvailabilityType" use="required">
-      <xs:annotation>
-        <xs:documentation>Anger dataproduktens tillgänglighet i datakatalogen</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="dcatDataTheme" type="dcatDataThemeType" use="required">
-      <xs:annotation>
-        <xs:documentation>Anger vilket datatema dataprodukten tillhör i datakatalogen</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="dcatStatus" type="dcatStatusType" use="required">
-      <xs:annotation>
-        <xs:documentation>Anger dataproduktens status i datakatalogen</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="dcatUpdateFrequency" type="dcatUpdateFrequencyType" use="required">
-      <xs:annotation>
-        <xs:documentation>Anger dataproduktens uppdateringsfrekvens i datakatalogen</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
     <xs:attribute name="dimlId" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>Dataproduktens dimlId (id).</xs:documentation>
@@ -168,6 +144,36 @@
     <xs:attribute name="sourceColumnId" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>TODO</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="dcat">
+    <xs:annotation>
+      <xs:documentation>Innehåller egenskaper för DCAT vilket är en metadataspecifikation för att beskriva datamängder. Mer information finns här: https://docs.dataportal.se/dcat/en/</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="dcatAccessRights" type="dcatAccessRightsType" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger vilka åtkomsträttigheter som finns för dataprodukten i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en/#5.5</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="dcatAvailability" type="dcatAvailabilityType" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger dataproduktens tillgänglighet i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en/#5.9</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="dcatDataTheme" type="dcatDataThemeType" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger vilket datatema dataprodukten tillhör i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en/#5.2</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="dcatStatus" type="dcatStatusType" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger dataproduktens status i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en/#5.8</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="dcatUpdateFrequency" type="dcatUpdateFrequencyType" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger dataproduktens uppdateringsfrekvens i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en/#5.4</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
