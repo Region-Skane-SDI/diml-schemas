@@ -1,6 +1,6 @@
 
 # Diml klassdokumentation
-Version 0.0.137
+Version 0.0.138
 
 ## trait
 Anv&#xE4;nds f&#xF6;r att specificera egenskaper (traits) p&#xE5; ett Diml-objekt.
@@ -195,6 +195,11 @@ Beskrivning av en dataprodukt med dess specifikationer.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
+| dcatAccessRights | string | Ja |  |  | Anger vilka &#xE5;tkomstr&#xE4;ttigheter som finns f&#xF6;r dataprodukten i datakatalogen |
+| dcatAvailability | string | Ja |  |  | Anger dataproduktens tillg&#xE4;nglighet i datakatalogen |
+| dcatDataTheme | string | Ja |  |  | Anger vilket datatema dataprodukten tillh&#xF6;r i datakatalogen |
+| dcatStatus | string | Ja |  |  | Anger dataproduktens status i datakatalogen |
+| dcatUpdateFrequency | string | Ja |  |  | Anger dataproduktens uppdateringsfrekvens i datakatalogen |
 | dimlId | string | Ja |  |  | Dataproduktens dimlId (id). |
 
 ## dataSource
@@ -266,17 +271,6 @@ Beskriver en tabell i en tabul&#xE4;r dataprodukt.
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | id | string | Ja |  |  | Tabellens id. |
-
-## dcat
-Inneh&#xE5;ller egenskaper f&#xF6;r DCAT vilket &#xE4;r en metadataspecifikation f&#xF6;r att beskriva datam&#xE4;ngder. Mer information finns h&#xE4;r: https://docs.dataportal.se/dcat/en/
-
-| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
-| ---- | --- | ----- | ------------ | --------- | ----------- |
-| dcatAccessRights | [dcatAccessRightsType](#dcatAccessRightsType) | Ja |  |  | Anger vilka &#xE5;tkomstr&#xE4;ttigheter som finns f&#xF6;r dataprodukten i datakatalogen. F&#xF6;ljer standarden DCAT-AP, mer information finns h&#xE4;r: https://docs.dataportal.se/dcat/en/#5.5 |
-| dcatAvailability | [dcatAvailabilityType](#dcatAvailabilityType) | Ja |  |  | Anger dataproduktens tillg&#xE4;nglighet i datakatalogen. F&#xF6;ljer standarden DCAT-AP, mer information finns h&#xE4;r: https://docs.dataportal.se/dcat/en/#5.9 |
-| dcatDataTheme | [dcatDataThemeType](#dcatDataThemeType) | Ja |  |  | Anger vilket datatema dataprodukten tillh&#xF6;r i datakatalogen. F&#xF6;ljer standarden DCAT-AP, mer information finns h&#xE4;r: https://docs.dataportal.se/dcat/en/#5.2 |
-| dcatStatus | [dcatStatusType](#dcatStatusType) | Ja |  |  | Anger dataproduktens status i datakatalogen. F&#xF6;ljer standarden DCAT-AP, mer information finns h&#xE4;r: https://docs.dataportal.se/dcat/en/#5.8 |
-| dcatUpdateFrequency | [dcatUpdateFrequencyType](#dcatUpdateFrequencyType) | Ja |  |  | Anger dataproduktens uppdateringsfrekvens i datakatalogen. F&#xF6;ljer standarden DCAT-AP, mer information finns h&#xE4;r: https://docs.dataportal.se/dcat/en/#5.4 |
 
 ## dataSystemColumn
 TODO: Saknar beskrivning.
@@ -449,80 +443,6 @@ Anger hur andra produkter l&#xE4;nkar till varandra.
 | Namn | Beskrivning |
 | ---- | ----------- |
 | has | Anger att en dataprodukt best&#xE5;r av en annan. |
-
-## dcatAccessRightsType
-Anger vilka &#xE5;tkomstr&#xE4;ttigheter som finns f&#xF6;r dataprodukten i datakatalogen. F&#xF6;ljer standarden DCAT-AP, mer information finns h&#xE4;r: https://docs.dataportal.se/dcat/en/#5.5
-
-| Namn | Beskrivning |
-| ---- | ----------- |
-| nonPublic | Inte tillg&#xE4;nglig f&#xF6;r allm&#xE4;nheten pga integritet, s&#xE4;kerhet eller andra orsaker. Anv&#xE4;ndningsanm&#xE4;rkning: Denna kategori kan omfatta resurser som inneh&#xE5;ller k&#xE4;nslig eller personlig information. |
-| public | Tillg&#xE4;ngligt f&#xF6;r allm&#xE4;nheten. Anv&#xE4;ndningsanm&#xE4;rkning: Till&#xE5;tna hinder inkluderar registrering och beg&#xE4;ran av API-nycklar, s&#xE5; l&#xE4;nge vem som helst kan beg&#xE4;ra registrering och/eller API-nycklar. |
-| restricted | Endast tillg&#xE4;ngligt under s&#xE4;rskilda villkor. Anv&#xE4;ndningsanm&#xE4;rkning: Denna kategori kan omfatta resurser som kr&#xE4;ver betalning, resurser som tillg&#xE4;ngligg&#xF6;rs inom ramen f&#xF6;r sekretessavtal, eller resurser d&#xE4;r utgivaren eller &#xE4;garen &#xE4;nnu inte har beslutat om de kan offentligg&#xF6;ras. |
-
-## dcatAvailabilityType
-Anger dataproduktens tillg&#xE4;nglighet i datakatalogen. F&#xF6;ljer standarden DCAT-AP, mer information finns h&#xE4;r: https://docs.dataportal.se/dcat/en/#5.9
-
-| Namn | Beskrivning |
-| ---- | ----------- |
-| available | Data finns tillg&#xE4;nglig f&#xF6;r n&#xE5;gra &#xE5;r, planering p&#xE5; medell&#xE5;ng sikt. |
-| experimental | Data &#xE4;r tillg&#xE4;nglig p&#xE5; f&#xF6;rs&#xF6;k f&#xF6;r en kort period, kortsiktig planering. |
-| stable | Data kommer att vara tillg&#xE4;nglig p&#xE5; l&#xE5;ng sikt. |
-| temporary | Data kan f&#xF6;rsvinna n&#xE4;r som helst, ingen planering. |
-
-## dcatDataThemeType
-Anger vilket datatema dataprodukten tillh&#xF6;r i datakatalogen. F&#xF6;ljer standarden DCAT-AP, mer information finns h&#xE4;r: https://docs.dataportal.se/dcat/en/#5.2
-
-| Namn | Beskrivning |
-| ---- | ----------- |
-| econ | Detta koncept identifierar dataset som t&#xE4;cker dom&#xE4;ner som ekonomi eller finans. Ekonomi &#xE4;r omr&#xE5;det f&#xF6;r produktion, distribution och handel, samt konsumtion av varor och tj&#xE4;nster av olika agenter. I sin vidaste mening definieras ekonomin som en social dom&#xE4;n som betonar de praxis, diskurser och materiella uttryck som &#xE4;r f&#xF6;rknippade med produktion, anv&#xE4;ndning och f&#xF6;rvaltning av resurser. Finans &#xE4;r studiet av pengar och hur de anv&#xE4;nds. Specifikt handlar det om fr&#xE5;gorna om hur en individ, f&#xF6;retag eller regering skaffar de pengar som beh&#xF6;vs och hur de sedan spenderar eller investerar dessa pengar. Exempel p&#xE5; dataset: Tenders Electronic Daily (TED) - meddelanden om offentlig upphandling fr&#xE5;n EU och utanf&#xF6;r; Den offentliga sektorns underskott (-) och &#xF6;verskott (&#x2B;) - kvartalsdata. |
-| educ | Detta koncept identifierar dataset som t&#xE4;cker dom&#xE4;ner som utbildning, kultur och sport. Utbildning &#xE4;r processen att underl&#xE4;tta l&#xE4;rande, eller f&#xF6;rv&#xE4;rvande av kunskap, f&#xE4;rdigheter, v&#xE4;rderingar, &#xF6;vertygelser och vanor. Kultur omfattar det sociala beteendet och de normer som finns i m&#xE4;nskliga samh&#xE4;llen, s&#xE5;v&#xE4;l som kunskap, &#xF6;vertygelser, konster, lagar, seder, f&#xF6;rm&#xE5;gor och vanor hos individerna i dessa grupper. Idrott omfattar alla former av t&#xE4;vlingsm&#xE4;ssig fysisk aktivitet eller spel som uppr&#xE4;tth&#xE5;ller eller f&#xF6;rb&#xE4;ttrar fysisk f&#xF6;rm&#xE5;ga och f&#xE4;rdigheter samtidigt som deltagarna njuter, och i vissa fall underh&#xE5;llning f&#xF6;r &#xE5;sk&#xE5;darna. Exempel p&#xE5; dataset: Europeiska f&#xE4;rdigheter, kompetenser, kvalifikationer och yrken (ESCO); EU:s medlemsstater och internationella &#xE5;taganden om m&#xE4;nskliga r&#xE4;ttigheter; Deltagande i kultur- eller sportaktiviteter under de senaste 12 m&#xE5;naderna efter k&#xF6;n, &#xE5;lder och utbildningsniv&#xE5;. |
-| ener | Detta koncept identifierar dataset som t&#xE4;cker dom&#xE4;nen energi. Energi &#xE4;r den kvantitativa egenskap som m&#xE5;ste &#xF6;verf&#xF6;ras till ett objekt f&#xF6;r att kunna utf&#xF6;ra arbete p&#xE5;, eller v&#xE4;rma, objektet. Levande organismer kr&#xE4;ver energi f&#xF6;r att h&#xE5;lla sig vid liv; m&#xE4;nsklig civilisation kr&#xE4;ver energi f&#xF6;r att fungera. Exempel p&#xE5; dataset: rapporter om den europeiska gasmarknaden; Elpriser efter typ av anv&#xE4;ndare. |
-| envi | Detta koncept identifierar dataset som t&#xE4;cker dom&#xE4;nen milj&#xF6;. Den naturliga milj&#xF6;n omfattar samspelet mellan alla levande arter, klimat, v&#xE4;der och naturresurser som p&#xE5;verkar m&#xE4;nniskans &#xF6;verlevnad och ekonomisk aktivitet. Exempel p&#xE5; dataset: EU-medborgarnas attityder till milj&#xF6;n; F&#xF6;roreningsutsl&#xE4;pp fr&#xE5;n transporter. |
-| gove | Detta koncept identifierar dataset som t&#xE4;cker dom&#xE4;ner som regering eller offentlig sektor. En regering &#xE4;r systemet eller gruppen av m&#xE4;nniskor som styr ett organiserat samh&#xE4;lle, ofta en stat. Den offentliga sektorn &#xE4;r den del av ekonomin som best&#xE5;r av b&#xE5;de offentliga tj&#xE4;nster och offentliga f&#xF6;retag. Offentliga tj&#xE4;nster och f&#xF6;retag kan kontrolleras av statliga, regionala eller lokala myndigheter. Organisationer som inte ing&#xE5;r i den offentliga sektorn &#xE4;r antingen en del av den privata eller frivilliga sektorn. Exempel p&#xE5; dataset: Kandidatl&#xE4;nder och potentiella kandidater: Statistisk statistik; Transparensregister. |
-| heal | Detta koncept identifierar dataset som t&#xE4;cker dom&#xE4;nen h&#xE4;lsa. H&#xE4;lsa &#xE4;r ett tillst&#xE5;nd av fysiskt, psykiskt och socialt v&#xE4;lbefinnande d&#xE4;r sjukdom och handikapp saknas. Exempel p&#xE5; dataset: COVID-19 Coronavirus-data; Europeiska cancerinformationssystemet. |
-| intr | Detta koncept identifierar dataset som t&#xE4;cker dom&#xE4;nen f&#xF6;r internationella fr&#xE5;gor. En fr&#xE5;ga &#x2013; viktigt &#xE4;mne eller problem f&#xF6;r debatt eller diskussion &#x2013; &#xE4;r internationell n&#xE4;r deltagarna representerar minst tv&#xE5; l&#xE4;nder. Exempel p&#xE5; dataset: Konsoliderad lista &#xF6;ver personer, grupper och enheter som omfattas av EU:s ekonomiska sanktioner; Europeiska kommissionen &#x2013; GD DEVCO &#x2013; utveckling och humanit&#xE4;rt bist&#xE5;nd till Afghanistan. |
-| just | Detta koncept identifierar dataset som t&#xE4;cker dom&#xE4;ner som r&#xE4;ttvisa, r&#xE4;ttssystem eller allm&#xE4;n s&#xE4;kerhet. R&#xE4;ttvisa inkluderar b&#xE5;de uppn&#xE5;endet av det som &#xE4;r r&#xE4;ttvist och den filosofiska diskussionen om det som &#xE4;r r&#xE4;ttvist; h&#xE4;r avses huvudsakligen den processuella r&#xE4;ttvisa som den finns i studien och till&#xE4;mpningen av lagen. V&#xE4;rldens samtida r&#xE4;ttssystem &#xE4;r i allm&#xE4;nhet baserade p&#xE5; ett av fyra grundl&#xE4;ggande system: civilr&#xE4;tt, sedvaner&#xE4;tt, lagstadgad lag, religi&#xF6;s lag eller kombinationer av dessa. Allm&#xE4;n s&#xE4;kerhet &#xE4;r en funktion av regeringar som s&#xE4;kerst&#xE4;ller skyddet av medborgare, personer p&#xE5; deras territorium, organisationer och institutioner mot hot mot deras v&#xE4;lbefinnande &#x2013; och v&#xE4;lst&#xE5;ndet i deras samh&#xE4;llen. Exempel p&#xE5; dataset: EU:s r&#xE4;ttspraxis; Information om medlemsstaternas lagstiftning; Europeiska datatillsynsmannens register &#xF6;ver behandlingar. |
-| op_datpro | Saknar beskrivning. |
-| regi | Detta koncept identifierar dataset som t&#xE4;cker dom&#xE4;ner som regioner eller st&#xE4;der. N&#xE4;r det g&#xE4;ller politisk geografi tenderar regioner att vara baserade p&#xE5; politiska enheter som suver&#xE4;na stater; subnationella enheter s&#xE5;som administrativa regioner, provinser, stater, grevskap, townships, territorier, etc.; och multinationella grupperingar. En stad &#xE4;r en stor m&#xE4;nsklig bos&#xE4;ttning. Exempel p&#xE5; dataset: NUTS - Nomenklatur f&#xF6;r territoriella enheter f&#xF6;r statistikklassificering; UDP - BNP per capita efter storstadsregioner, 2000 - 2060. |
-| soci | Detta koncept identifierar dataset som t&#xE4;cker dom&#xE4;ner som befolkning eller samh&#xE4;lle. Befolkning &#xE4;r en samling av m&#xE4;nniskor och hela deras ras; det &#xE4;r antalet personer i en stad, region, ett land eller en v&#xE4;rld. Ett samh&#xE4;lle &#xE4;r en grupp individer som &#xE4;r involverade i ih&#xE5;llande social interaktion, eller en stor social grupp som delar samma rumsliga eller sociala territorium, vanligtvis f&#xF6;rem&#xE5;l f&#xF6;r samma politiska auktoritet och dominerande kulturella f&#xF6;rv&#xE4;ntningar. Exempel p&#xE5; dataset: Befolkningst&#xE4;thet efter NUTS 2-region; Violence against Women: En EU-omfattande unders&#xF6;kning. |
-| tech | Detta koncept identifierar dataset som t&#xE4;cker dom&#xE4;ner som vetenskap eller teknik. Vetenskap &#xE4;r ett systematiskt f&#xF6;retag som bygger och organiserar kunskap i form av testbara f&#xF6;rklaringar och f&#xF6;ruts&#xE4;gelser. Modern vetenskap &#xE4;r typiskt indelad i tre huvudgrenar som best&#xE5;r av naturvetenskaperna, som studerar naturen i vid mening; samh&#xE4;llsvetenskaperna, som studerar individer och samh&#xE4;llen; och de formella vetenskaperna, som studerar abstrakta begrepp. Teknik &#xE4;r summan av tekniker, f&#xE4;rdigheter, metoder och processer som anv&#xE4;nds vid produktion av varor eller tj&#xE4;nster eller f&#xF6;r att uppn&#xE5; m&#xE5;l, s&#xE5;som vetenskaplig unders&#xF6;kning. Exempel p&#xE5; dataset: CORDIS - EU-forskningsprojekt under Horisont 2020 (2014&#x2013;2020); Uttag av mobilt bredband (abonnemang/100 personer). |
-| tran | Detta koncept identifierar dataset som t&#xE4;cker transportdom&#xE4;nen. Transport &#xE4;r f&#xF6;rflyttning av m&#xE4;nniskor, djur och varor fr&#xE5;n en plats till en annan. Transports&#xE4;tt inkluderar luft, land (j&#xE4;rnv&#xE4;g och v&#xE4;g), vatten, kabel, r&#xF6;rledning och rymd. Exempel p&#xE5; dataset: Total l&#xE4;ngd p&#xE5; motorv&#xE4;gar; Flygplatstrafikdata genom att rapportera flygplats och flygbolag. |
-
-## dcatStatusType
-Anger dataproduktens status i datakatalogen. F&#xF6;ljer standarden DCAT-AP, mer information finns h&#xE4;r: https://docs.dataportal.se/dcat/en/#5.8
-
-| Namn | Beskrivning |
-| ---- | ----------- |
-| completed | Dataprodukten &#xE4;r f&#xE4;rdig. |
-| deprecated | Dataprodukten &#xE4;r avvecklad. |
-| underDevelopment | Dataprodukten &#xE4;r under utveckling. |
-| withdrawn | Dataprodukten &#xE4;r tillbakadragen. |
-
-## dcatUpdateFrequencyType
-Anger dataproduktens uppdateringsfrekvens i datakatalogen. F&#xF6;ljer standarden DCAT-AP, mer information finns h&#xE4;r: https://docs.dataportal.se/dcat/en/#5.4
-
-| Namn | Beskrivning |
-| ---- | ----------- |
-| annual | Uppdateras en g&#xE5;ng om &#xE5;ret. |
-| annual2 | Uppdateras tv&#xE5; g&#xE5;nger om &#xE5;ret. |
-| biennial | Uppdateras vartannat &#xE5;r. |
-| bimonthly | Uppdateras varannan m&#xE5;nad. |
-| biweekly | Uppdateras varannan vecka. |
-| continuous | Uppdateras oftare &#xE4;n dagligen. |
-| daily | Uppdateras en g&#xE5;ng om dagen. |
-| daily2 | Uppdateras tv&#xE5; g&#xE5;nger om dagen. |
-| irregular | Uppdateras med oj&#xE4;mna intervall. |
-| monthly | Uppdateras en g&#xE5;ng i m&#xE5;naden. |
-| monthly2 | Uppdateras tv&#xE5; g&#xE5;nger i m&#xE5;naden. |
-| monthly3 | Uppdateras tre g&#xE5;nger i m&#xE5;naden. |
-| other | Uppdateras med en annan typ av regelbundenhet (till exempel varje skott&#xE5;r). |
-| quarterly | Uppdateras var tredje m&#xE5;nad. |
-| triennial | Uppdateras vart tredje &#xE5;r. |
-| unknown | Uppdateras med ok&#xE4;nd regelbundenhet. |
-| update_Continuously | Uppdateras upprepningsvis utan avbrott. |
-| weekly | Uppdateras en g&#xE5;ng i veckan. |
-| weekly2 | Uppdateras tv&#xE5; g&#xE5;nger i veckan. |
-| weekly3 | Uppdateras tre g&#xE5;nger i veckan. |
 
 ## descriptionType
 Anger textformat f&#xF6;r beskrivningen

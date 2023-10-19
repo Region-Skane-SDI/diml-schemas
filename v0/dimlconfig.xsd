@@ -293,46 +293,6 @@
       <xs:pattern value="[hH][aA][sS]|" />
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="dcatAccessRightsType">
-    <xs:annotation>
-      <xs:documentation>Anger vilka åtkomsträttigheter som finns för dataprodukten i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en/#5.5</xs:documentation>
-    </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:pattern value="[nN][oO][nN][pP][uU][bB][lL][iI][cC]|[pP][uU][bB][lL][iI][cC]|[rR][eE][sS][tT][rR][iI][cC][tT][eE][dD]|" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:simpleType name="dcatAvailabilityType">
-    <xs:annotation>
-      <xs:documentation>Anger dataproduktens tillgänglighet i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en/#5.9</xs:documentation>
-    </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:pattern value="[aA][vV][aA][iI][lL][aA][bB][lL][eE]|[eE][xX][pP][eE][rR][iI][mM][eE][nN][tT][aA][lL]|[sS][tT][aA][bB][lL][eE]|[tT][eE][mM][pP][oO][rR][aA][rR][yY]|" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:simpleType name="dcatDataThemeType">
-    <xs:annotation>
-      <xs:documentation>Anger vilket datatema dataprodukten tillhör i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en/#5.2</xs:documentation>
-    </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:pattern value="[eE][cC][oO][nN]|[eE][dD][uU][cC]|[eE][nN][eE][rR]|[eE][nN][vV][iI]|[gG][oO][vV][eE]|[hH][eE][aA][lL]|[iI][nN][tT][rR]|[jJ][uU][sS][tT]|[oO][pP][_][dD][aA][tT][pP][rR][oO]|[rR][eE][gG][iI]|[sS][oO][cC][iI]|[tT][eE][cC][hH]|[tT][rR][aA][nN]|" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:simpleType name="dcatStatusType">
-    <xs:annotation>
-      <xs:documentation>Anger dataproduktens status i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en/#5.8</xs:documentation>
-    </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:pattern value="[cC][oO][mM][pP][lL][eE][tT][eE][dD]|[dD][eE][pP][rR][eE][cC][aA][tT][eE][dD]|[uU][nN][dD][eE][rR][dD][eE][vV][eE][lL][oO][pP][mM][eE][nN][tT]|[wW][iI][tT][hH][dD][rR][aA][wW][nN]|" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:simpleType name="dcatUpdateFrequencyType">
-    <xs:annotation>
-      <xs:documentation>Anger dataproduktens uppdateringsfrekvens i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en/#5.4</xs:documentation>
-    </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:pattern value="[aA][nN][nN][uU][aA][lL]|[aA][nN][nN][uU][aA][lL][2]|[bB][iI][eE][nN][nN][iI][aA][lL]|[bB][iI][mM][oO][nN][tT][hH][lL][yY]|[bB][iI][wW][eE][eE][kK][lL][yY]|[cC][oO][nN][tT][iI][nN][uU][oO][uU][sS]|[dD][aA][iI][lL][yY]|[dD][aA][iI][lL][yY][2]|[iI][rR][rR][eE][gG][uU][lL][aA][rR]|[mM][oO][nN][tT][hH][lL][yY]|[mM][oO][nN][tT][hH][lL][yY][2]|[mM][oO][nN][tT][hH][lL][yY][3]|[oO][tT][hH][eE][rR]|[qQ][uU][aA][rR][tT][eE][rR][lL][yY]|[tT][rR][iI][eE][nN][nN][iI][aA][lL]|[uU][nN][kK][nN][oO][wW][nN]|[uU][pP][dD][aA][tT][eE][_][cC][oO][nN][tT][iI][nN][uU][oO][uU][sS][lL][yY]|[wW][eE][eE][kK][lL][yY]|[wW][eE][eE][kK][lL][yY][2]|[wW][eE][eE][kK][lL][yY][3]|" />
-    </xs:restriction>
-  </xs:simpleType>
   <xs:simpleType name="descriptionType">
     <xs:annotation>
       <xs:documentation>Anger textformat för beskrivningen</xs:documentation>
