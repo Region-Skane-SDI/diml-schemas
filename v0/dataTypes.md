@@ -53,7 +53,7 @@ Används för datatyp mappningen från TSQL platformen till dimldatatyper, visar
 | int | integer |  | int |
 | bigint | bigInteger |  | bigint |
 | real | float |  | real |
-| float | double | precision   | (?i)float\s*\((?&#x27;precision&#x27;.*?)\) |
+| float |  ConditionalDataTypes:  Condition: precision == 7  **float**    Condition: precision == 15  **double**    **decimal** | precision   | (?i)float\s*\((?&#x27;precision&#x27;.*?)\) |
 | smallmoney | decimal |  | smallmoney |
 | money | decimal |  | smallmoney |
 | decimal | decimal | precision  scale   | (?i)decimal\s*\((?&#x27;precision&#x27;.*?),\s*(?&#x27;scale&#x27;.*?)\) |
