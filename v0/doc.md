@@ -1,6 +1,6 @@
 
 # Diml klassdokumentation
-Version 0.0.144
+Version 0.0.145
 
 ## trait
 Anv&#xE4;nds f&#xF6;r att specificera egenskaper (traits) p&#xE5; ett Diml-objekt.
