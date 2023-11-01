@@ -9,7 +9,7 @@
     </xs:sequence>
     <xs:attribute name="dimlId" type="xs:string" use="required">
       <xs:annotation>
-        <xs:documentation>Ett unikt id som representerar en lista.</xs:documentation>
+        <xs:documentation>En globalt unik identifierare för Diml-objektet.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
