@@ -17,7 +17,7 @@
     </xs:sequence>
     <xs:attribute name="dimlId" type="xs:string" use="required">
       <xs:annotation>
-        <xs:documentation>Dataproduktens dimlId (id).</xs:documentation>
+        <xs:documentation>En globalt unik identifierare för Diml-objektet.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
@@ -75,6 +75,11 @@
     <xs:sequence>
       <xs:element name="tableToTableMappings" type="tableToTableMappings" minOccurs="0" maxOccurs="1" />
     </xs:sequence>
+    <xs:attribute name="customSqlExpression" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>TODO</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="dataInputId" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>Ett unikt id som respesenterar en källa.</xs:documentation>
@@ -93,11 +98,6 @@
     <xs:sequence>
       <xs:element name="tableToTableMapping" type="tableToTableMapping" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
-    <xs:attribute name="customSqlExpression" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>TODO</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
   </xs:complexType>
   <xs:complexType name="tableToTableMapping">
     <xs:annotation>

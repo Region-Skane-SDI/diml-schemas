@@ -14,7 +14,7 @@
     </xs:sequence>
     <xs:attribute name="dimlId" type="xs:string" use="required">
       <xs:annotation>
-        <xs:documentation>Datakällans DimlId (id).</xs:documentation>
+        <xs:documentation>En globalt unik identifierare för Diml-objektet.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
