@@ -306,4 +306,12 @@
       <xs:pattern value="[lL][oO][gG][iI][cC][mM][dD]|[mM][dD]|[pP][lL][aA][iI][nN]|" />
     </xs:restriction>
   </xs:simpleType>
+  <xs:simpleType name="targetPlatformType">
+    <xs:annotation>
+      <xs:documentation>Anger vilken plattform som ska användas.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[aA][zZ][dD][aA][tT][aA][bB][rR][iI][cC][kK][sS]|[aA][zZ][sS][qQ][lL][sS][eE][rR][vV][eE][rR]|[mM][sS][fF][aA][bB][rR][iI][cC]|[sS][qQ][lL][sS][eE][rR][vV][eE][rR]|" />
+    </xs:restriction>
+  </xs:simpleType>
 </xs:schema>

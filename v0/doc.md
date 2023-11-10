@@ -1,6 +1,6 @@
 
 # Diml klassdokumentation
-Version 0.1.0
+Version 0.1.2
 
 ## trait
 Anv&#xE4;nds f&#xF6;r att specificera egenskaper (traits) p&#xE5; ett Diml-objekt.
@@ -198,6 +198,7 @@ Beskrivning av en dataprodukt med dess specifikationer.
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | dimlId | string | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
+| targetPlatform | [targetPlatformType](#targetPlatformType) | Ja |  |  | Anger vilken plattform som ska anv&#xE4;ndas. |
 
 ## dataSource
 Beskrivning av en datak&#xE4;lla (som kan anv&#xE4;ndas av dataprodukter).
@@ -460,5 +461,15 @@ Anger textformat f&#xF6;r beskrivningen
 | logicMd | Logic markdown format. |
 | md | Markdown format. |
 | plain | Plain text format. |
+
+## targetPlatformType
+Anger vilken plattform som ska anv&#xE4;ndas.
+
+| Namn | Beskrivning |
+| ---- | ----------- |
+| azDatabricks | Azure Databricks |
+| azSqlServer | Azure SQL Server |
+| msFabric | Microsoft Fabric |
+| sqlServer | SQL Server |
 
 
