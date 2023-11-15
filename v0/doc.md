@@ -1,6 +1,6 @@
 
 # Diml klassdokumentation
-Version 0.1.2
+Version 0.1.3
 
 ## trait
 Anv&#xE4;nds f&#xF6;r att specificera egenskaper (traits) p&#xE5; ett Diml-objekt.
@@ -267,6 +267,14 @@ Beskriver en kolumn i en tabul&#xE4;r dataprodukt.
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | id | string | Ja |  |  | Kolumnens id. |
 
+## columnAlias
+Beskriver ett alias f&#xF6;r en kolumn i en tabul&#xE4;r dataprodukt.
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| alias | string | Ja |  |  | Kolumnens alias. |
+| stageId | string | Ja |  |  | Vilket steg aliaset skall g&#xE4;lla f&#xF6;r. |
+
 ## includeTable
 Anger vilka tabeller som ska inkluderas i output.
 
@@ -280,6 +288,14 @@ Beskriver en tabell i en tabul&#xE4;r dataprodukt.
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | id | string | Ja |  |  | Tabellens id. |
+
+## tableAlias
+Beskriver ett alias f&#xF6;r en tabell i en tabul&#xE4;r dataprodukt.
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| alias | string | Ja |  |  | Tabellens alias. |
+| stageId | string | Ja |  |  | Vilket steg aliaset skall g&#xE4;lla f&#xF6;r. |
 
 ## dataSystemColumn
 TODO: Saknar beskrivning.

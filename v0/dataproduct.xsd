@@ -216,18 +216,39 @@
     <xs:annotation>
       <xs:documentation>Beskriver en tabell i en tabulär dataprodukt.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
+    <xs:all>
       <xs:element name="names" type="names" minOccurs="1" maxOccurs="1" />
       <xs:element name="descriptions" type="descriptions" minOccurs="1" maxOccurs="1" />
       <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
       <xs:element name="businessKey" type="businessKey" minOccurs="0" maxOccurs="1" />
+      <xs:element name="tableAliases" type="tableAliases" minOccurs="0" maxOccurs="1" />
       <xs:element name="columns" type="columns" minOccurs="1" maxOccurs="1" />
       <xs:element name="tableRelations" type="tableRelations" minOccurs="0" maxOccurs="1" />
       <xs:element name="sampleData" type="sampleData" minOccurs="0" maxOccurs="1" />
-    </xs:sequence>
+    </xs:all>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>Tabellens id.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="tableAliases">
+    <xs:sequence>
+      <xs:element name="tableAlias" type="tableAlias" minOccurs="1" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tableAlias">
+    <xs:annotation>
+      <xs:documentation>Beskriver ett alias för en tabell i en tabulär dataprodukt.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="alias" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Tabellens alias.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="stageId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Vilket steg aliaset skall gälla för.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
@@ -248,15 +269,39 @@
     <xs:annotation>
       <xs:documentation>Beskriver en kolumn i en tabulär dataprodukt.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
+    <xs:all>
       <xs:element name="names" type="names" minOccurs="1" maxOccurs="1" />
       <xs:element name="dimlDataType" type="dimlDataType" minOccurs="1" maxOccurs="1" />
+      <xs:element name="columnAliases" type="columnAliases" minOccurs="0" maxOccurs="1" />
       <xs:element name="descriptions" type="descriptions" minOccurs="1" maxOccurs="1" />
       <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
-    </xs:sequence>
+    </xs:all>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>Kolumnens id.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="columnAliases">
+    <xs:sequence>
+      <xs:element name="columnAlias" type="columnAlias" minOccurs="1" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="columnAlias">
+    <xs:annotation>
+      <xs:documentation>Beskriver ett alias för en kolumn i en tabulär dataprodukt.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="dimlDataType" type="dimlDataType" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+    <xs:attribute name="alias" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Kolumnens alias.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="stageId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Vilket steg aliaset skall gälla för.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
