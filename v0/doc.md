@@ -1,6 +1,6 @@
 
 # Diml klassdokumentation
-Version 0.2.3
+Version 0.2.4
 
 ## trait
 Anv&#xE4;nds f&#xF6;r att specificera egenskaper (traits) p&#xE5; ett Diml-objekt.
@@ -77,7 +77,7 @@ Anger en indatak&#xE4;lla f&#xF6;r en dataproduktsspecifikation, t.ex. en DataSo
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | channelId | string | Ja |  |  | Anger vilken typ av data som ska h&#xE4;mtas och i vilket format. |
-| dimlId | string | Ja |  |  | Ett globalt unikt dimlId f&#xF6;r indatak&#xE4;llan. |
+| dimlId | dimlId | Ja |  |  | Ett globalt unikt dimlId f&#xF6;r indatak&#xE4;llan. |
 | id | string | Ja |  |  | Ett id f&#xF6;r indatak&#xE4;llan. Detta m&#xE5;ste vara unikt inom en DataProduct d&#xE5; det kommer att anv&#xE4;ndas som ett alias. |
 
 ## conditionalDataType
@@ -109,7 +109,7 @@ Specificerar alla tillg&#xE4;ngliga Diml-datatyper samt konverteringslogiken mel
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| dimlId | string | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
+| dimlId | dimlId | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
 
 ## dimlDataType
 Anger en Diml-datatyp baserat p&#xE5; dom typer som finns definierade i datatypsspecifikationen.
@@ -197,7 +197,7 @@ Beskrivning av en dataprodukt med dess specifikationer.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| dimlId | string | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
+| dimlId | dimlId | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
 | targetPlatform | [targetPlatformType](#targetPlatformType) | Ja |  |  | Anger vilken plattform som ska anv&#xE4;ndas. |
 
 ## dataSource
@@ -205,7 +205,7 @@ Beskrivning av en datak&#xE4;lla (som kan anv&#xE4;ndas av dataprodukter).
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| dimlId | string | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
+| dimlId | dimlId | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
 
 ## dataStage
 Anger de olika stadien f&#xF6;r data och dess egenskaper, tex. Om en tabell ska materialiseras eller inte, hur data ska uppdateras osv.
@@ -319,7 +319,7 @@ Konfiguration av Diml-milj&#xF6; d&#xE4;r t.ex standardspr&#xE5;k anges.
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | defaultLanguage | string | Nej |  |  | Anger standardspr&#xE5;k f&#xF6;r en Diml-milj&#xF6; |
-| dimlId | string | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
+| dimlId | dimlId | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
 
 ## category
 Anger kategorisering av dataprodukten t.ex namn, beskrivning och traits.
@@ -333,21 +333,21 @@ Anger ett grafobjekt.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| dimlId | string | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
+| dimlId | dimlId | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
 
 ## hierarchy
 Definierar och beskriver hierarkier i Diml konfigfilen.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| dimlId | string | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
+| dimlId | dimlId | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
 
 ## list
 Anger en lista.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| dimlId | string | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
+| dimlId | dimlId | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
 
 ## listItem
 Anger ett listobjekt inom en lista.
