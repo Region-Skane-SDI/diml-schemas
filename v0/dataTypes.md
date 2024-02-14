@@ -1,6 +1,6 @@
 
 # DimlDataTyper mappning dokumentation
-Version 0.5.1
+Version 0.5.2
 
 
 
