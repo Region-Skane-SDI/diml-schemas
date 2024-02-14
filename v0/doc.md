@@ -267,7 +267,7 @@ Beskriver en kolumn i en tabul&#xE4;r dataprodukt.
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | id | string | Ja |  |  | Kolumnens id. |
 
-## columnAlias
+## columnInstance
 Beskriver ett alias f&#xF6;r en kolumn i en tabul&#xE4;r dataprodukt.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
@@ -289,7 +289,7 @@ Beskriver en tabell i en tabul&#xE4;r dataprodukt.
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | id | string | Ja |  |  | Tabellens id. |
 
-## tableAlias
+## tableInstance
 Beskriver ett alias f&#xF6;r en tabell i en tabul&#xE4;r dataprodukt.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
