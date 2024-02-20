@@ -718,7 +718,7 @@
       <xs:documentation>Anger en common-column definition baserad på dom definitioner som finns beskrivna under commonColumnDefinitions</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="" />
+      <xs:pattern value="[vV][eE][rR][kK][sS][aA][mM][hH][eE][tT][sS][oO][mM][rR][aA][dD][eE]" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="dcatDataThemeType">
