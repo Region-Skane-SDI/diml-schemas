@@ -10,6 +10,7 @@
       <xs:element name="lists" type="lists" minOccurs="0" maxOccurs="1" />
       <xs:element name="hierarchies" type="hierarchies" minOccurs="0" maxOccurs="1" />
       <xs:element name="dataSystemColumns" type="dataSystemColumns" minOccurs="0" maxOccurs="1" />
+      <xs:element name="commonColumnDefinitions" type="commonColumnDefinitions" minOccurs="0" maxOccurs="1" />
     </xs:sequence>
     <xs:attribute name="defaultLanguage" type="xs:string" use="optional">
       <xs:annotation>
@@ -93,6 +94,51 @@
     <xs:sequence>
       <xs:element name="trait" type="trait" minOccurs="1" maxOccurs="unbounded" />
     </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="commonColumnDefinitions">
+    <xs:sequence>
+      <xs:element name="commonColumnDefinition" type="commonColumnDefinition" minOccurs="1" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="columnInstances">
+    <xs:sequence>
+      <xs:element name="columnInstance" type="columnInstance" minOccurs="1" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="columnInstance">
+    <xs:annotation>
+      <xs:documentation>Beskriver ett alias för en kolumn i en tabulär dataprodukt.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="dimlDataType" type="dimlDataType" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+    <xs:attribute name="alias" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Kolumnens alias.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="stageId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Vilket steg aliaset skall gälla för.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="commonColumnDefinition">
+    <xs:annotation>
+      <xs:documentation>Beskriver en kolumn som går att återanvända i flera tabeller.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="names" type="names" minOccurs="1" maxOccurs="1" />
+      <xs:element name="dimlDataType" type="dimlDataType" minOccurs="1" maxOccurs="1" />
+      <xs:element name="columnInstances" type="columnInstances" minOccurs="0" maxOccurs="1" />
+      <xs:element name="descriptions" type="descriptions" minOccurs="1" maxOccurs="1" />
+      <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+    <xs:attribute name="id" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Kolumnens id.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
   <xs:complexType name="trait">
     <xs:annotation>

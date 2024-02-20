@@ -275,6 +275,20 @@ Beskriver ett alias f&#xF6;r en kolumn i en tabul&#xE4;r dataprodukt.
 | alias | string | Ja |  |  | Kolumnens alias. |
 | stageId | string | Ja |  |  | Vilket steg aliaset skall g&#xE4;lla f&#xF6;r. |
 
+## commonColumn
+Beskriver en referens till en &#xE5;teranv&#xE4;ndbar kolumn.
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| id | string | Ja |  |  | Kolumnens id. |
+
+## commonColumnDefinition
+Beskriver en kolumn som g&#xE5;r att &#xE5;teranv&#xE4;nda i flera tabeller.
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| id | string | Ja |  |  | Kolumnens id. |
+
 ## includeTable
 Anger vilka tabeller som ska inkluderas i output.
 

@@ -222,6 +222,7 @@
       <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
       <xs:element name="businessKey" type="businessKey" minOccurs="0" maxOccurs="1" />
       <xs:element name="tableInstances" type="tableInstances" minOccurs="0" maxOccurs="1" />
+      <xs:element name="commonColumns" type="commonColumns" minOccurs="0" maxOccurs="1" />
       <xs:element name="columns" type="columns" minOccurs="1" maxOccurs="1" />
       <xs:element name="tableRelations" type="tableRelations" minOccurs="0" maxOccurs="1" />
       <xs:element name="sampleData" type="sampleData" minOccurs="0" maxOccurs="1" />
@@ -260,6 +261,22 @@
   <xs:simpleType name="businessKeyValue">
     <xs:restriction base="xs:string" />
   </xs:simpleType>
+  <xs:complexType name="commonColumns">
+    <xs:sequence>
+      <xs:element name="commonColumn" type="commonColumn" minOccurs="1" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="commonColumn">
+    <xs:annotation>
+      <xs:documentation>Beskriver en referens till en återanvändbar kolumn.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="id" type="dimlCommonColumnDefinitionType" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger vilken common column definition som ska användas, baserat på ett ID från en
+                    commonColumnDefinition i commonColumnDefinitions.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
   <xs:complexType name="columns">
     <xs:sequence>
       <xs:element name="column" type="column" minOccurs="1" maxOccurs="unbounded" />
@@ -694,6 +711,14 @@
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:pattern value="[sS][tT][rR][iI][nN][gG]|[bB][oO][oO][lL][eE][aA][nN]|[tT][iI][nN][yY][iI][nN][tT][eE][gG][eE][rR]|[sS][mM][aA][lL][lL][iI][nN][tT][eE][gG][eE][rR]|[iI][nN][tT][eE][gG][eE][rR]|[bB][iI][gG][iI][nN][tT][eE][gG][eE][rR]|[fF][lL][oO][aA][tT]|[dD][oO][uU][bB][lL][eE]|[dD][eE][cC][iI][mM][aA][lL]|[dD][aA][tT][eE]|[dD][aA][tT][eE][tT][iI][mM][eE]|[dD][aA][tT][eE][tT][iI][mM][eE][oO][fF][fF][sS][eE][tT]|[tT][iI][mM][eE]|[xX][mM][lL]|[bB][iI][nN][aA][rR][yY]|[gG][uU][iI][dD]|[sS][sS][nN]|[fF][uU][lL][lL][nN][aA][mM][eE]|[aA][gG][eE]" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="dimlCommonColumnDefinitionType">
+    <xs:annotation>
+      <xs:documentation>Anger en common-column definition baserad på dom definitioner som finns beskrivna under commonColumnDefinitions</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="dcatDataThemeType">
