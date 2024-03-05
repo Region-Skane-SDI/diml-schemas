@@ -406,6 +406,7 @@ Anger tillg&#xE4;ngliga klasser f&#xF6;r en Trait.
 | ---- | ----------- |
 | category | Mappar till en kategori i DimlConfig. |
 | columnSources | Anv&#xE4;nds f&#xF6;r att specificera k&#xE4;llan till en kolumn i en dataprodukt. |
+| dataStageOperations.applyDataQualityRules | Applicera definierade datakvalitetsregler |
 | defaultConfigNamespace | Default konfiguration. |
 | extension | Beskrivning saknas. |
 | generateKeyHash | Genererar hashnyckel baserat p&#xE5; nyckelv&#xE4;rde. |
@@ -419,6 +420,8 @@ Anger tillg&#xE4;ngliga klasser f&#xF6;r en Trait.
 | isUnlisted | Anger om en dataprodukt ska visas i datakatlogen eller inte. |
 | isVirtual | Anger om en dataprodukt &#xE4;r virtuell. |
 | pii | Anv&#xE4;nds f&#xF6;r att beskriva att det finns personuppgifter i kotextet d&#xE4;r denna Trait appliceras. |
+| quality.businessKey.duplicate | Kontrollera dubletter p&#xE5; business key |
+| quality.businessKey.null | Kontrollera ifall business keys &#xE4;r null eller inte |
 | tableNamePrefix | Anv&#xE4;nds f&#xF6;r att specificera ett prefix f&#xF6;r alla tabellnamn i kotextet d&#xE4;r denna Trait anv&#xE4;nds. |
 | tableNameSuffix | Anv&#xE4;nds f&#xF6;r att specificera ett suffix f&#xF6;r alla tabellnamn i kotextet d&#xE4;r denna Trait anv&#xE4;nds. |
 | tableSchema | Anv&#xE4;nds f&#xF6;r att specificera ett schema f&#xF6;r alla tabeller i kotextet d&#xE4;r denna Trait anv&#xE4;nds. |
