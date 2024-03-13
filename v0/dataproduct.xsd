@@ -715,7 +715,8 @@
   </xs:simpleType>
   <xs:simpleType name="dimlCommonColumnDefinitionType">
     <xs:annotation>
-      <xs:documentation>Anger en common-column definition baserad på dom definitioner som finns beskrivna under commonColumnDefinitions</xs:documentation>
+      <xs:documentation>Anger en common-column definition baserad på dom definitioner som finns beskrivna under
+                commonColumnDefinitions</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:pattern value="[vV][eE][rR][kK][sS][aA][mM][hH][eE][tT][sS][oO][mM][rR][aA][dD][eE]" />
