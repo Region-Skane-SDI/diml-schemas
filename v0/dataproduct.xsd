@@ -533,6 +533,11 @@
         <xs:documentation>Sökvägen för utdatafilen.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
+    <xs:attribute name="quoteCharacter" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger vilket tecken som ska användas som citationstecken i utdatafilen, om filformatet är csv.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="rowSeparator" type="xs:string" use="optional">
       <xs:annotation>
         <xs:documentation>Anger vilket/vilka tecken som ska användas som radavskiljare i utdatafilen, om filformatet är csv.</xs:documentation>

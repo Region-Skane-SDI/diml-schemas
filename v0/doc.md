@@ -1,6 +1,6 @@
 
 # Diml klassdokumentation
-Version 0.8.5
+Version 0.8.6
 
 ## trait
 Anv&#xE4;nds f&#xF6;r att specificera egenskaper (traits) p&#xE5; ett Diml-objekt.
@@ -47,6 +47,7 @@ Anger en fil som destination f&#xF6;r utdata med ett antal obligatoriska paramet
 | encoding | string | Nej |  |  | Teckenkodningen f&#xF6;r utdatafilen, t.ex. UTF-8. |
 | fileFormat | [fileFormat](#fileFormat) | Ja |  |  | Anger kompatibla filformat. |
 | path | string | Ja |  |  | S&#xF6;kv&#xE4;gen f&#xF6;r utdatafilen. |
+| quoteCharacter | string | Nej |  |  | Anger vilket tecken som ska anv&#xE4;ndas som citationstecken i utdatafilen, om filformatet &#xE4;r csv. |
 | rowSeparator | string | Nej |  |  | Anger vilket/vilka tecken som ska anv&#xE4;ndas som radavskiljare i utdatafilen, om filformatet &#xE4;r csv. |
 
 ## multiTableFileOutput
