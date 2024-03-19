@@ -4,14 +4,19 @@
     <xs:annotation>
       <xs:documentation>Anger en lista.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element name="listItem" type="listItem" minOccurs="1" maxOccurs="unbounded" />
-    </xs:sequence>
+    <xs:all>
+      <xs:element name="listItems" type="listItems" minOccurs="1" maxOccurs="1" />
+    </xs:all>
     <xs:attribute name="dimlId" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>En globalt unik identifierare för Diml-objektet.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="listItems">
+    <xs:sequence>
+      <xs:element name="listItem" type="listItem" minOccurs="1" maxOccurs="unbounded" />
+    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="listItem">
     <xs:annotation>

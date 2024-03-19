@@ -4,14 +4,14 @@
     <xs:annotation>
       <xs:documentation>Beskrivning av en datakälla (som kan användas av dataprodukter).</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
+    <xs:all>
       <xs:element name="names" type="names" minOccurs="1" maxOccurs="1" />
       <xs:element name="descriptions" type="descriptions" minOccurs="1" maxOccurs="1" />
       <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
       <xs:element name="tables" type="tables" minOccurs="0" maxOccurs="1" />
       <xs:element name="customFormats" type="customFormats" minOccurs="0" maxOccurs="1" />
       <xs:element name="dataOutputs" type="dataOutputs" minOccurs="0" maxOccurs="1" />
-    </xs:sequence>
+    </xs:all>
     <xs:attribute name="dimlId" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>En globalt unik identifierare för Diml-objektet.</xs:documentation>
@@ -27,7 +27,7 @@
     <xs:annotation>
       <xs:documentation>Beskriver en tabell i en tabulär dataprodukt.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
+    <xs:all>
       <xs:element name="names" type="names" minOccurs="1" maxOccurs="1" />
       <xs:element name="descriptions" type="descriptions" minOccurs="1" maxOccurs="1" />
       <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
@@ -35,7 +35,7 @@
       <xs:element name="columns" type="columns" minOccurs="1" maxOccurs="1" />
       <xs:element name="tableRelations" type="tableRelations" minOccurs="0" maxOccurs="1" />
       <xs:element name="sampleData" type="sampleData" minOccurs="0" maxOccurs="1" />
-    </xs:sequence>
+    </xs:all>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>Tabellens id.</xs:documentation>
@@ -59,12 +59,12 @@
     <xs:annotation>
       <xs:documentation>Beskriver en kolumn i en tabulär dataprodukt.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
+    <xs:all>
       <xs:element name="names" type="names" minOccurs="1" maxOccurs="1" />
       <xs:element name="dimlDataType" type="dimlDataType" minOccurs="1" maxOccurs="1" />
       <xs:element name="descriptions" type="descriptions" minOccurs="1" maxOccurs="1" />
       <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
-    </xs:sequence>
+    </xs:all>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>Kolumnens id.</xs:documentation>
@@ -233,10 +233,10 @@
     </xs:attribute>
   </xs:complexType>
   <xs:complexType name="dataOutputs">
-    <xs:sequence>
+    <xs:all>
       <xs:element name="fileOutputs" type="fileOutputs" minOccurs="0" maxOccurs="1" />
       <xs:element name="sqlOutputs" type="sqlOutputs" minOccurs="0" maxOccurs="1" />
-    </xs:sequence>
+    </xs:all>
   </xs:complexType>
   <xs:complexType name="fileOutputs">
     <xs:sequence>
@@ -247,10 +247,6 @@
     <xs:annotation>
       <xs:documentation>Anger en fil som destination för utdata med ett antal obligatoriska parametrar.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element name="singleTableFileOutput" type="singleTableFileOutput" minOccurs="0" maxOccurs="unbounded" />
-      <xs:element name="multiTableFileOutput" type="multiTableFileOutput" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
     <xs:attribute name="channelId" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>Anger ett unikt id för varje utkanaltyp t.ex sql,sql2 etc.</xs:documentation>
@@ -291,29 +287,11 @@
         <xs:documentation>Anger vilket/vilka tecken som ska användas som radavskiljare i utdatafilen, om filformatet är csv.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-  </xs:complexType>
-  <xs:complexType name="singleTableFileOutput">
-    <xs:annotation>
-      <xs:documentation>Anger en fil som output baserat på en tabell i definierat format (csv, parquet etc).</xs:documentation>
-    </xs:annotation>
-    <xs:attribute name="path" type="xs:string" use="required">
+    <xs:attribute name="table" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>Anger filnamnet för utdatafil</xs:documentation>
+        <xs:documentation>Anger vilken källtabell som utdatafilen ska baseras på.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="table" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Anger källtabell filen ska baseras på</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-  </xs:complexType>
-  <xs:complexType name="multiTableFileOutput">
-    <xs:annotation>
-      <xs:documentation>Anger en fil som innehåller flera tabeller som output i definierat format (csv, parquet etc).</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="includeTable" type="includeTable" minOccurs="1" maxOccurs="unbounded" />
-    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="sqlOutputs">
     <xs:sequence>

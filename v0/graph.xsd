@@ -4,15 +4,20 @@
     <xs:annotation>
       <xs:documentation>Anger ett grafobjekt.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
+    <xs:all>
       <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
-      <xs:element name="node" type="node" minOccurs="1" maxOccurs="unbounded" />
-    </xs:sequence>
+      <xs:element name="nodes" type="nodes" minOccurs="1" maxOccurs="1" />
+    </xs:all>
     <xs:attribute name="dimlId" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>En globalt unik identifierare för Diml-objektet.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="nodes">
+    <xs:sequence>
+      <xs:element name="node" type="node" minOccurs="1" maxOccurs="unbounded" />
+    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="node">
     <xs:annotation>

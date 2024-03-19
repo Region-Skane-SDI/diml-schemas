@@ -1,6 +1,6 @@
 
 # Diml klassdokumentation
-Version 0.8.7
+Version 0.9.0
 
 ## trait
 Anv&#xE4;nds f&#xF6;r att specificera egenskaper (traits) p&#xE5; ett Diml-objekt.
@@ -49,20 +49,7 @@ Anger en fil som destination f&#xF6;r utdata med ett antal obligatoriska paramet
 | path | string | Ja |  |  | S&#xF6;kv&#xE4;gen f&#xF6;r utdatafilen. |
 | quoteCharacter | string | Nej |  |  | Anger vilket tecken som ska anv&#xE4;ndas som citationstecken i utdatafilen, om filformatet &#xE4;r csv. |
 | rowSeparator | string | Nej |  |  | Anger vilket/vilka tecken som ska anv&#xE4;ndas som radavskiljare i utdatafilen, om filformatet &#xE4;r csv. |
-
-## multiTableFileOutput
-Anger en fil som inneh&#xE5;ller flera tabeller som output i definierat format (csv, parquet etc).
-
-| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
-| ---- | --- | ----- | ------------ | --------- | ----------- |
-
-## singleTableFileOutput
-Anger en fil som output baserat p&#xE5; en tabell i definierat format (csv, parquet etc).
-
-| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
-| ---- | --- | ----- | ------------ | --------- | ----------- |
-| path | string | Ja |  |  | Anger filnamnet f&#xF6;r utdatafil |
-| table | string | Ja |  |  | Anger k&#xE4;lltabell filen ska baseras p&#xE5; |
+| table | string | Nej |  |  | Anger vilken k&#xE4;lltabell som utdatafilen ska baseras p&#xE5;. |
 
 ## apiOutput
 Anger API som utdataformat enligt en angiven standard.
@@ -392,12 +379,6 @@ Anv&#xE4;nds f&#xF6;r att namnge ett Diml-objekt p&#xE5; olika spr&#xE5;k.
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | language | string | Ja |  |  | En representation av vilket spr&#xE5;k som anv&#xE4;nds f&#xF6;r namnet. Exempelv&#xE4;rde: sv |
-
-## tableToTableMappings
-TODO
-
-| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
-| ---- | --- | ----- | ------------ | --------- | ----------- |
 
 
 ## traitClass

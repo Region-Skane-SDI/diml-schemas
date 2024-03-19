@@ -4,26 +4,31 @@
     <xs:annotation>
       <xs:documentation>Definierar och beskriver hierarkier i Diml konfigfilen.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
+    <xs:all>
       <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
-      <xs:element name="category" type="category" minOccurs="1" maxOccurs="unbounded" />
-    </xs:sequence>
+      <xs:element name="categories" type="categories" minOccurs="1" maxOccurs="1" />
+    </xs:all>
     <xs:attribute name="dimlId" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>En globalt unik identifierare för Diml-objektet.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
+  <xs:complexType name="categories">
+    <xs:sequence>
+      <xs:element name="category" type="category" minOccurs="1" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="category">
     <xs:annotation>
       <xs:documentation>Anger kategorisering av dataprodukten t.ex namn, beskrivning och traits.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
+    <xs:all>
       <xs:element name="names" type="names" minOccurs="1" maxOccurs="1" />
       <xs:element name="descriptions" type="descriptions" minOccurs="1" maxOccurs="1" />
       <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
       <xs:element name="subcategories" type="subcategories" minOccurs="0" maxOccurs="1" />
-    </xs:sequence>
+    </xs:all>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>Ett unikt id som representerar kategorin.</xs:documentation>

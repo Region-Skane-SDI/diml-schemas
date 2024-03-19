@@ -4,14 +4,14 @@
     <xs:annotation>
       <xs:documentation>Konfiguration av Diml-miljö där t.ex standardspråk anges.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
+    <xs:all>
       <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
       <xs:element name="graphs" type="graphs" minOccurs="0" maxOccurs="1" />
       <xs:element name="lists" type="lists" minOccurs="0" maxOccurs="1" />
       <xs:element name="hierarchies" type="hierarchies" minOccurs="0" maxOccurs="1" />
       <xs:element name="dataSystemColumns" type="dataSystemColumns" minOccurs="0" maxOccurs="1" />
       <xs:element name="commonColumnDefinitions" type="commonColumnDefinitions" minOccurs="0" maxOccurs="1" />
-    </xs:sequence>
+    </xs:all>
     <xs:attribute name="defaultLanguage" type="xs:string" use="optional">
       <xs:annotation>
         <xs:documentation>Anger standardspråk för en Diml-miljö</xs:documentation>
