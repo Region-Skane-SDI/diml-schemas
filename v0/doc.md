@@ -1,6 +1,6 @@
 
 # Diml klassdokumentation
-Version 0.9.0
+Version 0.9.1
 
 ## trait
 Anv&#xE4;nds f&#xF6;r att specificera egenskaper (traits) p&#xE5; ett Diml-objekt.
@@ -484,7 +484,8 @@ Anger vilken plattform som ska anv&#xE4;ndas.
 | ---- | ----------- |
 | azDatabricks | Azure Databricks |
 | azSqlServer | Azure SQL Server |
-| msFabric | Microsoft Fabric |
+| msFabricLakehouse | Microsoft Fabric Lakehouse |
+| msFabricWarehouse | Microsoft Fabric Warehouse |
 | sqlServer | SQL Server |
 
 
