@@ -16,7 +16,7 @@
   </xs:complexType>
   <xs:complexType name="categories">
     <xs:sequence>
-      <xs:element name="category" type="category" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="category" type="category" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="category">
@@ -37,12 +37,12 @@
   </xs:complexType>
   <xs:complexType name="subcategories">
     <xs:sequence>
-      <xs:element name="category" type="category" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="category" type="category" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="names">
     <xs:sequence>
-      <xs:element name="name" type="name" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="name" type="name" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="name">
@@ -61,7 +61,7 @@
   </xs:complexType>
   <xs:complexType name="descriptions">
     <xs:sequence>
-      <xs:element name="description" type="description" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="description" type="description" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="description">
@@ -85,7 +85,7 @@
   </xs:complexType>
   <xs:complexType name="traits">
     <xs:sequence>
-      <xs:element name="trait" type="trait" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="trait" type="trait" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="trait">

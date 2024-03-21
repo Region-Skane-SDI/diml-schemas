@@ -25,7 +25,7 @@
   </xs:complexType>
   <xs:complexType name="hierarchies">
     <xs:sequence>
-      <xs:element name="hierarchy" type="hierarchy" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="hierarchy" type="hierarchy" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="hierarchy">
@@ -33,7 +33,7 @@
   </xs:complexType>
   <xs:complexType name="graphs">
     <xs:sequence>
-      <xs:element name="graph" type="graph" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="graph" type="graph" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="graph">
@@ -41,7 +41,7 @@
   </xs:complexType>
   <xs:complexType name="lists">
     <xs:sequence>
-      <xs:element name="list" type="list" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="list" type="list" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="list">
@@ -49,7 +49,7 @@
   </xs:complexType>
   <xs:complexType name="names">
     <xs:sequence>
-      <xs:element name="name" type="name" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="name" type="name" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="name">
@@ -68,7 +68,7 @@
   </xs:complexType>
   <xs:complexType name="descriptions">
     <xs:sequence>
-      <xs:element name="description" type="description" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="description" type="description" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="description">
@@ -92,17 +92,17 @@
   </xs:complexType>
   <xs:complexType name="traits">
     <xs:sequence>
-      <xs:element name="trait" type="trait" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="trait" type="trait" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="commonColumnDefinitions">
     <xs:sequence>
-      <xs:element name="commonColumnDefinition" type="commonColumnDefinition" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="commonColumnDefinition" type="commonColumnDefinition" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="columnInstances">
     <xs:sequence>
-      <xs:element name="columnInstance" type="columnInstance" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="columnInstance" type="columnInstance" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="columnInstance">
@@ -184,7 +184,7 @@
   </xs:simpleType>
   <xs:complexType name="dataSystemColumns">
     <xs:sequence>
-      <xs:element name="dataSystemColumn" type="dataSystemColumn" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="dataSystemColumn" type="dataSystemColumn" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="dataSystemColumn">

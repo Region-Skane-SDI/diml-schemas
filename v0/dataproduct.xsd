@@ -181,7 +181,7 @@
   </xs:complexType>
   <xs:complexType name="dataInputs">
     <xs:sequence>
-      <xs:element name="dataInput" type="dataInput" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="dataInput" type="dataInput" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="dataInput">
@@ -206,7 +206,7 @@
   </xs:complexType>
   <xs:complexType name="tables">
     <xs:sequence>
-      <xs:element name="table" type="table" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="table" type="table" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="table">
@@ -232,7 +232,7 @@
   </xs:complexType>
   <xs:complexType name="tableInstances">
     <xs:sequence>
-      <xs:element name="tableInstance" type="tableInstance" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="tableInstance" type="tableInstance" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="tableInstance">
@@ -252,7 +252,7 @@
   </xs:complexType>
   <xs:complexType name="businessKey">
     <xs:sequence>
-      <xs:element name="value" type="businessKeyValue" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="value" type="businessKeyValue" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="businessKeyValue">
@@ -260,7 +260,7 @@
   </xs:simpleType>
   <xs:complexType name="commonColumns">
     <xs:sequence>
-      <xs:element name="commonColumn" type="commonColumn" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="commonColumn" type="commonColumn" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="commonColumn">
@@ -276,7 +276,7 @@
   </xs:complexType>
   <xs:complexType name="columns">
     <xs:sequence>
-      <xs:element name="column" type="column" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="column" type="column" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="column">
@@ -298,7 +298,7 @@
   </xs:complexType>
   <xs:complexType name="columnInstances">
     <xs:sequence>
-      <xs:element name="columnInstance" type="columnInstance" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="columnInstance" type="columnInstance" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="columnInstance">
@@ -401,7 +401,7 @@
   </xs:complexType>
   <xs:complexType name="tableRelations">
     <xs:sequence>
-      <xs:element name="tableRelation" type="tableRelation" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="tableRelation" type="tableRelation" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="tableRelation">
@@ -409,7 +409,7 @@
       <xs:documentation>Anger eventuella tabellrelationer och hur de relaterar via relationsColumns.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="relationColumns" type="relationColumns" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="relationColumns" type="relationColumns" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
@@ -439,7 +439,7 @@
   </xs:complexType>
   <xs:complexType name="sampleData">
     <xs:sequence>
-      <xs:element name="sampleDataRow" type="sampleDataRow" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="sampleDataRow" type="sampleDataRow" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="sampleDataRow">
@@ -452,7 +452,7 @@
   </xs:complexType>
   <xs:complexType name="customFormats">
     <xs:sequence>
-      <xs:element name="customFormat" type="customFormat" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="customFormat" type="customFormat" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="customFormat">
@@ -489,7 +489,7 @@
   </xs:complexType>
   <xs:complexType name="fileOutputs">
     <xs:sequence>
-      <xs:element name="fileOutput" type="fileOutput" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="fileOutput" type="fileOutput" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="fileOutput">
@@ -544,7 +544,7 @@
   </xs:complexType>
   <xs:complexType name="sqlOutputs">
     <xs:sequence>
-      <xs:element name="sqlOutput" type="sqlOutput" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="sqlOutput" type="sqlOutput" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="sqlOutput">
@@ -564,7 +564,7 @@
   </xs:complexType>
   <xs:complexType name="apiOutputs">
     <xs:sequence>
-      <xs:element name="apiOutput" type="apiOutput" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="apiOutput" type="apiOutput" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="apiOutput">
@@ -584,7 +584,7 @@
   </xs:complexType>
   <xs:complexType name="includeTables">
     <xs:sequence>
-      <xs:element name="includeTable" type="includeTable" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="includeTable" type="includeTable" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="includeTable">
@@ -599,7 +599,7 @@
   </xs:complexType>
   <xs:complexType name="names">
     <xs:sequence>
-      <xs:element name="name" type="name" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="name" type="name" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="name">
@@ -618,7 +618,7 @@
   </xs:complexType>
   <xs:complexType name="descriptions">
     <xs:sequence>
-      <xs:element name="description" type="description" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="description" type="description" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="description">
@@ -642,7 +642,7 @@
   </xs:complexType>
   <xs:complexType name="traits">
     <xs:sequence>
-      <xs:element name="trait" type="trait" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="trait" type="trait" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="trait">
