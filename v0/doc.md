@@ -1,6 +1,6 @@
 
 # Diml klassdokumentation
-Version 0.1.2
+Version 0.10.0
 
 ## trait
 Anv&#xE4;nds f&#xF6;r att specificera egenskaper (traits) p&#xE5; ett Diml-objekt.
@@ -47,21 +47,9 @@ Anger en fil som destination f&#xF6;r utdata med ett antal obligatoriska paramet
 | encoding | string | Nej |  |  | Teckenkodningen f&#xF6;r utdatafilen, t.ex. UTF-8. |
 | fileFormat | [fileFormat](#fileFormat) | Ja |  |  | Anger kompatibla filformat. |
 | path | string | Ja |  |  | S&#xF6;kv&#xE4;gen f&#xF6;r utdatafilen. |
+| quoteCharacter | string | Nej |  |  | Anger vilket tecken som ska anv&#xE4;ndas som citationstecken i utdatafilen, om filformatet &#xE4;r csv. |
 | rowSeparator | string | Nej |  |  | Anger vilket/vilka tecken som ska anv&#xE4;ndas som radavskiljare i utdatafilen, om filformatet &#xE4;r csv. |
-
-## multiTableFileOutput
-Anger en fil som inneh&#xE5;ller flera tabeller som output i definierat format (csv, parquet etc).
-
-| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
-| ---- | --- | ----- | ------------ | --------- | ----------- |
-
-## singleTableFileOutput
-Anger en fil som output baserat p&#xE5; en tabell i definierat format (csv, parquet etc).
-
-| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
-| ---- | --- | ----- | ------------ | --------- | ----------- |
-| path | string | Ja |  |  | Anger filnamnet f&#xF6;r utdatafil |
-| table | string | Ja |  |  | Anger k&#xE4;lltabell filen ska baseras p&#xE5; |
+| table | string | Nej |  |  | Anger vilken k&#xE4;lltabell som utdatafilen ska baseras p&#xE5;. |
 
 ## apiOutput
 Anger API som utdataformat enligt en angiven standard.
@@ -77,7 +65,7 @@ Anger en indatak&#xE4;lla f&#xF6;r en dataproduktsspecifikation, t.ex. en DataSo
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | channelId | string | Ja |  |  | Anger vilken typ av data som ska h&#xE4;mtas och i vilket format. |
-| dimlId | string | Ja |  |  | Ett globalt unikt dimlId f&#xF6;r indatak&#xE4;llan. |
+| dimlId | dimlId | Ja |  |  | Ett globalt unikt dimlId f&#xF6;r indatak&#xE4;llan. |
 | id | string | Ja |  |  | Ett id f&#xF6;r indatak&#xE4;llan. Detta m&#xE5;ste vara unikt inom en DataProduct d&#xE5; det kommer att anv&#xE4;ndas som ett alias. |
 
 ## conditionalDataType
@@ -109,7 +97,7 @@ Specificerar alla tillg&#xE4;ngliga Diml-datatyper samt konverteringslogiken mel
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| dimlId | string | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
+| dimlId | dimlId | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
 
 ## dimlDataType
 Anger en Diml-datatyp baserat p&#xE5; dom typer som finns definierade i datatypsspecifikationen.
@@ -197,7 +185,7 @@ Beskrivning av en dataprodukt med dess specifikationer.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| dimlId | string | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
+| dimlId | dimlId | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
 | targetPlatform | [targetPlatformType](#targetPlatformType) | Ja |  |  | Anger vilken plattform som ska anv&#xE4;ndas. |
 
 ## dataSource
@@ -205,7 +193,7 @@ Beskrivning av en datak&#xE4;lla (som kan anv&#xE4;ndas av dataprodukter).
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| dimlId | string | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
+| dimlId | dimlId | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
 
 ## dataStage
 Anger de olika stadien f&#xF6;r data och dess egenskaper, tex. Om en tabell ska materialiseras eller inte, hur data ska uppdateras osv.
@@ -267,6 +255,28 @@ Beskriver en kolumn i en tabul&#xE4;r dataprodukt.
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | id | string | Ja |  |  | Kolumnens id. |
 
+## columnInstance
+Beskriver ett alias f&#xF6;r en kolumn i en tabul&#xE4;r dataprodukt.
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| alias | string | Ja |  |  | Kolumnens alias. |
+| stageId | string | Ja |  |  | Vilket steg aliaset skall g&#xE4;lla f&#xF6;r. |
+
+## commonColumn
+Beskriver en referens till en &#xE5;teranv&#xE4;ndbar kolumn.
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| id | string | Ja |  |  | Kolumnens id. |
+
+## commonColumnDefinition
+Beskriver en kolumn som g&#xE5;r att &#xE5;teranv&#xE4;nda i flera tabeller.
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| id | string | Ja |  |  | Kolumnens id. |
+
 ## includeTable
 Anger vilka tabeller som ska inkluderas i output.
 
@@ -280,6 +290,14 @@ Beskriver en tabell i en tabul&#xE4;r dataprodukt.
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | id | string | Ja |  |  | Tabellens id. |
+
+## tableInstance
+Beskriver ett alias f&#xF6;r en tabell i en tabul&#xE4;r dataprodukt.
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| alias | string | Ja |  |  | Tabellens alias. |
+| stageId | string | Ja |  |  | Vilket steg aliaset skall g&#xE4;lla f&#xF6;r. |
 
 ## dataSystemColumn
 TODO: Saknar beskrivning.
@@ -303,7 +321,7 @@ Konfiguration av Diml-milj&#xF6; d&#xE4;r t.ex standardspr&#xE5;k anges.
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | defaultLanguage | string | Nej |  |  | Anger standardspr&#xE5;k f&#xF6;r en Diml-milj&#xF6; |
-| dimlId | string | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
+| dimlId | dimlId | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
 
 ## category
 Anger kategorisering av dataprodukten t.ex namn, beskrivning och traits.
@@ -317,21 +335,21 @@ Anger ett grafobjekt.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| dimlId | string | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
+| dimlId | dimlId | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
 
 ## hierarchy
 Definierar och beskriver hierarkier i Diml konfigfilen.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| dimlId | string | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
+| dimlId | dimlId | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
 
 ## list
 Anger en lista.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| dimlId | string | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
+| dimlId | dimlId | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
 
 ## listItem
 Anger ett listobjekt inom en lista.
@@ -362,12 +380,6 @@ Anv&#xE4;nds f&#xF6;r att namnge ett Diml-objekt p&#xE5; olika spr&#xE5;k.
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | language | string | Ja |  |  | En representation av vilket spr&#xE5;k som anv&#xE4;nds f&#xF6;r namnet. Exempelv&#xE4;rde: sv |
 
-## tableToTableMappings
-TODO
-
-| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
-| ---- | --- | ----- | ------------ | --------- | ----------- |
-
 
 ## traitClass
 Anger tillg&#xE4;ngliga klasser f&#xF6;r en Trait.
@@ -376,6 +388,7 @@ Anger tillg&#xE4;ngliga klasser f&#xF6;r en Trait.
 | ---- | ----------- |
 | category | Mappar till en kategori i DimlConfig. |
 | columnSources | Anv&#xE4;nds f&#xF6;r att specificera k&#xE4;llan till en kolumn i en dataprodukt. |
+| dataStageOperations.applyDataQualityRules | Applicera definierade datakvalitetsregler |
 | defaultConfigNamespace | Default konfiguration. |
 | extension | Beskrivning saknas. |
 | generateKeyHash | Genererar hashnyckel baserat p&#xE5; nyckelv&#xE4;rde. |
@@ -389,6 +402,8 @@ Anger tillg&#xE4;ngliga klasser f&#xF6;r en Trait.
 | isUnlisted | Anger om en dataprodukt ska visas i datakatlogen eller inte. |
 | isVirtual | Anger om en dataprodukt &#xE4;r virtuell. |
 | pii | Anv&#xE4;nds f&#xF6;r att beskriva att det finns personuppgifter i kotextet d&#xE4;r denna Trait appliceras. |
+| quality.businessKey.duplicate | Kontrollera dubletter p&#xE5; business key |
+| quality.businessKey.null | Kontrollera ifall business keys &#xE4;r null eller inte |
 | tableNamePrefix | Anv&#xE4;nds f&#xF6;r att specificera ett prefix f&#xF6;r alla tabellnamn i kotextet d&#xE4;r denna Trait anv&#xE4;nds. |
 | tableNameSuffix | Anv&#xE4;nds f&#xF6;r att specificera ett suffix f&#xF6;r alla tabellnamn i kotextet d&#xE4;r denna Trait anv&#xE4;nds. |
 | tableSchema | Anv&#xE4;nds f&#xF6;r att specificera ett schema f&#xF6;r alla tabeller i kotextet d&#xE4;r denna Trait anv&#xE4;nds. |
@@ -469,7 +484,8 @@ Anger vilken plattform som ska anv&#xE4;ndas.
 | ---- | ----------- |
 | azDatabricks | Azure Databricks |
 | azSqlServer | Azure SQL Server |
-| msFabric | Microsoft Fabric |
+| msFabricLakehouse | Microsoft Fabric Lakehouse |
+| msFabricWarehouse | Microsoft Fabric Warehouse |
 | sqlServer | SQL Server |
 
 

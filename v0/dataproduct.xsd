@@ -4,7 +4,7 @@
     <xs:annotation>
       <xs:documentation>Beskrivning av en dataprodukt med dess specifikationer.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
+    <xs:all>
       <xs:element name="names" type="names" minOccurs="1" maxOccurs="1" />
       <xs:element name="descriptions" type="descriptions" minOccurs="1" maxOccurs="1" />
       <xs:element name="dcat" type="dcat" minOccurs="1" maxOccurs="1" />
@@ -14,7 +14,7 @@
       <xs:element name="customFormats" type="customFormats" minOccurs="0" maxOccurs="1" />
       <xs:element name="dataOutputs" type="dataOutputs" minOccurs="0" maxOccurs="1" />
       <xs:element name="dataFlow" type="dataFlow" minOccurs="0" maxOccurs="1" />
-    </xs:sequence>
+    </xs:all>
     <xs:attribute name="dimlId" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>En globalt unik identifierare för Diml-objektet.</xs:documentation>
@@ -30,10 +30,10 @@
     <xs:annotation>
       <xs:documentation>Anger flödet av data genom alla lager, samt egenskaper t.ex om en tabell ska materialiseras, uppdateras osv.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
+    <xs:all>
       <xs:element name="dataStages" type="dataStages" minOccurs="1" maxOccurs="1" />
       <xs:element name="dataIngests" type="dataIngests" minOccurs="1" maxOccurs="1" />
-    </xs:sequence>
+    </xs:all>
   </xs:complexType>
   <xs:complexType name="dataStages">
     <xs:sequence>
@@ -44,9 +44,9 @@
     <xs:annotation>
       <xs:documentation>Anger de olika stadien för data och dess egenskaper, tex. Om en tabell ska materialiseras eller inte, hur data ska uppdateras osv.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
+    <xs:all>
       <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
-    </xs:sequence>
+    </xs:all>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>Unikt id för dataStage.</xs:documentation>
@@ -77,9 +77,9 @@
     <xs:annotation>
       <xs:documentation>Anger hur data ska inhämtas från källa till destination.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
+    <xs:all>
       <xs:element name="tableToTableMappings" type="tableToTableMappings" minOccurs="0" maxOccurs="1" />
-    </xs:sequence>
+    </xs:all>
     <xs:attribute name="customSqlExpression" type="xs:string" use="optional">
       <xs:annotation>
         <xs:documentation>TODO</xs:documentation>
@@ -97,9 +97,6 @@
     </xs:attribute>
   </xs:complexType>
   <xs:complexType name="tableToTableMappings">
-    <xs:annotation>
-      <xs:documentation>TODO</xs:documentation>
-    </xs:annotation>
     <xs:sequence>
       <xs:element name="tableToTableMapping" type="tableToTableMapping" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
@@ -108,9 +105,9 @@
     <xs:annotation>
       <xs:documentation>TODO</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
+    <xs:all>
       <xs:element name="columnMappings" type="columnMappings" minOccurs="0" maxOccurs="1" />
-    </xs:sequence>
+    </xs:all>
     <xs:attribute name="allowSchemaDrift" type="xs:boolean" use="optional">
       <xs:annotation>
         <xs:documentation>TODO</xs:documentation>
@@ -184,7 +181,7 @@
   </xs:complexType>
   <xs:complexType name="dataInputs">
     <xs:sequence>
-      <xs:element name="dataInput" type="dataInput" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="dataInput" type="dataInput" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="dataInput">
@@ -209,127 +206,202 @@
   </xs:complexType>
   <xs:complexType name="tables">
     <xs:sequence>
-      <xs:element name="table" type="table" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="table" type="table" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="table">
     <xs:annotation>
       <xs:documentation>Beskriver en tabell i en tabulär dataprodukt.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
+    <xs:all>
       <xs:element name="names" type="names" minOccurs="1" maxOccurs="1" />
       <xs:element name="descriptions" type="descriptions" minOccurs="1" maxOccurs="1" />
       <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
       <xs:element name="businessKey" type="businessKey" minOccurs="0" maxOccurs="1" />
+      <xs:element name="tableInstances" type="tableInstances" minOccurs="0" maxOccurs="1" />
+      <xs:element name="commonColumns" type="commonColumns" minOccurs="0" maxOccurs="1" />
       <xs:element name="columns" type="columns" minOccurs="1" maxOccurs="1" />
       <xs:element name="tableRelations" type="tableRelations" minOccurs="0" maxOccurs="1" />
       <xs:element name="sampleData" type="sampleData" minOccurs="0" maxOccurs="1" />
-    </xs:sequence>
+    </xs:all>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>Tabellens id.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
+  <xs:complexType name="tableInstances">
+    <xs:sequence>
+      <xs:element name="tableInstance" type="tableInstance" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tableInstance">
+    <xs:annotation>
+      <xs:documentation>Beskriver ett alias för en tabell i en tabulär dataprodukt.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="alias" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Tabellens alias.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="stageId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Vilket steg aliaset skall gälla för.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
   <xs:complexType name="businessKey">
     <xs:sequence>
-      <xs:element name="value" type="businessKeyValue" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="value" type="businessKeyValue" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="businessKeyValue">
     <xs:restriction base="xs:string" />
   </xs:simpleType>
+  <xs:complexType name="commonColumns">
+    <xs:sequence>
+      <xs:element name="commonColumn" type="commonColumn" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="commonColumn">
+    <xs:annotation>
+      <xs:documentation>Beskriver en referens till en återanvändbar kolumn.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="id" type="dimlCommonColumnDefinitionType" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger vilken common column definition som ska användas, baserat på ett ID från en
+                    commonColumnDefinition i commonColumnDefinitions.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
   <xs:complexType name="columns">
     <xs:sequence>
-      <xs:element name="column" type="column" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="column" type="column" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="column">
     <xs:annotation>
       <xs:documentation>Beskriver en kolumn i en tabulär dataprodukt.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
+    <xs:all>
       <xs:element name="names" type="names" minOccurs="1" maxOccurs="1" />
       <xs:element name="dimlDataType" type="dimlDataType" minOccurs="1" maxOccurs="1" />
+      <xs:element name="columnInstances" type="columnInstances" minOccurs="0" maxOccurs="1" />
       <xs:element name="descriptions" type="descriptions" minOccurs="1" maxOccurs="1" />
       <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
-    </xs:sequence>
+    </xs:all>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>Kolumnens id.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
+  <xs:complexType name="columnInstances">
+    <xs:sequence>
+      <xs:element name="columnInstance" type="columnInstance" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="columnInstance">
+    <xs:annotation>
+      <xs:documentation>Beskriver ett alias för en kolumn i en tabulär dataprodukt.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="dimlDataType" type="dimlDataType" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+    <xs:attribute name="alias" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Kolumnens alias.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="stageId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Vilket steg aliaset skall gälla för.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
   <xs:complexType name="dimlDataType">
     <xs:attribute name="id" type="dimlDataTypeConfigType" use="required">
       <xs:annotation>
-        <xs:documentation>Anger vilken Diml-datatyp som ska användas, baserat på ett ID från en dataTypeAttribute i dataTypes &gt; dataTypeAttributes.</xs:documentation>
+        <xs:documentation>Anger vilken Diml-datatyp som ska användas, baserat på ett ID från en
+                    dataTypeAttribute i dataTypes &gt; dataTypeAttributes.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="length" type="xs:int" use="optional">
       <xs:annotation>
-        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.</xs:documentation>
+        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.
+                    </xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="format" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.</xs:documentation>
+        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.
+                    </xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="precision" type="xs:int" use="optional">
       <xs:annotation>
-        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.</xs:documentation>
+        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.
+                    </xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="scale" type="xs:int" use="optional">
       <xs:annotation>
-        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.</xs:documentation>
+        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.
+                    </xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="isFixedLength" type="xs:boolean" use="optional">
       <xs:annotation>
-        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.</xs:documentation>
+        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.
+                    </xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="isWideChar" type="xs:boolean" use="optional">
       <xs:annotation>
-        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.</xs:documentation>
+        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.
+                    </xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="unsigned" type="xs:boolean" use="optional">
       <xs:annotation>
-        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.</xs:documentation>
+        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.
+                    </xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="originalDataType" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.</xs:documentation>
+        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.
+                    </xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="originalPlatform" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.</xs:documentation>
+        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.
+                    </xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="isCaseSensitive" type="xs:boolean" use="optional">
       <xs:annotation>
-        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.</xs:documentation>
+        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.
+                    </xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="isNullable" type="xs:boolean" use="optional">
       <xs:annotation>
-        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.</xs:documentation>
+        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.
+                    </xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="isUtcTime" type="xs:boolean" use="optional">
       <xs:annotation>
-        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.</xs:documentation>
+        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.
+                    </xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
   <xs:complexType name="tableRelations">
     <xs:sequence>
-      <xs:element name="tableRelation" type="tableRelation" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="tableRelation" type="tableRelation" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="tableRelation">
@@ -337,7 +409,7 @@
       <xs:documentation>Anger eventuella tabellrelationer och hur de relaterar via relationsColumns.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="relationColumns" type="relationColumns" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="relationColumns" type="relationColumns" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
@@ -367,7 +439,7 @@
   </xs:complexType>
   <xs:complexType name="sampleData">
     <xs:sequence>
-      <xs:element name="sampleDataRow" type="sampleDataRow" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="sampleDataRow" type="sampleDataRow" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="sampleDataRow">
@@ -380,7 +452,7 @@
   </xs:complexType>
   <xs:complexType name="customFormats">
     <xs:sequence>
-      <xs:element name="customFormat" type="customFormat" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="customFormat" type="customFormat" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="customFormat">
@@ -409,25 +481,21 @@
     </xs:attribute>
   </xs:complexType>
   <xs:complexType name="dataOutputs">
-    <xs:sequence>
+    <xs:all>
       <xs:element name="fileOutputs" type="fileOutputs" minOccurs="0" maxOccurs="1" />
       <xs:element name="sqlOutputs" type="sqlOutputs" minOccurs="0" maxOccurs="1" />
       <xs:element name="apiOutputs" type="apiOutputs" minOccurs="0" maxOccurs="1" />
-    </xs:sequence>
+    </xs:all>
   </xs:complexType>
   <xs:complexType name="fileOutputs">
     <xs:sequence>
-      <xs:element name="fileOutput" type="fileOutput" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="fileOutput" type="fileOutput" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="fileOutput">
     <xs:annotation>
       <xs:documentation>Anger en fil som destination för utdata med ett antal obligatoriska parametrar.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element name="singleTableFileOutput" type="singleTableFileOutput" minOccurs="0" maxOccurs="unbounded" />
-      <xs:element name="multiTableFileOutput" type="multiTableFileOutput" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
     <xs:attribute name="channelId" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>Anger ett unikt id för varje utkanaltyp t.ex sql,sql2 etc.</xs:documentation>
@@ -458,38 +526,25 @@
         <xs:documentation>Sökvägen för utdatafilen.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
+    <xs:attribute name="quoteCharacter" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger vilket tecken som ska användas som citationstecken i utdatafilen, om filformatet är csv.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="rowSeparator" type="xs:string" use="optional">
       <xs:annotation>
         <xs:documentation>Anger vilket/vilka tecken som ska användas som radavskiljare i utdatafilen, om filformatet är csv.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-  </xs:complexType>
-  <xs:complexType name="singleTableFileOutput">
-    <xs:annotation>
-      <xs:documentation>Anger en fil som output baserat på en tabell i definierat format (csv, parquet etc).</xs:documentation>
-    </xs:annotation>
-    <xs:attribute name="path" type="xs:string" use="required">
+    <xs:attribute name="table" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>Anger filnamnet för utdatafil</xs:documentation>
+        <xs:documentation>Anger vilken källtabell som utdatafilen ska baseras på.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="table" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Anger källtabell filen ska baseras på</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-  </xs:complexType>
-  <xs:complexType name="multiTableFileOutput">
-    <xs:annotation>
-      <xs:documentation>Anger en fil som innehåller flera tabeller som output i definierat format (csv, parquet etc).</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="includeTable" type="includeTable" minOccurs="1" maxOccurs="unbounded" />
-    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="sqlOutputs">
     <xs:sequence>
-      <xs:element name="sqlOutput" type="sqlOutput" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="sqlOutput" type="sqlOutput" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="sqlOutput">
@@ -509,7 +564,7 @@
   </xs:complexType>
   <xs:complexType name="apiOutputs">
     <xs:sequence>
-      <xs:element name="apiOutput" type="apiOutput" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="apiOutput" type="apiOutput" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="apiOutput">
@@ -529,7 +584,7 @@
   </xs:complexType>
   <xs:complexType name="includeTables">
     <xs:sequence>
-      <xs:element name="includeTable" type="includeTable" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="includeTable" type="includeTable" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="includeTable">
@@ -544,7 +599,7 @@
   </xs:complexType>
   <xs:complexType name="names">
     <xs:sequence>
-      <xs:element name="name" type="name" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="name" type="name" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="name">
@@ -563,7 +618,7 @@
   </xs:complexType>
   <xs:complexType name="descriptions">
     <xs:sequence>
-      <xs:element name="description" type="description" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="description" type="description" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="description">
@@ -587,7 +642,7 @@
   </xs:complexType>
   <xs:complexType name="traits">
     <xs:sequence>
-      <xs:element name="trait" type="trait" minOccurs="1" maxOccurs="unbounded" />
+      <xs:element name="trait" type="trait" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="trait">
@@ -631,10 +686,20 @@
   </xs:simpleType>
   <xs:simpleType name="dimlDataTypeConfigType">
     <xs:annotation>
-      <xs:documentation>Anger en Diml-datatyp baserad på dom typer som finns beskrivna under dataTypes &gt; dimlDataTypeConfigs</xs:documentation>
+      <xs:documentation>Anger en Diml-datatyp baserad på dom typer som finns beskrivna under dataTypes &gt;
+                dimlDataTypeConfigs</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:pattern value="[sS][tT][rR][iI][nN][gG]|[bB][oO][oO][lL][eE][aA][nN]|[tT][iI][nN][yY][iI][nN][tT][eE][gG][eE][rR]|[sS][mM][aA][lL][lL][iI][nN][tT][eE][gG][eE][rR]|[iI][nN][tT][eE][gG][eE][rR]|[bB][iI][gG][iI][nN][tT][eE][gG][eE][rR]|[fF][lL][oO][aA][tT]|[dD][oO][uU][bB][lL][eE]|[dD][eE][cC][iI][mM][aA][lL]|[dD][aA][tT][eE]|[dD][aA][tT][eE][tT][iI][mM][eE]|[dD][aA][tT][eE][tT][iI][mM][eE][oO][fF][fF][sS][eE][tT]|[tT][iI][mM][eE]|[xX][mM][lL]|[bB][iI][nN][aA][rR][yY]|[gG][uU][iI][dD]|[sS][sS][nN]|[fF][uU][lL][lL][nN][aA][mM][eE]|[aA][gG][eE]" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="dimlCommonColumnDefinitionType">
+    <xs:annotation>
+      <xs:documentation>Anger en common-column definition baserad på dom definitioner som finns beskrivna under
+                commonColumnDefinitions</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[vV][eE][rR][kK][sS][aA][mM][hH][eE][tT][sS][oO][mM][rR][aA][dD][eE]" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="dcatDataThemeType">
@@ -667,7 +732,7 @@
       <xs:documentation>Anger tillgängliga klasser för en Trait.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[cC][aA][tT][eE][gG][oO][rR][yY]|[cC][oO][lL][uU][mM][nN][sS][oO][uU][rR][cC][eE][sS]|[dD][eE][fF][aA][uU][lL][tT][cC][oO][nN][fF][iI][gG][nN][aA][mM][eE][sS][pP][aA][cC][eE]|[eE][xX][tT][eE][nN][sS][iI][oO][nN]|[gG][eE][nN][eE][rR][aA][tT][eE][kK][eE][yY][hH][aA][sS][hH]|[gG][eE][nN][eE][rR][aA][tT][eE][rR][oO][wW][hH][aA][sS][hH]|[gG][uU][iI][dD]|[iI][cC][oO][nN]|[iI][nN][fF][dD][oO][mM]|[iI][nN][fF][oO][cC][lL][aA][sS][sS]|[iI][nN][fF][oO][mM][rR]|[iI][sS][gG][rR][eE][aA][tT][eE][rR][tT][hH][aA][nN]|[iI][sS][uU][nN][lL][iI][sS][tT][eE][dD]|[iI][sS][vV][iI][rR][tT][uU][aA][lL]|[pP][iI][iI]|[tT][aA][bB][lL][eE][nN][aA][mM][eE][pP][rR][eE][fF][iI][xX]|[tT][aA][bB][lL][eE][nN][aA][mM][eE][sS][uU][fF][fF][iI][xX]|[tT][aA][bB][lL][eE][sS][cC][hH][eE][mM][aA]|[tT][aA][bB][lL][eE][uU][pP][dD][aA][tT][eE][tT][yY][pP][eE]|[tT][aA][rR][gG][eE][tT][uU][pP][tT][iI][mM][eE][pP][eE][rR][cC][eE][nN][tT]|" />
+      <xs:pattern value="[cC][aA][tT][eE][gG][oO][rR][yY]|[cC][oO][lL][uU][mM][nN][sS][oO][uU][rR][cC][eE][sS]|[dD][aA][tT][aA][sS][tT][aA][gG][eE][oO][pP][eE][rR][aA][tT][iI][oO][nN][sS][\.][aA][pP][pP][lL][yY][dD][aA][tT][aA][qQ][uU][aA][lL][iI][tT][yY][rR][uU][lL][eE][sS]|[dD][eE][fF][aA][uU][lL][tT][cC][oO][nN][fF][iI][gG][nN][aA][mM][eE][sS][pP][aA][cC][eE]|[eE][xX][tT][eE][nN][sS][iI][oO][nN]|[gG][eE][nN][eE][rR][aA][tT][eE][kK][eE][yY][hH][aA][sS][hH]|[gG][eE][nN][eE][rR][aA][tT][eE][rR][oO][wW][hH][aA][sS][hH]|[gG][uU][iI][dD]|[iI][cC][oO][nN]|[iI][nN][fF][dD][oO][mM]|[iI][nN][fF][oO][cC][lL][aA][sS][sS]|[iI][nN][fF][oO][mM][rR]|[iI][sS][gG][rR][eE][aA][tT][eE][rR][tT][hH][aA][nN]|[iI][sS][uU][nN][lL][iI][sS][tT][eE][dD]|[iI][sS][vV][iI][rR][tT][uU][aA][lL]|[pP][iI][iI]|[qQ][uU][aA][lL][iI][tT][yY][\.][bB][uU][sS][iI][nN][eE][sS][sS][kK][eE][yY][\.][dD][uU][pP][lL][iI][cC][aA][tT][eE]|[qQ][uU][aA][lL][iI][tT][yY][\.][bB][uU][sS][iI][nN][eE][sS][sS][kK][eE][yY][\.][nN][uU][lL][lL]|[tT][aA][bB][lL][eE][nN][aA][mM][eE][pP][rR][eE][fF][iI][xX]|[tT][aA][bB][lL][eE][nN][aA][mM][eE][sS][uU][fF][fF][iI][xX]|[tT][aA][bB][lL][eE][sS][cC][hH][eE][mM][aA]|[tT][aA][bB][lL][eE][uU][pP][dD][aA][tT][eE][tT][yY][pP][eE]|[tT][aA][rR][gG][eE][tT][uU][pP][tT][iI][mM][eE][pP][eE][rR][cC][eE][nN][tT]|" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="formatType">
@@ -739,7 +804,7 @@
       <xs:documentation>Anger vilken plattform som ska användas.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[aA][zZ][dD][aA][tT][aA][bB][rR][iI][cC][kK][sS]|[aA][zZ][sS][qQ][lL][sS][eE][rR][vV][eE][rR]|[mM][sS][fF][aA][bB][rR][iI][cC]|[sS][qQ][lL][sS][eE][rR][vV][eE][rR]|" />
+      <xs:pattern value="[aA][zZ][dD][aA][tT][aA][bB][rR][iI][cC][kK][sS]|[aA][zZ][sS][qQ][lL][sS][eE][rR][vV][eE][rR]|[mM][sS][fF][aA][bB][rR][iI][cC][\-][lL][aA][kK][eE][hH][oO][uU][sS][eE]|[mM][sS][fF][aA][bB][rR][iI][cC][\-][wW][aA][rR][eE][hH][oO][uU][sS][eE]|[sS][qQ][lL][sS][eE][rR][vV][eE][rR]|" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>
