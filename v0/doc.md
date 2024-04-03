@@ -1,6 +1,6 @@
 
 # Diml klassdokumentation
-Version 0.11.0
+Version 0.11.1
 
 ## trait
 Anv&#xE4;nds f&#xF6;r att specificera egenskaper (traits) p&#xE5; ett Diml-objekt.
@@ -456,6 +456,7 @@ Anger vad som sker i dataStage.
 
 | Namn | Beskrivning |
 | ---- | ----------- |
+| control | Data kontrolleras enligt givna regler. |
 | input | Data kommer in. |
 | none | Inget. |
 | output | Data g&#xE5;r ut. |
