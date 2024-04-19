@@ -220,7 +220,7 @@
     </xs:annotation>
     <xs:all>
       <xs:element name="names" type="names" minOccurs="1" maxOccurs="1" />
-      <xs:element name="descriptions" type="descriptions" minOccurs="1" maxOccurs="1" />
+      <xs:element name="descriptions" type="descriptions" minOccurs="0" maxOccurs="1" />
       <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
       <xs:element name="businessKey" type="businessKey" minOccurs="0" maxOccurs="1" />
       <xs:element name="tableInstances" type="tableInstances" minOccurs="0" maxOccurs="1" />
@@ -292,7 +292,7 @@
       <xs:element name="names" type="names" minOccurs="1" maxOccurs="1" />
       <xs:element name="dimlDataType" type="dimlDataType" minOccurs="1" maxOccurs="1" />
       <xs:element name="columnInstances" type="columnInstances" minOccurs="0" maxOccurs="1" />
-      <xs:element name="descriptions" type="descriptions" minOccurs="1" maxOccurs="1" />
+      <xs:element name="descriptions" type="descriptions" minOccurs="0" maxOccurs="1" />
       <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="id" type="xs:string" use="required">
