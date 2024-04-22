@@ -29,7 +29,7 @@
     </xs:annotation>
     <xs:all>
       <xs:element name="names" type="names" minOccurs="1" maxOccurs="1" />
-      <xs:element name="descriptions" type="descriptions" minOccurs="1" maxOccurs="1" />
+      <xs:element name="descriptions" type="descriptions" minOccurs="0" maxOccurs="1" />
       <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
       <xs:element name="businessKey" type="businessKey" minOccurs="0" maxOccurs="1" />
       <xs:element name="columns" type="columns" minOccurs="1" maxOccurs="1" />
@@ -62,7 +62,7 @@
     <xs:all>
       <xs:element name="names" type="names" minOccurs="1" maxOccurs="1" />
       <xs:element name="dimlDataType" type="dimlDataType" minOccurs="1" maxOccurs="1" />
-      <xs:element name="descriptions" type="descriptions" minOccurs="1" maxOccurs="1" />
+      <xs:element name="descriptions" type="descriptions" minOccurs="0" maxOccurs="1" />
       <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="id" type="xs:string" use="required">
@@ -477,7 +477,15 @@
       <xs:documentation>Anger vad som sker i dataStage.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[iI][nN][pP][uU][tT]|[nN][oO][nN][eE]|[oO][uU][tT][pP][uU][tT]|[tT][rR][aA][nN][sS][fF][oO][rR][mM][aA][tT][iI][oO][nN]" />
+      <xs:pattern value="[cC][oO][nN][tT][rR][oO][lL]|[iI][nN][pP][uU][tT]|[nN][oO][nN][eE]|[oO][uU][tT][pP][uU][tT]|[tT][rR][aA][nN][sS][fF][oO][rR][mM][aA][tT][iI][oO][nN]" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="dataStageType">
+    <xs:annotation>
+      <xs:documentation>Anger vilken typ av dataStage .</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[hH][aA][sS][hH]|[lL][oO][gG][iI][cC]|[pP][eE][rR][mM][aA][sS][tT][oO][rR][eE]|[tT][eE][mM][pP][sS][tT][oO][rR][eE]|[tT][yY][pP][eE][cC][aA][sS][tT]|[vV][aA][lL][iI][dD][aA][tT][eE]" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="semanticLinkType">

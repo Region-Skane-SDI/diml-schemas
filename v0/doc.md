@@ -1,6 +1,6 @@
 
 # Diml klassdokumentation
-Version 0.10.0
+Version 0.12.1
 
 ## trait
 Anv&#xE4;nds f&#xF6;r att specificera egenskaper (traits) p&#xE5; ett Diml-objekt.
@@ -204,6 +204,7 @@ Anger de olika stadien f&#xF6;r data och dess egenskaper, tex. Om en tabell ska 
 | materialization | [dataStageMaterialization](#dataStageMaterialization) | Ja |  |  | Anger om data ska materialiseras eller virtualiseras. |
 | order | int32 | Ja |  |  | Anger ordningen p&#xE5; dataStage, dvs vilket steg som ska ske f&#xF6;rst. |
 | role | [dataStageRole](#dataStageRole) | Nej |  |  | Anger vad som sker i dataStage. |
+| type | [dataStageType](#dataStageType) | Ja |  |  | Anger vilken typ av dataStage . |
 
 ## dcat
 Inneh&#xE5;ller egenskaper f&#xF6;r DCAT vilket &#xE4;r en metadataspecifikation f&#xF6;r att beskriva datam&#xE4;ngder. Mer information finns h&#xE4;r: https://docs.dataportal.se/dcat/en/
@@ -456,10 +457,23 @@ Anger vad som sker i dataStage.
 
 | Namn | Beskrivning |
 | ---- | ----------- |
+| control | Data kontrolleras enligt givna regler. |
 | input | Data kommer in. |
 | none | Inget. |
 | output | Data g&#xE5;r ut. |
 | transformation | Data transformeras enligt givna regler. |
+
+## dataStageType
+Anger vilken typ av dataStage .
+
+| Namn | Beskrivning |
+| ---- | ----------- |
+| hash |  |
+| logic |  |
+| permaStore |  |
+| tempStore |  |
+| typecast |  |
+| validate |  |
 
 ## semanticLinkType
 Anger hur andra produkter l&#xE4;nkar till varandra.
