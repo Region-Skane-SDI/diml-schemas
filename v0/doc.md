@@ -1,6 +1,6 @@
 
 # Diml klassdokumentation
-Version 0.12.1
+Version 0.12.2
 
 ## trait
 Anv&#xE4;nds f&#xF6;r att specificera egenskaper (traits) p&#xE5; ett Diml-objekt.
@@ -300,14 +300,6 @@ Beskriver ett alias f&#xF6;r en tabell i en tabul&#xE4;r dataprodukt.
 | alias | string | Ja |  |  | Tabellens alias. |
 | stageId | string | Ja |  |  | Vilket steg aliaset skall g&#xE4;lla f&#xF6;r. |
 
-## dataSystemColumn
-TODO: Saknar beskrivning.
-
-| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
-| ---- | --- | ----- | ------------ | --------- | ----------- |
-| id | string | Ja |  |  | Ett unikt id som representerar en data systemkolumn. |
-| type | string | Ja |  |  | TODO: Saknar beskrivning. |
-
 ## description
 Anv&#xE4;nds f&#xF6;r att beskriva ett Diml-objekt i olika format och spr&#xE5;k.
 
@@ -330,6 +322,14 @@ Anger kategorisering av dataprodukten t.ex namn, beskrivning och traits.
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | id | string | Ja |  |  | Ett unikt id som representerar kategorin. |
+
+## dataSystemColumn
+TODO: Saknar beskrivning.
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| id | string | Ja |  |  | Ett unikt id som representerar en data systemkolumn. |
+| type | string | Ja |  |  | TODO: Saknar beskrivning. |
 
 ## graph
 Anger ett grafobjekt.
