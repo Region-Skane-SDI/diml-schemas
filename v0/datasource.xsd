@@ -25,7 +25,7 @@
   </xs:complexType>
   <xs:complexType name="table">
     <xs:annotation>
-      <xs:documentation>Beskriver en tabell i en tabulär dataprodukt.</xs:documentation>
+      <xs:documentation>Beskriver en tabell i en tabulär datakälla.</xs:documentation>
     </xs:annotation>
     <xs:all>
       <xs:element name="names" type="names" minOccurs="1" maxOccurs="1" />
@@ -39,6 +39,16 @@
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>Tabellens id.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="name" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Tabellens namn.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="schema" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Tabellens schema.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
@@ -57,7 +67,7 @@
   </xs:complexType>
   <xs:complexType name="column">
     <xs:annotation>
-      <xs:documentation>Beskriver en kolumn i en tabulär dataprodukt.</xs:documentation>
+      <xs:documentation>Beskriver en kolumn i en tabulär datakälla.</xs:documentation>
     </xs:annotation>
     <xs:all>
       <xs:element name="names" type="names" minOccurs="1" maxOccurs="1" />
