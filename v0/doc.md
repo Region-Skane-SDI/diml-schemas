@@ -1,6 +1,6 @@
 
 # Diml klassdokumentation
-Version 0.13.0
+Version 0.13.1
 
 ## trait
 Anv&#xE4;nds f&#xF6;r att specificera egenskaper (traits) p&#xE5; ett Diml-objekt.
@@ -441,7 +441,7 @@ Anger utdatatyper som &#xE4;r kompatibla med sqlOutput.
 
 | Namn | Beskrivning |
 | ---- | ----------- |
-| sparql | SparkSQL. |
+| sparksql | SparkSQL. |
 | tsql | T-SQL. |
 
 ## fileFormat

@@ -151,7 +151,7 @@
       <xs:documentation>Anger utdatatyper som är kompatibla med sqlOutput.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[sS][pP][aA][rR][qQ][lL]|[tT][sS][qQ][lL]|" />
+      <xs:pattern value="[sS][pP][aA][rR][kK][sS][qQ][lL]|[tT][sS][qQ][lL]|" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="fileFormat">
