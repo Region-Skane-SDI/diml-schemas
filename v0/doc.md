@@ -1,6 +1,6 @@
 
 # Diml klassdokumentation
-Version 0.13.1
+Version 0.14.0
 
 ## trait
 Anv&#xE4;nds f&#xF6;r att specificera egenskaper (traits) p&#xE5; ett Diml-objekt.
@@ -420,7 +420,8 @@ Anger tillg&#xE4;ngliga klasser f&#xF6;r en Trait.
 | isVirtual | Anger om en dataprodukt &#xE4;r virtuell. |
 | pii | Anv&#xE4;nds f&#xF6;r att beskriva att det finns personuppgifter i kotextet d&#xE4;r denna Trait appliceras. |
 | quality.businessKey.duplicate | Kontrollera dubletter p&#xE5; business key |
-| quality.businessKey.null | Kontrollera ifall business keys &#xE4;r null eller inte |
+| quality.businessKey.null | Kontrollera ifall business key &#xE4;r null eller inte |
+| quality.validate.action | Anger vilka &#xE5;tg&#xE4;rder som ska tas efter kvalitetskontroller i ett data stage av typen &#x27;validate&#x27; |
 | tableNamePrefix | Anv&#xE4;nds f&#xF6;r att specificera ett prefix f&#xF6;r alla tabellnamn i kotextet d&#xE4;r denna Trait anv&#xE4;nds. |
 | tableNameSuffix | Anv&#xE4;nds f&#xF6;r att specificera ett suffix f&#xF6;r alla tabellnamn i kotextet d&#xE4;r denna Trait anv&#xE4;nds. |
 | tableSchema | Anv&#xE4;nds f&#xF6;r att specificera ett schema f&#xF6;r alla tabeller i kotextet d&#xE4;r denna Trait anv&#xE4;nds. |
