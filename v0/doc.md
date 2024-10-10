@@ -1,6 +1,6 @@
 
 # Diml klassdokumentation
-Diml version 0.16.4
+Diml version 0.16.5
 
 ## apiProduct
 Beskrivning av en apiprodukt med dess specifikationer.
@@ -246,7 +246,6 @@ Konfiguration av Diml-milj&#xF6; d&#xE4;r t.ex standardspr&#xE5;k anges.
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | defaultLanguage | string | Nej |  |  | Anger standardspr&#xE5;k f&#xF6;r en Diml-milj&#xF6; |
-| dimlId | dimlId | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
 
 ## dataSystemColumn
 TODO: Saknar beskrivning.
@@ -261,21 +260,21 @@ Anger ett grafobjekt.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| dimlId | dimlId | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
+| configUrl | configUrl | Ja |  |  | En url till en konfigurationsfil f&#xF6;r Diml. |
 
 ## hierarchy
 Definierar och beskriver hierarkier i Diml konfigfilen.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| dimlId | dimlId | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
+| configUrl | configUrl | Ja |  |  | En url till en konfigurationsfil f&#xF6;r Diml. |
 
 ## list
 Anger en lista.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| dimlId | dimlId | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
+| configUrl | configUrl | Ja |  |  | En url till en konfigurationsfil f&#xF6;r Diml. |
 
 ## listItem
 Anger ett listobjekt inom en lista.
@@ -336,7 +335,6 @@ Specificerar alla tillg&#xE4;ngliga Diml-datatyper samt konverteringslogiken mel
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| dimlId | dimlId | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
 
 ## dimlDataType
 Anger en Diml-datatyp baserat p&#xE5; dom typer som finns definierade i datatypsspecifikationen.

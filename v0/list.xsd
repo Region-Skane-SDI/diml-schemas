@@ -7,9 +7,9 @@
     <xs:all>
       <xs:element name="listItems" type="listItems" minOccurs="1" maxOccurs="1" />
     </xs:all>
-    <xs:attribute name="dimlId" type="xs:string" use="required">
+    <xs:attribute name="configUrl" type="xs:string" use="required">
       <xs:annotation>
-        <xs:documentation>En globalt unik identifierare för Diml-objektet.</xs:documentation>
+        <xs:documentation>En url till en konfigurationsfil för Diml.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
