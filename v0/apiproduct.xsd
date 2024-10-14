@@ -102,12 +102,36 @@
   <xs:simpleType name="stringValueType">
     <xs:restriction base="xs:string" />
   </xs:simpleType>
-  <xs:simpleType name="traitClass">
+  <xs:simpleType name="dataStageMaterialization">
     <xs:annotation>
-      <xs:documentation>Anger tillgängliga klasser för en Trait.</xs:documentation>
+      <xs:documentation>Anger om data ska materialiseras eller virtualiseras.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[cC][aA][tT][eE][gG][oO][rR][yY]|[cC][oO][lL][uU][mM][nN][sS][oO][uU][rR][cC][eE][sS]|[dD][aA][tT][aA][sS][tT][aA][gG][eE][oO][pP][eE][rR][aA][tT][iI][oO][nN][sS][\.][aA][pP][pP][lL][yY][dD][aA][tT][aA][qQ][uU][aA][lL][iI][tT][yY][rR][uU][lL][eE][sS]|[dD][eE][fF][aA][uU][lL][tT][cC][oO][nN][fF][iI][gG][nN][aA][mM][eE][sS][pP][aA][cC][eE]|[eE][xX][tT][eE][nN][sS][iI][oO][nN]|[gG][eE][nN][eE][rR][aA][tT][eE][kK][eE][yY][hH][aA][sS][hH]|[gG][eE][nN][eE][rR][aA][tT][eE][rR][oO][wW][hH][aA][sS][hH]|[gG][uU][iI][dD]|[iI][cC][oO][nN]|[iI][nN][fF][dD][oO][mM]|[iI][nN][fF][oO][cC][lL][aA][sS][sS]|[iI][nN][fF][oO][mM][rR]|[iI][sS][gG][rR][eE][aA][tT][eE][rR][tT][hH][aA][nN]|[iI][sS][uU][nN][lL][iI][sS][tT][eE][dD]|[iI][sS][vV][iI][rR][tT][uU][aA][lL]|[pP][iI][iI]|[qQ][uU][aA][lL][iI][tT][yY][\.][bB][uU][sS][iI][nN][eE][sS][sS][kK][eE][yY][\.][dD][uU][pP][lL][iI][cC][aA][tT][eE]|[qQ][uU][aA][lL][iI][tT][yY][\.][bB][uU][sS][iI][nN][eE][sS][sS][kK][eE][yY][\.][nN][uU][lL][lL]|[tT][aA][bB][lL][eE][nN][aA][mM][eE][pP][rR][eE][fF][iI][xX]|[tT][aA][bB][lL][eE][nN][aA][mM][eE][sS][uU][fF][fF][iI][xX]|[tT][aA][bB][lL][eE][sS][cC][hH][eE][mM][aA]|[tT][aA][bB][lL][eE][uU][pP][dD][aA][tT][eE][tT][yY][pP][eE]|[tT][aA][rR][gG][eE][tT][uU][pP][tT][iI][mM][eE][pP][eE][rR][cC][eE][nN][tT]|" />
+      <xs:pattern value="[tT][aA][bB][lL][eE]|[vV][iI][eE][wW]|" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="dataStageRole">
+    <xs:annotation>
+      <xs:documentation>Anger vad som sker i dataStage.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[cC][oO][nN][tT][rR][oO][lL]|[iI][nN][pP][uU][tT]|[nN][oO][nN][eE]|[oO][uU][tT][pP][uU][tT]|[tT][rR][aA][nN][sS][fF][oO][rR][mM][aA][tT][iI][oO][nN]|" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="dataStageType">
+    <xs:annotation>
+      <xs:documentation>Anger vilken typ av dataStage .</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[hH][aA][sS][hH]|[lL][oO][gG][iI][cC]|[pP][eE][rR][mM][aA][sS][tT][oO][rR][eE]|[tT][eE][mM][pP][sS][tT][oO][rR][eE]|[tT][yY][pP][eE][cC][aA][sS][tT]|[vV][aA][lL][iI][dD][aA][tT][eE]|" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="semanticLinkType">
+    <xs:annotation>
+      <xs:documentation>Anger hur andra produkter länkar till varandra.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[hH][aA][sS]|" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="formatType">
@@ -142,36 +166,12 @@
       <xs:pattern value="[oO][dD][aA][tT][aA]|" />
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="dataStageMaterialization">
+  <xs:simpleType name="traitClass">
     <xs:annotation>
-      <xs:documentation>Anger om data ska materialiseras eller virtualiseras.</xs:documentation>
+      <xs:documentation>Anger tillgängliga klasser för en Trait.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[tT][aA][bB][lL][eE]|[vV][iI][eE][wW]|" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:simpleType name="dataStageRole">
-    <xs:annotation>
-      <xs:documentation>Anger vad som sker i dataStage.</xs:documentation>
-    </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:pattern value="[cC][oO][nN][tT][rR][oO][lL]|[iI][nN][pP][uU][tT]|[nN][oO][nN][eE]|[oO][uU][tT][pP][uU][tT]|[tT][rR][aA][nN][sS][fF][oO][rR][mM][aA][tT][iI][oO][nN]|" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:simpleType name="dataStageType">
-    <xs:annotation>
-      <xs:documentation>Anger vilken typ av dataStage .</xs:documentation>
-    </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:pattern value="[hH][aA][sS][hH]|[lL][oO][gG][iI][cC]|[pP][eE][rR][mM][aA][sS][tT][oO][rR][eE]|[tT][eE][mM][pP][sS][tT][oO][rR][eE]|[tT][yY][pP][eE][cC][aA][sS][tT]|[vV][aA][lL][iI][dD][aA][tT][eE]|" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:simpleType name="semanticLinkType">
-    <xs:annotation>
-      <xs:documentation>Anger hur andra produkter länkar till varandra.</xs:documentation>
-    </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:pattern value="[hH][aA][sS]|" />
+      <xs:pattern value="[cC][aA][tT][eE][gG][oO][rR][yY]|[cC][oO][lL][uU][mM][nN][sS][oO][uU][rR][cC][eE][sS]|[dD][aA][tT][aA][sS][tT][aA][gG][eE][oO][pP][eE][rR][aA][tT][iI][oO][nN][sS][\.][aA][pP][pP][lL][yY][dD][aA][tT][aA][qQ][uU][aA][lL][iI][tT][yY][rR][uU][lL][eE][sS]|[dD][eE][fF][aA][uU][lL][tT][cC][oO][nN][fF][iI][gG][nN][aA][mM][eE][sS][pP][aA][cC][eE]|[eE][xX][tT][eE][nN][sS][iI][oO][nN]|[gG][eE][nN][eE][rR][aA][tT][eE][kK][eE][yY][hH][aA][sS][hH]|[gG][eE][nN][eE][rR][aA][tT][eE][rR][oO][wW][hH][aA][sS][hH]|[gG][uU][iI][dD]|[iI][cC][oO][nN]|[iI][nN][fF][dD][oO][mM]|[iI][nN][fF][oO][cC][lL][aA][sS][sS]|[iI][nN][fF][oO][mM][rR]|[iI][sS][gG][rR][eE][aA][tT][eE][rR][tT][hH][aA][nN]|[iI][sS][uU][nN][lL][iI][sS][tT][eE][dD]|[iI][sS][vV][iI][rR][tT][uU][aA][lL]|[pP][iI][iI]|[qQ][uU][aA][lL][iI][tT][yY][\.][bB][uU][sS][iI][nN][eE][sS][sS][kK][eE][yY][\.][dD][uU][pP][lL][iI][cC][aA][tT][eE]|[qQ][uU][aA][lL][iI][tT][yY][\.][bB][uU][sS][iI][nN][eE][sS][sS][kK][eE][yY][\.][nN][uU][lL][lL]|[qQ][uU][aA][lL][iI][tT][yY][\.][vV][aA][lL][iI][dD][aA][tT][eE][\.][aA][cC][tT][iI][oO][nN]|[tT][aA][bB][lL][eE][nN][aA][mM][eE][pP][rR][eE][fF][iI][xX]|[tT][aA][bB][lL][eE][nN][aA][mM][eE][sS][uU][fF][fF][iI][xX]|[tT][aA][bB][lL][eE][sS][cC][hH][eE][mM][aA]|[tT][aA][bB][lL][eE][uU][pP][dD][aA][tT][eE][tT][yY][pP][eE]|[tT][aA][rR][gG][eE][tT][uU][pP][tT][iI][mM][eE][pP][eE][rR][cC][eE][nN][tT]|" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="descriptionType">
