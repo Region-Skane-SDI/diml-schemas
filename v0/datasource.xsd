@@ -17,6 +17,11 @@
         <xs:documentation>En globalt unik identifierare för Diml-objektet.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
+    <xs:attribute name="uniqueName" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Ett globalt unikt namn f�r en dataspecifikation.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
   <xs:complexType name="tables">
     <xs:sequence>

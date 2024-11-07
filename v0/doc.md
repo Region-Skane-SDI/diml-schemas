@@ -1,6 +1,6 @@
 
 # Diml klassdokumentation
-Diml version 0.16.7
+Diml version 0.16.8
 
 ## apiProduct
 Beskrivning av en apiprodukt med dess specifikationer.
@@ -40,6 +40,7 @@ Beskrivning av en dataprodukt med dess specifikationer.
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | dimlId | dimlId | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
 | targetPlatform | [targetPlatformType](#targetPlatformType) | Ja |  |  | Anger vilken plattform som ska anv&#xE4;ndas. |
+| uniqueName | string | Ja |  |  | Ett globalt unikt namn f&#xFFFD;r en dataspecifikation. |
 
 ## dataSource
 Beskrivning av en datak&#xE4;lla (som kan anv&#xE4;ndas av dataprodukter).
@@ -47,6 +48,7 @@ Beskrivning av en datak&#xE4;lla (som kan anv&#xE4;ndas av dataprodukter).
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | dimlId | dimlId | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
+| uniqueName | string | Ja |  |  | Ett globalt unikt namn f&#xFFFD;r en dataspecifikation. |
 
 ## dataStage
 Anger de olika stadien f&#xF6;r data och dess egenskaper, tex. Om en tabell ska materialiseras eller inte, hur data ska uppdateras osv.
