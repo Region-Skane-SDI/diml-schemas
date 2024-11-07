@@ -1,6 +1,6 @@
 
 # Diml klassdokumentation
-Diml version 0.16.9
+Diml version 0.16.10
 
 ## apiProduct
 Beskrivning av en apiprodukt med dess specifikationer.
