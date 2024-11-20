@@ -102,19 +102,24 @@
   </xs:complexType>
   <xs:complexType name="columnInstance">
     <xs:annotation>
-      <xs:documentation>Beskriver ett alias för en kolumn i en tabulär dataprodukt.</xs:documentation>
+      <xs:documentation>Anger en instans av en kolumn i en tabulär dataprodukt.</xs:documentation>
     </xs:annotation>
     <xs:all>
       <xs:element name="dimlDataType" type="dimlDataType" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="alias" type="xs:string" use="required">
       <xs:annotation>
-        <xs:documentation>Kolumnens alias.</xs:documentation>
+        <xs:documentation>Anger kolumnens alias för ett eller flera dataStages.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="stageId" type="xs:string" use="required">
+    <xs:attribute name="fromStageId" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>Vilket steg aliaset skall gälla för.</xs:documentation>
+        <xs:documentation>Anger från och med vilket dataStage som kolumnen ska byta namn och/eller datatyp i. Om inget anges gäller dataStage med order="1".</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="toStageId" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger till och med vilket dataStage som kolumnen ska byta namn och/eller datatyp i. Om inget anges gäller dataStage med order="X", där X = högsta order.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>

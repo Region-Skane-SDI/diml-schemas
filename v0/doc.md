@@ -1,6 +1,6 @@
 
 # Diml klassdokumentation
-Diml version 0.16.10
+Diml version 0.16.11
 
 ## apiProduct
 Beskrivning av en apiprodukt med dess specifikationer.
@@ -139,12 +139,21 @@ Anger exempeldata.
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 
 ## tableInstance
-Beskriver ett alias f&#xF6;r en tabell i en tabul&#xE4;r dataprodukt.
+Anger en instans av en tabell i en tabul&#xE4;r dataprodukt.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| alias | string | Ja |  |  | Tabellens alias. |
-| stageId | string | Ja |  |  | Vilket steg aliaset skall g&#xE4;lla f&#xF6;r. |
+| alias | string | Ja |  |  | Anger tabellens alias f&#xF6;r ett eller flera dataStages. |
+| fromStageId | string | Nej |  |  | Anger fr&#xE5;n och med vilket dataStage som tabellen ska byta namn i. Om inget anges g&#xE4;ller dataStage med order=&quot;1&quot;. |
+| toStageId | string | Nej |  |  | Anger till och med vilket dataStage som tabellen ska byta namn i. Om inget anges g&#xE4;ller dataStage med order=&quot;X&quot;, d&#xE4;r X = h&#xF6;gsta order. |
+
+## tableInstances
+En samling av tabellinstanser i en tabul&#xE4;r dataprodukt.
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| existsFromStageId | string | Nej |  |  | Anger fr&#xE5;n och med vilket dataStage som tabellen kommer att existera i. Om inget anges g&#xE4;ller dataStage med order=&quot;1&quot;. |
+| existsToStageId | string | Nej |  |  | Anger till och med vilket dataStage som tabellen kommer att existera i. Om inget anges g&#xE4;ller dataStage med order=&quot;X&quot;, d&#xE4;r X = h&#xF6;gsta order. |
 
 ## tableRelation
 Anger eventuella tabellrelationer och hur de relaterar via relationsColumns.
@@ -397,12 +406,21 @@ Anger m&#xE5;lplattform f&#xF6;r datatypen.
 | platform | string | Ja |  |  | Anger vilken m&#xE5;lplattform som datatypen tillh&#xF6;r. |
 
 ## columnInstance
-Beskriver ett alias f&#xF6;r en kolumn i en tabul&#xE4;r dataprodukt.
+Anger en instans av en kolumn i en tabul&#xE4;r dataprodukt.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| alias | string | Ja |  |  | Kolumnens alias. |
-| stageId | string | Ja |  |  | Vilket steg aliaset skall g&#xE4;lla f&#xF6;r. |
+| alias | string | Ja |  |  | Anger kolumnens alias f&#xF6;r ett eller flera dataStages. |
+| fromStageId | string | Nej |  |  | Anger fr&#xE5;n och med vilket dataStage som kolumnen ska byta namn och/eller datatyp i. Om inget anges g&#xE4;ller dataStage med order=&quot;1&quot;. |
+| toStageId | string | Nej |  |  | Anger till och med vilket dataStage som kolumnen ska byta namn och/eller datatyp i. Om inget anges g&#xE4;ller dataStage med order=&quot;X&quot;, d&#xE4;r X = h&#xF6;gsta order. |
+
+## columnInstances
+En samling av kolumninstanser i en tabul&#xE4;r dataprodukt.
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| existsFromStageId | string | Nej |  |  | Anger fr&#xE5;n och med vilket dataStage som kolumnen ska existera i. Om inget anges g&#xE4;ller dataStage med order=&quot;1&quot;. |
+| existsToStageId | string | Nej |  |  | Anger till och med vilket dataStage som kolumnen ska existera i. Om inget anges g&#xE4;ller dataStage med order=&quot;X&quot;, d&#xE4;r X = h&#xF6;gsta order. |
 
 
 ## dataStageMaterialization
