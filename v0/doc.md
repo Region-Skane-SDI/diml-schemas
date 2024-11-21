@@ -1,6 +1,6 @@
 
 # Diml klassdokumentation
-Diml version 0.16.11
+Diml version 0.16.12
 
 ## apiProduct
 Beskrivning av en apiprodukt med dess specifikationer.
@@ -48,6 +48,7 @@ Beskrivning av en datak&#xE4;lla (som kan anv&#xE4;ndas av dataprodukter).
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | dimlId | dimlId | Ja |  |  | En globalt unik identifierare f&#xF6;r Diml-objektet. |
+| sourcePlatform | [sourcePlatformType](#sourcePlatformType) | Ja |  |  | Anger vilken k&#xE4;llplattformstyp som ska anv&#xE4;ndas. |
 | uniqueName | string | Ja |  |  | Ett globalt unikt namn f&#xFFFD;r en dataspecifikation. |
 
 ## dataStage
@@ -461,6 +462,14 @@ Anger hur andra produkter l&#xE4;nkar till varandra.
 | Namn | Beskrivning |
 | ---- | ----------- |
 | has | Anger att en dataprodukt best&#xE5;r av en annan. |
+
+## sourcePlatformType
+Anger vilken k&#xE4;llplattformstyp som ska anv&#xE4;ndas.
+
+| Namn | Beskrivning |
+| ---- | ----------- |
+| azSqlServer | Azure SQL Server |
+| sqlServer | SQL Server |
 
 ## formatType
 Anger kompatibla utdataformat.

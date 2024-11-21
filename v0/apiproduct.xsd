@@ -134,6 +134,14 @@
       <xs:pattern value="[hH][aA][sS]|" />
     </xs:restriction>
   </xs:simpleType>
+  <xs:simpleType name="sourcePlatformType">
+    <xs:annotation>
+      <xs:documentation>Anger vilken källplattformstyp som ska användas.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[aA][zZ][sS][qQ][lL][sS][eE][rR][vV][eE][rR]|[sS][qQ][lL][sS][eE][rR][vV][eE][rR]|" />
+    </xs:restriction>
+  </xs:simpleType>
   <xs:simpleType name="formatType">
     <xs:annotation>
       <xs:documentation>Anger kompatibla utdataformat.</xs:documentation>
