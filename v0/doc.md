@@ -1,6 +1,6 @@
 
 # Diml klassdokumentation
-Diml version 0.16.13
+Diml version 0.16.14
 
 ## apiProduct
 Beskrivning av en apiprodukt med dess specifikationer.
@@ -448,6 +448,7 @@ Anger vilken typ av dataStage .
 
 | Namn | Beskrivning |
 | ---- | ----------- |
+| basicLogic |  |
 | hash |  |
 | ingestStore |  |
 | logic |  |
