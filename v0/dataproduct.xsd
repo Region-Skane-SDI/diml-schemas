@@ -51,6 +51,7 @@
     </xs:annotation>
     <xs:all>
       <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
+      <xs:element name="logicDataStageTables" type="logicDataStageTables" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
@@ -111,6 +112,11 @@
       <xs:element name="tableToTableMapping" type="tableToTableMapping" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="logicDataStageTables">
+    <xs:sequence>
+      <xs:element name="logicDataStageTable" type="logicDataStageTable" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="tableToTableMapping">
     <xs:annotation>
       <xs:documentation>TODO</xs:documentation>
@@ -139,9 +145,32 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
+  <xs:complexType name="logicDataStageTable">
+    <xs:annotation>
+      <xs:documentation>Beskriver hur tabeller ska transformeras.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="logicColumnMappings" type="logicColumnMappings" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+    <xs:attribute name="tableId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger tabellid på tabell vars värden ska transformeras.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="trim" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger om tabellens kolumnvärden ska trimmas om inte en specifik kolumn trim anges.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
   <xs:complexType name="columnMappings">
     <xs:sequence>
       <xs:element name="columnMapping" type="columnMapping" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="logicColumnMappings">
+    <xs:sequence>
+      <xs:element name="logicColumnMapping" type="logicColumnMapping" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="columnMapping">
@@ -156,6 +185,21 @@
     <xs:attribute name="sourceColumnId" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>TODO</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="logicColumnMapping">
+    <xs:annotation>
+      <xs:documentation>Beskriver hur kolumner ska transformeras.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="columnId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger kolumnid i tabellen.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="trim" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger om kolumnens värden ska trimmas.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>

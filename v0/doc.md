@@ -1,6 +1,6 @@
 
 # Diml klassdokumentation
-Diml version 0.16.14
+Diml version 0.17.0
 
 ## apiProduct
 Beskrivning av en apiprodukt med dess specifikationer.
@@ -124,6 +124,22 @@ Anger vilka tabeller som ska inkluderas i output.
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | id | string | Ja |  |  | Ett unikt id som representerar tabellen. |
+
+## logicColumnMapping
+Beskriver hur kolumner ska transformeras.
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| columnId | string | Ja |  |  | Anger kolumnid i tabellen. |
+| trim | boolean | Nej |  |  | Anger om kolumnens v&#xE4;rden ska trimmas. |
+
+## logicDataStageTable
+Beskriver hur tabeller ska transformeras.
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| tableId | string | Ja |  |  | Anger tabellid p&#xE5; tabell vars v&#xE4;rden ska transformeras. |
+| trim | boolean | Nej |  |  | Anger om tabellens kolumnv&#xE4;rden ska trimmas om inte en specifik kolumn trim anges. |
 
 ## relationColumns
 Anger med vilka kolumner en tabell relaterar till en annan.
