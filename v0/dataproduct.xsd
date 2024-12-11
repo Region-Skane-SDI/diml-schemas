@@ -152,6 +152,11 @@
     <xs:all>
       <xs:element name="logicColumnMappings" type="logicColumnMappings" minOccurs="0" maxOccurs="1" />
     </xs:all>
+    <xs:attribute name="filterSqlExpression" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger om tabellrader ska filtreras.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="tableId" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>Anger tabellid på tabell vars värden ska transformeras.</xs:documentation>
@@ -195,6 +200,11 @@
     <xs:attribute name="columnId" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>Anger kolumnid i tabellen.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="customSqlExpression" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger om kolumnens värden ska trimmas.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="trim" type="xs:boolean" use="optional">

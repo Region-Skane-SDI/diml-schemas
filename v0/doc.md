@@ -1,6 +1,6 @@
 
 # Diml klassdokumentation
-Diml version 0.17.0
+Diml version 0.18.0
 
 ## apiProduct
 Beskrivning av en apiprodukt med dess specifikationer.
@@ -131,6 +131,7 @@ Beskriver hur kolumner ska transformeras.
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | columnId | string | Ja |  |  | Anger kolumnid i tabellen. |
+| customSqlExpression | string | Nej |  |  | Anger om kolumnens v&#xE4;rden ska trimmas. |
 | trim | boolean | Nej |  |  | Anger om kolumnens v&#xE4;rden ska trimmas. |
 
 ## logicDataStageTable
@@ -138,6 +139,7 @@ Beskriver hur tabeller ska transformeras.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
+| filterSqlExpression | string | Nej |  |  | Anger om tabellrader ska filtreras. |
 | tableId | string | Ja |  |  | Anger tabellid p&#xE5; tabell vars v&#xE4;rden ska transformeras. |
 | trim | boolean | Nej |  |  | Anger om tabellens kolumnv&#xE4;rden ska trimmas om inte en specifik kolumn trim anges. |
 
