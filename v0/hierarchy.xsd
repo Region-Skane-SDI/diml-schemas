@@ -151,7 +151,7 @@
       <xs:documentation>Anger vilken typ av dataStage .</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[hH][aA][sS][hH]|[iI][nN][gG][eE][sS][tT][sS][tT][oO][rR][eE]|[lL][oO][gG][iI][cC]|[pP][eE][rR][mM][aA][sS][tT][oO][rR][eE]|[tT][eE][mM][pP][sS][tT][oO][rR][eE]|[tT][yY][pP][eE][cC][aA][sS][tT]|[vV][aA][lL][iI][dD][aA][tT][eE]|" />
+      <xs:pattern value="[bB][aA][sS][iI][cC][lL][oO][gG][iI][cC]|[hH][aA][sS][hH]|[iI][nN][gG][eE][sS][tT][sS][tT][oO][rR][eE]|[lL][oO][gG][iI][cC]|[pP][eE][rR][mM][aA][sS][tT][oO][rR][eE]|[tT][eE][mM][pP][sS][tT][oO][rR][eE]|[tT][yY][pP][eE][cC][aA][sS][tT]|[vV][aA][lL][iI][dD][aA][tT][eE]|" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="semanticLinkType">
