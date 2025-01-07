@@ -1,12 +1,12 @@
-<xs:schema xmlns="https://github.com/Region-Skane-SDI/diml/graph" targetNamespace="https://github.com/Region-Skane-SDI/diml/graph" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
-  <xs:element name="graph" type="graph" />
-  <xs:complexType name="graph">
+<xs:schema xmlns="https://github.com/Region-Skane-SDI/diml/hierarchy" targetNamespace="https://github.com/Region-Skane-SDI/diml/hierarchy" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
+  <xs:element name="hierarchy" type="hierarchy" />
+  <xs:complexType name="hierarchy">
     <xs:annotation>
-      <xs:documentation>Anger ett grafobjekt.</xs:documentation>
+      <xs:documentation>Definierar och beskriver hierarkier i Diml konfigfilen.</xs:documentation>
     </xs:annotation>
     <xs:all>
       <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
-      <xs:element name="nodes" type="nodes" minOccurs="1" maxOccurs="1" />
+      <xs:element name="categories" type="categories" minOccurs="1" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="configUrl" type="xs:string" use="required">
       <xs:annotation>
@@ -14,51 +14,31 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="nodes">
+  <xs:complexType name="categories">
     <xs:sequence>
-      <xs:element name="node" type="node" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="category" type="category" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="node">
+  <xs:complexType name="category">
     <xs:annotation>
-      <xs:documentation>Anger en nod inom ett grafobjekt.</xs:documentation>
+      <xs:documentation>Anger kategorisering av dataprodukten t.ex namn, beskrivning och traits.</xs:documentation>
     </xs:annotation>
     <xs:all>
       <xs:element name="names" type="names" minOccurs="1" maxOccurs="1" />
       <xs:element name="descriptions" type="descriptions" minOccurs="1" maxOccurs="1" />
       <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
-      <xs:element name="nodeLinks" type="nodeLinks" minOccurs="0" maxOccurs="1" />
+      <xs:element name="subcategories" type="subcategories" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
-        <xs:documentation>Ett unikt id som representerar en nod.</xs:documentation>
+        <xs:documentation>Ett unikt id som representerar kategorin.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="nodeLinks">
+  <xs:complexType name="subcategories">
     <xs:sequence>
-      <xs:element name="nodeLink" type="nodeLink" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="category" type="category" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="nodeLink">
-    <xs:annotation>
-      <xs:documentation>Anger hur noder inom ett grafobjekt relaterar till varandra.</xs:documentation>
-    </xs:annotation>
-    <xs:all>
-      <xs:element name="names" type="names" minOccurs="1" maxOccurs="1" />
-      <xs:element name="descriptions" type="descriptions" minOccurs="1" maxOccurs="1" />
-      <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
-    </xs:all>
-    <xs:attribute name="id" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Ett unikt id som representerar en nod-länk.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="targetNode" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Anger målnod som skall länkas.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
   </xs:complexType>
   <xs:complexType name="names">
     <xs:sequence>
@@ -155,7 +135,7 @@
       <xs:documentation>Anger om data ska materialiseras eller virtualiseras.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[tT][aA][bB][lL][eE]|[vV][iI][eE][wW]|" />
+      <xs:pattern value="[iI][nN][gG][eE][sS][tT]|[tT][aA][bB][lL][eE]|[vV][aA][lL][iI][dD][aA][tT][eE]|[vV][iI][eE][wW]|" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="dataStageRole">

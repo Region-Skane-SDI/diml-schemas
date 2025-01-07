@@ -1,44 +1,19 @@
-<xs:schema xmlns="https://github.com/Region-Skane-SDI/diml/hierarchy" targetNamespace="https://github.com/Region-Skane-SDI/diml/hierarchy" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
-  <xs:element name="hierarchy" type="hierarchy" />
-  <xs:complexType name="hierarchy">
+<xs:schema xmlns="https://github.com/Region-Skane-SDI/diml/apiproduct" targetNamespace="https://github.com/Region-Skane-SDI/diml/apiproduct" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
+  <xs:element name="apiProduct" type="apiProduct" />
+  <xs:complexType name="apiProduct">
     <xs:annotation>
-      <xs:documentation>Definierar och beskriver hierarkier i Diml konfigfilen.</xs:documentation>
-    </xs:annotation>
-    <xs:all>
-      <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
-      <xs:element name="categories" type="categories" minOccurs="1" maxOccurs="1" />
-    </xs:all>
-    <xs:attribute name="configUrl" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>En url till en konfigurationsfil för Diml.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-  </xs:complexType>
-  <xs:complexType name="categories">
-    <xs:sequence>
-      <xs:element name="category" type="category" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="category">
-    <xs:annotation>
-      <xs:documentation>Anger kategorisering av dataprodukten t.ex namn, beskrivning och traits.</xs:documentation>
+      <xs:documentation>Beskrivning av en apiprodukt med dess specifikationer.</xs:documentation>
     </xs:annotation>
     <xs:all>
       <xs:element name="names" type="names" minOccurs="1" maxOccurs="1" />
       <xs:element name="descriptions" type="descriptions" minOccurs="1" maxOccurs="1" />
       <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
-      <xs:element name="subcategories" type="subcategories" minOccurs="0" maxOccurs="1" />
     </xs:all>
-    <xs:attribute name="id" type="xs:string" use="required">
+    <xs:attribute name="dimlId" type="xs:string" use="required">
       <xs:annotation>
-        <xs:documentation>Ett unikt id som representerar kategorin.</xs:documentation>
+        <xs:documentation>En globalt unik identifierare för Diml-objektet.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-  </xs:complexType>
-  <xs:complexType name="subcategories">
-    <xs:sequence>
-      <xs:element name="category" type="category" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="names">
     <xs:sequence>
@@ -93,7 +68,7 @@
       <xs:documentation>Används för att specificera egenskaper (traits) på ett Diml-objekt.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="traitParameter" type="traitParameter" minOccurs="0" maxOccurs="1" />
+      <xs:element name="traitParameter" type="traitParameter" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
     <xs:attribute name="class" type="traitClass" use="required">
       <xs:annotation>
@@ -111,7 +86,7 @@
       <xs:documentation>Anger värden på en trait.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="value" type="traitParameterValue" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="value" type="stringValueType" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
     <xs:attribute name="key" type="xs:string" use="optional">
       <xs:annotation>
@@ -124,10 +99,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:simpleType name="traitParameterValue">
-    <xs:restriction base="xs:string" />
-  </xs:simpleType>
-  <xs:simpleType name="stringType">
+  <xs:simpleType name="stringValueType">
     <xs:restriction base="xs:string" />
   </xs:simpleType>
   <xs:simpleType name="dataStageMaterialization">
@@ -135,7 +107,7 @@
       <xs:documentation>Anger om data ska materialiseras eller virtualiseras.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[tT][aA][bB][lL][eE]|[vV][iI][eE][wW]|" />
+      <xs:pattern value="[iI][nN][gG][eE][sS][tT]|[tT][aA][bB][lL][eE]|[vV][aA][lL][iI][dD][aA][tT][eE]|[vV][iI][eE][wW]|" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="dataStageRole">
@@ -223,7 +195,7 @@
       <xs:documentation>Anger vilken plattform som ska användas.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[aA][zZ][dD][aA][tT][aA][bB][rR][iI][cC][kK][sS]|[aA][zZ][sS][qQ][lL][sS][eE][rR][vV][eE][rR]|[mM][sS][fF][aA][bB][rR][iI][cC][lL][aA][kK][eE][hH][oO][uU][sS][eE]|[mM][sS][fF][aA][bB][rR][iI][cC][wW][aA][rR][eE][hH][oO][uU][sS][eE]|[sS][qQ][lL][sS][eE][rR][vV][eE][rR]|" />
+      <xs:pattern value="[aA][zZ][dD][aA][tT][aA][bB][rR][iI][cC][kK][sS]|[aA][zZ][sS][qQ][lL][sS][eE][rR][vV][eE][rR]|[mM][sS][fF][aA][bB][rR][iI][cC][\-][lL][aA][kK][eE][hH][oO][uU][sS][eE]|[mM][sS][fF][aA][bB][rR][iI][cC][\-][wW][aA][rR][eE][hH][oO][uU][sS][eE]|[sS][qQ][lL][sS][eE][rR][vV][eE][rR]|" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

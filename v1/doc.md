@@ -1,6 +1,6 @@
 
 # Diml klassdokumentation
-Diml version 0.18.0
+Diml version 1.0.0
 
 ## apiProduct
 Beskrivning av en apiprodukt med dess specifikationer.
@@ -447,8 +447,10 @@ Anger om data ska materialiseras eller virtualiseras.
 
 | Namn | Beskrivning |
 | ---- | ----------- |
-| table | Anger om data ska sparas som en tabell. |
-| view | Anger om data ska sparas som en vy. |
+| ingest | Ett specialfall som hanterar inl&#xE4;sning av data. Huruvida datat materialiseras i en tabell eller virtualiseras i en vy beror p&#xE5; vilken m&#xE5;lplattform som anv&#xE4;nds. |
+| table | Anger att datat ska materialiseras i en tabell. |
+| validate | Ett specialfall som hanterar validering av data. I det h&#xE4;r fallet materialiseras datat i en tabell och virtualiseras sedan i en vy d&#xE4;r eventuella filtreringar sker. |
+| view | Anger att datat ska virtualiseras i en vy. |
 
 ## dataStageRole
 Anger vad som sker i dataStage.

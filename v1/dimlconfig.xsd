@@ -299,7 +299,7 @@
       <xs:documentation>Anger om data ska materialiseras eller virtualiseras.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[tT][aA][bB][lL][eE]|[vV][iI][eE][wW]|" />
+      <xs:pattern value="[iI][nN][gG][eE][sS][tT]|[tT][aA][bB][lL][eE]|[vV][aA][lL][iI][dD][aA][tT][eE]|[vV][iI][eE][wW]|" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="dataStageRole">
