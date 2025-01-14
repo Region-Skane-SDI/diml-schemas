@@ -204,7 +204,7 @@
     </xs:attribute>
     <xs:attribute name="customSqlExpression" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>Anger om kolumnens värden ska trimmas.</xs:documentation>
+        <xs:documentation>Anger ett SQL-uttryck för transformeringen.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="trim" type="xs:boolean" use="optional">

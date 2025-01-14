@@ -131,7 +131,7 @@ Beskriver hur kolumner ska transformeras.
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | columnId | string | Ja |  |  | Anger kolumnid i tabellen. |
-| customSqlExpression | string | Nej |  |  | Anger om kolumnens v&#xE4;rden ska trimmas. |
+| customSqlExpression | string | Nej |  |  | Anger ett SQL-uttryck f&#xF6;r transformeringen. |
 | trim | boolean | Nej |  |  | Anger om kolumnens v&#xE4;rden ska trimmas. |
 
 ## logicDataStageTable
