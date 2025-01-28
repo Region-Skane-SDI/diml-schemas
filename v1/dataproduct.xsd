@@ -86,14 +86,14 @@
   </xs:complexType>
   <xs:complexType name="dataIngest">
     <xs:annotation>
-      <xs:documentation>Anger hur data ska inhämtas från källa till destination.</xs:documentation>
+      <xs:documentation>Instruktioner för hur data ska läsas in från källa till destination.</xs:documentation>
     </xs:annotation>
     <xs:all>
       <xs:element name="tableToTableMappings" type="tableToTableMappings" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="customSqlExpression" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>TODO</xs:documentation>
+        <xs:documentation>Ett SQL-uttryck som appliceras vid inläsning av data.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="dataInputId" type="xs:string" use="required">
@@ -119,7 +119,7 @@
   </xs:complexType>
   <xs:complexType name="tableToTableMapping">
     <xs:annotation>
-      <xs:documentation>TODO</xs:documentation>
+      <xs:documentation>En tabellmappning mellan en källa och en destination som används vid datainläsning.</xs:documentation>
     </xs:annotation>
     <xs:all>
       <xs:element name="columnMappings" type="columnMappings" minOccurs="0" maxOccurs="1" />
@@ -131,17 +131,17 @@
     </xs:attribute>
     <xs:attribute name="customSqlExpression" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>TODO</xs:documentation>
+        <xs:documentation>Ett SQL-uttryck som appliceras på tabellen vid inläsning.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="sourceTableId" type="xs:string" use="required">
       <xs:annotation>
-        <xs:documentation>TODO</xs:documentation>
+        <xs:documentation>Tabellens id i källan.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="tableId" type="xs:string" use="required">
       <xs:annotation>
-        <xs:documentation>TODO</xs:documentation>
+        <xs:documentation>Tabellens id i destinationen.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
@@ -180,16 +180,16 @@
   </xs:complexType>
   <xs:complexType name="columnMapping">
     <xs:annotation>
-      <xs:documentation>TODO</xs:documentation>
+      <xs:documentation>En kolumnmappning mellan en källa och en destination som används vid datainläsning.</xs:documentation>
     </xs:annotation>
     <xs:attribute name="columnId" type="xs:string" use="required">
       <xs:annotation>
-        <xs:documentation>TODO</xs:documentation>
+        <xs:documentation>Kolumnens id i destinationen.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="sourceColumnId" type="xs:string" use="required">
       <xs:annotation>
-        <xs:documentation>TODO</xs:documentation>
+        <xs:documentation>Kolumnens id i källan.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>

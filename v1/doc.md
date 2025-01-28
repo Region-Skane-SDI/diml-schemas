@@ -16,11 +16,11 @@ Anger fl&#xF6;det av data genom alla lager, samt egenskaper t.ex om en tabell sk
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 
 ## dataIngest
-Anger hur data ska inh&#xE4;mtas fr&#xE5;n k&#xE4;lla till destination.
+Instruktioner f&#xF6;r hur data ska l&#xE4;sas in fr&#xE5;n k&#xE4;lla till destination.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| customSqlExpression | string | Nej |  |  | TODO |
+| customSqlExpression | string | Nej |  |  | Ett SQL-uttryck som appliceras vid inl&#xE4;sning av data. |
 | dataInputId | string | Ja |  |  | Ett unikt id som respesenterar en k&#xE4;lla. |
 | id | string | Ja |  |  | Ett unikt id som representerar ett dataIngest-fl&#xF6;de. |
 
@@ -74,12 +74,12 @@ Inneh&#xE5;ller egenskaper f&#xF6;r DCAT vilket &#xE4;r en metadataspecifikation
 | dcatUpdateFrequency | string | Ja |  |  | Anger dataproduktens uppdateringsfrekvens i datakatalogen. F&#xF6;ljer standarden DCAT-AP, mer information finns h&#xE4;r: https://docs.dataportal.se/dcat/en/#5.4 |
 
 ## columnMapping
-TODO
+En kolumnmappning mellan en k&#xE4;lla och en destination som anv&#xE4;nds vid datainl&#xE4;sning.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| columnId | string | Ja |  |  | TODO |
-| sourceColumnId | string | Ja |  |  | TODO |
+| columnId | string | Ja |  |  | Kolumnens id i destinationen. |
+| sourceColumnId | string | Ja |  |  | Kolumnens id i k&#xE4;llan. |
 
 ## commonColumn
 Beskriver en referens till en &#xE5;teranv&#xE4;ndbar kolumn.
@@ -183,14 +183,14 @@ Anger eventuella tabellrelationer och hur de relaterar via relationsColumns.
 | targetTable | string | Ja |  |  | Anger vilken tabell som tabellrelationen relaterar till. |
 
 ## tableToTableMapping
-TODO
+En tabellmappning mellan en k&#xE4;lla och en destination som anv&#xE4;nds vid datainl&#xE4;sning.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | allowSchemaDrift | boolean | Nej |  |  | TODO |
-| customSqlExpression | string | Nej |  |  | TODO |
-| sourceTableId | string | Ja |  |  | TODO |
-| tableId | string | Ja |  |  | TODO |
+| customSqlExpression | string | Nej |  |  | Ett SQL-uttryck som appliceras p&#xE5; tabellen vid inl&#xE4;sning. |
+| sourceTableId | string | Ja |  |  | Tabellens id i k&#xE4;llan. |
+| tableId | string | Ja |  |  | Tabellens id i destinationen. |
 
 ## customFormat
 Beskriver ett egendefinierat utdataformat.
@@ -278,12 +278,12 @@ Konfiguration av Diml-milj&#xF6; d&#xE4;r t.ex standardspr&#xE5;k anges.
 | defaultLanguage | string | Nej |  |  | Anger standardspr&#xE5;k f&#xF6;r en Diml-milj&#xF6; |
 
 ## dataSystemColumn
-TODO: Saknar beskrivning.
+Anger en systenkolumn i SDI Dataplattform.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| id | string | Ja |  |  | Ett unikt id som representerar en data systemkolumn. |
-| type | string | Ja |  |  | TODO: Saknar beskrivning. |
+| id | string | Ja |  |  | Ett unikt id som representerar en systemkolumn. |
+| type | string | Ja |  |  | Anger en unik typ f&#xF6;r en systemkolumn. |
 
 ## graph
 Anger ett grafobjekt.
