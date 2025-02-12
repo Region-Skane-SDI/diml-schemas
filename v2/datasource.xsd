@@ -175,7 +175,7 @@
         <xs:documentation>Ett unikt id för tabellrelationen.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="targetTable" type="xs:string" use="required">
+    <xs:attribute name="targetTableId" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>Anger vilken tabell som tabellrelationen relaterar till.</xs:documentation>
       </xs:annotation>

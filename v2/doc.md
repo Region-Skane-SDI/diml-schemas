@@ -180,7 +180,7 @@ Anger eventuella tabellrelationer och hur de relaterar via relationsColumns.
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | id | string | Ja |  |  | Ett unikt id f&#xF6;r tabellrelationen. |
-| targetTable | string | Ja |  |  | Anger vilken tabell som tabellrelationen relaterar till. |
+| targetTableId | string | Ja |  |  | Anger vilken tabell som tabellrelationen relaterar till. |
 
 ## tableToTableMapping
 En tabellmappning mellan en k&#xE4;lla och en destination som anv&#xE4;nds vid datainl&#xE4;sning.
