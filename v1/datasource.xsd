@@ -92,82 +92,69 @@
     </xs:attribute>
   </xs:complexType>
   <xs:complexType name="dimlDataType">
-    <xs:attribute name="id" type="dimlDataTypeConfigType" use="required">
+    <xs:attribute name="bits" type="xs:int" use="optional">
       <xs:annotation>
-        <xs:documentation>Anger vilken Diml-datatyp som ska användas, baserat på ett ID från en
-                    dataTypeAttribute i dataTypes &gt; dataTypeAttributes.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="length" type="xs:int" use="optional">
-      <xs:annotation>
-        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.
-                    </xs:documentation>
+        <xs:documentation>Anger antalet bitar som används för att lagra heltal.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="format" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.
-                    </xs:documentation>
+        <xs:documentation>Anger formatet på datan. T.ex. Xml eller Json.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="precision" type="xs:int" use="optional">
+    <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
-        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.
-                    </xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="scale" type="xs:int" use="optional">
-      <xs:annotation>
-        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.
-                    </xs:documentation>
+        <xs:documentation>Anger datatypens typ. T.ex. String eller Integer.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="isFixedLength" type="xs:boolean" use="optional">
       <xs:annotation>
-        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.
-                    </xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="isWideChar" type="xs:boolean" use="optional">
-      <xs:annotation>
-        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.
-                    </xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="unsigned" type="xs:boolean" use="optional">
-      <xs:annotation>
-        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.
-                    </xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="originalDataType" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.
-                    </xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="originalPlatform" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.
-                    </xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="isCaseSensitive" type="xs:boolean" use="optional">
-      <xs:annotation>
-        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.
-                    </xs:documentation>
+        <xs:documentation>Anger ifall t.ex. en sträng har en fixerad längd och alltid tar upp lika mycket plats.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="isNullable" type="xs:boolean" use="optional">
       <xs:annotation>
-        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.
-                    </xs:documentation>
+        <xs:documentation>Anger ifall datatypen kan vara null eller ej.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="isUtcTime" type="xs:boolean" use="optional">
+    <xs:attribute name="isUnsigned" type="xs:boolean" use="optional">
       <xs:annotation>
-        <xs:documentation>En implementation av ett attribut i dataTypes &gt; dataTypeAttributes med samma ID.
-                    </xs:documentation>
+        <xs:documentation>Anger ifall datatypen enbart kan innehålla positiva heltal.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="isWideChar" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger ifall datatypen är en widechar is SQL.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="length" type="xs:int" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger maxlängden på t.ex. en sträng.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="mantissa" type="xs:int" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger antalet bitar som används för att ladra mantissan för flyttal.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="originalDataType" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger källsystemets datatyp.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="originalPlatform" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger typen av källsystem som datatypen härstammar från.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="precision" type="xs:int" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger precisionen för tid och decimaltal.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="scale" type="xs:int" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger skalan för decimaltal.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
@@ -437,11 +424,10 @@
   </xs:simpleType>
   <xs:simpleType name="dimlDataTypeConfigType">
     <xs:annotation>
-      <xs:documentation>Anger en Diml-datatyp baserad på dom typer som finns beskrivna under dataTypes &gt;
-                dimlDataTypeConfigs</xs:documentation>
+      <xs:documentation>Anger en Diml-datatyp.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[sS][tT][rR][iI][nN][gG]|[bB][oO][oO][lL][eE][aA][nN]|[tT][iI][nN][yY][iI][nN][tT][eE][gG][eE][rR]|[sS][mM][aA][lL][lL][iI][nN][tT][eE][gG][eE][rR]|[iI][nN][tT][eE][gG][eE][rR]|[bB][iI][gG][iI][nN][tT][eE][gG][eE][rR]|[fF][lL][oO][aA][tT]|[dD][oO][uU][bB][lL][eE]|[dD][eE][cC][iI][mM][aA][lL]|[dD][aA][tT][eE]|[dD][aA][tT][eE][tT][iI][mM][eE]|[dD][aA][tT][eE][tT][iI][mM][eE][oO][fF][fF][sS][eE][tT]|[tT][iI][mM][eE]|[xX][mM][lL]|[bB][iI][nN][aA][rR][yY]|[gG][uU][iI][dD]|[sS][sS][nN]|[fF][uU][lL][lL][nN][aA][mM][eE]|[aA][gG][eE]" />
+      <xs:pattern value="[sS][tT][rR][iI][nN][gG]|[bB][oO][oO][lL][eE][aA][nN]|[iI][nN][tT][eE][gG][eE][rR]|[dD][eE][cC][iI][mM][aA][lL]|[fF][lL][oO][aA][tT]|[dD][aA][tT][eE]|[tT][iI][mM][eE]|[dD][aA][tT][eE][tT][iI][mM][eE]|[dD][aA][tT][eE][tT][iI][mM][eE][oO][fF][fF][sS][eE][tT]|[bB][iI][nN][aA][rR][yY]|[gG][uU][iI][dD]" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="dataStageMaterialization">
