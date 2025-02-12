@@ -422,14 +422,6 @@
   <xs:simpleType name="stringValueType">
     <xs:restriction base="xs:string" />
   </xs:simpleType>
-  <xs:simpleType name="dimlDataTypeConfigType">
-    <xs:annotation>
-      <xs:documentation>Anger en Diml-datatyp.</xs:documentation>
-    </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:pattern value="[sS][tT][rR][iI][nN][gG]|[bB][oO][oO][lL][eE][aA][nN]|[iI][nN][tT][eE][gG][eE][rR]|[dD][eE][cC][iI][mM][aA][lL]|[fF][lL][oO][aA][tT]|[dD][aA][tT][eE]|[tT][iI][mM][eE]|[dD][aA][tT][eE][tT][iI][mM][eE]|[dD][aA][tT][eE][tT][iI][mM][eE][oO][fF][fF][sS][eE][tT]|[bB][iI][nN][aA][rR][yY]|[gG][uU][iI][dD]" />
-    </xs:restriction>
-  </xs:simpleType>
   <xs:simpleType name="dataStageMaterialization">
     <xs:annotation>
       <xs:documentation>Anger om data ska materialiseras eller virtualiseras.</xs:documentation>
