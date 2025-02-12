@@ -336,24 +336,93 @@ Anv&#xE4;nds f&#xF6;r att beskriva ett Diml-objekt i olika format och spr&#xE5;k
 | language | string | Nej |  |  | Anger spr&#xE5;k f&#xF6;r beskrivning. |
 | type | [descriptionType](#descriptionType) | Ja |  |  | Anger textformat f&#xF6;r beskrivningen |
 
+## conditionalDataType
+Anv&#xE4;nds f&#xF6;r att evaluera vilken datatyp som ska tilldelas m&#xE5;lplattformen.
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| condition | string | Nej |  |  | Ett C#-uttryck som utv&#xE4;rderar huruvida den alternativa datatypen &#xE4;r den som ska tilldelas till m&#xE5;lplattformen. |
+| dataType | string | Ja |  |  | Anger datatypen i m&#xE5;lplattformen. |
+
+## dataTypeAttribute
+Anv&#xE4;nds f&#xF6;r att definiera attribut som nyttjas i konverteringslogiken mellan Diml-datatyper och m&#xE5;lplattformar.
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| id | string | Ja |  |  | Anger ett namn som identifierar attributet. Detta v&#xE4;rde anv&#xE4;nds sedan i dimlAttributeSetting f&#xF6;r att tilldela ett v&#xE4;rde till attributet. |
+| type | string | Ja |  |  | Anger attributets datatyp. |
+
+## dataTypeAttributeSetting
+Anv&#xE4;nds f&#xF6;r att tilldela v&#xE4;rden till dom attribut som definieras under dataTypes &gt; dimlAttributes.
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| defaultValue | object | Nej |  |  | Anger ett standardv&#xE4;rde f&#xF6;r attributet. |
+| id | string | Ja |  |  | Anger vilket attribut som ska anv&#xE4;ndas. Det som anges h&#xE4;r m&#xE5;ste matcha motsvarande attributs ID i &#x27;dataTypes&#x27; &gt; &#x27;dimlAttributes&#x27; &gt; &#x27;dimlAttribute&#x27; &gt; &#x27;id&#x27;. |
+
+## dataTypes
+Specificerar alla tillg&#xE4;ngliga Diml-datatyper samt konverteringslogiken mellan dess kompatibla m&#xE5;lplattformar, som t.ex. C#, TSQL och OpenAPI
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+
 ## dimlDataType
 Anger en Diml-datatyp baserat p&#xE5; dom typer som finns definierade i datatypsspecifikationen.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
-| bits | int32 | Nej |  |  | Anger antalet bitar som anv&#xE4;nds f&#xF6;r att lagra heltal. |
-| format | string | Nej |  |  | Anger formatet p&#xE5; datan. T.ex. Xml eller Json. |
-| id | string | Ja |  |  | Anger datatypens typ. T.ex. String eller Integer. |
-| isFixedLength | boolean | Nej |  |  | Anger ifall t.ex. en str&#xE4;ng har en fixerad l&#xE4;ngd och alltid tar upp lika mycket plats. |
-| isNullable | boolean | Nej |  |  | Anger ifall datatypen kan vara null eller ej. |
-| isUnsigned | boolean | Nej |  |  | Anger ifall datatypen enbart kan inneh&#xE5;lla positiva heltal. |
-| isWideChar | boolean | Nej |  |  | Anger ifall datatypen &#xE4;r en widechar is SQL. |
-| length | int32 | Nej |  |  | Anger maxl&#xE4;ngden p&#xE5; t.ex. en str&#xE4;ng. |
-| mantissa | int32 | Nej |  |  | Anger antalet bitar som anv&#xE4;nds f&#xF6;r att ladra mantissan f&#xF6;r flyttal. |
-| originalDataType | string | Nej |  |  | Anger k&#xE4;llsystemets datatyp. |
-| originalPlatform | string | Nej |  |  | Anger typen av k&#xE4;llsystem som datatypen h&#xE4;rstammar fr&#xE5;n. |
-| precision | int32 | Nej |  |  | Anger precisionen f&#xF6;r tid och decimaltal. |
-| scale | int32 | Nej |  |  | Anger skalan f&#xF6;r decimaltal. |
+
+## dimlDataTypeConfig
+Anv&#xE4;nds f&#xF6;r att definiera datatyper i Diml.
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| baseDataType | string | Nej |  |  | Anger vilken basdatatyp som datatypen &#xE4;rver fr&#xE5;n. |
+| detectionPattern | string | Nej |  |  | Anger ett regulj&#xE4;rt uttryck som anv&#xE4;nds f&#xF6;r att identifiera datatypen. |
+| detectionPriority | int32 | Nej |  |  | Anger en prioritetsordning f&#xF6;r det regulj&#xE4;ra uttrycket vid identifiering av datatypen. |
+| id | string | Ja |  |  | Anger datatypens namn i Diml. |
+
+## platformDataTypeConfig
+Anger hur datatyperna konverteras fr&#xE5;n olika plattformar och format till Diml.
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| dimlDataType | string | Nej |  |  | Anger den aktuella datatypens namn i Diml |
+| id | string | Ja |  |  | Anger den aktuella datatypen i m&#xE5;lplattformen |
+| inputFormat | string | Ja |  |  | Anger ett regulj&#xE4;rt uttryck (REGEX) som matchar m&#xE5;lplattformens datatyp. |
+| outputFormat | string | Nej |  |  | Anger vilket format m&#xE5;lplattformens datatyp skrivs ut i. |
+
+## platformDataTypeParameter
+&#xC4;nv&#xE4;nds f&#xF6;r att f&#xE5;nga parametrar fr&#xE5;n datatypsspecifikationens m&#xE5;lplattformar vid konvertering till Diml.
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| id | string | Ja |  |  | Anger id f&#xF6;r en parameter i m&#xE5;lplattformen baserat p&#xE5; regulj&#xE4;rt-uttryck i platFormDataTypeConfig -&gt; InputFormat. |
+| inputExpression | string | Nej |  |  | Anger ett C#-uttryck som definierar hur parametern konverteras fr&#xE5;n standardv&#xE4;rdet &#x27;string&#x27; till det v&#xE4;rde som finns angivet i &#x27;type&#x27;. |
+| type | string | Ja |  |  | Anger parameterns datatyp. |
+
+## targetDataType
+Anv&#xE4;nds f&#xF6;r att definiera konverteringslogiken fr&#xE5;n Diml-datatyp till en m&#xE5;lplattform.
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| dataType | string | Nej |  |  | Anger datatypen i m&#xE5;lplattformen. Kan inte anv&#xE4;ndas tillsammans med &#x27;conditionalDataType&#x27;. |
+| platform | string | Ja |  |  | Anger vilken m&#xE5;lplattform som datatypen tillh&#xF6;r. |
+
+## targetParameter
+Tar olika inparametrar som anv&#xE4;nds f&#xF6;r olika typer av datak&#xE4;llor, t.ex databaser,filer eller api, till Diml och omv&#xE4;nt.
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| id | string | Ja |  |  | Anger vilken parameter som ska anv&#xE4;ndas. |
+| value | string | Ja |  |  | Ett C#-uttryck som anger v&#xE4;rdet f&#xF6;r parametern. |
+
+## targetPlatform
+Anger m&#xE5;lplattform f&#xF6;r datatypen.
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| platform | string | Ja |  |  | Anger vilken m&#xE5;lplattform som datatypen tillh&#xF6;r. |
 
 ## columnInstance
 Anger en instans av en kolumn i en tabul&#xE4;r dataprodukt.
