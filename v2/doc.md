@@ -73,6 +73,12 @@ Inneh&#xE5;ller egenskaper f&#xF6;r DCAT vilket &#xE4;r en metadataspecifikation
 | dcatStatus | string | Ja |  |  | Anger dataproduktens status i datakatalogen. F&#xF6;ljer standarden DCAT-AP, mer information finns h&#xE4;r: https://docs.dataportal.se/dcat/en/#5.8 |
 | dcatUpdateFrequency | string | Ja |  |  | Anger dataproduktens uppdateringsfrekvens i datakatalogen. F&#xF6;ljer standarden DCAT-AP, mer information finns h&#xE4;r: https://docs.dataportal.se/dcat/en/#5.4 |
 
+## businessKey
+Beskriver vilken kolumn som ska anv&#xE4;ndas som BusinessKey
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+
 ## columnMapping
 En kolumnmappning mellan en k&#xE4;lla och en destination som anv&#xE4;nds vid datainl&#xE4;sning.
 
