@@ -283,14 +283,6 @@ Konfiguration av Diml-milj&#xF6; d&#xE4;r t.ex standardspr&#xE5;k anges.
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | defaultLanguage | string | Nej |  |  | Anger standardspr&#xE5;k f&#xF6;r en Diml-milj&#xF6; |
 
-## dataSystemColumn
-Anger en systenkolumn i SDI Dataplattform.
-
-| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
-| ---- | --- | ----- | ------------ | --------- | ----------- |
-| id | string | Ja |  |  | Ett unikt id som representerar en systemkolumn. |
-| type | string | Ja |  |  | Anger en unik typ f&#xF6;r en systemkolumn. |
-
 ## graph
 Anger ett grafobjekt.
 

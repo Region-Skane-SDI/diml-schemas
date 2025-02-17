@@ -9,7 +9,6 @@
       <xs:element name="graphs" type="graphs" minOccurs="0" maxOccurs="1" />
       <xs:element name="lists" type="lists" minOccurs="0" maxOccurs="1" />
       <xs:element name="hierarchies" type="hierarchies" minOccurs="0" maxOccurs="1" />
-      <xs:element name="dataSystemColumns" type="dataSystemColumns" minOccurs="0" maxOccurs="1" />
       <xs:element name="commonColumnDefinitions" type="commonColumnDefinitions" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="defaultLanguage" type="xs:string" use="optional">
@@ -182,29 +181,6 @@
   <xs:simpleType name="stringType">
     <xs:restriction base="xs:string" />
   </xs:simpleType>
-  <xs:complexType name="dataSystemColumns">
-    <xs:sequence>
-      <xs:element name="dataSystemColumn" type="dataSystemColumn" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="dataSystemColumn">
-    <xs:annotation>
-      <xs:documentation>Anger en systenkolumn i SDI Dataplattform.</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="dimlDataType" type="dimlDataType" minOccurs="1" maxOccurs="1" />
-    </xs:sequence>
-    <xs:attribute name="id" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Ett unikt id som representerar en systemkolumn.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="type" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Anger en unik typ för en systemkolumn.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-  </xs:complexType>
   <xs:complexType name="dimlDataType">
     <xs:attribute name="bits" type="xs:int" use="optional">
       <xs:annotation>
