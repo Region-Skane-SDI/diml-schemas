@@ -224,7 +224,7 @@
     </xs:attribute>
     <xs:attribute name="mantissa" type="xs:int" use="optional">
       <xs:annotation>
-        <xs:documentation>Anger antalet bitar som används för att ladra mantissan för flyttal.</xs:documentation>
+        <xs:documentation>Anger antalet bitar som används för att lagra mantissan för flyttal.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="originalDataType" type="xs:string" use="optional">

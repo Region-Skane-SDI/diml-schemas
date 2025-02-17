@@ -347,7 +347,7 @@ Anger en Diml-datatyp baserat p&#xE5; dom typer som finns definierade i datatyps
 | isUnsigned | boolean | Nej |  |  | Anger ifall datatypen enbart kan inneh&#xE5;lla positiva heltal. |
 | isWideChar | boolean | Nej |  |  | Anger ifall datatypen &#xE4;r en widechar is SQL. |
 | length | int32 | Nej |  |  | Anger maxl&#xE4;ngden p&#xE5; t.ex. en str&#xE4;ng. |
-| mantissa | int32 | Nej |  |  | Anger antalet bitar som anv&#xE4;nds f&#xF6;r att ladra mantissan f&#xF6;r flyttal. |
+| mantissa | int32 | Nej |  |  | Anger antalet bitar som anv&#xE4;nds f&#xF6;r att lagra mantissan f&#xF6;r flyttal. |
 | originalDataType | string | Nej |  |  | Anger k&#xE4;llsystemets datatyp. |
 | originalPlatform | string | Nej |  |  | Anger typen av k&#xE4;llsystem som datatypen h&#xE4;rstammar fr&#xE5;n. |
 | precision | int32 | Nej |  |  | Anger precisionen f&#xF6;r tid och decimaltal. |
