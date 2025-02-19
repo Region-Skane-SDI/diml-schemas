@@ -99,6 +99,16 @@
       <xs:element name="columnInstance" type="columnInstance" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
+  <xs:simpleType name="dimlDataTypes">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[vV][aA][lL][uU][eE][_][_]|[sS][tT][rR][iI][nN][gG]|[bB][oO][oO][lL][eE][aA][nN]|[iI][nN][tT][eE][gG][eE][rR]|[dD][eE][cC][iI][mM][aA][lL]|[fF][lL][oO][aA][tT]|[dD][aA][tT][eE]|[tT][iI][mM][eE]|[dD][aA][tT][eE][tT][iI][mM][eE]|[dD][aA][tT][eE][tT][iI][mM][eE][oO][fF][fF][sS][eE][tT]|[bB][iI][nN][aA][rR][yY]|[gG][uU][iI][dD]" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="dimlDataTypeFormat">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[vV][aA][lL][uU][eE][_][_]|[xX][mM][lL]|[jJ][sS][oO][nN]" />
+    </xs:restriction>
+  </xs:simpleType>
   <xs:complexType name="columnInstance">
     <xs:annotation>
       <xs:documentation>Anger en instans av en kolumn i en tabulär dataprodukt.</xs:documentation>
@@ -187,16 +197,12 @@
         <xs:documentation>Anger antalet bitar som används för att lagra heltal.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="format" type="xs:string" use="optional">
+    <xs:attribute name="format" type="dimlDataTypeFormat" use="optional">
       <xs:annotation>
         <xs:documentation>Anger formatet på datan. T.ex. Xml eller Json.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="id" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Anger datatypens typ. T.ex. String eller Integer.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
+    <xs:attribute name="id" type="dimlDataTypes" use="required"></xs:attribute>
     <xs:attribute name="isFixedLength" type="xs:boolean" use="optional">
       <xs:annotation>
         <xs:documentation>Anger ifall t.ex. en sträng har en fixerad längd och alltid tar upp lika mycket plats.</xs:documentation>

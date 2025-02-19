@@ -340,8 +340,8 @@ Anger en Diml-datatyp baserat p&#xE5; dom typer som finns definierade i datatyps
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | bits | int32 | Nej |  |  | Anger antalet bitar som anv&#xE4;nds f&#xF6;r att lagra heltal. |
-| format | string | Nej |  |  | Anger formatet p&#xE5; datan. T.ex. Xml eller Json. |
-| id | string | Ja |  |  | Anger datatypens typ. T.ex. String eller Integer. |
+| format | dimlDataTypeFormat | Nej |  |  | Anger formatet p&#xE5; datan. T.ex. Xml eller Json. |
+| id | [](#) | Ja |  |  |  |
 | isFixedLength | boolean | Nej |  |  | Anger ifall t.ex. en str&#xE4;ng har en fixerad l&#xE4;ngd och alltid tar upp lika mycket plats. |
 | isNullable | boolean | Nej |  |  | Anger ifall datatypen kan vara null eller ej. |
 | isUnsigned | boolean | Nej |  |  | Anger ifall datatypen enbart kan inneh&#xE5;lla positiva heltal. |
