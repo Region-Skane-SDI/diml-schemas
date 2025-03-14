@@ -52,6 +52,7 @@
     <xs:all>
       <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
       <xs:element name="logicDataStageTables" type="logicDataStageTables" minOccurs="0" maxOccurs="1" />
+      <xs:element name="validationPolicy" type="validationPolicy" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
@@ -868,6 +869,30 @@
       <xs:pattern value="[aA][zZ][sS][qQ][lL][sS][eE][rR][vV][eE][rR]|[sS][qQ][lL][sS][eE][rR][vV][eE][rR]" />
     </xs:restriction>
   </xs:simpleType>
+  <xs:simpleType name="businessKeyDuplicateAction">
+    <xs:annotation>
+      <xs:documentation>Actions for business key duplicate policy</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[eE][lL][iI][mM][iI][nN][aA][tT][eE]|[fF][lL][aA][gG]" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="businessKeyNullAction">
+    <xs:annotation>
+      <xs:documentation>Actions for business key null policy</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[fF][lL][aA][gG]|[sS][eE][tT][dD][eE][fF][aA][uU][lL][tT][vV][aA][lL][uU][eE]" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="qualityValidationAction">
+    <xs:annotation>
+      <xs:documentation>Actions for quality validation policy</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[eE][lL][iI][mM][iI][nN][aA][tT][eE][oO][nN][lL][yY]|[fF][iI][lL][tT][eE][rR][vV][aA][lL][iI][dD]|[iI][gG][nN][oO][rR][eE][vV][aA][lL][iI][dD]|[sS][tT][oO][pP]" />
+    </xs:restriction>
+  </xs:simpleType>
   <xs:simpleType name="formatType">
     <xs:annotation>
       <xs:documentation>Anger kompatibla utdataformat.</xs:documentation>
@@ -924,4 +949,93 @@
       <xs:pattern value="[aA][zZ][dD][aA][tT][aA][bB][rR][iI][cC][kK][sS]|[aA][zZ][sS][qQ][lL][sS][eE][rR][vV][eE][rR]|[mM][sS][fF][aA][bB][rR][iI][cC][\-][lL][aA][kK][eE][hH][oO][uU][sS][eE]|[mM][sS][fF][aA][bB][rR][iI][cC][\-][wW][aA][rR][eE][hH][oO][uU][sS][eE]|[sS][qQ][lL][sS][eE][rR][vV][eE][rR]" />
     </xs:restriction>
   </xs:simpleType>
+  <xs:complexType name="validationPolicy">
+    <xs:annotation>
+      <xs:documentation>TODO</xs:documentation>
+    </xs:annotation>
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="businessKeyNull" type="businessKeyNull" minOccurs="0" maxOccurs="1" />
+      <xs:element name="businessKeyDuplicate" type="businessKeyDuplicate" minOccurs="0" maxOccurs="1" />
+      <xs:element name="qualityValidation" type="qualityValidation" minOccurs="0" maxOccurs="1" />
+      <xs:element name="validateDataStageTables" type="validateDataStageTables" minOccurs="0" maxOccurs="1" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="businessKeyNull">
+    <xs:annotation>
+      <xs:documentation>Defines the policy for handling business keys with null values.</xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="defaultValues" type="defaultValues" minOccurs="0" maxOccurs="1" />
+    </xs:choice>
+    <xs:attribute name="action" type="businessKeyNullAction" use="required">
+      <xs:annotation>
+        <xs:documentation>Actions for business key null policy</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="businessKeyDuplicate">
+    <xs:annotation>
+      <xs:documentation>Defines the policy for handling duplicate business keys.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="action" type="businessKeyDuplicateAction" use="required">
+      <xs:annotation>
+        <xs:documentation>Actions for business key duplicate policy</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="rowNoOrderBy" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Specifies the sorting expression applied to the table for duplicate removal.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="qualityValidation">
+    <xs:annotation>
+      <xs:documentation>Defines the policy for handling when something is not valid.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="action" type="qualityValidationAction" use="required">
+      <xs:annotation>
+        <xs:documentation>Actions for quality validation policy</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="defaultValues">
+    <xs:choice>
+      <xs:element name="defaultValue" type="defaultValue" minOccurs="0" maxOccurs="unbounded" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="defaultValue">
+    <xs:annotation>
+      <xs:documentation>Defines a default value for a column.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="columnId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>A unique identifier that references a specific column within a table.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="value" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Specifies the default value assigned to the referenced column.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="validateDataStageTables">
+    <xs:choice>
+      <xs:element name="validateDataStageTable" type="validateDataStageTable" minOccurs="0" maxOccurs="unbounded" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="validateDataStageTable">
+    <xs:annotation>
+      <xs:documentation></xs:documentation>
+    </xs:annotation>
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="businessKeyNull" type="businessKeyNull" minOccurs="0" maxOccurs="1" />
+      <xs:element name="businessKeyDuplicate" type="businessKeyDuplicate" minOccurs="0" maxOccurs="1" />
+      <xs:element name="qualityValidation" type="qualityValidation" minOccurs="0" maxOccurs="1" />
+    </xs:choice>
+    <xs:attribute name="tableId" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>A unique identifier that references a specific table.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
 </xs:schema>

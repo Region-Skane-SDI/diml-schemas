@@ -73,6 +73,42 @@ Inneh&#xE5;ller egenskaper f&#xF6;r DCAT vilket &#xE4;r en metadataspecifikation
 | dcatStatus | [dcatStatus](#dcatStatus) | Ja |  |  | Anger dataproduktens status i datakatalogen. F&#xF6;ljer standarden DCAT-AP, mer information finns h&#xE4;r: https://docs.dataportal.se/dcat/en |
 | dcatUpdateFrequency | [dcatUpdateFrequency](#dcatUpdateFrequency) | Ja |  |  | Anger dataproduktens uppdateringsfrekvens i datakatalogen. F&#xF6;ljer standarden DCAT-AP, mer information finns h&#xE4;r: https://docs.dataportal.se/dcat/en |
 
+## validationPolicy
+TODO
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+
+## businessKeyDuplicate
+Defines the policy for handling duplicate business keys.
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| action | [businessKeyDuplicateAction](#businessKeyDuplicateAction) | Ja |  |  | Actions for business key duplicate policy |
+| rowNoOrderBy | string | Nej |  |  | Specifies the sorting expression applied to the table for duplicate removal. |
+
+## businessKeyNull
+Defines the policy for handling business keys with null values.
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| action | [businessKeyNullAction](#businessKeyNullAction) | Ja |  |  | Actions for business key null policy |
+
+## defaultValue
+Defines a default value for a column.
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| columnId | string | Ja |  |  | A unique identifier that references a specific column within a table. |
+| value | string | Ja |  |  | Specifies the default value assigned to the referenced column. |
+
+## qualityValidation
+Defines the policy for handling when something is not valid.
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| action | [qualityValidationAction](#qualityValidationAction) | Ja |  |  | Actions for quality validation policy |
+
 ## businessKey
 Beskriver vilken kolumn som ska anv&#xE4;ndas som BusinessKey
 
@@ -197,6 +233,13 @@ En tabellmappning mellan en k&#xE4;lla och en destination som anv&#xE4;nds vid d
 | customSqlExpression | string | Nej |  |  | Ett SQL-uttryck som appliceras p&#xE5; tabellen vid inl&#xE4;sning. |
 | sourceTableId | string | Ja |  |  | Tabellens id i k&#xE4;llan. |
 | tableId | string | Ja |  |  | Tabellens id i destinationen. |
+
+## validateDataStageTable
+
+
+| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
+| ---- | --- | ----- | ------------ | --------- | ----------- |
+| tableId | string | Nej |  |  | A unique identifier that references a specific table. |
 
 ## customFormat
 Beskriver ett egendefinierat utdataformat.
@@ -494,6 +537,32 @@ Anger vilken k&#xE4;llplattformstyp som ska anv&#xE4;ndas.
 | ---- | ----------- |
 | azSqlServer | Azure SQL Server |
 | sqlServer | SQL Server |
+
+## businessKeyDuplicateAction
+Actions for business key duplicate policy
+
+| Namn | Beskrivning |
+| ---- | ----------- |
+| eliminate | Eliminate duplicates |
+| flag | Only flag duplicates |
+
+## businessKeyNullAction
+Actions for business key null policy
+
+| Namn | Beskrivning |
+| ---- | ----------- |
+| flag | Only flag null values |
+| setDefaultValue | Set default values on null values |
+
+## qualityValidationAction
+Actions for quality validation policy
+
+| Namn | Beskrivning |
+| ---- | ----------- |
+| eliminateOnly |  |
+| filterValid |  |
+| ignoreValid |  |
+| stop |  |
 
 ## formatType
 Anger kompatibla utdataformat.
