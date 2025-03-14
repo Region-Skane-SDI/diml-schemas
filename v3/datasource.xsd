@@ -24,7 +24,7 @@
     </xs:attribute>
     <xs:attribute name="uniqueName" type="xs:string" use="required">
       <xs:annotation>
-        <xs:documentation>Ett globalt unikt namn f�r en dataspecifikation.</xs:documentation>
+        <xs:documentation>Ett globalt unikt namn för en dataspecifikation.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
