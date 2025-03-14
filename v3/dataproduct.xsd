@@ -284,7 +284,6 @@
       <xs:element name="traits" type="traits" minOccurs="0" maxOccurs="1" />
       <xs:element name="businessKey" type="businessKey" minOccurs="0" maxOccurs="1" />
       <xs:element name="tableInstances" type="tableInstances" minOccurs="0" maxOccurs="1" />
-      <xs:element name="commonColumns" type="commonColumns" minOccurs="0" maxOccurs="1" />
       <xs:element name="columns" type="columns" minOccurs="1" maxOccurs="1" />
       <xs:element name="tableRelations" type="tableRelations" minOccurs="0" maxOccurs="1" />
       <xs:element name="sampleData" type="sampleData" minOccurs="0" maxOccurs="1" />
@@ -341,24 +340,6 @@
   <xs:simpleType name="businessKeyValue">
     <xs:restriction base="xs:string" />
   </xs:simpleType>
-  <xs:complexType name="commonColumns">
-    <xs:sequence>
-      <xs:element name="commonColumn" type="commonColumn" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="commonColumn">
-    <xs:annotation>
-      <xs:documentation>Beskriver en referens till en återanvändbar kolumn.</xs:documentation>
-    </xs:annotation>
-    <xs:all>
-      <xs:element name="columnInstances" type="columnInstances" minOccurs="0" maxOccurs="1" />
-    </xs:all>
-    <xs:attribute name="id" type="commonColumnIdType" use="required">
-      <xs:annotation>
-        <xs:documentation>Kolumnens id.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-  </xs:complexType>
   <xs:complexType name="columns">
     <xs:sequence>
       <xs:element name="column" type="column" minOccurs="0" maxOccurs="unbounded" />
@@ -779,15 +760,6 @@
   </xs:complexType>
   <xs:simpleType name="stringValueType">
     <xs:restriction base="xs:string" />
-  </xs:simpleType>
-  <xs:simpleType name="commonColumnIdType">
-    <xs:annotation>
-      <xs:documentation>Anger en common column definition baserad på dom definitioner som finns beskrivna under
-                commonColumnDefinitions</xs:documentation>
-    </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:pattern value="[vV][eE][rR][kK][sS][aA][mM][hH][eE][tT][sS][oO][mM][rR][aA][dD][eE]" />
-    </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="dataStageMaterialization">
     <xs:annotation>

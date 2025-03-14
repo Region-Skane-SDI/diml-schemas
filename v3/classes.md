@@ -123,13 +123,6 @@ En kolumnmappning mellan en k&#xE4;lla och en destination som anv&#xE4;nds vid d
 | columnId | string | Ja |  |  | Kolumnens id i destinationen. |
 | sourceColumnId | string | Ja |  |  | Kolumnens id i k&#xE4;llan. |
 
-## commonColumn
-Beskriver en referens till en &#xE5;teranv&#xE4;ndbar kolumn.
-
-| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
-| ---- | --- | ----- | ------------ | --------- | ----------- |
-| id | string | Ja |  |  | Kolumnens id. |
-
 ## column
 Beskriver en kolumn i en tabul&#xE4;r dataprodukt.
 
@@ -305,69 +298,12 @@ Anv&#xE4;nds f&#xF6;r att namnge ett Diml-objekt p&#xE5; olika spr&#xE5;k.
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | language | string | Ja |  |  | En representation av vilket spr&#xE5;k som anv&#xE4;nds f&#xF6;r namnet. Exempelv&#xE4;rde: sv |
 
-## category
-Anger kategorisering av dataprodukten t.ex namn, beskrivning och traits.
-
-| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
-| ---- | --- | ----- | ------------ | --------- | ----------- |
-| id | string | Ja |  |  | Ett unikt id som representerar kategorin. |
-
-## commonColumnDefinition
-Beskriver en kolumn som g&#xE5;r att &#xE5;teranv&#xE4;nda i flera tabeller.
-
-| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
-| ---- | --- | ----- | ------------ | --------- | ----------- |
-| id | string | Ja |  |  | Kolumnens id. |
-
 ## config
 Konfiguration av Diml-milj&#xF6; d&#xE4;r t.ex standardspr&#xE5;k anges.
 
 | Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
 | ---- | --- | ----- | ------------ | --------- | ----------- |
 | defaultLanguage | string | Nej |  |  | Anger standardspr&#xE5;k f&#xF6;r en Diml-milj&#xF6; |
-
-## graph
-Anger ett grafobjekt.
-
-| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
-| ---- | --- | ----- | ------------ | --------- | ----------- |
-| configUrl | configUrl | Ja |  |  | En url till en konfigurationsfil f&#xF6;r Diml. |
-
-## hierarchy
-Definierar och beskriver hierarkier i Diml konfigfilen.
-
-| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
-| ---- | --- | ----- | ------------ | --------- | ----------- |
-| configUrl | configUrl | Ja |  |  | En url till en konfigurationsfil f&#xF6;r Diml. |
-
-## list
-Anger en lista.
-
-| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
-| ---- | --- | ----- | ------------ | --------- | ----------- |
-| configUrl | configUrl | Ja |  |  | En url till en konfigurationsfil f&#xF6;r Diml. |
-
-## listItem
-Anger ett listobjekt inom en lista.
-
-| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
-| ---- | --- | ----- | ------------ | --------- | ----------- |
-| id | string | Ja |  |  | Ett unikt id som representerar ett list item. |
-
-## node
-Anger en nod inom ett grafobjekt.
-
-| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
-| ---- | --- | ----- | ------------ | --------- | ----------- |
-| id | string | Ja |  |  | Ett unikt id som representerar en nod. |
-
-## nodeLink
-Anger hur noder inom ett grafobjekt relaterar till varandra.
-
-| Namn | Typ | Krävs | Defaultvärde | Ärvs från | Beskrivning |
-| ---- | --- | ----- | ------------ | --------- | ----------- |
-| id | string | Ja |  |  | Ett unikt id som representerar en nod-l&#xE4;nk. |
-| targetNode | string | Ja |  |  | Anger m&#xE5;lnod som skall l&#xE4;nkas. |
 
 ## description
 Anv&#xE4;nds f&#xF6;r att beskriva ett Diml-objekt i olika format och spr&#xE5;k.
