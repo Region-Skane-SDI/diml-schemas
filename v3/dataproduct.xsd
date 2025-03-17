@@ -726,37 +726,12 @@
     <xs:annotation>
       <xs:documentation>Används för att specificera egenskaper (traits) på ett Diml-objekt.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element name="traitParameter" type="traitParameter" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-    <xs:attribute name="class" type="traitClass" use="required">
+    <xs:attribute name="id" type="traitType" use="required">
       <xs:annotation>
-        <xs:documentation>Anger tillgängliga klasser för en Trait.</xs:documentation>
+        <xs:documentation>The type of trait.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="subclass" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>Anger subtyp för en Trait.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-  </xs:complexType>
-  <xs:complexType name="traitParameter">
-    <xs:annotation>
-      <xs:documentation>Anger värden på en trait.</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="value" type="stringValueType" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-    <xs:attribute name="key" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>Anger nyckelvärde för traitParameter (default=value).</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="value" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>Anger värde/värden för nyckeln.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
+    <xs:attribute name="value" type="xs:string" use="optional"></xs:attribute>
   </xs:complexType>
   <xs:simpleType name="stringValueType">
     <xs:restriction base="xs:string" />
@@ -897,12 +872,12 @@
       <xs:pattern value="[oO][dD][aA][tT][aA]" />
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="traitClass">
+  <xs:simpleType name="traitType">
     <xs:annotation>
-      <xs:documentation>Anger tillgängliga klasser för en Trait.</xs:documentation>
+      <xs:documentation>The type of trait.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[cC][aA][tT][eE][gG][oO][rR][yY]|[cC][oO][lL][uU][mM][nN][sS][oO][uU][rR][cC][eE][sS]|[dD][aA][tT][aA][sS][tT][aA][gG][eE][oO][pP][eE][rR][aA][tT][iI][oO][nN][sS][\.][aA][pP][pP][lL][yY][dD][aA][tT][aA][qQ][uU][aA][lL][iI][tT][yY][rR][uU][lL][eE][sS]|[dD][eE][fF][aA][uU][lL][tT][cC][oO][nN][fF][iI][gG][nN][aA][mM][eE][sS][pP][aA][cC][eE]|[eE][xX][tT][eE][nN][sS][iI][oO][nN]|[gG][eE][nN][eE][rR][aA][tT][eE][kK][eE][yY][hH][aA][sS][hH]|[gG][eE][nN][eE][rR][aA][tT][eE][rR][oO][wW][hH][aA][sS][hH]|[gG][uU][iI][dD]|[iI][cC][oO][nN]|[iI][nN][fF][dD][oO][mM]|[iI][nN][fF][oO][cC][lL][aA][sS][sS]|[iI][nN][fF][oO][mM][rR]|[iI][sS][gG][rR][eE][aA][tT][eE][rR][tT][hH][aA][nN]|[iI][sS][uU][nN][lL][iI][sS][tT][eE][dD]|[iI][sS][vV][iI][rR][tT][uU][aA][lL]|[pP][iI][iI]|[qQ][uU][aA][lL][iI][tT][yY][\.][bB][uU][sS][iI][nN][eE][sS][sS][kK][eE][yY][\.][dD][uU][pP][lL][iI][cC][aA][tT][eE]|[qQ][uU][aA][lL][iI][tT][yY][\.][bB][uU][sS][iI][nN][eE][sS][sS][kK][eE][yY][\.][nN][uU][lL][lL]|[qQ][uU][aA][lL][iI][tT][yY][\.][vV][aA][lL][iI][dD][aA][tT][eE][\.][aA][cC][tT][iI][oO][nN]|[tT][aA][bB][lL][eE][nN][aA][mM][eE][pP][rR][eE][fF][iI][xX]|[tT][aA][bB][lL][eE][nN][aA][mM][eE][sS][uU][fF][fF][iI][xX]|[tT][aA][bB][lL][eE][sS][cC][hH][eE][mM][aA]|[tT][aA][bB][lL][eE][uU][pP][dD][aA][tT][eE][tT][yY][pP][eE]|[tT][aA][rR][gG][eE][tT][uU][pP][tT][iI][mM][eE][pP][eE][rR][cC][eE][nN][tT]" />
+      <xs:pattern value="[aA][pP][pP][eE][aA][rR][aA][nN][cC][eE][\.][iI][cC][oO][nN]|[cC][lL][aA][sS][sS][iI][fF][iI][cC][aA][tT][iI][oO][nN][\.][iI][nN][fF][oO][cC][lL][aA][sS][sS]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][aA][dD][dD][rR][eE][sS][sS]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][eE][mM][aA][iI][lL]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][eE][mM][pP][lL][oO][yY][eE][eE][nN][uU][mM][bB][eE][rR]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][nN][aA][mM][eE]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][oO][tT][hH][eE][rR]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][sS][sS][nN]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][zZ][iI][pP]|[pP][rR][iI][vV][aA][cC][yY][\.][dD][aA][tT][aA][iI][dD][eE][nN][tT][iI][fF][iI][aA][bB][iI][lL][iI][tT][yY][\.][aA][gG][gG][rR][eE][gG][aA][tT][eE][dD]|[pP][rR][iI][vV][aA][cC][yY][\.][dD][aA][tT][aA][iI][dD][eE][nN][tT][iI][fF][iI][aA][bB][iI][lL][iI][tT][yY][\.][aA][nN][oO][nN][yY][mM][iI][zZ][eE][dD]|[pP][rR][iI][vV][aA][cC][yY][\.][dD][aA][tT][aA][iI][dD][eE][nN][tT][iI][fF][iI][aA][bB][iI][lL][iI][tT][yY][\.][iI][dD][eE][nN][tT][iI][fF][iI][eE][dD]|[pP][rR][iI][vV][aA][cC][yY][\.][dD][aA][tT][aA][iI][dD][eE][nN][tT][iI][fF][iI][aA][bB][iI][lL][iI][tT][yY][\.][pP][sS][eE][uU][dD][oO][nN][iI][mM][iI][zZ][eE][dD]|[pP][rR][iI][vV][aA][cC][yY][\.][dD][aA][tT][aA][uU][sS][aA][gG][eE][\.][iI][mM][pP][rR][oO][vV][eE]|[pP][rR][iI][vV][aA][cC][yY][\.][dD][aA][tT][aA][uU][sS][aA][gG][eE][\.][rR][eE][sS][eE][aA][rR][cC][hH]" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="descriptionType">
