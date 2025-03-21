@@ -16,16 +16,25 @@
     </xs:attribute>
   </xs:complexType>
   <xs:complexType name="descriptionsCollection">
+    <xs:annotation>
+      <xs:documentation>En lista av beskrivningar för ett Diml-objekt i olika format och språk.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="description" type="description" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="namesCollection">
+    <xs:annotation>
+      <xs:documentation>En lista av namn för att namnge ett Diml-objekt på olika språk.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="name" type="name" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="traitsCollection">
+    <xs:annotation>
+      <xs:documentation>En lista av egenskaper på ett Diml-objekt.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="trait" type="trait" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
@@ -72,7 +81,11 @@
         <xs:documentation>The type of trait.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="value" type="xs:string" use="optional"></xs:attribute>
+    <xs:attribute name="value" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Värdet för egenskapen.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
   <xs:simpleType name="descriptionType">
     <xs:annotation>

@@ -32,6 +32,9 @@
     </xs:attribute>
   </xs:complexType>
   <xs:complexType name="customFormatsCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av egendefinierat utdataformat.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="customFormat" type="customFormat" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
@@ -46,11 +49,17 @@
     </xs:all>
   </xs:complexType>
   <xs:complexType name="dataInputsCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en list av indatakällor för en dataproduktsspecifikation, t.ex. en DataSource eller en annan DataProduct.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="dataInput" type="dataInput" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="dataProductOutputs">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av utdataformat.</xs:documentation>
+    </xs:annotation>
     <xs:all>
       <xs:element name="apiOutputs" type="apiOutputsCollection" minOccurs="0" maxOccurs="1" />
       <xs:element name="fileOutputs" type="fileOutputsCollection" minOccurs="0" maxOccurs="1" />
@@ -88,16 +97,25 @@
     </xs:attribute>
   </xs:complexType>
   <xs:complexType name="descriptionsCollection">
+    <xs:annotation>
+      <xs:documentation>En lista av beskrivningar för ett Diml-objekt i olika format och språk.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="description" type="description" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="namesCollection">
+    <xs:annotation>
+      <xs:documentation>En lista av namn för att namnge ett Diml-objekt på olika språk.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="name" type="name" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="dataProductTableCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av tabeller i en tabulär dataprodukt.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="table" type="table" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
@@ -111,6 +129,9 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="traitsCollection">
+    <xs:annotation>
+      <xs:documentation>En lista av egenskaper på ett Diml-objekt.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="trait" type="trait" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
@@ -141,11 +162,17 @@
     </xs:attribute>
   </xs:complexType>
   <xs:complexType name="dataIngestsCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av Instruktioner för hur data ska läsas in från källa till destination.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="dataIngest" type="dataIngest" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="dataStagesCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av datastages som anger de olika stadien för data och dess egenskaper, tex. Om en tabell ska materialiseras eller inte, hur data ska uppdateras osv.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="dataStage" type="dataStage" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
@@ -171,16 +198,25 @@
     </xs:attribute>
   </xs:complexType>
   <xs:complexType name="apiOutputsCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av apiOutput som anger API som utdataformat enligt en angiven standard.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="apiOutput" type="apiOutput" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="fileOutputsCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av fildestinationer för utdata med ett antal obligatoriska parametrar.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="fileOutput" type="fileOutput" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="sqlOutputsCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av sqluOutput som anger output som SQL kod i angiven dialekt, tex: TSQL eller Spark SQL.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="sqlOutput" type="sqlOutput" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
@@ -287,7 +323,11 @@
         <xs:documentation>The type of trait.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="value" type="xs:string" use="optional"></xs:attribute>
+    <xs:attribute name="value" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Värdet för egenskapen.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
   <xs:simpleType name="formatType">
     <xs:annotation>
@@ -444,16 +484,25 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="businessKeysCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av businessKey som beskriver vilken kolumn som ska användas som BusinessKey</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="value" type="businessKey" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="dataProductColumnsCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av dataProductColumn som beskriver en kolumn i en tabulär dataprodukt.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="column" type="column" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="sampleDataRowsCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av sampleDataRow som anger exempeldata.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="sampleDataRow" type="sampleDataRow" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
@@ -477,6 +526,9 @@
     </xs:attribute>
   </xs:complexType>
   <xs:complexType name="tableRelationsCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av tableRelation som anger eventuella tabellrelationer och hur de relaterar via relationsColumns.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="tableRelation" type="tableRelation" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
@@ -490,11 +542,17 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="tableToTableMappingsCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av tabellmappning mellan en källa och en destination som används vid datainläsning.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="tableToTableMapping" type="tableToTableMapping" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="logicDataStageTablesCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av logicDataStageTable som beskriver hur tabeller ska transformeras.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="logicDataStageTable" type="logicDataStageTable" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
@@ -822,11 +880,17 @@
     </xs:attribute>
   </xs:complexType>
   <xs:complexType name="columnMappingsCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av ColumnMapping som är en kolumnmappning mellan en källa och en destination som används vid datainläsning.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="columnMapping" type="columnMapping" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="logicColumnMappingsCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av logicColumnMapping som beskriver hur kolumner ska transformeras.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="logicColumnMapping" type="logicColumnMapping" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>

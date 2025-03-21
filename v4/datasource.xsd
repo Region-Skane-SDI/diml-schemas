@@ -29,6 +29,9 @@
     </xs:attribute>
   </xs:complexType>
   <xs:complexType name="customFormatsCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av egendefinierat utdataformat.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="customFormat" type="customFormat" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
@@ -40,11 +43,17 @@
     </xs:all>
   </xs:complexType>
   <xs:complexType name="descriptionsCollection">
+    <xs:annotation>
+      <xs:documentation>En lista av beskrivningar för ett Diml-objekt i olika format och språk.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="description" type="description" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="namesCollection">
+    <xs:annotation>
+      <xs:documentation>En lista av namn för att namnge ett Diml-objekt på olika språk.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="name" type="name" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
@@ -63,6 +72,9 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="traitsCollection">
+    <xs:annotation>
+      <xs:documentation>En lista av egenskaper på ett Diml-objekt.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="trait" type="trait" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
@@ -93,11 +105,17 @@
     </xs:attribute>
   </xs:complexType>
   <xs:complexType name="fileOutputsCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av fildestinationer för utdata med ett antal obligatoriska parametrar.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="fileOutput" type="fileOutput" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="sqlOutputsCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av sqluOutput som anger output som SQL kod i angiven dialekt, tex: TSQL eller Spark SQL.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="sqlOutput" type="sqlOutput" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
@@ -173,7 +191,11 @@
         <xs:documentation>The type of trait.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="value" type="xs:string" use="optional"></xs:attribute>
+    <xs:attribute name="value" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Värdet för egenskapen.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
   <xs:simpleType name="formatType">
     <xs:annotation>
@@ -257,6 +279,9 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="businessKeysCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av businessKey som beskriver vilken kolumn som ska användas som BusinessKey</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="value" type="businessKey" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
@@ -267,11 +292,17 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="sampleDataRowsCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av sampleDataRow som anger exempeldata.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="sampleDataRow" type="sampleDataRow" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="tableRelationsCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av tableRelation som anger eventuella tabellrelationer och hur de relaterar via relationsColumns.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="tableRelation" type="tableRelation" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
