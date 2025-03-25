@@ -1,0 +1,480 @@
+<xs:schema xmlns="https://github.com/Region-Skane-SDI/diml/datasource" targetNamespace="https://github.com/Region-Skane-SDI/diml/datasource" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
+  <xs:element name="dataSource" type="dataSource" />
+  <xs:complexType name="dataSource">
+    <xs:annotation>
+      <xs:documentation>Beskrivning av en datakälla (som kan användas av dataprodukter).</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="customFormats" type="customFormatsCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="dataOutputs" type="dataSourceOutputs" minOccurs="0" maxOccurs="1" />
+      <xs:element name="descriptions" type="descriptionsCollection" minOccurs="1" maxOccurs="1" />
+      <xs:element name="names" type="namesCollection" minOccurs="1" maxOccurs="1" />
+      <xs:element name="tables" type="dataSourceTableCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="traits" type="traitsCollection" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+    <xs:attribute name="dimlId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>En globalt unik identifierare för Diml-objektet.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="sourcePlatform" type="sourcePlatformType" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger vilken källplattformstyp som ska användas.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="uniqueName" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Ett globalt unikt namn för en dataspecifikation.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="customFormatsCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av egendefinierat utdataformat.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="customFormat" type="customFormat" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="dataSourceOutputs">
+    <xs:all>
+      <xs:element name="fileOutputs" type="fileOutputsCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="sqlOutputs" type="sqlOutputsCollection" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="descriptionsCollection">
+    <xs:annotation>
+      <xs:documentation>En lista av beskrivningar för ett Diml-objekt i olika format och språk.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="description" type="description" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="namesCollection">
+    <xs:annotation>
+      <xs:documentation>En lista av namn för att namnge ett Diml-objekt på olika språk.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="name" type="name" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="sourcePlatformType">
+    <xs:annotation>
+      <xs:documentation>Anger vilken källplattformstyp som ska användas.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[aA][zZ][sS][qQ][lL][sS][eE][rR][vV][eE][rR]|[sS][qQ][lL][sS][eE][rR][vV][eE][rR]" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="dataSourceTableCollection">
+    <xs:sequence>
+      <xs:element name="table" type="table" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="traitsCollection">
+    <xs:annotation>
+      <xs:documentation>En lista av egenskaper på ett Diml-objekt.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="trait" type="trait" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="customFormat">
+    <xs:annotation>
+      <xs:documentation>Beskriver ett egendefinierat utdataformat.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="customFormatId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Ett id för det egendefinierade udataformatet. Id:et måste vara unikt inom en dataproduktspecifikation då det kommer att användas som ett alias.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="formatType" type="formatType" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger utdataformatets typ.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="mimeType" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger en MIME-typ för utdataformatet, om det är ett binärformat.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="schemaLocation" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger ett schema för utdataformatet.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="fileOutputsCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av fildestinationer för utdata med ett antal obligatoriska parametrar.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="fileOutput" type="fileOutput" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sqlOutputsCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av sqluOutput som anger output som SQL kod i angiven dialekt, tex: TSQL eller Spark SQL.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="sqlOutput" type="sqlOutput" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="description">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:annotation>
+          <xs:documentation>Används för att beskriva ett Diml-objekt i olika format och språk.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="language" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation>Anger språk för beskrivning.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="type" type="descriptionType" use="required">
+          <xs:annotation>
+            <xs:documentation>Anger beskrivning i valt format, t.ex markdown eller plain text.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="name">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:annotation>
+          <xs:documentation>Används för att namnge ett Diml-objekt på olika språk.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="language" type="xs:string" use="required">
+          <xs:annotation>
+            <xs:documentation>En representation av vilket språk som används för namnet. Exempelvärde: sv</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="table">
+    <xs:annotation>
+      <xs:documentation>Beskriver en tabell i en tabulär datakälla.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="businessKey" type="businessKeysCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="columns" type="dataSourceColumnsCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="descriptions" type="descriptionsCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="names" type="namesCollection" minOccurs="1" maxOccurs="1" />
+      <xs:element name="sampleData" type="sampleDataRowsCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="tableRelations" type="tableRelationsCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="traits" type="traitsCollection" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+    <xs:attribute name="id" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Tabellens id.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="name" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Tabellens namn.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="schema" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Tabellens schema.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="trait">
+    <xs:annotation>
+      <xs:documentation>Används för att specificera egenskaper (traits) på ett Diml-objekt.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="id" type="traitType" use="required">
+      <xs:annotation>
+        <xs:documentation>The type of trait.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="value" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Värdet för egenskapen.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:simpleType name="formatType">
+    <xs:annotation>
+      <xs:documentation>Anger kompatibla utdataformat.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[bB][iI][nN][aA][rR][yY]|[jJ][sS][oO][nN]|[xX][mM][lL]" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="fileOutput">
+    <xs:annotation>
+      <xs:documentation>Anger en fil som destination för utdata med ett antal obligatoriska parametrar.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="channelId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger ett unikt id för varje utkanaltyp t.ex sql,sql2 etc.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="columnSeparator" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger vilket/vilka tecken som ska användas som kolumnavskiljare i utdatafilen, om filformatet är csv.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="customFormatId" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger utdataformatet genom att referera till egendefinierat utdataformat i customFormats.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="encoding" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Teckenkodningen för utdatafilen, t.ex. UTF-8.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="fileFormat" type="fileFormat" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger filformatet av utdatafilen.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="path" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Sökvägen för utdatafilen.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="quoteCharacter" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger vilket tecken som ska användas som citationstecken i utdatafilen, om filformatet är csv.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="rowSeparator" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger vilket/vilka tecken som ska användas som radavskiljare i utdatafilen, om filformatet är csv.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="table" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger vilken källtabell som utdatafilen ska baseras på.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="sqlOutput">
+    <xs:annotation>
+      <xs:documentation>Anger output som SQL kod i angiven dialekt, tex: TSQL eller Spark SQL.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="channelId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger ett unikt id för varje utkanaltyp t.ex sql,sql2 etc.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="sqlOutputType" type="sqlOutputType" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger utdatatyper som är kompatibla med sqlOutput.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:simpleType name="descriptionType">
+    <xs:annotation>
+      <xs:documentation>Anger textformat för beskrivningen</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[lL][oO][gG][iI][cC][mM][dD]|[mM][dD]|[pP][lL][aA][iI][nN]" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="businessKeysCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av businessKey som beskriver vilken kolumn som ska användas som BusinessKey</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="value" type="businessKey" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="dataSourceColumnsCollection">
+    <xs:sequence>
+      <xs:element name="column" type="column" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sampleDataRowsCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av sampleDataRow som anger exempeldata.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="sampleDataRow" type="sampleDataRow" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tableRelationsCollection">
+    <xs:annotation>
+      <xs:documentation>Innehåller en lista av tableRelation som anger eventuella tabellrelationer och hur de relaterar via relationsColumns.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="tableRelation" type="tableRelation" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="traitType">
+    <xs:annotation>
+      <xs:documentation>The type of trait.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[aA][pP][pP][eE][aA][rR][aA][nN][cC][eE][\.][iI][cC][oO][nN]|[cC][lL][aA][sS][sS][iI][fF][iI][cC][aA][tT][iI][oO][nN][\.][iI][nN][fF][oO][cC][lL][aA][sS][sS]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][aA][dD][dD][rR][eE][sS][sS]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][eE][mM][aA][iI][lL]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][eE][mM][pP][lL][oO][yY][eE][eE][nN][uU][mM][bB][eE][rR]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][nN][aA][mM][eE]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][oO][tT][hH][eE][rR]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][sS][sS][nN]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][zZ][iI][pP]|[pP][rR][iI][vV][aA][cC][yY][\.][dD][aA][tT][aA][iI][dD][eE][nN][tT][iI][fF][iI][aA][bB][iI][lL][iI][tT][yY][\.][aA][gG][gG][rR][eE][gG][aA][tT][eE][dD]|[pP][rR][iI][vV][aA][cC][yY][\.][dD][aA][tT][aA][iI][dD][eE][nN][tT][iI][fF][iI][aA][bB][iI][lL][iI][tT][yY][\.][aA][nN][oO][nN][yY][mM][iI][zZ][eE][dD]|[pP][rR][iI][vV][aA][cC][yY][\.][dD][aA][tT][aA][iI][dD][eE][nN][tT][iI][fF][iI][aA][bB][iI][lL][iI][tT][yY][\.][iI][dD][eE][nN][tT][iI][fF][iI][eE][dD]|[pP][rR][iI][vV][aA][cC][yY][\.][dD][aA][tT][aA][iI][dD][eE][nN][tT][iI][fF][iI][aA][bB][iI][lL][iI][tT][yY][\.][pP][sS][eE][uU][dD][oO][nN][yY][mM][iI][zZ][eE][dD]|[pP][rR][iI][vV][aA][cC][yY][\.][dD][aA][tT][aA][uU][sS][aA][gG][eE][\.][iI][mM][pP][rR][oO][vV][eE]|[pP][rR][iI][vV][aA][cC][yY][\.][dD][aA][tT][aA][uU][sS][aA][gG][eE][\.][rR][eE][sS][eE][aA][rR][cC][hH]" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="fileFormat">
+    <xs:annotation>
+      <xs:documentation>Anger kompatibla filformat.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[cC][sS][vV]|[cC][uU][sS][tT][oO][mM]|[pP][aA][rR][qQ][uU][eE][tT]" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="sqlOutputType">
+    <xs:annotation>
+      <xs:documentation>Anger utdatatyper som är kompatibla med sqlOutput.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[sS][pP][aA][rR][kK][sS][qQ][lL]|[tT][sS][qQ][lL]" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="businessKey">
+    <xs:restriction base="xs:string" />
+  </xs:simpleType>
+  <xs:complexType name="column">
+    <xs:annotation>
+      <xs:documentation>Beskriver en kolumn i en tabulär datakälla.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="descriptions" type="descriptionsCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="dimlDataType" type="dimlDataType" minOccurs="0" maxOccurs="1" />
+      <xs:element name="names" type="namesCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="traits" type="traitsCollection" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+    <xs:attribute name="id" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Kolumnens id.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="sampleDataRow">
+    <xs:annotation>
+      <xs:documentation>Anger exempeldata.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="value" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tableRelation">
+    <xs:annotation>
+      <xs:documentation>Anger eventuella tabellrelationer och hur de relaterar via relationsColumns.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="relationColumns" type="relationColumns" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Ett unikt id för tabellrelationen.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="targetTableId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger vilken tabell som tabellrelationen relaterar till.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="dimlDataType">
+    <xs:annotation>
+      <xs:documentation>Anger en Diml-datatyp baserat på dom typer som finns definierade i datatypsspecifikationen.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="bits" type="xs:int" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger antalet bitar som används för att lagra heltal.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="format" type="dimlDataTypeFormat" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger formatet på datan. T.ex. Xml eller Json.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="id" type="dimlDataTypes" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger datatypens typ. T.ex. String eller Integer.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="isFixedLength" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger ifall t.ex. en sträng har en fixerad längd och alltid tar upp lika mycket plats.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="isNullable" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger ifall datatypen kan vara null eller ej.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="isUnsigned" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger ifall datatypen enbart kan innehålla positiva heltal.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="isWideChar" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger ifall datatypen är en widechar is SQL.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="length" type="xs:int" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger maxlängden på t.ex. en sträng.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="mantissa" type="xs:int" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger antalet bitar som används för att lagra mantissan för flyttal.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="originalDataType" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger källsystemets datatyp.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="originalPlatform" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger typen av källsystem som datatypen härstammar från.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="precision" type="xs:int" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger precisionen för tid och decimaltal.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="scale" type="xs:int" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger skalan för decimaltal.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="relationColumns">
+    <xs:annotation>
+      <xs:documentation>Anger med vilka kolumner en tabell relaterar till en annan.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="columnName" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger relationkolumnens namn i källtabellen.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="targetColumnName" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger relationkolumnens namn i den relaterade tabellen.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:simpleType name="dimlDataTypeFormat">
+    <xs:annotation>
+      <xs:documentation></xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[jJ][sS][oO][nN]|[xX][mM][lL]" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="dimlDataTypes">
+    <xs:annotation>
+      <xs:documentation></xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[bB][iI][nN][aA][rR][yY]|[bB][oO][oO][lL][eE][aA][nN]|[dD][aA][tT][eE]|[dD][aA][tT][eE][tT][iI][mM][eE]|[dD][aA][tT][eE][tT][iI][mM][eE][oO][fF][fF][sS][eE][tT]|[dD][eE][cC][iI][mM][aA][lL]|[fF][lL][oO][aA][tT]|[gG][uU][iI][dD]|[iI][nN][tT][eE][gG][eE][rR]|[sS][tT][rR][iI][nN][gG]|[tT][iI][mM][eE]" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
