@@ -420,17 +420,11 @@
     </xs:attribute>
   </xs:complexType>
   <xs:simpleType name="dimlDataTypeFormat">
-    <xs:annotation>
-      <xs:documentation></xs:documentation>
-    </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:pattern value="[jJ][sS][oO][nN]|[xX][mM][lL]" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="dimlDataTypes">
-    <xs:annotation>
-      <xs:documentation></xs:documentation>
-    </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:pattern value="[bB][iI][nN][aA][rR][yY]|[bB][oO][oO][lL][eE][aA][nN]|[dD][aA][tT][eE]|[dD][aA][tT][eE][tT][iI][mM][eE]|[dD][aA][tT][eE][tT][iI][mM][eE][oO][fF][fF][sS][eE][tT]|[dD][eE][cC][iI][mM][aA][lL]|[fF][lL][oO][aA][tT]|[gG][uU][iI][dD]|[iI][nN][tT][eE][gG][eE][rR]|[sS][tT][rR][iI][nN][gG]|[tT][iI][mM][eE]" />
     </xs:restriction>
