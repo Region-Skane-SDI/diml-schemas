@@ -878,7 +878,7 @@
       <xs:element name="businessKeyNull" type="businessKeyNull" minOccurs="0" maxOccurs="1" />
       <xs:element name="qualityValidation" type="qualityValidation" minOccurs="0" maxOccurs="1" />
     </xs:all>
-    <xs:attribute name="tableId" type="xs:string" use="optional">
+    <xs:attribute name="tableId" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>A unique identifier that references a specific table.</xs:documentation>
       </xs:annotation>

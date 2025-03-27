@@ -5,8 +5,8 @@
       <xs:documentation>Beskrivning av en apiprodukt med dess specifikationer.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="descriptions" type="descriptionsCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="names" type="namesCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="descriptions" type="descriptionsCollection" minOccurs="1" maxOccurs="1" />
+      <xs:element name="names" type="namesCollection" minOccurs="1" maxOccurs="1" />
       <xs:element name="traits" type="traitsCollection" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="dimlId" type="xs:string" use="required">
