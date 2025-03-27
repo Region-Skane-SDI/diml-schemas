@@ -361,6 +361,7 @@
       <xs:documentation>Anger de olika stadien för data och dess egenskaper, tex. Om en tabell ska materialiseras eller inte, hur data ska uppdateras osv.</xs:documentation>
     </xs:annotation>
     <xs:all>
+      <xs:element name="ingestPolicy" type="ingestPolicy" minOccurs="0" maxOccurs="1" />
       <xs:element name="logicDataStageTables" type="logicDataStageTablesCollection" minOccurs="0" maxOccurs="1" />
       <xs:element name="traits" type="traitsCollection" minOccurs="0" maxOccurs="1" />
       <xs:element name="validationPolicy" type="validationPolicy" minOccurs="0" maxOccurs="1" />
@@ -561,6 +562,15 @@
       <xs:element name="tableToTableMapping" type="tableToTableMapping" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="ingestPolicy">
+    <xs:annotation>
+      <xs:documentation>Sets rules that controls the behaviour of the ingestStore data stage.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="ingestStoreDataStageTables" type="ingestStoreDataStageTableCollection" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+    <xs:attribute name="loadType" type="loadType" use="required"></xs:attribute>
+  </xs:complexType>
   <xs:complexType name="logicDataStageTablesCollection">
     <xs:annotation>
       <xs:documentation>Innehåller en lista av logicDataStageTable som beskriver hur tabeller ska transformeras.</xs:documentation>
@@ -734,6 +744,17 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
+  <xs:complexType name="ingestStoreDataStageTableCollection">
+    <xs:sequence>
+      <xs:element name="ingestStoreDataStageTable" type="ingestStoreDataStageTable" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="loadType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="changeTracking" />
+      <xs:enumeration value="full" />
+    </xs:restriction>
+  </xs:simpleType>
   <xs:complexType name="logicDataStageTable">
     <xs:annotation>
       <xs:documentation>Beskriver hur tabeller ska transformeras.</xs:documentation>
@@ -910,6 +931,18 @@
     <xs:sequence>
       <xs:element name="columnMapping" type="columnMapping" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ingestStoreDataStageTable">
+    <xs:attribute name="loadType" type="loadType" use="required">
+      <xs:annotation>
+        <xs:documentation>Sets how the data should be loaded for a given table, e.g. 'full' or 'changeTracking'.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="tableId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>A unique identifier that references a specific table.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
   <xs:complexType name="logicColumnMappingsCollection">
     <xs:annotation>
