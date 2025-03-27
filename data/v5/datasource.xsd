@@ -54,7 +54,8 @@
       <xs:documentation>Anger vilken källplattformstyp som ska användas.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[aA][zZ][sS][qQ][lL][sS][eE][rR][vV][eE][rR]|[sS][qQ][lL][sS][eE][rR][vV][eE][rR]" />
+      <xs:enumeration value="azsqlserver" />
+      <xs:enumeration value="sqlserver" />
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="dataSourceTableCollection">
@@ -233,7 +234,9 @@
       <xs:documentation>Anger textformat för beskrivningen</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[lL][oO][gG][iI][cC][mM][dD]|[mM][dD]|[pP][lL][aA][iI][nN]" />
+      <xs:enumeration value="logicMd" />
+      <xs:enumeration value="md" />
+      <xs:enumeration value="plain" />
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="businessKeysCollection">
@@ -270,7 +273,21 @@
       <xs:documentation>The type of trait.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[aA][pP][pP][eE][aA][rR][aA][nN][cC][eE][\.][iI][cC][oO][nN]|[cC][lL][aA][sS][sS][iI][fF][iI][cC][aA][tT][iI][oO][nN][\.][iI][nN][fF][oO][cC][lL][aA][sS][sS]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][aA][dD][dD][rR][eE][sS][sS]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][eE][mM][aA][iI][lL]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][eE][mM][pP][lL][oO][yY][eE][eE][nN][uU][mM][bB][eE][rR]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][nN][aA][mM][eE]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][oO][tT][hH][eE][rR]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][sS][sS][nN]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][zZ][iI][pP]|[pP][rR][iI][vV][aA][cC][yY][\.][dD][aA][tT][aA][iI][dD][eE][nN][tT][iI][fF][iI][aA][bB][iI][lL][iI][tT][yY][\.][aA][gG][gG][rR][eE][gG][aA][tT][eE][dD]|[pP][rR][iI][vV][aA][cC][yY][\.][dD][aA][tT][aA][iI][dD][eE][nN][tT][iI][fF][iI][aA][bB][iI][lL][iI][tT][yY][\.][aA][nN][oO][nN][yY][mM][iI][zZ][eE][dD]|[pP][rR][iI][vV][aA][cC][yY][\.][dD][aA][tT][aA][iI][dD][eE][nN][tT][iI][fF][iI][aA][bB][iI][lL][iI][tT][yY][\.][iI][dD][eE][nN][tT][iI][fF][iI][eE][dD]|[pP][rR][iI][vV][aA][cC][yY][\.][dD][aA][tT][aA][iI][dD][eE][nN][tT][iI][fF][iI][aA][bB][iI][lL][iI][tT][yY][\.][pP][sS][eE][uU][dD][oO][nN][yY][mM][iI][zZ][eE][dD]|[pP][rR][iI][vV][aA][cC][yY][\.][dD][aA][tT][aA][uU][sS][aA][gG][eE][\.][iI][mM][pP][rR][oO][vV][eE]|[pP][rR][iI][vV][aA][cC][yY][\.][dD][aA][tT][aA][uU][sS][aA][gG][eE][\.][rR][eE][sS][eE][aA][rR][cC][hH]" />
+      <xs:enumeration value="appearance.icon" />
+      <xs:enumeration value="classification.infoClass" />
+      <xs:enumeration value="means.pii.address" />
+      <xs:enumeration value="means.pii.email" />
+      <xs:enumeration value="means.pii.employeeNumber" />
+      <xs:enumeration value="means.pii.name" />
+      <xs:enumeration value="means.pii.other" />
+      <xs:enumeration value="means.pii.ssn" />
+      <xs:enumeration value="means.pii.zip" />
+      <xs:enumeration value="privacy.dataIdentifiability.aggregated" />
+      <xs:enumeration value="privacy.dataIdentifiability.anonymized" />
+      <xs:enumeration value="privacy.dataIdentifiability.identified" />
+      <xs:enumeration value="privacy.dataIdentifiability.pseudonymized" />
+      <xs:enumeration value="privacy.dataUsage.improve" />
+      <xs:enumeration value="privacy.dataUsage.research" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="fileFormat">
@@ -278,7 +295,9 @@
       <xs:documentation>Anger kompatibla filformat.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[cC][sS][vV]|[cC][uU][sS][tT][oO][mM]|[pP][aA][rR][qQ][uU][eE][tT]" />
+      <xs:enumeration value="csv" />
+      <xs:enumeration value="custom" />
+      <xs:enumeration value="parquet" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="sqlOutputType">
@@ -286,7 +305,8 @@
       <xs:documentation>Anger utdatatyper som är kompatibla med sqlOutput.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[sS][pP][aA][rR][kK][sS][qQ][lL]|[tT][sS][qQ][lL]" />
+      <xs:enumeration value="sparksql" />
+      <xs:enumeration value="tsql" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="businessKey">
@@ -421,12 +441,23 @@
   </xs:complexType>
   <xs:simpleType name="dimlDataTypeFormat">
     <xs:restriction base="xs:string">
-      <xs:pattern value="[jJ][sS][oO][nN]|[xX][mM][lL]" />
+      <xs:enumeration value="json" />
+      <xs:enumeration value="xml" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="dimlDataTypes">
     <xs:restriction base="xs:string">
-      <xs:pattern value="[bB][iI][nN][aA][rR][yY]|[bB][oO][oO][lL][eE][aA][nN]|[dD][aA][tT][eE]|[dD][aA][tT][eE][tT][iI][mM][eE]|[dD][aA][tT][eE][tT][iI][mM][eE][oO][fF][fF][sS][eE][tT]|[dD][eE][cC][iI][mM][aA][lL]|[fF][lL][oO][aA][tT]|[gG][uU][iI][dD]|[iI][nN][tT][eE][gG][eE][rR]|[sS][tT][rR][iI][nN][gG]|[tT][iI][mM][eE]" />
+      <xs:enumeration value="binary" />
+      <xs:enumeration value="boolean" />
+      <xs:enumeration value="date" />
+      <xs:enumeration value="dateTime" />
+      <xs:enumeration value="dateTimeOffset" />
+      <xs:enumeration value="decimal" />
+      <xs:enumeration value="float" />
+      <xs:enumeration value="guid" />
+      <xs:enumeration value="integer" />
+      <xs:enumeration value="string" />
+      <xs:enumeration value="time" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

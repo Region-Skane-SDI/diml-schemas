@@ -116,7 +116,11 @@
       <xs:documentation>Anger vilken plattform som ska användas.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[aA][zZ][dD][aA][tT][aA][bB][rR][iI][cC][kK][sS]|[aA][zZ][sS][qQ][lL][sS][eE][rR][vV][eE][rR]|[mM][sS][fF][aA][bB][rR][iI][cC][\-][lL][aA][kK][eE][hH][oO][uU][sS][eE]|[mM][sS][fF][aA][bB][rR][iI][cC][\-][wW][aA][rR][eE][hH][oO][uU][sS][eE]|[sS][qQ][lL][sS][eE][rR][vV][eE][rR]" />
+      <xs:enumeration value="azdatabricks" />
+      <xs:enumeration value="azsqlserver" />
+      <xs:enumeration value="msfabric-lakehouse" />
+      <xs:enumeration value="msfabric-warehouse" />
+      <xs:enumeration value="sqlserver" />
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="traitsCollection">
@@ -192,7 +196,9 @@
       <xs:documentation>Anger vilka åtkomsträttigheter som finns för dataprodukten i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[nN][oO][nN][pP][uU][bB][lL][iI][cC]|[pP][uU][bB][lL][iI][cC]|[rR][eE][sS][tT][rR][iI][cC][tT][eE][dD]" />
+      <xs:enumeration value="nonPublic" />
+      <xs:enumeration value="public" />
+      <xs:enumeration value="restricted" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="dCatAvailabilityType">
@@ -200,7 +206,10 @@
       <xs:documentation>Anger dataproduktens tillgänglighet i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[aA][vV][aA][iI][lL][aA][bB][lL][eE]|[eE][xX][pP][eE][rR][iI][mM][eE][nN][tT][aA][lL]|[sS][tT][aA][bB][lL][eE]|[tT][eE][mM][pP][oO][rR][aA][rR][yY]" />
+      <xs:enumeration value="available" />
+      <xs:enumeration value="experimental" />
+      <xs:enumeration value="stable" />
+      <xs:enumeration value="temporary" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="dCatDataThemeType">
@@ -208,7 +217,19 @@
       <xs:documentation>Anger vilket datatema dataprodukten tillhör i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[eE][cC][oO][nN]|[eE][dD][uU][cC]|[eE][nN][eE][rR]|[eE][nN][vV][iI]|[gG][oO][vV][eE]|[hH][eE][aA][lL]|[iI][nN][tT][rR]|[jJ][uU][sS][tT]|[oO][pP][_][dD][aA][tT][pP][rR][oO]|[rR][eE][gG][iI]|[sS][oO][cC][iI]|[tT][eE][cC][hH]|[tT][rR][aA][nN]" />
+      <xs:enumeration value="econ" />
+      <xs:enumeration value="educ" />
+      <xs:enumeration value="ener" />
+      <xs:enumeration value="envi" />
+      <xs:enumeration value="gove" />
+      <xs:enumeration value="heal" />
+      <xs:enumeration value="intr" />
+      <xs:enumeration value="just" />
+      <xs:enumeration value="op_datpro" />
+      <xs:enumeration value="regi" />
+      <xs:enumeration value="soci" />
+      <xs:enumeration value="tech" />
+      <xs:enumeration value="tran" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="dCatStatusType">
@@ -216,7 +237,10 @@
       <xs:documentation>Anger dataproduktens status i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[cC][oO][mM][pP][lL][eE][tT][eE][dD]|[dD][eE][pP][rR][eE][cC][aA][tT][eE][dD]|[uU][nN][dD][eE][rR][dD][eE][vV][eE][lL][oO][pP][mM][eE][nN][tT]|[wW][iI][tT][hH][dD][rR][aA][wW][nN]" />
+      <xs:enumeration value="completed" />
+      <xs:enumeration value="deprecated" />
+      <xs:enumeration value="underDevelopment" />
+      <xs:enumeration value="withdrawn" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="dCatUpdateFrequencyType">
@@ -224,7 +248,26 @@
       <xs:documentation>Anger dataproduktens uppdateringsfrekvens i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[aA][nN][nN][uU][aA][lL]|[aA][nN][nN][uU][aA][lL][2]|[bB][iI][eE][nN][nN][iI][aA][lL]|[bB][iI][mM][oO][nN][tT][hH][lL][yY]|[bB][iI][wW][eE][eE][kK][lL][yY]|[cC][oO][nN][tT][iI][nN][uU][oO][uU][sS]|[dD][aA][iI][lL][yY]|[dD][aA][iI][lL][yY][2]|[iI][rR][rR][eE][gG][uU][lL][aA][rR]|[mM][oO][nN][tT][hH][lL][yY]|[mM][oO][nN][tT][hH][lL][yY][2]|[mM][oO][nN][tT][hH][lL][yY][3]|[oO][tT][hH][eE][rR]|[qQ][uU][aA][rR][tT][eE][rR][lL][yY]|[tT][rR][iI][eE][nN][nN][iI][aA][lL]|[uU][nN][kK][nN][oO][wW][nN]|[uU][pP][dD][aA][tT][eE][_][cC][oO][nN][tT][iI][nN][uU][oO][uU][sS][lL][yY]|[wW][eE][eE][kK][lL][yY]|[wW][eE][eE][kK][lL][yY][2]|[wW][eE][eE][kK][lL][yY][3]" />
+      <xs:enumeration value="annual" />
+      <xs:enumeration value="annual2" />
+      <xs:enumeration value="biennial" />
+      <xs:enumeration value="bimonthly" />
+      <xs:enumeration value="biweekly" />
+      <xs:enumeration value="continuous" />
+      <xs:enumeration value="daily" />
+      <xs:enumeration value="daily2" />
+      <xs:enumeration value="irregular" />
+      <xs:enumeration value="monthly" />
+      <xs:enumeration value="monthly2" />
+      <xs:enumeration value="monthly3" />
+      <xs:enumeration value="other" />
+      <xs:enumeration value="quarterly" />
+      <xs:enumeration value="triennial" />
+      <xs:enumeration value="unknown" />
+      <xs:enumeration value="update_continuously" />
+      <xs:enumeration value="weekly" />
+      <xs:enumeration value="weekly2" />
+      <xs:enumeration value="weekly3" />
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="description">
@@ -433,7 +476,9 @@
       <xs:documentation>Anger textformat för beskrivningen</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[lL][oO][gG][iI][cC][mM][dD]|[mM][dD]|[pP][lL][aA][iI][nN]" />
+      <xs:enumeration value="logicMd" />
+      <xs:enumeration value="md" />
+      <xs:enumeration value="plain" />
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="businessKeysCollection">
@@ -491,7 +536,21 @@
       <xs:documentation>The type of trait.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[aA][pP][pP][eE][aA][rR][aA][nN][cC][eE][\.][iI][cC][oO][nN]|[cC][lL][aA][sS][sS][iI][fF][iI][cC][aA][tT][iI][oO][nN][\.][iI][nN][fF][oO][cC][lL][aA][sS][sS]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][aA][dD][dD][rR][eE][sS][sS]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][eE][mM][aA][iI][lL]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][eE][mM][pP][lL][oO][yY][eE][eE][nN][uU][mM][bB][eE][rR]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][nN][aA][mM][eE]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][oO][tT][hH][eE][rR]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][sS][sS][nN]|[mM][eE][aA][nN][sS][\.][pP][iI][iI][\.][zZ][iI][pP]|[pP][rR][iI][vV][aA][cC][yY][\.][dD][aA][tT][aA][iI][dD][eE][nN][tT][iI][fF][iI][aA][bB][iI][lL][iI][tT][yY][\.][aA][gG][gG][rR][eE][gG][aA][tT][eE][dD]|[pP][rR][iI][vV][aA][cC][yY][\.][dD][aA][tT][aA][iI][dD][eE][nN][tT][iI][fF][iI][aA][bB][iI][lL][iI][tT][yY][\.][aA][nN][oO][nN][yY][mM][iI][zZ][eE][dD]|[pP][rR][iI][vV][aA][cC][yY][\.][dD][aA][tT][aA][iI][dD][eE][nN][tT][iI][fF][iI][aA][bB][iI][lL][iI][tT][yY][\.][iI][dD][eE][nN][tT][iI][fF][iI][eE][dD]|[pP][rR][iI][vV][aA][cC][yY][\.][dD][aA][tT][aA][iI][dD][eE][nN][tT][iI][fF][iI][aA][bB][iI][lL][iI][tT][yY][\.][pP][sS][eE][uU][dD][oO][nN][yY][mM][iI][zZ][eE][dD]|[pP][rR][iI][vV][aA][cC][yY][\.][dD][aA][tT][aA][uU][sS][aA][gG][eE][\.][iI][mM][pP][rR][oO][vV][eE]|[pP][rR][iI][vV][aA][cC][yY][\.][dD][aA][tT][aA][uU][sS][aA][gG][eE][\.][rR][eE][sS][eE][aA][rR][cC][hH]" />
+      <xs:enumeration value="appearance.icon" />
+      <xs:enumeration value="classification.infoClass" />
+      <xs:enumeration value="means.pii.address" />
+      <xs:enumeration value="means.pii.email" />
+      <xs:enumeration value="means.pii.employeeNumber" />
+      <xs:enumeration value="means.pii.name" />
+      <xs:enumeration value="means.pii.other" />
+      <xs:enumeration value="means.pii.ssn" />
+      <xs:enumeration value="means.pii.zip" />
+      <xs:enumeration value="privacy.dataIdentifiability.aggregated" />
+      <xs:enumeration value="privacy.dataIdentifiability.anonymized" />
+      <xs:enumeration value="privacy.dataIdentifiability.identified" />
+      <xs:enumeration value="privacy.dataIdentifiability.pseudonymized" />
+      <xs:enumeration value="privacy.dataUsage.improve" />
+      <xs:enumeration value="privacy.dataUsage.research" />
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="tableToTableMappingsCollection">
@@ -515,7 +574,10 @@
       <xs:documentation>Anger om data ska materialiseras eller virtualiseras.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[iI][nN][gG][eE][sS][tT]|[tT][aA][bB][lL][eE]|[vV][aA][lL][iI][dD][aA][tT][eE]|[vV][iI][eE][wW]" />
+      <xs:enumeration value="ingest" />
+      <xs:enumeration value="table" />
+      <xs:enumeration value="validate" />
+      <xs:enumeration value="view" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="dataStageRole">
@@ -523,7 +585,11 @@
       <xs:documentation>Anger vad som sker i dataStage.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[cC][oO][nN][tT][rR][oO][lL]|[iI][nN][pP][uU][tT]|[nN][oO][nN][eE]|[oO][uU][tT][pP][uU][tT]|[tT][rR][aA][nN][sS][fF][oO][rR][mM][aA][tT][iI][oO][nN]" />
+      <xs:enumeration value="control" />
+      <xs:enumeration value="input" />
+      <xs:enumeration value="none" />
+      <xs:enumeration value="output" />
+      <xs:enumeration value="transformation" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="dataStageType">
@@ -531,7 +597,14 @@
       <xs:documentation>Anger vilken typ av dataStage .</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[bB][aA][sS][iI][cC][lL][oO][gG][iI][cC]|[hH][aA][sS][hH]|[iI][nN][gG][eE][sS][tT][sS][tT][oO][rR][eE]|[lL][oO][gG][iI][cC]|[pP][eE][rR][mM][aA][sS][tT][oO][rR][eE]|[tT][eE][mM][pP][sS][tT][oO][rR][eE]|[tT][yY][pP][eE][cC][aA][sS][tT]|[vV][aA][lL][iI][dD][aA][tT][eE]" />
+      <xs:enumeration value="basicLogic" />
+      <xs:enumeration value="hash" />
+      <xs:enumeration value="ingestStore" />
+      <xs:enumeration value="logic" />
+      <xs:enumeration value="permaStore" />
+      <xs:enumeration value="tempStore" />
+      <xs:enumeration value="typecast" />
+      <xs:enumeration value="validate" />
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="validationPolicy">
@@ -550,7 +623,7 @@
       <xs:documentation>Anger utdatatyper som är kompatibla med apiOutput.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[oO][dD][aA][tT][aA]" />
+      <xs:enumeration value="odata" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="fileFormat">
@@ -558,7 +631,9 @@
       <xs:documentation>Anger kompatibla filformat.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[cC][sS][vV]|[cC][uU][sS][tT][oO][mM]|[pP][aA][rR][qQ][uU][eE][tT]" />
+      <xs:enumeration value="csv" />
+      <xs:enumeration value="custom" />
+      <xs:enumeration value="parquet" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="sqlOutputType">
@@ -566,7 +641,8 @@
       <xs:documentation>Anger utdatatyper som är kompatibla med sqlOutput.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[sS][pP][aA][rR][kK][sS][qQ][lL]|[tT][sS][qQ][lL]" />
+      <xs:enumeration value="sparksql" />
+      <xs:enumeration value="tsql" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="businessKey">
@@ -848,7 +924,8 @@
       <xs:documentation>Actions for business key duplicate policy</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[eE][lL][iI][mM][iI][nN][aA][tT][eE]|[fF][lL][aA][gG]" />
+      <xs:enumeration value="eliminate" />
+      <xs:enumeration value="flag" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="businessKeyNullAction">
@@ -856,7 +933,8 @@
       <xs:documentation>Actions for business key null policy</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[fF][lL][aA][gG]|[sS][eE][tT][dD][eE][fF][aA][uU][lL][tT][vV][aA][lL][uU][eE]" />
+      <xs:enumeration value="flag" />
+      <xs:enumeration value="setDefaultValue" />
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="defaultValueCollection">
@@ -869,7 +947,10 @@
       <xs:documentation>Actions for quality validation policy</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:pattern value="[eE][lL][iI][mM][iI][nN][aA][tT][eE][oO][nN][lL][yY]|[fF][iI][lL][tT][eE][rR][vV][aA][lL][iI][dD]|[iI][gG][nN][oO][rR][eE][vV][aA][lL][iI][dD]|[sS][tT][oO][pP]" />
+      <xs:enumeration value="eliminateOnly" />
+      <xs:enumeration value="filterValid" />
+      <xs:enumeration value="ignoreValid" />
+      <xs:enumeration value="stop" />
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="validateDataStageTable">
@@ -909,12 +990,23 @@
   </xs:complexType>
   <xs:simpleType name="dimlDataTypeFormat">
     <xs:restriction base="xs:string">
-      <xs:pattern value="[jJ][sS][oO][nN]|[xX][mM][lL]" />
+      <xs:enumeration value="json" />
+      <xs:enumeration value="xml" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="dimlDataTypes">
     <xs:restriction base="xs:string">
-      <xs:pattern value="[bB][iI][nN][aA][rR][yY]|[bB][oO][oO][lL][eE][aA][nN]|[dD][aA][tT][eE]|[dD][aA][tT][eE][tT][iI][mM][eE]|[dD][aA][tT][eE][tT][iI][mM][eE][oO][fF][fF][sS][eE][tT]|[dD][eE][cC][iI][mM][aA][lL]|[fF][lL][oO][aA][tT]|[gG][uU][iI][dD]|[iI][nN][tT][eE][gG][eE][rR]|[sS][tT][rR][iI][nN][gG]|[tT][iI][mM][eE]" />
+      <xs:enumeration value="binary" />
+      <xs:enumeration value="boolean" />
+      <xs:enumeration value="date" />
+      <xs:enumeration value="dateTime" />
+      <xs:enumeration value="dateTimeOffset" />
+      <xs:enumeration value="decimal" />
+      <xs:enumeration value="float" />
+      <xs:enumeration value="guid" />
+      <xs:enumeration value="integer" />
+      <xs:enumeration value="string" />
+      <xs:enumeration value="time" />
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="columnMapping">
