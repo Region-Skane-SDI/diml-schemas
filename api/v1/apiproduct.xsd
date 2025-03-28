@@ -1,13 +1,13 @@
 <xs:schema xmlns="https://github.com/Region-Skane-SDI/diml/apiproduct" targetNamespace="https://github.com/Region-Skane-SDI/diml/apiproduct" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
-  <xs:element name="apiProduct" type="apiProduct" />
-  <xs:complexType name="apiProduct">
+  <xs:element name="apiProduct" type="Services.ApiProductSpecification" />
+  <xs:complexType name="Services.ApiProductSpecification">
     <xs:annotation>
       <xs:documentation>Beskrivning av en apiprodukt med dess specifikationer.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="descriptions" type="descriptionsCollection" minOccurs="1" maxOccurs="1" />
-      <xs:element name="names" type="namesCollection" minOccurs="1" maxOccurs="1" />
-      <xs:element name="traits" type="traitsCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="descriptions" type="Core.Descriptions.DescriptionCollection" minOccurs="1" maxOccurs="1" />
+      <xs:element name="names" type="Core.Names.NameCollection" minOccurs="1" maxOccurs="1" />
+      <xs:element name="traits" type="Core.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="dimlId" type="xs:string" use="required">
       <xs:annotation>
@@ -15,31 +15,31 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="descriptionsCollection">
+  <xs:complexType name="Core.Descriptions.DescriptionCollection">
     <xs:annotation>
       <xs:documentation>En lista av beskrivningar för ett Diml-objekt i olika format och språk.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="description" type="description" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="description" type="Core.Descriptions.Description" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="namesCollection">
+  <xs:complexType name="Core.Names.NameCollection">
     <xs:annotation>
       <xs:documentation>En lista av namn för att namnge ett Diml-objekt på olika språk.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="name" type="name" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="name" type="Core.Names.Name" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="traitsCollection">
+  <xs:complexType name="Core.Traits.TraitCollection">
     <xs:annotation>
       <xs:documentation>En lista av egenskaper på ett Diml-objekt.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="trait" type="trait" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="trait" type="Core.Traits.Trait" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="description">
+  <xs:complexType name="Core.Descriptions.Description">
     <xs:simpleContent>
       <xs:extension base="xs:string">
         <xs:annotation>
@@ -50,7 +50,7 @@
             <xs:documentation>Anger språk för beskrivning.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="type" type="descriptionType" use="required">
+        <xs:attribute name="type" type="Core.Descriptions.DescriptionType" use="required">
           <xs:annotation>
             <xs:documentation>Anger beskrivning i valt format, t.ex markdown eller plain text.</xs:documentation>
           </xs:annotation>
@@ -58,7 +58,7 @@
       </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
-  <xs:complexType name="name">
+  <xs:complexType name="Core.Names.Name">
     <xs:simpleContent>
       <xs:extension base="xs:string">
         <xs:annotation>
@@ -72,11 +72,11 @@
       </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
-  <xs:complexType name="trait">
+  <xs:complexType name="Core.Traits.Trait">
     <xs:annotation>
       <xs:documentation>Används för att specificera egenskaper (traits) på ett Diml-objekt.</xs:documentation>
     </xs:annotation>
-    <xs:attribute name="id" type="traitType" use="required">
+    <xs:attribute name="id" type="Core.Traits.TraitType" use="required">
       <xs:annotation>
         <xs:documentation>The type of trait.</xs:documentation>
       </xs:annotation>
@@ -87,7 +87,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:simpleType name="descriptionType">
+  <xs:simpleType name="Core.Descriptions.DescriptionType">
     <xs:annotation>
       <xs:documentation>Anger textformat för beskrivningen</xs:documentation>
     </xs:annotation>
@@ -97,7 +97,7 @@
       <xs:enumeration value="plain" />
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="traitType">
+  <xs:simpleType name="Core.Traits.TraitType">
     <xs:annotation>
       <xs:documentation>The type of trait.</xs:documentation>
     </xs:annotation>

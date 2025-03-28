@@ -1,11 +1,11 @@
 <xs:schema xmlns="https://github.com/Region-Skane-SDI/diml/config" targetNamespace="https://github.com/Region-Skane-SDI/diml/config" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
-  <xs:element name="config" type="config" />
-  <xs:complexType name="config">
+  <xs:element name="config" type="Core.DimlConfig.Config" />
+  <xs:complexType name="Core.DimlConfig.Config">
     <xs:annotation>
       <xs:documentation>Konfiguration av Diml-miljö där t.ex standardspråk anges.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="traits" type="traitsCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="traits" type="Core.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="defaultLanguage" type="xs:string" use="optional">
       <xs:annotation>
@@ -13,19 +13,19 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="traitsCollection">
+  <xs:complexType name="Core.Traits.TraitCollection">
     <xs:annotation>
       <xs:documentation>En lista av egenskaper på ett Diml-objekt.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="trait" type="trait" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="trait" type="Core.Traits.Trait" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="trait">
+  <xs:complexType name="Core.Traits.Trait">
     <xs:annotation>
       <xs:documentation>Används för att specificera egenskaper (traits) på ett Diml-objekt.</xs:documentation>
     </xs:annotation>
-    <xs:attribute name="id" type="traitType" use="required">
+    <xs:attribute name="id" type="Core.Traits.TraitType" use="required">
       <xs:annotation>
         <xs:documentation>The type of trait.</xs:documentation>
       </xs:annotation>
@@ -36,7 +36,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:simpleType name="traitType">
+  <xs:simpleType name="Core.Traits.TraitType">
     <xs:annotation>
       <xs:documentation>The type of trait.</xs:documentation>
     </xs:annotation>
