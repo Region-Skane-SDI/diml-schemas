@@ -5,7 +5,27 @@
       <xs:documentation>Beskrivning av en apiprodukt med dess specifikationer.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="descriptions" type="Core.Descriptions.DescriptionCollection" minOccurs="1" maxOccurs="1" />
+      <xs:element name="apis" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:choice>
+              <xs:element name="restApi" type="Services.Apis.Rest.RestApi" />
+              <xs:element name="soapApi" type="Services.Apis.Soap.SoapApi" />
+            </xs:choice>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="backends" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:choice>
+              <xs:element name="restBackend" type="Services.Backends.Rest.RestBackend" />
+              <xs:element name="soapBackend" type="Services.Backends.Soap.SoapBackend" />
+            </xs:choice>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="descriptions" type="Core.Descriptions.DescriptionCollection" minOccurs="0" maxOccurs="1" />
       <xs:element name="names" type="Core.Names.NameCollection" minOccurs="1" maxOccurs="1" />
       <xs:element name="traits" type="Core.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
     </xs:all>
@@ -14,6 +34,33 @@
         <xs:documentation>En globalt unik identifierare för Diml-objektet.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
+    <xs:attribute name="uniqueName" type="xs:string" use="required"></xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Services.Apis.Rest.RestApi">
+    <xs:all>
+      <xs:element name="authorization" type="Services.Core.Authorization.Authorization" minOccurs="0" maxOccurs="1" />
+      <xs:element name="match" type="Services.Apis.Rest.RestApiMatch" minOccurs="0" maxOccurs="1" />
+      <xs:element name="routes" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="route" type="Services.Apis.Rest.Route" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="transforms" type="Services.Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+    <xs:attribute name="backendId" type="xs:string" use="required"></xs:attribute>
+    <xs:attribute name="id" type="xs:string" use="required"></xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Services.Apis.Soap.SoapApi">
+    <xs:attribute name="backendId" type="xs:string" use="required"></xs:attribute>
+    <xs:attribute name="id" type="xs:string" use="required"></xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Services.Backends.Rest.RestBackend">
+    <xs:attribute name="id" type="xs:string" use="required"></xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Services.Backends.Soap.SoapBackend">
+    <xs:attribute name="id" type="xs:string" use="required"></xs:attribute>
   </xs:complexType>
   <xs:complexType name="Core.Descriptions.DescriptionCollection">
     <xs:annotation>
@@ -38,6 +85,37 @@
     <xs:sequence>
       <xs:element name="trait" type="Core.Traits.Trait" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Services.Core.Authorization.Authorization">
+    <xs:all>
+      <xs:element name="policy" type="Services.Core.Authorization.PolicyAuthorization" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="Services.Apis.Rest.RestApiMatch">
+    <xs:all>
+      <xs:element name="headers" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="header" type="Services.Apis.Rest.HeaderMatch" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="methods" type="Services.Core.HttpMethods" use="required"></xs:attribute>
+    <xs:attribute name="path" type="xs:string" use="required"></xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Services.Apis.Rest.Route">
+    <xs:all>
+      <xs:element name="authorization" type="Services.Core.Authorization.Authorization" minOccurs="0" maxOccurs="1" />
+      <xs:element name="match" type="Services.Apis.Rest.RestApiMatch" minOccurs="1" maxOccurs="1" />
+      <xs:element name="transforms" type="Services.Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="Services.Core.Transforms.Transforms">
+    <xs:all>
+      <xs:element name="request" type="Services.Core.Transforms.RequestTransforms" minOccurs="0" maxOccurs="1" />
+      <xs:element name="response" type="Services.Core.Transforms.ResponseTransforms" minOccurs="0" maxOccurs="1" />
+    </xs:all>
   </xs:complexType>
   <xs:complexType name="Core.Descriptions.Description">
     <xs:simpleContent>
@@ -87,6 +165,36 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
+  <xs:complexType name="Services.Core.Authorization.PolicyAuthorization">
+    <xs:attribute name="name" type="xs:string" use="optional"></xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Services.Apis.Rest.HeaderMatch">
+    <xs:attribute name="mode" type="Services.Apis.Rest.HeaderMatchMode" use="required"></xs:attribute>
+    <xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+  </xs:complexType>
+  <xs:simpleType name="Services.Core.HttpMethods">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="DELETE" />
+          <xs:enumeration value="GET" />
+          <xs:enumeration value="POST" />
+          <xs:enumeration value="PUT" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:complexType name="Services.Core.Transforms.RequestTransforms">
+    <xs:all>
+      <xs:element name="headers" type="Services.Core.Transforms.HeaderTransformCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="path" type="Services.Core.Transforms.PathTransforms" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="Services.Core.Transforms.ResponseTransforms">
+    <xs:all>
+      <xs:element name="headers" type="Services.Core.Transforms.HeaderTransformCollection" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+  </xs:complexType>
   <xs:simpleType name="Core.Descriptions.DescriptionType">
     <xs:annotation>
       <xs:documentation>Anger textformat för beskrivningen</xs:documentation>
@@ -117,6 +225,35 @@
       <xs:enumeration value="privacy.dataIdentifiability.pseudonymized" />
       <xs:enumeration value="privacy.dataUsage.improve" />
       <xs:enumeration value="privacy.dataUsage.research" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Services.Apis.Rest.HeaderMatchMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="exists" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Services.Core.Transforms.HeaderTransformCollection">
+    <xs:sequence>
+      <xs:element name="header" type="Services.Core.Transforms.HeaderTransform" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Services.Core.Transforms.PathTransforms">
+    <xs:all>
+      <xs:element name="removePrefix" type="Services.Core.Transforms.RemovePathPrefixTransform" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="Services.Core.Transforms.HeaderTransform">
+    <xs:attribute name="mode" type="Services.Core.Transforms.HeaderTransformMode" use="required"></xs:attribute>
+    <xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+    <xs:attribute name="value" type="xs:string" use="optional"></xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Services.Core.Transforms.RemovePathPrefixTransform">
+    <xs:attribute name="prefix" type="xs:string" use="required"></xs:attribute>
+  </xs:complexType>
+  <xs:simpleType name="Services.Core.Transforms.HeaderTransformMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="remove" />
+      <xs:enumeration value="set" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>
