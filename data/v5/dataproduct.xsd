@@ -615,7 +615,6 @@
     <xs:restriction base="xs:string">
       <xs:enumeration value="control" />
       <xs:enumeration value="input" />
-      <xs:enumeration value="none" />
       <xs:enumeration value="output" />
       <xs:enumeration value="transformation" />
     </xs:restriction>
@@ -742,11 +741,6 @@
     <xs:all>
       <xs:element name="columnMappings" type="Data.Tabular.ColumnMappingCollection" minOccurs="0" maxOccurs="1" />
     </xs:all>
-    <xs:attribute name="allowSchemaDrift" type="xs:boolean" use="optional">
-      <xs:annotation>
-        <xs:documentation>TODO</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
     <xs:attribute name="sourceTableId" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>Tabellens id i källan.</xs:documentation>
