@@ -308,15 +308,31 @@
       <xs:documentation>Beskriver en tabell i en tabulär dataprodukt.</xs:documentation>
     </xs:annotation>
     <xs:all>
+      <xs:element name="aliases" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="alias" type="Data.Tabular.Alias" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="businessKey" type="Data.Tabular.BusinessKeyCollection" minOccurs="0" maxOccurs="1" />
       <xs:element name="columns" type="Data.Tabular.DataProductColumnCollection" minOccurs="1" maxOccurs="1" />
       <xs:element name="descriptions" type="Core.Descriptions.DescriptionCollection" minOccurs="0" maxOccurs="1" />
       <xs:element name="names" type="Core.Names.NameCollection" minOccurs="1" maxOccurs="1" />
       <xs:element name="sampleData" type="Data.Tabular.SampleDataRowCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="tableInstances" type="Data.Tabular.TableInstanceCollection" minOccurs="0" maxOccurs="1" />
       <xs:element name="tableRelations" type="Data.Tabular.TableRelationCollection" minOccurs="0" maxOccurs="1" />
       <xs:element name="traits" type="Core.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
     </xs:all>
+    <xs:attribute name="existsFromStageId" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger från och med vilket dataStage som tabellen kommer att existera i. Om inget anges gäller dataStage med order="1".</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="existsToStageId" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger till och med vilket dataStage som tabellen kommer att existera i. Om inget anges gäller dataStage med order="X", där X = högsta order.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>Tabellens id.</xs:documentation>
@@ -482,6 +498,26 @@
       <xs:enumeration value="plain" />
     </xs:restriction>
   </xs:simpleType>
+  <xs:complexType name="Data.Tabular.Alias">
+    <xs:annotation>
+      <xs:documentation>Anger att ett objekt ska byta namn i en eller flera dataStage.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="fromStageId" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger från och med vilket dataStage som objektet ska byta namn i. Om inget anges gäller dataStage med order="1".</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="toStageId" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger till och med vilket dataStage som objektet ska byta namn i. Om inget anges gäller dataStage med order="X", där X = högsta order.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="value" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger alias för ett eller flera dataStages.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
   <xs:complexType name="Data.Tabular.BusinessKeyCollection">
     <xs:annotation>
       <xs:documentation>Innehåller en lista av businessKey som beskriver vilken kolumn som ska användas som BusinessKey</xs:documentation>
@@ -505,24 +541,6 @@
     <xs:sequence>
       <xs:element name="sampleDataRow" type="Data.Tabular.SampleDataRow" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="Data.Tabular.TableInstanceCollection">
-    <xs:annotation>
-      <xs:documentation>En samling av tabellinstanser i en tabulär dataprodukt.</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="tableInstance" type="Data.Tabular.TableInstance" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-    <xs:attribute name="existsFromStageId" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>Anger från och med vilket dataStage som tabellen kommer att existera i. Om inget anges gäller dataStage med order="1".</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="existsToStageId" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>Anger till och med vilket dataStage som tabellen kommer att existera i. Om inget anges gäller dataStage med order="X", där X = högsta order.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
   </xs:complexType>
   <xs:complexType name="Data.Tabular.TableRelationCollection">
     <xs:annotation>
@@ -663,12 +681,28 @@
       <xs:documentation>Beskriver en kolumn i en tabulär dataprodukt.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="columnInstances" type="Core.Columns.ColumnInstanceCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="aliases" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="alias" type="Data.Tabular.Alias" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="descriptions" type="Core.Descriptions.DescriptionCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="dimlDataType" type="Core.DataTypesConfig.DimlDataType" minOccurs="0" maxOccurs="1" />
+      <xs:element name="dimlDataType" type="Core.Columns.ColumnDimlDataType" minOccurs="0" maxOccurs="1" />
       <xs:element name="names" type="Core.Names.NameCollection" minOccurs="0" maxOccurs="1" />
       <xs:element name="traits" type="Core.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
     </xs:all>
+    <xs:attribute name="existsFromStageId" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger från och med vilket dataStage som kolumnen ska existera i. Om inget anges gäller dataStage med order="1".</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="existsToStageId" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger till och med vilket dataStage som kolumnen ska existera i. Om inget anges gäller dataStage med order="X", där X = högsta order.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>Kolumnens id.</xs:documentation>
@@ -682,26 +716,6 @@
     <xs:sequence>
       <xs:element name="value" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="Data.Tabular.TableInstance">
-    <xs:annotation>
-      <xs:documentation>Anger en instans av en tabell i en tabulär dataprodukt.</xs:documentation>
-    </xs:annotation>
-    <xs:attribute name="alias" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Anger tabellens alias för ett eller flera dataStages.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="fromStageId" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>Anger från och med vilket dataStage som tabellen ska byta namn i. Om inget anges gäller dataStage med order="1".</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="toStageId" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>Anger till och med vilket dataStage som tabellen ska byta namn i. Om inget anges gäller dataStage med order="X", där X = högsta order.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
   </xs:complexType>
   <xs:complexType name="Data.Tabular.TableRelation">
     <xs:annotation>
@@ -821,28 +835,13 @@
       <xs:element name="validateDataStageTable" type="Data.Tabular.ValidateDataStageTable" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="Core.Columns.ColumnInstanceCollection">
-    <xs:annotation>
-      <xs:documentation>En samling av kolumninstanser i en tabulär dataprodukt.</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="columnInstance" type="Core.Columns.ColumnInstance" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-    <xs:attribute name="existsFromStageId" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>Anger från och med vilket dataStage som kolumnen ska existera i. Om inget anges gäller dataStage med order="1".</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="existsToStageId" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>Anger till och med vilket dataStage som kolumnen ska existera i. Om inget anges gäller dataStage med order="X", där X = högsta order.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-  </xs:complexType>
-  <xs:complexType name="Core.DataTypesConfig.DimlDataType">
+  <xs:complexType name="Core.Columns.ColumnDimlDataType">
     <xs:annotation>
       <xs:documentation>Anger en Diml-datatyp baserat på dom typer som finns definierade i datatypsspecifikationen.</xs:documentation>
     </xs:annotation>
+    <xs:sequence>
+      <xs:element name="dimlDataTypeOverride" type="Core.Columns.ColumnDimlDataTypeOverride" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
     <xs:attribute name="bits" type="xs:int" use="optional">
       <xs:annotation>
         <xs:documentation>Anger antalet bitar som används för att lagra heltal.</xs:documentation>
@@ -998,26 +997,83 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Core.Columns.ColumnInstance">
+  <xs:complexType name="Core.Columns.ColumnDimlDataTypeOverride">
     <xs:annotation>
-      <xs:documentation>Anger en instans av en kolumn i en tabulär dataprodukt.</xs:documentation>
+      <xs:documentation>Anger en datatypändring av en kolumn i en tabulär dataprodukt.</xs:documentation>
     </xs:annotation>
-    <xs:all>
-      <xs:element name="dimlDataType" type="Core.DataTypesConfig.DimlDataType" minOccurs="0" maxOccurs="1" />
-    </xs:all>
-    <xs:attribute name="alias" type="xs:string" use="required">
+    <xs:attribute name="bits" type="xs:int" use="optional">
       <xs:annotation>
-        <xs:documentation>Anger kolumnens alias för ett eller flera dataStages.</xs:documentation>
+        <xs:documentation>Anger antalet bitar som används för att lagra heltal.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="format" type="Core.DataTypesConfig.DimlDataTypeFormat" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger formatet på datan. T.ex. Xml eller Json.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="fromStageId" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>Anger från och med vilket dataStage som kolumnen ska byta namn och/eller datatyp i. Om inget anges gäller dataStage med order="1".</xs:documentation>
+        <xs:documentation>Anger från och med vilket dataStage som kolumnen ska byta datatyp i. Om inget anges gäller dataStage med order="1".</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="id" type="Core.DataTypesConfig.DimlDataTypes" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger datatypens typ. T.ex. String eller Integer.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="isFixedLength" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger ifall t.ex. en sträng har en fixerad längd och alltid tar upp lika mycket plats.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="isNullable" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger ifall datatypen kan vara null eller ej.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="isUnsigned" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger ifall datatypen enbart kan innehålla positiva heltal.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="isWideChar" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger ifall datatypen är en widechar is SQL.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="length" type="xs:int" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger maxlängden på t.ex. en sträng.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="mantissa" type="xs:int" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger antalet bitar som används för att lagra mantissan för flyttal.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="originalDataType" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger källsystemets datatyp.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="originalPlatform" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger typen av källsystem som datatypen härstammar från.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="precision" type="xs:int" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger precisionen för tid och decimaltal.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="scale" type="xs:int" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger skalan för decimaltal.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="toStageId" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>Anger till och med vilket dataStage som kolumnen ska byta namn och/eller datatyp i. Om inget anges gäller dataStage med order="X", där X = högsta order.</xs:documentation>
+        <xs:documentation>Anger till och med vilket dataStage som kolumnen ska byta datatyp i. Om inget anges gäller dataStage med order="X", där X = högsta order.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
