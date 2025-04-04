@@ -245,6 +245,7 @@
   <xs:complexType name="Services.Core.Transforms.HeaderTransform">
     <xs:attribute name="mode" type="Services.Core.Transforms.HeaderTransformMode" use="required"></xs:attribute>
     <xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+    <xs:attribute name="overwrite" type="Services.Core.Transforms.HeaderTransformOverwrite" use="optional"></xs:attribute>
     <xs:attribute name="value" type="xs:string" use="optional"></xs:attribute>
   </xs:complexType>
   <xs:complexType name="Services.Core.Transforms.RemovePathPrefixTransform">
@@ -254,6 +255,12 @@
     <xs:restriction base="xs:string">
       <xs:enumeration value="remove" />
       <xs:enumeration value="set" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Services.Core.Transforms.HeaderTransformOverwrite">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="false" />
+      <xs:enumeration value="true" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>
