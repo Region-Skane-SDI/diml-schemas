@@ -48,6 +48,7 @@
         </xs:complexType>
       </xs:element>
       <xs:element name="transforms" type="Services.Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
+      <xs:element name="validations" type="Services.Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="backendId" type="xs:string" use="required"></xs:attribute>
     <xs:attribute name="id" type="xs:string" use="required"></xs:attribute>
@@ -109,12 +110,19 @@
       <xs:element name="authorization" type="Services.Core.Authorization.Authorization" minOccurs="0" maxOccurs="1" />
       <xs:element name="match" type="Services.Apis.Rest.RestApiMatch" minOccurs="1" maxOccurs="1" />
       <xs:element name="transforms" type="Services.Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
+      <xs:element name="validations" type="Services.Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
     </xs:all>
   </xs:complexType>
   <xs:complexType name="Services.Core.Transforms.Transforms">
     <xs:all>
       <xs:element name="request" type="Services.Core.Transforms.RequestTransforms" minOccurs="0" maxOccurs="1" />
       <xs:element name="response" type="Services.Core.Transforms.ResponseTransforms" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="Services.Core.Validations.Validations">
+    <xs:all>
+      <xs:element name="request" type="Services.Core.Validations.RequestValidations" minOccurs="0" maxOccurs="1" />
+      <xs:element name="response" type="Services.Core.Validations.ResponseValidations" minOccurs="0" maxOccurs="1" />
     </xs:all>
   </xs:complexType>
   <xs:complexType name="Core.Descriptions.Description">
@@ -195,6 +203,16 @@
       <xs:element name="headers" type="Services.Core.Transforms.HeaderTransformCollection" minOccurs="0" maxOccurs="1" />
     </xs:all>
   </xs:complexType>
+  <xs:complexType name="Services.Core.Validations.RequestValidations">
+    <xs:all>
+      <xs:element name="headers" type="Services.Core.Validations.HeaderValidationCollection" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="Services.Core.Validations.ResponseValidations">
+    <xs:all>
+      <xs:element name="headers" type="Services.Core.Validations.HeaderValidationCollection" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+  </xs:complexType>
   <xs:simpleType name="Core.Descriptions.DescriptionType">
     <xs:annotation>
       <xs:documentation>Anger textformat för beskrivningen</xs:documentation>
@@ -242,6 +260,11 @@
       <xs:element name="removePrefix" type="Services.Core.Transforms.RemovePathPrefixTransform" minOccurs="0" maxOccurs="1" />
     </xs:all>
   </xs:complexType>
+  <xs:complexType name="Services.Core.Validations.HeaderValidationCollection">
+    <xs:sequence>
+      <xs:element name="header" type="Services.Core.Validations.HeaderValidation" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="Services.Core.Transforms.HeaderTransform">
     <xs:attribute name="mode" type="Services.Core.Transforms.HeaderTransformMode" use="required"></xs:attribute>
     <xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
@@ -251,6 +274,11 @@
   <xs:complexType name="Services.Core.Transforms.RemovePathPrefixTransform">
     <xs:attribute name="prefix" type="xs:string" use="required"></xs:attribute>
   </xs:complexType>
+  <xs:complexType name="Services.Core.Validations.HeaderValidation">
+    <xs:attribute name="log" type="Microsoft.Extensions.Logging.LogLevel" use="required"></xs:attribute>
+    <xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+    <xs:attribute name="require" type="Services.Core.Validations.HeaderValidationRequire" use="required"></xs:attribute>
+  </xs:complexType>
   <xs:simpleType name="Services.Core.Transforms.HeaderTransformMode">
     <xs:restriction base="xs:string">
       <xs:enumeration value="remove" />
@@ -258,6 +286,23 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="Services.Core.Transforms.HeaderTransformOverwrite">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="false" />
+      <xs:enumeration value="true" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Microsoft.Extensions.Logging.LogLevel">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="critical" />
+      <xs:enumeration value="debug" />
+      <xs:enumeration value="error" />
+      <xs:enumeration value="information" />
+      <xs:enumeration value="none" />
+      <xs:enumeration value="trace" />
+      <xs:enumeration value="warning" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Services.Core.Validations.HeaderValidationRequire">
     <xs:restriction base="xs:string">
       <xs:enumeration value="false" />
       <xs:enumeration value="true" />
