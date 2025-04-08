@@ -174,7 +174,7 @@
     </xs:attribute>
   </xs:complexType>
   <xs:complexType name="Services.Core.Authorization.PolicyAuthorization">
-    <xs:attribute name="name" type="xs:string" use="optional"></xs:attribute>
+    <xs:attribute name="name" type="Services.Core.Authorization.AuthorizationPolicy" use="optional"></xs:attribute>
   </xs:complexType>
   <xs:complexType name="Services.Apis.Rest.HeaderMatch">
     <xs:attribute name="mode" type="Services.Apis.Rest.HeaderMatchMode" use="required"></xs:attribute>
@@ -243,6 +243,11 @@
       <xs:enumeration value="privacy.dataIdentifiability.pseudonymized" />
       <xs:enumeration value="privacy.dataUsage.improve" />
       <xs:enumeration value="privacy.dataUsage.research" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Services.Core.Authorization.AuthorizationPolicy">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="sithsFunctionCertificate" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="Services.Apis.Rest.HeaderMatchMode">
