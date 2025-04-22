@@ -112,6 +112,7 @@
       <xs:element name="transforms" type="Services.Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
       <xs:element name="validations" type="Services.Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
     </xs:all>
+    <xs:attribute name="id" type="xs:string" use="required"></xs:attribute>
   </xs:complexType>
   <xs:complexType name="Services.Core.Transforms.Transforms">
     <xs:all>
