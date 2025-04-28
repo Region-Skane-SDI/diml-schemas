@@ -39,7 +39,6 @@
   <xs:complexType name="Services.Apis.Rest.RestApi">
     <xs:all>
       <xs:element name="authorization" type="Services.Core.Authorization.Authorization" minOccurs="0" maxOccurs="1" />
-      <xs:element name="match" type="Services.Apis.Rest.RestApiMatch" minOccurs="0" maxOccurs="1" />
       <xs:element name="routes" minOccurs="0" maxOccurs="1">
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
@@ -91,19 +90,6 @@
     <xs:all>
       <xs:element name="policy" type="Services.Core.Authorization.PolicyAuthorization" minOccurs="0" maxOccurs="1" />
     </xs:all>
-  </xs:complexType>
-  <xs:complexType name="Services.Apis.Rest.RestApiMatch">
-    <xs:all>
-      <xs:element name="headers" minOccurs="0" maxOccurs="1">
-        <xs:complexType>
-          <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="header" type="Services.Apis.Rest.HeaderMatch" />
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:all>
-    <xs:attribute name="methods" type="Services.Core.HttpMethods" use="required"></xs:attribute>
-    <xs:attribute name="path" type="xs:string" use="required"></xs:attribute>
   </xs:complexType>
   <xs:complexType name="Services.Apis.Rest.Route">
     <xs:all>
@@ -177,22 +163,10 @@
   <xs:complexType name="Services.Core.Authorization.PolicyAuthorization">
     <xs:attribute name="name" type="Services.Core.Authorization.AuthorizationPolicy" use="optional"></xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Services.Apis.Rest.HeaderMatch">
-    <xs:attribute name="mode" type="Services.Apis.Rest.HeaderMatchMode" use="required"></xs:attribute>
-    <xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+  <xs:complexType name="Services.Apis.Rest.RestApiMatch">
+    <xs:attribute name="methods" type="Services.Core.HttpMethods" use="required"></xs:attribute>
+    <xs:attribute name="path" type="xs:string" use="required"></xs:attribute>
   </xs:complexType>
-  <xs:simpleType name="Services.Core.HttpMethods">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="DELETE" />
-          <xs:enumeration value="GET" />
-          <xs:enumeration value="POST" />
-          <xs:enumeration value="PUT" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
-  </xs:simpleType>
   <xs:complexType name="Services.Core.Transforms.RequestTransforms">
     <xs:all>
       <xs:element name="headers" type="Services.Core.Transforms.HeaderTransformCollection" minOccurs="0" maxOccurs="1" />
@@ -251,10 +225,17 @@
       <xs:enumeration value="sithsFunctionCertificate" />
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="Services.Apis.Rest.HeaderMatchMode">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="exists" />
-    </xs:restriction>
+  <xs:simpleType name="Services.Core.HttpMethods">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="DELETE" />
+          <xs:enumeration value="GET" />
+          <xs:enumeration value="POST" />
+          <xs:enumeration value="PUT" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
   </xs:simpleType>
   <xs:complexType name="Services.Core.Transforms.HeaderTransformCollection">
     <xs:sequence>
