@@ -116,11 +116,31 @@
       <xs:documentation>Anger vilken plattform som ska användas.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="azdatabricks" />
-      <xs:enumeration value="azsqlserver" />
-      <xs:enumeration value="msfabric-lakehouse" />
-      <xs:enumeration value="msfabric-warehouse" />
-      <xs:enumeration value="sqlserver" />
+      <xs:enumeration value="azdatabricks">
+        <xs:annotation>
+          <xs:documentation>Azure Databricks</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="azsqlserver">
+        <xs:annotation>
+          <xs:documentation>Azure SQL Server</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="msfabric-lakehouse">
+        <xs:annotation>
+          <xs:documentation>Microsoft Fabric Lakehouse</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="msfabric-warehouse">
+        <xs:annotation>
+          <xs:documentation>Microsoft Fabric Warehouse</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="sqlserver">
+        <xs:annotation>
+          <xs:documentation>SQL Server</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="Core.Traits.TraitCollection">
@@ -196,9 +216,21 @@
       <xs:documentation>Anger vilka åtkomsträttigheter som finns för dataprodukten i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="nonPublic" />
-      <xs:enumeration value="public" />
-      <xs:enumeration value="restricted" />
+      <xs:enumeration value="nonPublic">
+        <xs:annotation>
+          <xs:documentation>Inte tillgänglig för allmänheten pga integritet, säkerhet eller andra orsaker. Användningsanmärkning: Denna kategori kan omfatta resurser som innehåller känslig eller personlig information.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="public">
+        <xs:annotation>
+          <xs:documentation>Tillgängligt för allmänheten. Användningsanmärkning: Tillåtna hinder inkluderar registrering och begäran av API-nycklar, så länge vem som helst kan begära registrering och/eller API-nycklar.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="restricted">
+        <xs:annotation>
+          <xs:documentation>Endast tillgängligt under särskilda villkor. Användningsanmärkning: Denna kategori kan omfatta resurser som kräver betalning, resurser som tillgängliggörs inom ramen för sekretessavtal, eller resurser där utgivaren eller ägaren ännu inte har beslutat om de kan offentliggöras.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="Data.DCatAvailabilityType">
@@ -206,10 +238,26 @@
       <xs:documentation>Anger dataproduktens tillgänglighet i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="available" />
-      <xs:enumeration value="experimental" />
-      <xs:enumeration value="stable" />
-      <xs:enumeration value="temporary" />
+      <xs:enumeration value="available">
+        <xs:annotation>
+          <xs:documentation>Data finns tillgänglig för några år, planering på medellång sikt.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="experimental">
+        <xs:annotation>
+          <xs:documentation>Data är tillgänglig på försök för en kort period, kortsiktig planering.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="stable">
+        <xs:annotation>
+          <xs:documentation>Data kommer att vara tillgängliga på lång sikt.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="temporary">
+        <xs:annotation>
+          <xs:documentation>Data kan försvinna när som helst, ingen planering.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="Data.DCatDataThemeType">
@@ -217,19 +265,71 @@
       <xs:documentation>Anger vilket datatema dataprodukten tillhör i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="econ" />
-      <xs:enumeration value="educ" />
-      <xs:enumeration value="ener" />
-      <xs:enumeration value="envi" />
-      <xs:enumeration value="gove" />
-      <xs:enumeration value="heal" />
-      <xs:enumeration value="intr" />
-      <xs:enumeration value="just" />
-      <xs:enumeration value="op_datpro" />
-      <xs:enumeration value="regi" />
-      <xs:enumeration value="soci" />
-      <xs:enumeration value="tech" />
-      <xs:enumeration value="tran" />
+      <xs:enumeration value="econ">
+        <xs:annotation>
+          <xs:documentation>Detta koncept identifierar dataset för områdena ekonomisk verksamhet, med produktion, distribution, handel och konsumtion av varor och tjänster, samt finansiell verksamhet med inriktning på förvaltning av pengar på individuell nivå, företagsnivå eller myndighetsnivå.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="educ">
+        <xs:annotation>
+          <xs:documentation>Detta koncept identifierar dataset som täcker domäner som utbildning, kultur och sport. Utbildning är processen att underlätta lärande, eller förvärvande av kunskap, färdigheter, värderingar, övertygelser och vanor. Kultur omfattar det sociala beteendet och de normer som tfinns i mänskliga samhällen, såväl som kunskap, övertygelser, konster, lagar, seder, förmågor och vanor hos individerna i dessa grupper. Idrott omfattar alla former av tävlingsmässig fysisk aktivitet eller spel som upprätthåller eller förbättrar fysisk förmåga och färdigheter samtidigt som deltagarna njuter, och i vissa fall underhållning för åskådarna. Exempel på dataset: Europeiska tfärdigheter, kompetenser, kvalifikationer och yrken (ESCO); EU:s medlemsstater och internationella åtaganden om mänskliga rättigheter; Deltagande i kultur-eller sportaktiviteter under de senaste 12 månaderna efter kön, ålder och utbildningsnivå.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ener">
+        <xs:annotation>
+          <xs:documentation>Detta koncept identifierar dataset som täcker domänen energi. Energi är den kvantitativa egenskap som måste överföras till ett objekt för att kunna utföra arbete på, eller värma, objektet. Levande organismer kräver energi för att hålla sig vid liv; mänsklig civilisation kräver energi för att fungera. Exempel på dataset: rapporter om den europeiska gasmarknaden; Elpriser efter typ av användare.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="envi">
+        <xs:annotation>
+          <xs:documentation>Detta koncept identifierar dataset som täcker domänen miljö. Den naturliga miljön omfattar samspelet mellan alla levande arter, klimat, väder och naturresurser som påverkar människans överlevnad och ekonomisk aktivitet. Exempel på dataset: EU-medborgarnas tattityder till miljön; Föroreningsutsläpp från transporter.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="gove">
+        <xs:annotation>
+          <xs:documentation>Detta koncept identifierar dataset som täcker domäner som regering eller offentlig sektor. En regering är systemet eller gruppen av människor som styr ett organiserat samhälle, ofta en stat. Den offentliga sektorn är den del av ekonomin som består av både offentliga tjänster och offentliga företag. Offentliga tjänster och företag kan kontrolleras av statliga, regionala eller lokala myndigheter. Organisationer som inte ingår i den offentliga sektorn är antingen en del av den privata eller frivilliga sektorn. Exempel på dataset: Kandidatländer och potentiella kandidater: Statistisk statistik; Transparensregister.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="heal">
+        <xs:annotation>
+          <xs:documentation>Detta koncept identifierar dataset som täcker domänen hälsa. Hälsa är ett tillstånd av fysiskt, psykiskt och socialt välbefinnande där sjukdom och handikapp saknas. Exempel på dataset: COVID-19 Coronavirus-data; Europeiska cancerinformationssystemet.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="intr">
+        <xs:annotation>
+          <xs:documentation>Detta koncept identifierar dataset som täcker domänen för internationella frågor. En fråga – viktigt ämne eller problem för debatt eller diskussion – är internationell när deltagarna representerar minst två länder. Exempel på dataset: Konsoliderad lista över personer, grupper och enheter som omfattas av EU:s ekonomiska sanktioner; Europeiska kommissionen – GD DEVCO – utveckling och humanitärt bistånd till Afghanistan.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="just">
+        <xs:annotation>
+          <xs:documentation>Detta koncept identifierar dataset som täcker domäner som rättvisa, rättssystem eller allmän säkerhet. Rättvisa inkluderar både uppnåendet av det som är rättvist och den filosofiska diskussionen om det som är rättvist; här avses huvudsakligen den processuella rättvisa som den finns i studien och tillämpningen av lagen. Världens samtida rättssystem är i allmänhet baserade på ett av fyra grundläggande system: civilrätt, sedvanerätt, lagstadgad lag, religiös lag eller kombinationer av dessa. Allmän säkerhet är en funktion av regeringar som säkerställer skyddet av medborgare, personer på deras territorium, organisationer och institutioner mot hot mot deras välbefinnande – och välståndet i deras samhällen. Exempel på dataset: EU:s rättspraxis; Information om medlemsstaternas lagstiftning; Europeiska datatillsynsmannens register över behandlingar.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="op_datpro">
+        <xs:annotation>
+          <xs:documentation>Detta koncept identifierar dataset för områdena befolkning och samhälle, där befolkning avser det totala antalet personer som bor på olika geografiska nivåer, från städer till global nivå, medan samhälle avser en grupp individer som deltar i kontinuerlig social interaktion inom ett gemensamt territorium, ofta enligt samma politiska och kulturella normer.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="regi">
+        <xs:annotation>
+          <xs:documentation>Detta koncept identifierar dataset som täcker domäner som regioner eller städer. När det gäller politisk geografi tenderar regioner att vara baserade på politiska enheter som suveräna stater; subnationella enheter såsom administrativa regioner, provinser, stater, grevskap, townships, territorier, etc.; och multinationella grupperingar. En stad är en stor mänsklig bosättning. Exempel på dataset: NUTS - Nomenklatur för territoriella enheter för statistikklassificering; UDP - BNP per capita efter storstadsregioner, 2000 - 2060.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="soci">
+        <xs:annotation>
+          <xs:documentation>Detta koncept identifierar dataset som täcker domäner som befolkning eller samhälle. Befolkning är en samling avmänniskor och hela deras ras; det är antalet personer i en stad, region, ett land eller en värld. Ett samhälle är en grupp individer som är involverade i ihållande social interaktion, eller en stor social grupp som delar samma rumsliga eller sociala territorium, vanligtvis föremål för samma politiska auktoritet och dominerande kulturella förväntningar. Exempel på dataset: Befolkningstäthet efter NUTS 2-region; Violence against Women: En EU-omfattande tundersökning.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="tech">
+        <xs:annotation>
+          <xs:documentation>Detta koncept identifierar dataset som täcker domäner som vetenskap eller teknik. Vetenskap är ett systematiskt företag som bygger och organiserar kunskap i form av testbara förklaringar och förutsägelser. Modern vetenskap är typiskt indelad i tre huvudgrenar som består av naturvetenskaperna, som studerar naturen i vid mening; samhällsvetenskaperna, som studerar individer och samhällen; och de formella vetenskaperna, som studerar abstrakta begrepp. Teknik är summan av tekniker, färdigheter, metoder och processer som används vid produktion av varor eller tjänster eller för att uppnå mål, såsom vetenskaplig undersökning. Exempel på dataset: CORDIS - EU-forskningsprojekt under Horisont 2020 (2014–2020); Uttag av mobilt bredband (abonnemang/100 personer).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="tran">
+        <xs:annotation>
+          <xs:documentation>Detta koncept identifierar dataset som täcker transportdomänen. Transport är förflyttning av människor, djur och varor från en plats till en annan. Transportsätt inkluderar luft, land (järnväg och väg), vatten, kabel, rörledning och rymd. Exempel på dataset: Total längd på motorvägar; Flygplatstrafikdata genom att rapportera flygplats och flygbolag.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="Data.DCatStatusType">
@@ -237,10 +337,26 @@
       <xs:documentation>Anger dataproduktens status i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="completed" />
-      <xs:enumeration value="deprecated" />
-      <xs:enumeration value="underDevelopment" />
-      <xs:enumeration value="withdrawn" />
+      <xs:enumeration value="completed">
+        <xs:annotation>
+          <xs:documentation>Denna distribution anses vara komplett; den innehåller all avsedd information.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="deprecated">
+        <xs:annotation>
+          <xs:documentation>Det rekommenderas att man inte längre använder innehållet i denna distribution.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="underDevelopment">
+        <xs:annotation>
+          <xs:documentation>Denna distribution håller för närvarande på att sammanställas. Den kan vara i ett ofullständigt eller felaktigt tillstånd.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="withdrawn">
+        <xs:annotation>
+          <xs:documentation>Denna distribution är inte längre avsedd att publiceras.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="Data.DCatUpdateFrequencyType">
@@ -248,26 +364,106 @@
       <xs:documentation>Anger dataproduktens uppdateringsfrekvens i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="annual" />
-      <xs:enumeration value="annual2" />
-      <xs:enumeration value="biennial" />
-      <xs:enumeration value="bimonthly" />
-      <xs:enumeration value="biweekly" />
-      <xs:enumeration value="continuous" />
-      <xs:enumeration value="daily" />
-      <xs:enumeration value="daily2" />
-      <xs:enumeration value="irregular" />
-      <xs:enumeration value="monthly" />
-      <xs:enumeration value="monthly2" />
-      <xs:enumeration value="monthly3" />
-      <xs:enumeration value="other" />
-      <xs:enumeration value="quarterly" />
-      <xs:enumeration value="triennial" />
-      <xs:enumeration value="unknown" />
-      <xs:enumeration value="update_continuously" />
-      <xs:enumeration value="weekly" />
-      <xs:enumeration value="weekly2" />
-      <xs:enumeration value="weekly3" />
+      <xs:enumeration value="annual">
+        <xs:annotation>
+          <xs:documentation>Uppdateras en gång om året.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="annual2">
+        <xs:annotation>
+          <xs:documentation>Uppdateras två gånger om året.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="biennial">
+        <xs:annotation>
+          <xs:documentation>Uppdateras vartannat år.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="bimonthly">
+        <xs:annotation>
+          <xs:documentation>Uppdateras varannan månad.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="biweekly">
+        <xs:annotation>
+          <xs:documentation>Uppdateras varannan vecka.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="continuous">
+        <xs:annotation>
+          <xs:documentation>Uppdateras oftare än dagligen.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="daily">
+        <xs:annotation>
+          <xs:documentation>Uppdateras en gång om dagen.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="daily2">
+        <xs:annotation>
+          <xs:documentation>Uppdateras två gånger om dagen.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="irregular">
+        <xs:annotation>
+          <xs:documentation>Uppdateras med ojämna intervall.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="monthly">
+        <xs:annotation>
+          <xs:documentation>Uppdateras en gång i månaden.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="monthly2">
+        <xs:annotation>
+          <xs:documentation>Uppdateras två gånger i månaden.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="monthly3">
+        <xs:annotation>
+          <xs:documentation>Uppdateras tre gånger i månaden.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="other">
+        <xs:annotation>
+          <xs:documentation>Uppdateras med en annan typ av regelbundenhet (till exempel varje skottår).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="quarterly">
+        <xs:annotation>
+          <xs:documentation>Uppdateras var tredje månad.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="triennial">
+        <xs:annotation>
+          <xs:documentation>Uppdateras vart tredje år.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="unknown">
+        <xs:annotation>
+          <xs:documentation>Uppdateras med okänd regelbundenhet.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="update_continuously">
+        <xs:annotation>
+          <xs:documentation>update_continuously</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="weekly">
+        <xs:annotation>
+          <xs:documentation>Uppdateras en gång i veckan.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="weekly2">
+        <xs:annotation>
+          <xs:documentation>Uppdateras två gånger i veckan.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="weekly3">
+        <xs:annotation>
+          <xs:documentation>Uppdateras tre gånger i veckan.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="Core.Descriptions.Description">
@@ -493,9 +689,21 @@
       <xs:documentation>Anger textformat för beskrivningen</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="logicMd" />
-      <xs:enumeration value="md" />
-      <xs:enumeration value="plain" />
+      <xs:enumeration value="logicMd">
+        <xs:annotation>
+          <xs:documentation>Logic markdown format.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="md">
+        <xs:annotation>
+          <xs:documentation>Markdown format.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="plain">
+        <xs:annotation>
+          <xs:documentation>Plain text format.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="Data.Tabular.Alias">
@@ -555,21 +763,81 @@
       <xs:documentation>The type of trait.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="appearance.icon" />
-      <xs:enumeration value="classification.infoClass" />
-      <xs:enumeration value="means.pii.address" />
-      <xs:enumeration value="means.pii.email" />
-      <xs:enumeration value="means.pii.employeeNumber" />
-      <xs:enumeration value="means.pii.name" />
-      <xs:enumeration value="means.pii.other" />
-      <xs:enumeration value="means.pii.ssn" />
-      <xs:enumeration value="means.pii.zip" />
-      <xs:enumeration value="privacy.dataIdentifiability.aggregated" />
-      <xs:enumeration value="privacy.dataIdentifiability.anonymized" />
-      <xs:enumeration value="privacy.dataIdentifiability.identified" />
-      <xs:enumeration value="privacy.dataIdentifiability.pseudonymized" />
-      <xs:enumeration value="privacy.dataUsage.improve" />
-      <xs:enumeration value="privacy.dataUsage.research" />
+      <xs:enumeration value="appearance.icon">
+        <xs:annotation>
+          <xs:documentation>Icon used for presentation.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="classification.infoClass">
+        <xs:annotation>
+          <xs:documentation>Informationclass.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="means.pii.address">
+        <xs:annotation>
+          <xs:documentation>Address.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="means.pii.email">
+        <xs:annotation>
+          <xs:documentation>Email.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="means.pii.employeeNumber">
+        <xs:annotation>
+          <xs:documentation>Employee number.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="means.pii.name">
+        <xs:annotation>
+          <xs:documentation>Name.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="means.pii.other">
+        <xs:annotation>
+          <xs:documentation>Other.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="means.pii.ssn">
+        <xs:annotation>
+          <xs:documentation>Social Security Number</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="means.pii.zip">
+        <xs:annotation>
+          <xs:documentation>Zipcode.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="privacy.dataIdentifiability.aggregated">
+        <xs:annotation>
+          <xs:documentation>Aggregated data.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="privacy.dataIdentifiability.anonymized">
+        <xs:annotation>
+          <xs:documentation>Anonymized data.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="privacy.dataIdentifiability.identified">
+        <xs:annotation>
+          <xs:documentation>Identifiable data.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="privacy.dataIdentifiability.pseudonymized">
+        <xs:annotation>
+          <xs:documentation>Pseudonymized data.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="privacy.dataUsage.improve">
+        <xs:annotation>
+          <xs:documentation>Approved for quality improvement usage.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="privacy.dataUsage.research">
+        <xs:annotation>
+          <xs:documentation>Approved for research usage.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="Data.Tabular.TableToTableMappingCollection">
@@ -587,7 +855,7 @@
     <xs:all>
       <xs:element name="ingestStoreDataStageTables" type="Data.Tabular.IngestStoreDataStageTableCollection" minOccurs="0" maxOccurs="1" />
     </xs:all>
-    <xs:attribute name="loadType" type="Data.LoadType" use="required"></xs:attribute>
+    <xs:attribute name="loadType" type="Data.LoadType" use="required" />
   </xs:complexType>
   <xs:complexType name="Data.Tabular.LogicDataStageTableCollection">
     <xs:annotation>
@@ -602,10 +870,26 @@
       <xs:documentation>Anger om data ska materialiseras eller virtualiseras.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="ingest" />
-      <xs:enumeration value="table" />
-      <xs:enumeration value="validate" />
-      <xs:enumeration value="view" />
+      <xs:enumeration value="ingest">
+        <xs:annotation>
+          <xs:documentation>Ett specialfall som hanterar inläsning av data. Huruvida datat materialiseras i en tabell eller virtualiseras i en vy beror på vilken målplattform som används.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="table">
+        <xs:annotation>
+          <xs:documentation>Anger att datat ska materialiseras i en tabell.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="validate">
+        <xs:annotation>
+          <xs:documentation>Ett specialfall som hanterar validering av data. I det här fallet materialiseras datat i en tabell och virtualiseras sedan i en vy där eventuella filtreringar sker.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="view">
+        <xs:annotation>
+          <xs:documentation>Anger att datat ska virtualiseras i en vy.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="Data.DataStageRole">
@@ -613,10 +897,26 @@
       <xs:documentation>Anger vad som sker i dataStage.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="control" />
-      <xs:enumeration value="input" />
-      <xs:enumeration value="output" />
-      <xs:enumeration value="transformation" />
+      <xs:enumeration value="control">
+        <xs:annotation>
+          <xs:documentation>Data kontrolleras enligt givna regler.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="input">
+        <xs:annotation>
+          <xs:documentation>Data kommer in.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="output">
+        <xs:annotation>
+          <xs:documentation>Data går ut.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="transformation">
+        <xs:annotation>
+          <xs:documentation>Data transformeras enligt givna regler.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="Data.DataStageType">
@@ -650,7 +950,11 @@
       <xs:documentation>Anger utdatatyper som är kompatibla med apiOutput.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="odata" />
+      <xs:enumeration value="odata">
+        <xs:annotation>
+          <xs:documentation>ODATA.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="Data.Outputs.File.FileFormat">
@@ -658,9 +962,21 @@
       <xs:documentation>Anger kompatibla filformat.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="csv" />
-      <xs:enumeration value="custom" />
-      <xs:enumeration value="parquet" />
+      <xs:enumeration value="csv">
+        <xs:annotation>
+          <xs:documentation>CSV är ett vanligt textfilsformat för att spara och överföra tabelldata.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="custom">
+        <xs:annotation>
+          <xs:documentation>Ett egendefinierat format.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="parquet">
+        <xs:annotation>
+          <xs:documentation>Apache parquet är ett öppet källkodsformat vilket är designat för effektiv lagring och läsning. Mer information finns här: (https://parquet.apache.org/). </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="Data.Outputs.Sql.SqlOutputType">
@@ -668,8 +984,16 @@
       <xs:documentation>Anger utdatatyper som är kompatibla med sqlOutput.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="sparksql" />
-      <xs:enumeration value="tsql" />
+      <xs:enumeration value="sparksql">
+        <xs:annotation>
+          <xs:documentation>SparkSQL.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="tsql">
+        <xs:annotation>
+          <xs:documentation>T-SQL.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="Data.Tabular.BusinessKey">
@@ -950,8 +1274,16 @@
       <xs:documentation>Actions for business key duplicate policy</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="eliminate" />
-      <xs:enumeration value="flag" />
+      <xs:enumeration value="eliminate">
+        <xs:annotation>
+          <xs:documentation>Eliminate duplicates</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="flag">
+        <xs:annotation>
+          <xs:documentation>Only flag duplicates</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="Data.ValidationPolicies.BusinessKeyNullAction">
@@ -959,8 +1291,16 @@
       <xs:documentation>Actions for business key null policy</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="flag" />
-      <xs:enumeration value="setDefaultValue" />
+      <xs:enumeration value="flag">
+        <xs:annotation>
+          <xs:documentation>Only flag null values</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="setDefaultValue">
+        <xs:annotation>
+          <xs:documentation>Set default values on null values</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="Data.ValidationPolicies.DefaultValueCollection">

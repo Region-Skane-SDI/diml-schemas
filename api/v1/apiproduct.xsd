@@ -34,7 +34,7 @@
         <xs:documentation>En globalt unik identifierare för Diml-objektet.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="uniqueName" type="xs:string" use="required"></xs:attribute>
+    <xs:attribute name="uniqueName" type="xs:string" use="required" />
   </xs:complexType>
   <xs:complexType name="Services.Apis.Rest.RestApi">
     <xs:all>
@@ -49,8 +49,8 @@
       <xs:element name="transforms" type="Services.Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
       <xs:element name="validations" type="Services.Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
     </xs:all>
-    <xs:attribute name="backendId" type="xs:string" use="required"></xs:attribute>
-    <xs:attribute name="id" type="xs:string" use="required"></xs:attribute>
+    <xs:attribute name="backendId" type="xs:string" use="required" />
+    <xs:attribute name="id" type="xs:string" use="required" />
   </xs:complexType>
   <xs:complexType name="Services.Apis.Soap.SoapApi">
     <xs:all>
@@ -65,14 +65,14 @@
       <xs:element name="transforms" type="Services.Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
       <xs:element name="validations" type="Services.Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
     </xs:all>
-    <xs:attribute name="backendId" type="xs:string" use="required"></xs:attribute>
-    <xs:attribute name="id" type="xs:string" use="required"></xs:attribute>
+    <xs:attribute name="backendId" type="xs:string" use="required" />
+    <xs:attribute name="id" type="xs:string" use="required" />
   </xs:complexType>
   <xs:complexType name="Services.Backends.Rest.RestBackend">
-    <xs:attribute name="id" type="xs:string" use="required"></xs:attribute>
+    <xs:attribute name="id" type="xs:string" use="required" />
   </xs:complexType>
   <xs:complexType name="Services.Backends.Soap.SoapBackend">
-    <xs:attribute name="id" type="xs:string" use="required"></xs:attribute>
+    <xs:attribute name="id" type="xs:string" use="required" />
   </xs:complexType>
   <xs:complexType name="Core.Descriptions.DescriptionCollection">
     <xs:annotation>
@@ -110,7 +110,7 @@
       <xs:element name="transforms" type="Services.Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
       <xs:element name="validations" type="Services.Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
     </xs:all>
-    <xs:attribute name="id" type="xs:string" use="required"></xs:attribute>
+    <xs:attribute name="id" type="xs:string" use="required" />
   </xs:complexType>
   <xs:complexType name="Services.Core.Transforms.Transforms">
     <xs:all>
@@ -130,8 +130,8 @@
       <xs:element name="transforms" type="Services.Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
       <xs:element name="validations" type="Services.Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
     </xs:all>
-    <xs:attribute name="id" type="xs:string" use="required"></xs:attribute>
-    <xs:attribute name="path" type="xs:string" use="required"></xs:attribute>
+    <xs:attribute name="id" type="xs:string" use="required" />
+    <xs:attribute name="path" type="xs:string" use="required" />
   </xs:complexType>
   <xs:complexType name="Core.Descriptions.Description">
     <xs:simpleContent>
@@ -182,11 +182,11 @@
     </xs:attribute>
   </xs:complexType>
   <xs:complexType name="Services.Core.Authorization.PolicyAuthorization">
-    <xs:attribute name="name" type="Services.Core.Authorization.AuthorizationPolicy" use="optional"></xs:attribute>
+    <xs:attribute name="name" type="Services.Core.Authorization.AuthorizationPolicy" use="optional" />
   </xs:complexType>
   <xs:complexType name="Services.Apis.Rest.RestApiMatch">
-    <xs:attribute name="methods" type="Services.Core.HttpMethods" use="required"></xs:attribute>
-    <xs:attribute name="path" type="xs:string" use="required"></xs:attribute>
+    <xs:attribute name="methods" type="Services.Core.HttpMethods" use="required" />
+    <xs:attribute name="path" type="xs:string" use="required" />
   </xs:complexType>
   <xs:complexType name="Services.Core.Transforms.RequestTransforms">
     <xs:all>
@@ -214,9 +214,21 @@
       <xs:documentation>Anger textformat för beskrivningen</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="logicMd" />
-      <xs:enumeration value="md" />
-      <xs:enumeration value="plain" />
+      <xs:enumeration value="logicMd">
+        <xs:annotation>
+          <xs:documentation>Logic markdown format.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="md">
+        <xs:annotation>
+          <xs:documentation>Markdown format.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="plain">
+        <xs:annotation>
+          <xs:documentation>Plain text format.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="Core.Traits.TraitType">
@@ -224,21 +236,81 @@
       <xs:documentation>The type of trait.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="appearance.icon" />
-      <xs:enumeration value="classification.infoClass" />
-      <xs:enumeration value="means.pii.address" />
-      <xs:enumeration value="means.pii.email" />
-      <xs:enumeration value="means.pii.employeeNumber" />
-      <xs:enumeration value="means.pii.name" />
-      <xs:enumeration value="means.pii.other" />
-      <xs:enumeration value="means.pii.ssn" />
-      <xs:enumeration value="means.pii.zip" />
-      <xs:enumeration value="privacy.dataIdentifiability.aggregated" />
-      <xs:enumeration value="privacy.dataIdentifiability.anonymized" />
-      <xs:enumeration value="privacy.dataIdentifiability.identified" />
-      <xs:enumeration value="privacy.dataIdentifiability.pseudonymized" />
-      <xs:enumeration value="privacy.dataUsage.improve" />
-      <xs:enumeration value="privacy.dataUsage.research" />
+      <xs:enumeration value="appearance.icon">
+        <xs:annotation>
+          <xs:documentation>Icon used for presentation.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="classification.infoClass">
+        <xs:annotation>
+          <xs:documentation>Informationclass.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="means.pii.address">
+        <xs:annotation>
+          <xs:documentation>Address.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="means.pii.email">
+        <xs:annotation>
+          <xs:documentation>Email.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="means.pii.employeeNumber">
+        <xs:annotation>
+          <xs:documentation>Employee number.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="means.pii.name">
+        <xs:annotation>
+          <xs:documentation>Name.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="means.pii.other">
+        <xs:annotation>
+          <xs:documentation>Other.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="means.pii.ssn">
+        <xs:annotation>
+          <xs:documentation>Social Security Number</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="means.pii.zip">
+        <xs:annotation>
+          <xs:documentation>Zipcode.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="privacy.dataIdentifiability.aggregated">
+        <xs:annotation>
+          <xs:documentation>Aggregated data.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="privacy.dataIdentifiability.anonymized">
+        <xs:annotation>
+          <xs:documentation>Anonymized data.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="privacy.dataIdentifiability.identified">
+        <xs:annotation>
+          <xs:documentation>Identifiable data.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="privacy.dataIdentifiability.pseudonymized">
+        <xs:annotation>
+          <xs:documentation>Pseudonymized data.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="privacy.dataUsage.improve">
+        <xs:annotation>
+          <xs:documentation>Approved for quality improvement usage.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="privacy.dataUsage.research">
+        <xs:annotation>
+          <xs:documentation>Approved for research usage.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="Services.Core.Authorization.AuthorizationPolicy">
@@ -274,18 +346,18 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="Services.Core.Transforms.HeaderTransform">
-    <xs:attribute name="mode" type="Services.Core.Transforms.HeaderTransformMode" use="required"></xs:attribute>
-    <xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
-    <xs:attribute name="overwrite" type="Services.Core.Transforms.HeaderTransformOverwrite" use="optional"></xs:attribute>
-    <xs:attribute name="value" type="xs:string" use="optional"></xs:attribute>
+    <xs:attribute name="mode" type="Services.Core.Transforms.HeaderTransformMode" use="required" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="overwrite" type="Services.Core.Transforms.HeaderTransformOverwrite" use="optional" />
+    <xs:attribute name="value" type="xs:string" use="optional" />
   </xs:complexType>
   <xs:complexType name="Services.Core.Transforms.RemovePathPrefixTransform">
-    <xs:attribute name="prefix" type="xs:string" use="required"></xs:attribute>
+    <xs:attribute name="prefix" type="xs:string" use="required" />
   </xs:complexType>
   <xs:complexType name="Services.Core.Validations.HeaderValidation">
-    <xs:attribute name="log" type="Microsoft.Extensions.Logging.LogLevel" use="required"></xs:attribute>
-    <xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
-    <xs:attribute name="require" type="Services.Core.Validations.HeaderValidationRequire" use="required"></xs:attribute>
+    <xs:attribute name="log" type="Microsoft.Extensions.Logging.LogLevel" use="required" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="require" type="Services.Core.Validations.HeaderValidationRequire" use="required" />
   </xs:complexType>
   <xs:simpleType name="Services.Core.Transforms.HeaderTransformMode">
     <xs:restriction base="xs:string">
