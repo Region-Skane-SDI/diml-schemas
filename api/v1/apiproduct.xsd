@@ -185,6 +185,15 @@
     <xs:attribute name="name" type="Services.Core.Authorization.AuthorizationPolicy" use="optional" />
   </xs:complexType>
   <xs:complexType name="Services.Apis.Rest.RestApiMatch">
+    <xs:all>
+      <xs:element name="headers" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="header" type="Services.Apis.Rest.HeaderMatch" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
     <xs:attribute name="methods" type="Services.Core.HttpMethods" use="required" />
     <xs:attribute name="path" type="xs:string" use="required" />
   </xs:complexType>
@@ -318,6 +327,20 @@
       <xs:enumeration value="sithsFunctionCertificate" />
     </xs:restriction>
   </xs:simpleType>
+  <xs:complexType name="Services.Apis.Rest.HeaderMatch">
+    <xs:all>
+      <xs:element name="values" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="value" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="isCaseSensitive" type="xs:boolean" use="optional" />
+    <xs:attribute name="mode" type="Services.Apis.Rest.HeaderMatchMode" use="required" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+  </xs:complexType>
   <xs:simpleType name="Services.Core.HttpMethods">
     <xs:list>
       <xs:simpleType>
@@ -345,6 +368,40 @@
       <xs:element name="header" type="Services.Core.Validations.HeaderValidation" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
+  <xs:simpleType name="Services.Apis.Rest.HeaderMatchMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="contains">
+        <xs:annotation>
+          <xs:documentation>Any of the headers with the given name must contain any of the match values.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="exactHeader">
+        <xs:annotation>
+          <xs:documentation>Any of the headers with the given name must match in its entirety.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="exists">
+        <xs:annotation>
+          <xs:documentation>The header must exist and contain any non-empty value. If there are multiple headers with the same name, the rule will also match.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="headerPrefix">
+        <xs:annotation>
+          <xs:documentation>Any of the headers with the given name must match by prefix.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="notContains">
+        <xs:annotation>
+          <xs:documentation>The header must exist and the value must be non-empty. None of the headers with the given name may contain any of the match values.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="notExists">
+        <xs:annotation>
+          <xs:documentation>The header must not exist.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
   <xs:complexType name="Services.Core.Transforms.HeaderTransform">
     <xs:attribute name="mode" type="Services.Core.Transforms.HeaderTransformMode" use="required" />
     <xs:attribute name="name" type="xs:string" use="required" />
