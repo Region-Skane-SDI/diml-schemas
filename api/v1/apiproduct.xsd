@@ -53,6 +53,18 @@
     <xs:attribute name="id" type="xs:string" use="required"></xs:attribute>
   </xs:complexType>
   <xs:complexType name="Services.Apis.Soap.SoapApi">
+    <xs:all>
+      <xs:element name="authorization" type="Services.Core.Authorization.Authorization" minOccurs="0" maxOccurs="1" />
+      <xs:element name="operations" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="operation" type="Services.Apis.Soap.Operation" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="transforms" type="Services.Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
+      <xs:element name="validations" type="Services.Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
+    </xs:all>
     <xs:attribute name="backendId" type="xs:string" use="required"></xs:attribute>
     <xs:attribute name="id" type="xs:string" use="required"></xs:attribute>
   </xs:complexType>
@@ -111,6 +123,15 @@
       <xs:element name="request" type="Services.Core.Validations.RequestValidations" minOccurs="0" maxOccurs="1" />
       <xs:element name="response" type="Services.Core.Validations.ResponseValidations" minOccurs="0" maxOccurs="1" />
     </xs:all>
+  </xs:complexType>
+  <xs:complexType name="Services.Apis.Soap.Operation">
+    <xs:all>
+      <xs:element name="authorization" type="Services.Core.Authorization.Authorization" minOccurs="0" maxOccurs="1" />
+      <xs:element name="transforms" type="Services.Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
+      <xs:element name="validations" type="Services.Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+    <xs:attribute name="id" type="xs:string" use="required"></xs:attribute>
+    <xs:attribute name="path" type="xs:string" use="required"></xs:attribute>
   </xs:complexType>
   <xs:complexType name="Core.Descriptions.Description">
     <xs:simpleContent>
