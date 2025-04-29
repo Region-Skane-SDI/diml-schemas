@@ -324,6 +324,7 @@
   </xs:simpleType>
   <xs:simpleType name="Services.Core.Authorization.AuthorizationPolicy">
     <xs:restriction base="xs:string">
+      <xs:enumeration value="apiKey" />
       <xs:enumeration value="sithsFunctionCertificate" />
     </xs:restriction>
   </xs:simpleType>
