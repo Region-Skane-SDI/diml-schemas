@@ -206,7 +206,13 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:element name="path" type="Services.Core.Transforms.PathTransforms" minOccurs="0" maxOccurs="1" />
+      <xs:element name="paths" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="path" type="Services.Core.Transforms.PathTransform" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
     </xs:all>
   </xs:complexType>
   <xs:complexType name="Services.Core.Transforms.ResponseTransforms">
@@ -372,10 +378,22 @@
     <xs:attribute name="overwrite" type="Services.Core.Transforms.HeaderTransformOverwrite" use="optional" />
     <xs:attribute name="value" type="xs:string" use="optional" />
   </xs:complexType>
-  <xs:complexType name="Services.Core.Transforms.PathTransforms">
-    <xs:all>
-      <xs:element name="removePrefix" type="Services.Core.Transforms.RemovePathPrefixTransform" minOccurs="0" maxOccurs="1" />
-    </xs:all>
+  <xs:complexType name="Services.Core.Transforms.PathTransform">
+    <xs:attribute name="operation" type="Services.Core.Transforms.PathTransformOperation" use="required">
+      <xs:annotation>
+        <xs:documentation>The type of path transform to apply.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="order" type="xs:int" use="required">
+      <xs:annotation>
+        <xs:documentation>The order in which the transform is applied.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="value" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>A path starting with a '/'.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
   <xs:complexType name="Services.Core.Validations.HeaderValidationCollection">
     <xs:sequence>
@@ -428,9 +446,30 @@
       <xs:enumeration value="true" />
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="Services.Core.Transforms.RemovePathPrefixTransform">
-    <xs:attribute name="prefix" type="xs:string" use="required" />
-  </xs:complexType>
+  <xs:simpleType name="Services.Core.Transforms.PathTransformOperation">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="addPrefix">
+        <xs:annotation>
+          <xs:documentation>Modifies the request path adding a prefix value.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="removePrefix">
+        <xs:annotation>
+          <xs:documentation>Modifies the request path removing a prefix value.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="set">
+        <xs:annotation>
+          <xs:documentation>Replaces the request path with the specified value.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="setWithPattern">
+        <xs:annotation>
+          <xs:documentation>Replaces the request path using a pattern template.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
   <xs:complexType name="Services.Core.Validations.HeaderValidation">
     <xs:attribute name="log" type="Microsoft.Extensions.Logging.LogLevel" use="required" />
     <xs:attribute name="name" type="xs:string" use="required" />
