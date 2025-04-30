@@ -199,13 +199,25 @@
   </xs:complexType>
   <xs:complexType name="Services.Core.Transforms.RequestTransforms">
     <xs:all>
-      <xs:element name="headers" type="Services.Core.Transforms.HeaderTransformCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="headers" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="header" type="Services.Core.Transforms.HeaderTransform" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="path" type="Services.Core.Transforms.PathTransforms" minOccurs="0" maxOccurs="1" />
     </xs:all>
   </xs:complexType>
   <xs:complexType name="Services.Core.Transforms.ResponseTransforms">
     <xs:all>
-      <xs:element name="headers" type="Services.Core.Transforms.HeaderTransformCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="headers" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="header" type="Services.Core.Transforms.HeaderTransform" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
     </xs:all>
   </xs:complexType>
   <xs:complexType name="Services.Core.Validations.RequestValidations">
@@ -354,10 +366,11 @@
       </xs:simpleType>
     </xs:list>
   </xs:simpleType>
-  <xs:complexType name="Services.Core.Transforms.HeaderTransformCollection">
-    <xs:sequence>
-      <xs:element name="header" type="Services.Core.Transforms.HeaderTransform" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
+  <xs:complexType name="Services.Core.Transforms.HeaderTransform">
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="operation" type="Services.Core.Transforms.HeaderTransformOperation" use="required" />
+    <xs:attribute name="overwrite" type="Services.Core.Transforms.HeaderTransformOverwrite" use="optional" />
+    <xs:attribute name="value" type="xs:string" use="optional" />
   </xs:complexType>
   <xs:complexType name="Services.Core.Transforms.PathTransforms">
     <xs:all>
@@ -403,21 +416,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="Services.Core.Transforms.HeaderTransform">
-    <xs:attribute name="mode" type="Services.Core.Transforms.HeaderTransformMode" use="required" />
-    <xs:attribute name="name" type="xs:string" use="required" />
-    <xs:attribute name="overwrite" type="Services.Core.Transforms.HeaderTransformOverwrite" use="optional" />
-    <xs:attribute name="value" type="xs:string" use="optional" />
-  </xs:complexType>
-  <xs:complexType name="Services.Core.Transforms.RemovePathPrefixTransform">
-    <xs:attribute name="prefix" type="xs:string" use="required" />
-  </xs:complexType>
-  <xs:complexType name="Services.Core.Validations.HeaderValidation">
-    <xs:attribute name="log" type="Microsoft.Extensions.Logging.LogLevel" use="required" />
-    <xs:attribute name="name" type="xs:string" use="required" />
-    <xs:attribute name="require" type="Services.Core.Validations.HeaderValidationRequire" use="required" />
-  </xs:complexType>
-  <xs:simpleType name="Services.Core.Transforms.HeaderTransformMode">
+  <xs:simpleType name="Services.Core.Transforms.HeaderTransformOperation">
     <xs:restriction base="xs:string">
       <xs:enumeration value="remove" />
       <xs:enumeration value="set" />
@@ -429,6 +428,14 @@
       <xs:enumeration value="true" />
     </xs:restriction>
   </xs:simpleType>
+  <xs:complexType name="Services.Core.Transforms.RemovePathPrefixTransform">
+    <xs:attribute name="prefix" type="xs:string" use="required" />
+  </xs:complexType>
+  <xs:complexType name="Services.Core.Validations.HeaderValidation">
+    <xs:attribute name="log" type="Microsoft.Extensions.Logging.LogLevel" use="required" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="require" type="Services.Core.Validations.HeaderValidationRequire" use="required" />
+  </xs:complexType>
   <xs:simpleType name="Microsoft.Extensions.Logging.LogLevel">
     <xs:restriction base="xs:string">
       <xs:enumeration value="critical" />
