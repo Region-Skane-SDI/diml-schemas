@@ -46,6 +46,7 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
+      <xs:element name="traits" type="Core.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
       <xs:element name="transforms" type="Services.Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
       <xs:element name="validations" type="Services.Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
     </xs:all>
@@ -62,6 +63,7 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
+      <xs:element name="traits" type="Core.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
       <xs:element name="transforms" type="Services.Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
       <xs:element name="validations" type="Services.Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
     </xs:all>
@@ -107,6 +109,7 @@
     <xs:all>
       <xs:element name="authorization" type="Services.Core.Authorization.Authorization" minOccurs="0" maxOccurs="1" />
       <xs:element name="match" type="Services.Apis.Rest.RestApiMatch" minOccurs="1" maxOccurs="1" />
+      <xs:element name="traits" type="Core.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
       <xs:element name="transforms" type="Services.Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
       <xs:element name="validations" type="Services.Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
     </xs:all>
@@ -127,6 +130,7 @@
   <xs:complexType name="Services.Apis.Soap.Operation">
     <xs:all>
       <xs:element name="authorization" type="Services.Core.Authorization.Authorization" minOccurs="0" maxOccurs="1" />
+      <xs:element name="traits" type="Core.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
       <xs:element name="transforms" type="Services.Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
       <xs:element name="validations" type="Services.Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
     </xs:all>
