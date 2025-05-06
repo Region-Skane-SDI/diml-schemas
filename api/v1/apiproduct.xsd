@@ -25,6 +25,13 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
+      <xs:element name="dependencies" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="apiProduct" type="Services.Core.ApiProductDependency" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="descriptions" type="Core.Descriptions.DescriptionCollection" minOccurs="0" maxOccurs="1" />
       <xs:element name="names" type="Core.Names.NameCollection" minOccurs="1" maxOccurs="1" />
       <xs:element name="traits" type="Core.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
@@ -75,6 +82,18 @@
   </xs:complexType>
   <xs:complexType name="Services.Backends.Soap.SoapBackend">
     <xs:attribute name="id" type="xs:string" use="required" />
+  </xs:complexType>
+  <xs:complexType name="Services.Core.ApiProductDependency">
+    <xs:all>
+      <xs:element name="apis" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="api" type="Services.Core.ApiReference" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="dimlId" type="xs:string" use="required" />
   </xs:complexType>
   <xs:complexType name="Core.Descriptions.DescriptionCollection">
     <xs:annotation>
@@ -141,6 +160,9 @@
         <xs:documentation>Relative path to a wsdl-file containing the contract for the operation.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Services.Core.ApiReference">
+    <xs:attribute name="id" type="xs:string" use="required" />
   </xs:complexType>
   <xs:complexType name="Core.Descriptions.Description">
     <xs:simpleContent>
