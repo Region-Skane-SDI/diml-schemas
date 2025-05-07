@@ -59,6 +59,11 @@
     </xs:all>
     <xs:attribute name="backendId" type="xs:string" use="required" />
     <xs:attribute name="id" type="xs:string" use="required" />
+    <xs:attribute name="openapi" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Relative path to a open-api-file containing the specification for the api.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
   <xs:complexType name="Services.Apis.Soap.SoapApi">
     <xs:all>
