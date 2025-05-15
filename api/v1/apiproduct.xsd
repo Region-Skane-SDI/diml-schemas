@@ -81,6 +81,11 @@
     </xs:all>
     <xs:attribute name="backendId" type="xs:string" use="required" />
     <xs:attribute name="id" type="xs:string" use="required" />
+    <xs:attribute name="wsdl" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Relative path to a wsdl-file containing the contract for the operation.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
   <xs:complexType name="Services.Backends.Rest.RestBackend">
     <xs:attribute name="id" type="xs:string" use="required" />
@@ -160,11 +165,6 @@
     </xs:all>
     <xs:attribute name="id" type="xs:string" use="required" />
     <xs:attribute name="path" type="xs:string" use="required" />
-    <xs:attribute name="wsdl" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Relative path to a wsdl-file containing the contract for the operation.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
   </xs:complexType>
   <xs:complexType name="Services.Core.ApiReference">
     <xs:attribute name="id" type="xs:string" use="required" />
