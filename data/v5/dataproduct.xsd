@@ -472,7 +472,7 @@
         <xs:annotation>
           <xs:documentation>Används för att beskriva ett Diml-objekt i olika format och språk.</xs:documentation>
         </xs:annotation>
-        <xs:attribute name="language" type="xs:string" use="required">
+        <xs:attribute name="language" type="Core.Language" use="required">
           <xs:annotation>
             <xs:documentation>Anger språk för beskrivning.</xs:documentation>
           </xs:annotation>
@@ -491,7 +491,7 @@
         <xs:annotation>
           <xs:documentation>Används för att namnge ett Diml-objekt på olika språk.</xs:documentation>
         </xs:annotation>
-        <xs:attribute name="language" type="xs:string" use="required">
+        <xs:attribute name="language" type="Core.Language" use="required">
           <xs:annotation>
             <xs:documentation>En representation av vilket språk som används för namnet. Exempelvärde: sv</xs:documentation>
           </xs:annotation>
@@ -684,6 +684,20 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
+  <xs:simpleType name="Core.Language">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="en">
+        <xs:annotation>
+          <xs:documentation>English.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="sv">
+        <xs:annotation>
+          <xs:documentation>Svenska.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
   <xs:simpleType name="Core.Descriptions.DescriptionType">
     <xs:annotation>
       <xs:documentation>Anger textformat för beskrivningen</xs:documentation>
