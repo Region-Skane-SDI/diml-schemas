@@ -230,7 +230,11 @@
         </xs:complexType>
       </xs:element>
     </xs:all>
-    <xs:attribute name="methods" type="Services.Core.HttpMethods" use="required" />
+    <xs:attribute name="methods" type="Services.Core.HttpMethods" use="required">
+      <xs:annotation>
+        <xs:documentation>HTTP defines a set of request methods to indicate the purpose of the request and what is expected if the request is successful. Although they can also be nouns, these request methods are sometimes referred to as HTTP verbs. Each request method has its own semantics, but some characteristics are shared across multiple methods, specifically request methods can be safe, idempotent, or cacheable.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="path" type="xs:string" use="required" />
   </xs:complexType>
   <xs:complexType name="Services.Core.Transforms.RequestTransforms">
@@ -411,13 +415,21 @@
     <xs:attribute name="name" type="xs:string" use="required" />
   </xs:complexType>
   <xs:simpleType name="Services.Core.HttpMethods">
+    <xs:annotation>
+      <xs:documentation>HTTP defines a set of request methods to indicate the purpose of the request and what is expected if the request is successful. Although they can also be nouns, these request methods are sometimes referred to as HTTP verbs. Each request method has its own semantics, but some characteristics are shared across multiple methods, specifically request methods can be safe, idempotent, or cacheable.</xs:documentation>
+    </xs:annotation>
     <xs:list>
       <xs:simpleType>
         <xs:restriction base="xs:string">
+          <xs:enumeration value="CONNECT" />
           <xs:enumeration value="DELETE" />
           <xs:enumeration value="GET" />
+          <xs:enumeration value="HEAD" />
+          <xs:enumeration value="OPTIONS" />
+          <xs:enumeration value="PATCH" />
           <xs:enumeration value="POST" />
           <xs:enumeration value="PUT" />
+          <xs:enumeration value="TRACE" />
         </xs:restriction>
       </xs:simpleType>
     </xs:list>
