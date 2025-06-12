@@ -597,9 +597,9 @@
         <xs:documentation>The type of path transform to apply.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="order" type="xs:int" use="required">
+    <xs:attribute name="order" type="xs:int" use="optional">
       <xs:annotation>
-        <xs:documentation>The order in which the transform is applied.</xs:documentation>
+        <xs:documentation>OBSOLETE: The order in which the transform is applied.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="value" type="xs:string" use="required">
