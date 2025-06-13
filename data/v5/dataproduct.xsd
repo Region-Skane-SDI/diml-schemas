@@ -521,12 +521,12 @@
     </xs:all>
     <xs:attribute name="existsFromStageId" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>Anger från och med vilket dataStage som tabellen kommer att existera i. Om inget anges gäller dataStage med order="1".</xs:documentation>
+        <xs:documentation>Anger från och med vilket dataStage som tabellen kommer att existera i. Om inget anges gäller fösta dataStage i specifikationen.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="existsToStageId" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>Anger till och med vilket dataStage som tabellen kommer att existera i. Om inget anges gäller dataStage med order="X", där X = högsta order.</xs:documentation>
+        <xs:documentation>Anger till och med vilket dataStage som tabellen kommer att existera i. Om inget anges gäller sista dataStage i specifikationen.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="id" type="xs:string" use="required">
@@ -588,9 +588,9 @@
         <xs:documentation>Anger om data ska materialiseras eller inte.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="order" type="xs:int" use="required">
+    <xs:attribute name="order" type="xs:int" use="optional">
       <xs:annotation>
-        <xs:documentation>Anger ordningen på dataStage, dvs vilket steg som ska ske först.</xs:documentation>
+        <xs:documentation>OBSOLETE: Anger ordningen på dataStage, dvs vilket steg som ska ske först.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="role" type="Data.DataStageRole" use="optional">
@@ -726,12 +726,12 @@
     </xs:annotation>
     <xs:attribute name="fromStageId" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>Anger från och med vilket dataStage som objektet ska byta namn i. Om inget anges gäller dataStage med order="1".</xs:documentation>
+        <xs:documentation>Anger från och med vilket dataStage som objektet ska byta namn i. Om inget anges gäller första dataStage i specifikationen.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="toStageId" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>Anger till och med vilket dataStage som objektet ska byta namn i. Om inget anges gäller dataStage med order="X", där X = högsta order.</xs:documentation>
+        <xs:documentation>Anger till och med vilket dataStage som objektet ska byta namn i. Om inget anges gäller sista dataStage i specifikationen.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="value" type="xs:string" use="required">
@@ -1032,12 +1032,12 @@
     </xs:all>
     <xs:attribute name="existsFromStageId" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>Anger från och med vilket dataStage som kolumnen ska existera i. Om inget anges gäller dataStage med order="1".</xs:documentation>
+        <xs:documentation>Anger från och med vilket dataStage som kolumnen ska existera i. Om inget anges gäller första dataStage i specifikationen.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="existsToStageId" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>Anger till och med vilket dataStage som kolumnen ska existera i. Om inget anges gäller dataStage med order="X", där X = högsta order.</xs:documentation>
+        <xs:documentation>Anger till och med vilket dataStage som kolumnen ska existera i. Om inget anges gäller sista dataStage i specifikationen.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="id" type="xs:string" use="required">
@@ -1361,7 +1361,7 @@
     </xs:attribute>
     <xs:attribute name="fromStageId" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>Anger från och med vilket dataStage som kolumnen ska byta datatyp i. Om inget anges gäller dataStage med order="1".</xs:documentation>
+        <xs:documentation>Anger från och med vilket dataStage som kolumnen ska byta datatyp i. Om inget anges gäller första dataStage i specifikationen.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="id" type="Core.DataTypesConfig.DimlDataTypes" use="required">
@@ -1421,7 +1421,7 @@
     </xs:attribute>
     <xs:attribute name="toStageId" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>Anger till och med vilket dataStage som kolumnen ska byta datatyp i. Om inget anges gäller dataStage med order="X", där X = högsta order.</xs:documentation>
+        <xs:documentation>Anger till och med vilket dataStage som kolumnen ska byta datatyp i. Om inget anges gäller sista dataStage i specifikationen.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
