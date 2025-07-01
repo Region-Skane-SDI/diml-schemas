@@ -1,6 +1,6 @@
 <xs:schema xmlns="https://github.com/Region-Skane-SDI/diml/apiproduct" targetNamespace="https://github.com/Region-Skane-SDI/diml/apiproduct" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
-  <xs:element name="apiProduct" type="Services.ApiProductSpecification" />
-  <xs:complexType name="Services.ApiProductSpecification">
+  <xs:element name="apiProduct" type="Storage.Services.v1.ApiProductSpecification" />
+  <xs:complexType name="Storage.Services.v1.ApiProductSpecification">
     <xs:annotation>
       <xs:documentation>Beskrivning av en apiprodukt med dess specifikationer.</xs:documentation>
     </xs:annotation>
@@ -9,8 +9,8 @@
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:choice>
-              <xs:element name="restApi" type="Services.Apis.Rest.RestApi" />
-              <xs:element name="soapApi" type="Services.Apis.Soap.SoapApi" />
+              <xs:element name="restApi" type="Storage.Services.v1.Apis.Rest.RestApi" />
+              <xs:element name="soapApi" type="Storage.Services.v1.Apis.Soap.SoapApi" />
             </xs:choice>
           </xs:sequence>
         </xs:complexType>
@@ -19,8 +19,8 @@
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:choice>
-              <xs:element name="restBackend" type="Services.Backends.Rest.RestBackend" />
-              <xs:element name="soapBackend" type="Services.Backends.Soap.SoapBackend" />
+              <xs:element name="restBackend" type="Storage.Services.v1.Backends.Rest.RestBackend" />
+              <xs:element name="soapBackend" type="Storage.Services.v1.Backends.Soap.SoapBackend" />
             </xs:choice>
           </xs:sequence>
         </xs:complexType>
@@ -28,13 +28,13 @@
       <xs:element name="dependencies" minOccurs="0" maxOccurs="1">
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="apiProduct" type="Services.Core.ApiProductDependency" />
+            <xs:element name="apiProduct" type="Storage.Services.v1.Core.ApiProductDependency" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
       <xs:element name="descriptions" type="Core.Descriptions.DescriptionCollection" minOccurs="0" maxOccurs="1" />
       <xs:element name="names" type="Core.Names.NameCollection" minOccurs="1" maxOccurs="1" />
-      <xs:element name="traits" type="Core.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="traits" type="Storage.Services.v1.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="dimlId" type="xs:string" use="required">
       <xs:annotation>
@@ -47,22 +47,22 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Services.Apis.Rest.RestApi">
+  <xs:complexType name="Storage.Services.v1.Apis.Rest.RestApi">
     <xs:annotation>
       <xs:documentation>RestApi represents a RESTful API that can be used in API products.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="authorization" type="Services.Core.Authorization.Authorization" minOccurs="0" maxOccurs="1" />
+      <xs:element name="authorization" type="Storage.Services.v1.Core.Authorization.Authorization" minOccurs="0" maxOccurs="1" />
       <xs:element name="routes" minOccurs="0" maxOccurs="1">
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="route" type="Services.Apis.Rest.Route" />
+            <xs:element name="route" type="Storage.Services.v1.Apis.Rest.Route" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:element name="traits" type="Core.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="transforms" type="Services.Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
-      <xs:element name="validations" type="Services.Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
+      <xs:element name="traits" type="Storage.Services.v1.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="transforms" type="Storage.Services.v1.Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
+      <xs:element name="validations" type="Storage.Services.v1.Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="backendId" type="xs:string" use="required">
       <xs:annotation>
@@ -80,22 +80,22 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Services.Apis.Soap.SoapApi">
+  <xs:complexType name="Storage.Services.v1.Apis.Soap.SoapApi">
     <xs:annotation>
       <xs:documentation>SoapApi represents a SOAP API that can be used in API products.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="authorization" type="Services.Core.Authorization.Authorization" minOccurs="0" maxOccurs="1" />
+      <xs:element name="authorization" type="Storage.Services.v1.Core.Authorization.Authorization" minOccurs="0" maxOccurs="1" />
       <xs:element name="operations" minOccurs="0" maxOccurs="1">
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="operation" type="Services.Apis.Soap.Operation" />
+            <xs:element name="operation" type="Storage.Services.v1.Apis.Soap.Operation" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:element name="traits" type="Core.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="transforms" type="Services.Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
-      <xs:element name="validations" type="Services.Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
+      <xs:element name="traits" type="Storage.Services.v1.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="transforms" type="Storage.Services.v1.Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
+      <xs:element name="validations" type="Storage.Services.v1.Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="backendId" type="xs:string" use="required">
       <xs:annotation>
@@ -113,7 +113,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Services.Backends.Rest.RestBackend">
+  <xs:complexType name="Storage.Services.v1.Backends.Rest.RestBackend">
     <xs:annotation>
       <xs:documentation>RestBackend represents a REST backend service that can be used in API products.</xs:documentation>
     </xs:annotation>
@@ -123,7 +123,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Services.Backends.Soap.SoapBackend">
+  <xs:complexType name="Storage.Services.v1.Backends.Soap.SoapBackend">
     <xs:annotation>
       <xs:documentation>SoapBackend represents a SOAP backend service that can be used in API products.</xs:documentation>
     </xs:annotation>
@@ -133,12 +133,12 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Services.Core.ApiProductDependency">
+  <xs:complexType name="Storage.Services.v1.Core.ApiProductDependency">
     <xs:all>
       <xs:element name="apis" minOccurs="0" maxOccurs="1">
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="api" type="Services.Core.ApiReference" />
+            <xs:element name="api" type="Storage.Services.v1.Core.ApiReference" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -165,32 +165,32 @@
       <xs:element name="name" type="Core.Names.Name" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="Core.Traits.TraitCollection">
+  <xs:complexType name="Storage.Services.v1.Traits.TraitCollection">
     <xs:annotation>
       <xs:documentation>En lista av egenskaper på ett Diml-objekt.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="trait" type="Core.Traits.Trait" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="trait" type="Storage.Services.v1.Traits.Trait" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="Services.Core.Authorization.Authorization">
+  <xs:complexType name="Storage.Services.v1.Core.Authorization.Authorization">
     <xs:annotation>
       <xs:documentation>Authorization contains policy-based authorization details.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="policy" type="Services.Core.Authorization.PolicyAuthorization" minOccurs="0" maxOccurs="1" />
+      <xs:element name="policy" type="Storage.Services.v1.Core.Authorization.PolicyAuthorization" minOccurs="0" maxOccurs="1" />
     </xs:all>
   </xs:complexType>
-  <xs:complexType name="Services.Apis.Rest.Route">
+  <xs:complexType name="Storage.Services.v1.Apis.Rest.Route">
     <xs:annotation>
       <xs:documentation>A REST API route definition describes an endpoint within an API.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="authorization" type="Services.Core.Authorization.Authorization" minOccurs="0" maxOccurs="1" />
-      <xs:element name="match" type="Services.Apis.Rest.RestApiMatch" minOccurs="1" maxOccurs="1" />
-      <xs:element name="traits" type="Core.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="transforms" type="Services.Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
-      <xs:element name="validations" type="Services.Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
+      <xs:element name="authorization" type="Storage.Services.v1.Core.Authorization.Authorization" minOccurs="0" maxOccurs="1" />
+      <xs:element name="match" type="Storage.Services.v1.Apis.Rest.RestApiMatch" minOccurs="1" maxOccurs="1" />
+      <xs:element name="traits" type="Storage.Services.v1.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="transforms" type="Storage.Services.v1.Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
+      <xs:element name="validations" type="Storage.Services.v1.Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
@@ -198,33 +198,33 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Services.Core.Transforms.Transforms">
+  <xs:complexType name="Storage.Services.v1.Core.Transforms.Transforms">
     <xs:annotation>
       <xs:documentation>Transforms contains request and response transforms for the API.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="request" type="Services.Core.Transforms.RequestTransforms" minOccurs="0" maxOccurs="1" />
-      <xs:element name="response" type="Services.Core.Transforms.ResponseTransforms" minOccurs="0" maxOccurs="1" />
+      <xs:element name="request" type="Storage.Services.v1.Core.Transforms.RequestTransforms" minOccurs="0" maxOccurs="1" />
+      <xs:element name="response" type="Storage.Services.v1.Core.Transforms.ResponseTransforms" minOccurs="0" maxOccurs="1" />
     </xs:all>
   </xs:complexType>
-  <xs:complexType name="Services.Core.Validations.Validations">
+  <xs:complexType name="Storage.Services.v1.Core.Validations.Validations">
     <xs:annotation>
       <xs:documentation>Validations contains request and response validations for the API.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="request" type="Services.Core.Validations.RequestValidations" minOccurs="0" maxOccurs="1" />
-      <xs:element name="response" type="Services.Core.Validations.ResponseValidations" minOccurs="0" maxOccurs="1" />
+      <xs:element name="request" type="Storage.Services.v1.Core.Validations.RequestValidations" minOccurs="0" maxOccurs="1" />
+      <xs:element name="response" type="Storage.Services.v1.Core.Validations.ResponseValidations" minOccurs="0" maxOccurs="1" />
     </xs:all>
   </xs:complexType>
-  <xs:complexType name="Services.Apis.Soap.Operation">
+  <xs:complexType name="Storage.Services.v1.Apis.Soap.Operation">
     <xs:annotation>
       <xs:documentation>Operation represents a single operation in a SOAP API.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="authorization" type="Services.Core.Authorization.Authorization" minOccurs="0" maxOccurs="1" />
-      <xs:element name="traits" type="Core.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="transforms" type="Services.Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
-      <xs:element name="validations" type="Services.Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
+      <xs:element name="authorization" type="Storage.Services.v1.Core.Authorization.Authorization" minOccurs="0" maxOccurs="1" />
+      <xs:element name="traits" type="Storage.Services.v1.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="transforms" type="Storage.Services.v1.Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
+      <xs:element name="validations" type="Storage.Services.v1.Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
@@ -242,7 +242,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Services.Core.ApiReference">
+  <xs:complexType name="Storage.Services.v1.Core.ApiReference">
     <xs:annotation>
       <xs:documentation>ApiReference represents a reference to an API in another API product.</xs:documentation>
     </xs:annotation>
@@ -285,11 +285,11 @@
       </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
-  <xs:complexType name="Core.Traits.Trait">
+  <xs:complexType name="Storage.Services.v1.Traits.Trait">
     <xs:annotation>
       <xs:documentation>Används för att specificera egenskaper (traits) på ett Diml-objekt.</xs:documentation>
     </xs:annotation>
-    <xs:attribute name="id" type="Core.Traits.TraitType" use="required">
+    <xs:attribute name="id" type="Storage.Services.v1.Traits.TraitType" use="required">
       <xs:annotation>
         <xs:documentation>The type of trait.</xs:documentation>
       </xs:annotation>
@@ -300,17 +300,17 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Services.Core.Authorization.PolicyAuthorization">
+  <xs:complexType name="Storage.Services.v1.Core.Authorization.PolicyAuthorization">
     <xs:annotation>
       <xs:documentation>Authorization policy</xs:documentation>
     </xs:annotation>
-    <xs:attribute name="name" type="Services.Core.Authorization.AuthorizationPolicy" use="optional">
+    <xs:attribute name="name" type="Storage.Services.v1.Core.Authorization.AuthorizationPolicy" use="optional">
       <xs:annotation>
         <xs:documentation>Authorization policy name</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Services.Apis.Rest.RestApiMatch">
+  <xs:complexType name="Storage.Services.v1.Apis.Rest.RestApiMatch">
     <xs:annotation>
       <xs:documentation>RestApiMatch defines a match for a REST API operation, including the path, HTTP methods, and optional headers.</xs:documentation>
     </xs:annotation>
@@ -318,12 +318,12 @@
       <xs:element name="headers" minOccurs="0" maxOccurs="1">
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="header" type="Services.Apis.Rest.HeaderMatch" />
+            <xs:element name="header" type="Storage.Services.v1.Apis.Rest.HeaderMatch" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
     </xs:all>
-    <xs:attribute name="methods" type="Services.Core.HttpMethods" use="required">
+    <xs:attribute name="methods" type="Storage.Services.v1.Core.HttpMethods" use="required">
       <xs:annotation>
         <xs:documentation>HTTP defines a set of request methods to indicate the purpose of the request and what is expected if the request is successful. Although they can also be nouns, these request methods are sometimes referred to as HTTP verbs. Each request method has its own semantics, but some characteristics are shared across multiple methods, specifically request methods can be safe, idempotent, or cacheable.</xs:documentation>
       </xs:annotation>
@@ -334,7 +334,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Services.Core.Transforms.RequestTransforms">
+  <xs:complexType name="Storage.Services.v1.Core.Transforms.RequestTransforms">
     <xs:annotation>
       <xs:documentation>RequestTransforms represents a collection of transforms that can be applied to the request before it is sent to the API.</xs:documentation>
     </xs:annotation>
@@ -342,20 +342,20 @@
       <xs:element name="headers" minOccurs="0" maxOccurs="1">
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="header" type="Services.Core.Transforms.HeaderTransform" />
+            <xs:element name="header" type="Storage.Services.v1.Core.Transforms.HeaderTransform" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
       <xs:element name="paths" minOccurs="0" maxOccurs="1">
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="path" type="Services.Core.Transforms.PathTransform" />
+            <xs:element name="path" type="Storage.Services.v1.Core.Transforms.PathTransform" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
     </xs:all>
   </xs:complexType>
-  <xs:complexType name="Services.Core.Transforms.ResponseTransforms">
+  <xs:complexType name="Storage.Services.v1.Core.Transforms.ResponseTransforms">
     <xs:annotation>
       <xs:documentation>ResponseTransforms contains response header transforms for the API. It is used to transform headers in responses before they are sent back to the client.</xs:documentation>
     </xs:annotation>
@@ -363,23 +363,23 @@
       <xs:element name="headers" minOccurs="0" maxOccurs="1">
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="header" type="Services.Core.Transforms.HeaderTransform" />
+            <xs:element name="header" type="Storage.Services.v1.Core.Transforms.HeaderTransform" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
     </xs:all>
   </xs:complexType>
-  <xs:complexType name="Services.Core.Validations.RequestValidations">
+  <xs:complexType name="Storage.Services.v1.Core.Validations.RequestValidations">
     <xs:annotation>
       <xs:documentation>RequestValidations contains request validations for the API. It is used to validate incoming requests before they are processed by the API.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="headers" type="Services.Core.Validations.HeaderValidationCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="headers" type="Storage.Services.v1.Core.Validations.HeaderValidationCollection" minOccurs="0" maxOccurs="1" />
     </xs:all>
   </xs:complexType>
-  <xs:complexType name="Services.Core.Validations.ResponseValidations">
+  <xs:complexType name="Storage.Services.v1.Core.Validations.ResponseValidations">
     <xs:all>
-      <xs:element name="headers" type="Services.Core.Validations.HeaderValidationCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="headers" type="Storage.Services.v1.Core.Validations.HeaderValidationCollection" minOccurs="0" maxOccurs="1" />
     </xs:all>
   </xs:complexType>
   <xs:simpleType name="Core.Language">
@@ -418,89 +418,19 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="Core.Traits.TraitType">
+  <xs:simpleType name="Storage.Services.v1.Traits.TraitType">
     <xs:annotation>
       <xs:documentation>The type of trait.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="appearance.icon">
-        <xs:annotation>
-          <xs:documentation>Icon used for presentation.</xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
       <xs:enumeration value="classification.infoClass">
         <xs:annotation>
           <xs:documentation>Informationclass.</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
-      <xs:enumeration value="means.pii.address">
-        <xs:annotation>
-          <xs:documentation>Address.</xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="means.pii.email">
-        <xs:annotation>
-          <xs:documentation>Email.</xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="means.pii.employeeNumber">
-        <xs:annotation>
-          <xs:documentation>Employee number.</xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="means.pii.name">
-        <xs:annotation>
-          <xs:documentation>Name.</xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="means.pii.other">
-        <xs:annotation>
-          <xs:documentation>Other.</xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="means.pii.ssn">
-        <xs:annotation>
-          <xs:documentation>Social Security Number</xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="means.pii.zip">
-        <xs:annotation>
-          <xs:documentation>Zipcode.</xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="privacy.dataIdentifiability.aggregated">
-        <xs:annotation>
-          <xs:documentation>Aggregated data.</xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="privacy.dataIdentifiability.anonymized">
-        <xs:annotation>
-          <xs:documentation>Anonymized data.</xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="privacy.dataIdentifiability.identified">
-        <xs:annotation>
-          <xs:documentation>Identifiable data.</xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="privacy.dataIdentifiability.pseudonymized">
-        <xs:annotation>
-          <xs:documentation>Pseudonymized data.</xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="privacy.dataUsage.improve">
-        <xs:annotation>
-          <xs:documentation>Approved for quality improvement usage.</xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="privacy.dataUsage.research">
-        <xs:annotation>
-          <xs:documentation>Approved for research usage.</xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="Services.Core.Authorization.AuthorizationPolicy">
+  <xs:simpleType name="Storage.Services.v1.Core.Authorization.AuthorizationPolicy">
     <xs:annotation>
       <xs:documentation>Supported Authorization policy names</xs:documentation>
     </xs:annotation>
@@ -517,7 +447,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="Services.Apis.Rest.HeaderMatch">
+  <xs:complexType name="Storage.Services.v1.Apis.Rest.HeaderMatch">
     <xs:annotation>
       <xs:documentation>HeaderMatch represents a match condition for HTTP headers in a REST API.</xs:documentation>
     </xs:annotation>
@@ -535,7 +465,7 @@
         <xs:documentation>Indicates whether the header match is case-sensitive. Defaults to false.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="mode" type="Services.Apis.Rest.HeaderMatchMode" use="required">
+    <xs:attribute name="mode" type="Storage.Services.v1.Apis.Rest.HeaderMatchMode" use="required">
       <xs:annotation>
         <xs:documentation>Specifies how the header match should be evaluated.</xs:documentation>
       </xs:annotation>
@@ -546,7 +476,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:simpleType name="Services.Core.HttpMethods">
+  <xs:simpleType name="Storage.Services.v1.Core.HttpMethods">
     <xs:annotation>
       <xs:documentation>HTTP defines a set of request methods to indicate the purpose of the request and what is expected if the request is successful. Although they can also be nouns, these request methods are sometimes referred to as HTTP verbs. Each request method has its own semantics, but some characteristics are shared across multiple methods, specifically request methods can be safe, idempotent, or cacheable.</xs:documentation>
     </xs:annotation>
@@ -566,7 +496,7 @@
       </xs:simpleType>
     </xs:list>
   </xs:simpleType>
-  <xs:complexType name="Services.Core.Transforms.HeaderTransform">
+  <xs:complexType name="Storage.Services.v1.Core.Transforms.HeaderTransform">
     <xs:annotation>
       <xs:documentation>HeaderTransforms contains header transforms for the API. It is used to transform headers in requests and responses before they are processed by the API.</xs:documentation>
     </xs:annotation>
@@ -575,12 +505,12 @@
         <xs:documentation>The name of the header to transform in requests or responses.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="operation" type="Services.Core.Transforms.HeaderTransformOperation" use="required">
+    <xs:attribute name="operation" type="Storage.Services.v1.Core.Transforms.HeaderTransformOperation" use="required">
       <xs:annotation>
         <xs:documentation>Specifies the header transform operations.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="overwrite" type="Services.Core.Transforms.HeaderTransformOverwrite" use="optional">
+    <xs:attribute name="overwrite" type="Storage.Services.v1.Core.Transforms.HeaderTransformOverwrite" use="optional">
       <xs:annotation>
         <xs:documentation>Specifies whether the header value should be overwritten or not.</xs:documentation>
       </xs:annotation>
@@ -591,8 +521,8 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Services.Core.Transforms.PathTransform">
-    <xs:attribute name="operation" type="Services.Core.Transforms.PathTransformOperation" use="required">
+  <xs:complexType name="Storage.Services.v1.Core.Transforms.PathTransform">
+    <xs:attribute name="operation" type="Storage.Services.v1.Core.Transforms.PathTransformOperation" use="required">
       <xs:annotation>
         <xs:documentation>The type of path transform to apply.</xs:documentation>
       </xs:annotation>
@@ -608,15 +538,15 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Services.Core.Validations.HeaderValidationCollection">
+  <xs:complexType name="Storage.Services.v1.Core.Validations.HeaderValidationCollection">
     <xs:annotation>
       <xs:documentation>HeaderValidations contains header validations for the API. It is used to validate headers in requests and responses before they are processed by the API.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="header" type="Services.Core.Validations.HeaderValidation" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="header" type="Storage.Services.v1.Core.Validations.HeaderValidation" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:simpleType name="Services.Apis.Rest.HeaderMatchMode">
+  <xs:simpleType name="Storage.Services.v1.Apis.Rest.HeaderMatchMode">
     <xs:restriction base="xs:string">
       <xs:enumeration value="contains">
         <xs:annotation>
@@ -650,7 +580,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="Services.Core.Transforms.HeaderTransformOperation">
+  <xs:simpleType name="Storage.Services.v1.Core.Transforms.HeaderTransformOperation">
     <xs:annotation>
       <xs:documentation>Specifies the header transform operations.</xs:documentation>
     </xs:annotation>
@@ -667,7 +597,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="Services.Core.Transforms.HeaderTransformOverwrite">
+  <xs:simpleType name="Storage.Services.v1.Core.Transforms.HeaderTransformOverwrite">
     <xs:annotation>
       <xs:documentation>Specifies whether the header value should be overwritten or not.</xs:documentation>
     </xs:annotation>
@@ -684,7 +614,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="Services.Core.Transforms.PathTransformOperation">
+  <xs:simpleType name="Storage.Services.v1.Core.Transforms.PathTransformOperation">
     <xs:restriction base="xs:string">
       <xs:enumeration value="addPrefix">
         <xs:annotation>
@@ -708,7 +638,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="Services.Core.Validations.HeaderValidation">
+  <xs:complexType name="Storage.Services.v1.Core.Validations.HeaderValidation">
     <xs:annotation>
       <xs:documentation>HeaderValidation defines a validation for a specific header in requests or responses.</xs:documentation>
     </xs:annotation>
@@ -722,7 +652,7 @@
         <xs:documentation>The name of the header validation, either request or response.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="require" type="Services.Core.Validations.HeaderValidationRequire" use="required">
+    <xs:attribute name="require" type="Storage.Services.v1.Core.Validations.HeaderValidationRequire" use="required">
       <xs:annotation>
         <xs:documentation>HeaderValidationRequire defines whether a header is required or optional in requests or responses.</xs:documentation>
       </xs:annotation>
@@ -739,7 +669,7 @@
       <xs:enumeration value="warning" />
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="Services.Core.Validations.HeaderValidationRequire">
+  <xs:simpleType name="Storage.Services.v1.Core.Validations.HeaderValidationRequire">
     <xs:annotation>
       <xs:documentation>HeaderValidationRequire defines whether a header is required or optional in requests or responses.</xs:documentation>
     </xs:annotation>
