@@ -25,6 +25,13 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
+      <xs:element name="channels" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="channel" type="Storage.Services.v1.Channels.Channel" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="dependencies" minOccurs="0" maxOccurs="1">
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
@@ -133,6 +140,45 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
+  <xs:complexType name="Storage.Services.v1.Channels.Channel">
+    <xs:annotation>
+      <xs:documentation>Represents a logical messaging channel in the system. A channel defines how messages are produced, consumed, and configured, independent of the underlying messaging platform (such as RabbitMQ or Kafka).</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="bindings" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="binding" type="Storage.Services.v1.Channels.Binding" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="asyncapi" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Relative path to the AsyncAPI specification file describing the message schema, operations, and metadata for this channel.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="autoDelete" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>Indicates whether the channel should automatically be deleted when it is no longer in use.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="durable" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>Indicates whether the channel should persist its configuration and state across service restarts.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="id" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>A unique identifier for this channel within the API product.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="type" type="Storage.Services.v1.Channels.ChannelType" use="required">
+      <xs:annotation>
+        <xs:documentation>Defines the type of messaging pattern or protocol used by this channel.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
   <xs:complexType name="Storage.Services.v1.Core.ApiProductDependency">
     <xs:all>
       <xs:element name="apis" minOccurs="0" maxOccurs="1">
@@ -183,7 +229,7 @@
   </xs:complexType>
   <xs:complexType name="Storage.Services.v1.Apis.Rest.Route">
     <xs:annotation>
-      <xs:documentation>A REST API route definition describes an endpoint within an API.</xs:documentation>
+      <xs:documentation>Represents a logical messaging channel in the system. A channel defines how messages are produced, consumed, and configured, independent of the underlying messaging platform (such as RabbitMQ or Kafka).</xs:documentation>
     </xs:annotation>
     <xs:all>
       <xs:element name="authorization" type="Storage.Services.v1.Core.Authorization.Authorization" minOccurs="0" maxOccurs="1" />
@@ -242,6 +288,43 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
+  <xs:complexType name="Storage.Services.v1.Channels.Binding">
+    <xs:annotation>
+      <xs:documentation>Represents a binding configuration that defines how messages are routed to a specific destination within a messaging channel.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="autoDelete" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>Indicates whether the binding should automatically be removed when it is no longer in use.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="durable" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>Indicates whether the binding should persist its configuration across service or broker restarts.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="id" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>A unique identifier for this binding within the API product.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="routingKey" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>The routing expression or key used to determine how messages are matched to this binding. The semantics depend on the underlying messaging platform.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:simpleType name="Storage.Services.v1.Channels.ChannelType">
+    <xs:annotation>
+      <xs:documentation>Enumerates the supported channel types.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="direct">
+        <xs:annotation>
+          <xs:documentation>A direct messaging pattern where messages are sent to a specific destination without additional routing.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
   <xs:complexType name="Storage.Services.v1.Core.ApiReference">
     <xs:annotation>
       <xs:documentation>ApiReference represents a reference to an API in another API product.</xs:documentation>
