@@ -45,10 +45,10 @@
     </xs:all>
     <xs:attribute name="dimlId" type="xs:string" use="required">
       <xs:annotation>
-        <xs:documentation>En globalt unik identifierare för Diml-objektet.</xs:documentation>
+        <xs:documentation>A globally unique identifier for the API product.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="uniqueName" type="xs:string" use="required">
+    <xs:attribute name="uniqueName" type="xs:string" use="optional">
       <xs:annotation>
         <xs:documentation>A unique name for the API product across all API products in an environment. Must be less than 128 chars, only contain a-z, 0-9, '-', '_' chars and must start with a letter and cannot be empty.</xs:documentation>
       </xs:annotation>
@@ -191,7 +191,7 @@
     </xs:all>
     <xs:attribute name="dimlId" type="xs:string" use="required">
       <xs:annotation>
-        <xs:documentation>Unique DimlID identifier for the API product dependency.</xs:documentation>
+        <xs:documentation>Unique identifier of the referenced API product.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
