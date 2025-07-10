@@ -1,0 +1,124 @@
+<!--
+    DIML XSD Schema for config v1.0.0
+-->
+<xs:schema xmlns="https://github.com/Region-Skane-SDI/diml/config" targetNamespace="https://github.com/Region-Skane-SDI/diml/config" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
+  <xs:element name="config" type="Core.DimlConfig.Config" />
+  <xs:complexType name="Core.DimlConfig.Config">
+    <xs:annotation>
+      <xs:documentation>Konfiguration av Diml-miljö där t.ex standardspråk anges.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="traits" type="Core.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+    <xs:attribute name="defaultLanguage" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger standardspråk för en Diml-miljö</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Core.Traits.TraitCollection">
+    <xs:annotation>
+      <xs:documentation>En lista av egenskaper på ett Diml-objekt.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="trait" type="Core.Traits.Trait" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Core.Traits.Trait">
+    <xs:annotation>
+      <xs:documentation>Används för att specificera egenskaper (traits) på ett Diml-objekt.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="id" type="Core.Traits.TraitType" use="required">
+      <xs:annotation>
+        <xs:documentation>The type of trait.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="value" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Värdet för egenskapen.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:simpleType name="Core.Traits.TraitType">
+    <xs:annotation>
+      <xs:documentation>The type of trait.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="appearance.icon">
+        <xs:annotation>
+          <xs:documentation>Icon used for presentation.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="classification.infoClass">
+        <xs:annotation>
+          <xs:documentation>Informationclass.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="means.pii.address">
+        <xs:annotation>
+          <xs:documentation>Address.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="means.pii.email">
+        <xs:annotation>
+          <xs:documentation>Email.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="means.pii.employeeNumber">
+        <xs:annotation>
+          <xs:documentation>Employee number.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="means.pii.name">
+        <xs:annotation>
+          <xs:documentation>Name.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="means.pii.other">
+        <xs:annotation>
+          <xs:documentation>Other.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="means.pii.ssn">
+        <xs:annotation>
+          <xs:documentation>Social Security Number</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="means.pii.zip">
+        <xs:annotation>
+          <xs:documentation>Zipcode.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="privacy.dataIdentifiability.aggregated">
+        <xs:annotation>
+          <xs:documentation>Aggregated data.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="privacy.dataIdentifiability.anonymized">
+        <xs:annotation>
+          <xs:documentation>Anonymized data.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="privacy.dataIdentifiability.identified">
+        <xs:annotation>
+          <xs:documentation>Identifiable data.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="privacy.dataIdentifiability.pseudonymized">
+        <xs:annotation>
+          <xs:documentation>Pseudonymized data.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="privacy.dataUsage.improve">
+        <xs:annotation>
+          <xs:documentation>Approved for quality improvement usage.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="privacy.dataUsage.research">
+        <xs:annotation>
+          <xs:documentation>Approved for research usage.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
