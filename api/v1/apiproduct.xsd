@@ -566,15 +566,51 @@
     <xs:list>
       <xs:simpleType>
         <xs:restriction base="xs:string">
-          <xs:enumeration value="CONNECT" />
-          <xs:enumeration value="DELETE" />
-          <xs:enumeration value="GET" />
-          <xs:enumeration value="HEAD" />
-          <xs:enumeration value="OPTIONS" />
-          <xs:enumeration value="PATCH" />
-          <xs:enumeration value="POST" />
-          <xs:enumeration value="PUT" />
-          <xs:enumeration value="TRACE" />
+          <xs:enumeration value="CONNECT">
+            <xs:annotation>
+              <xs:documentation>The CONNECT method establishes a tunnel to the server identified by the target resource.</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="DELETE">
+            <xs:annotation>
+              <xs:documentation>The DELETE method deletes the specified resource.</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="GET">
+            <xs:annotation>
+              <xs:documentation>The GET HTTP method requests a representation of the specified resource. Requests using GET should only be used to request data and shouldn't contain a body.</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="HEAD">
+            <xs:annotation>
+              <xs:documentation>The HEAD method asks for a response identical to a GET request, but without a response body.</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="OPTIONS">
+            <xs:annotation>
+              <xs:documentation>The OPTIONS method describes the communication options for the target resource.</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="PATCH">
+            <xs:annotation>
+              <xs:documentation>The PATCH method applies partial modifications to a resource.</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="POST">
+            <xs:annotation>
+              <xs:documentation>The POST method submits an entity to the specified resource, often causing a change in state or side effects on the server.</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="PUT">
+            <xs:annotation>
+              <xs:documentation>The PUT method replaces all current representations of the target resource with the request content.</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="TRACE">
+            <xs:annotation>
+              <xs:documentation>The TRACE method performs a message loop-back test along the path to the target resource.</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
         </xs:restriction>
       </xs:simpleType>
     </xs:list>
