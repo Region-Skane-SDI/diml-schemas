@@ -38,7 +38,7 @@
   </xs:complexType>
   <xs:complexType name="Core.Descriptions.DescriptionCollection">
     <xs:annotation>
-      <xs:documentation>En lista av beskrivningar för ett Diml-objekt i olika format och språk.</xs:documentation>
+      <xs:documentation>A collection of descriptions of the object in different languages and formats.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="description" type="Core.Descriptions.Description" minOccurs="0" maxOccurs="unbounded" />
@@ -46,7 +46,7 @@
   </xs:complexType>
   <xs:complexType name="Core.Names.NameCollection">
     <xs:annotation>
-      <xs:documentation>En lista av namn för att namnge ett Diml-objekt på olika språk.</xs:documentation>
+      <xs:documentation>A collection of names of the object in different languages.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="name" type="Core.Names.Name" minOccurs="0" maxOccurs="unbounded" />
@@ -102,16 +102,16 @@
     <xs:simpleContent>
       <xs:extension base="xs:string">
         <xs:annotation>
-          <xs:documentation>Används för att beskriva ett Diml-objekt i olika format och språk.</xs:documentation>
+          <xs:documentation>Used to give a DIML object a description in a given language and format.</xs:documentation>
         </xs:annotation>
         <xs:attribute name="language" type="Core.Language" use="required">
           <xs:annotation>
-            <xs:documentation>Anger språk för beskrivning.</xs:documentation>
+            <xs:documentation>The language of the description.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="type" type="Core.Descriptions.DescriptionType" use="required">
           <xs:annotation>
-            <xs:documentation>Anger beskrivning i valt format, t.ex markdown eller plain text.</xs:documentation>
+            <xs:documentation>The format of the description.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
       </xs:extension>
@@ -121,11 +121,11 @@
     <xs:simpleContent>
       <xs:extension base="xs:string">
         <xs:annotation>
-          <xs:documentation>Används för att namnge ett Diml-objekt på olika språk.</xs:documentation>
+          <xs:documentation>Represents a name of a DIML object in a specific language.</xs:documentation>
         </xs:annotation>
         <xs:attribute name="language" type="Core.Language" use="required">
           <xs:annotation>
-            <xs:documentation>En representation av vilket språk som används för namnet. Exempelvärde: sv</xs:documentation>
+            <xs:documentation>The language of the name.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
       </xs:extension>
@@ -256,7 +256,7 @@
   </xs:simpleType>
   <xs:simpleType name="Core.Descriptions.DescriptionType">
     <xs:annotation>
-      <xs:documentation>Anger textformat för beskrivningen</xs:documentation>
+      <xs:documentation>The format of the description.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:enumeration value="logicMd">
