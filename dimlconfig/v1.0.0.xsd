@@ -2,8 +2,8 @@
     DIML XSD Schema for config v1.0.0
 -->
 <xs:schema xmlns="https://github.com/Region-Skane-SDI/diml/config" targetNamespace="https://github.com/Region-Skane-SDI/diml/config" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
-  <xs:element name="config" type="Storage.Data.v5.DimlConfig.Config" />
-  <xs:complexType name="Storage.Data.v5.DimlConfig.Config">
+  <xs:element name="config" type="Storage.DimlConfig.v1.Config" />
+  <xs:complexType name="Storage.DimlConfig.v1.Config">
     <xs:annotation>
       <xs:documentation>Konfiguration av Diml-miljö där t.ex standardspråk anges.</xs:documentation>
     </xs:annotation>
