@@ -2,27 +2,27 @@
     DIML XSD Schema for dataproduct v5.0.0
 -->
 <xs:schema xmlns="https://github.com/Region-Skane-SDI/diml/dataproduct" targetNamespace="https://github.com/Region-Skane-SDI/diml/dataproduct" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
-  <xs:element name="dataProduct" type="Storage.Data.v5.DataProductSpecification" />
-  <xs:complexType name="Storage.Data.v5.DataProductSpecification">
+  <xs:element name="dataProduct" type="DataProductSpecification" />
+  <xs:complexType name="DataProductSpecification">
     <xs:annotation>
       <xs:documentation>Beskrivning av en dataprodukt med dess specifikationer.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="dataFlow" type="Storage.Data.v5.Data.DataFlow" minOccurs="0" maxOccurs="1" />
-      <xs:element name="dataInputs" type="Storage.Data.v5.Data.DataInputCollection" minOccurs="1" maxOccurs="1" />
-      <xs:element name="dataOutputs" type="Storage.Data.v5.Data.DataProductOutputs" minOccurs="0" maxOccurs="1" />
-      <xs:element name="dcat" type="Storage.Data.v5.Data.DCat" minOccurs="1" maxOccurs="1" />
+      <xs:element name="dataFlow" type="Data.DataFlow" minOccurs="0" maxOccurs="1" />
+      <xs:element name="dataInputs" type="Data.DataInputCollection" minOccurs="1" maxOccurs="1" />
+      <xs:element name="dataOutputs" type="Data.DataProductOutputs" minOccurs="0" maxOccurs="1" />
+      <xs:element name="dcat" type="Data.DCat" minOccurs="1" maxOccurs="1" />
       <xs:element name="descriptions" type="Core.Descriptions.DescriptionCollection" minOccurs="1" maxOccurs="1" />
       <xs:element name="names" type="Core.Names.NameCollection" minOccurs="1" maxOccurs="1" />
-      <xs:element name="tables" type="Storage.Data.v5.Tabular.DataProductTableCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="traits" type="Storage.Data.v5.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="tables" type="Tabular.DataProductTableCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="traits" type="Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="dimlId" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>En globalt unik identifierare för Diml-objektet.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="targetPlatform" type="Storage.Data.v5.DataTypesConfig.TargetPlatformType" use="required">
+    <xs:attribute name="targetPlatform" type="DataTypesConfig.TargetPlatformType" use="required">
       <xs:annotation>
         <xs:documentation>Vilken plattform som ska användas.</xs:documentation>
       </xs:annotation>
@@ -33,58 +33,58 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Data.DataFlow">
+  <xs:complexType name="Data.DataFlow">
     <xs:annotation>
       <xs:documentation>Anger flödet av data genom alla lager, samt egenskaper t.ex om en tabell ska materialiseras, uppdateras osv.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="dataIngests" type="Storage.Data.v5.Data.DataIngestCollection" minOccurs="1" maxOccurs="1" />
-      <xs:element name="dataStages" type="Storage.Data.v5.Data.DataStageCollection" minOccurs="1" maxOccurs="1" />
+      <xs:element name="dataIngests" type="Data.DataIngestCollection" minOccurs="1" maxOccurs="1" />
+      <xs:element name="dataStages" type="Data.DataStageCollection" minOccurs="1" maxOccurs="1" />
     </xs:all>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Data.DataInputCollection">
+  <xs:complexType name="Data.DataInputCollection">
     <xs:annotation>
       <xs:documentation>Innehåller en list av indatakällor för en dataproduktsspecifikation, t.ex. en DataSource eller en annan DataProduct.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="dataInput" type="Storage.Data.v5.Data.DataInput" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="dataInput" type="Data.DataInput" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Data.DataProductOutputs">
+  <xs:complexType name="Data.DataProductOutputs">
     <xs:annotation>
       <xs:documentation>Innehåller en lista av utdataformat.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="apiOutputs" type="Storage.Data.v5.Outputs.Api.ApiOutputCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="fileOutputs" type="Storage.Data.v5.Outputs.File.FileOutputCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="sqlOutputs" type="Storage.Data.v5.Outputs.Sql.SqlOutputCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="apiOutputs" type="Outputs.Api.ApiOutputCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="fileOutputs" type="Outputs.File.FileOutputCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="sqlOutputs" type="Outputs.Sql.SqlOutputCollection" minOccurs="0" maxOccurs="1" />
     </xs:all>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Data.DCat">
+  <xs:complexType name="Data.DCat">
     <xs:annotation>
       <xs:documentation>Innehåller egenskaper för DCAT vilket är en metadataspecifikation för att beskriva datamängder. Mer information finns här: https://docs.dataportal.se/dcat/en/</xs:documentation>
     </xs:annotation>
-    <xs:attribute name="dcatAccessRights" type="Storage.Data.v5.Data.DCatAccessRightsType" use="required">
+    <xs:attribute name="dcatAccessRights" type="Data.DCatAccessRightsType" use="required">
       <xs:annotation>
         <xs:documentation>Anger vilka åtkomsträttigheter som finns för dataprodukten i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="dcatAvailability" type="Storage.Data.v5.Data.DCatAvailabilityType" use="required">
+    <xs:attribute name="dcatAvailability" type="Data.DCatAvailabilityType" use="required">
       <xs:annotation>
         <xs:documentation>Anger dataproduktens tillgänglighet i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="dcatDataTheme" type="Storage.Data.v5.Data.DCatDataThemeType" use="required">
+    <xs:attribute name="dcatDataTheme" type="Data.DCatDataThemeType" use="required">
       <xs:annotation>
         <xs:documentation>Anger vilket datatema dataprodukten tillhör i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="dcatStatus" type="Storage.Data.v5.Data.DCatStatusType" use="required">
+    <xs:attribute name="dcatStatus" type="Data.DCatStatusType" use="required">
       <xs:annotation>
         <xs:documentation>Anger dataproduktens status i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="dcatUpdateFrequency" type="Storage.Data.v5.Data.DCatUpdateFrequencyType" use="required">
+    <xs:attribute name="dcatUpdateFrequency" type="Data.DCatUpdateFrequencyType" use="required">
       <xs:annotation>
         <xs:documentation>Anger dataproduktens uppdateringsfrekvens i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en</xs:documentation>
       </xs:annotation>
@@ -106,15 +106,15 @@
       <xs:element name="name" type="Core.Names.Name" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Tabular.DataProductTableCollection">
+  <xs:complexType name="Tabular.DataProductTableCollection">
     <xs:annotation>
       <xs:documentation>Innehåller en lista av tabeller i en tabulär dataprodukt.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="table" type="Storage.Data.v5.Tabular.DataProductTable" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="table" type="Tabular.DataProductTable" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:simpleType name="Storage.Data.v5.DataTypesConfig.TargetPlatformType">
+  <xs:simpleType name="DataTypesConfig.TargetPlatformType">
     <xs:annotation>
       <xs:documentation>Anger vilken plattform som ska användas.</xs:documentation>
     </xs:annotation>
@@ -146,31 +146,31 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="Storage.Data.v5.Traits.TraitCollection">
+  <xs:complexType name="Traits.TraitCollection">
     <xs:annotation>
       <xs:documentation>En lista av egenskaper på ett Diml-objekt.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="trait" type="Storage.Data.v5.Traits.Trait" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="trait" type="Traits.Trait" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Data.DataIngestCollection">
+  <xs:complexType name="Data.DataIngestCollection">
     <xs:annotation>
       <xs:documentation>Innehåller en lista av Instruktioner för hur data ska läsas in från källa till destination.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="dataIngest" type="Storage.Data.v5.Data.DataIngest" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="dataIngest" type="Data.DataIngest" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Data.DataStageCollection">
+  <xs:complexType name="Data.DataStageCollection">
     <xs:annotation>
       <xs:documentation>Innehåller en lista av datastages som anger de olika stadien för data och dess egenskaper, tex. Om en tabell ska materialiseras eller inte, hur data ska uppdateras osv.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="dataStage" type="Storage.Data.v5.Data.DataStage" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="dataStage" type="Data.DataStage" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Data.DataInput">
+  <xs:complexType name="Data.DataInput">
     <xs:annotation>
       <xs:documentation>Anger en indatakälla för en dataproduktsspecifikation, t.ex. en DataSource eller en annan DataProduct.</xs:documentation>
     </xs:annotation>
@@ -190,31 +190,31 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Outputs.Api.ApiOutputCollection">
+  <xs:complexType name="Outputs.Api.ApiOutputCollection">
     <xs:annotation>
       <xs:documentation>Innehåller en lista av apiOutput som anger API som utdataformat enligt en angiven standard.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="apiOutput" type="Storage.Data.v5.Outputs.Api.ApiOutput" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="apiOutput" type="Outputs.Api.ApiOutput" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Outputs.File.FileOutputCollection">
+  <xs:complexType name="Outputs.File.FileOutputCollection">
     <xs:annotation>
       <xs:documentation>Innehåller en lista av fildestinationer för utdata med ett antal obligatoriska parametrar.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="fileOutput" type="Storage.Data.v5.Outputs.File.FileOutput" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="fileOutput" type="Outputs.File.FileOutput" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Outputs.Sql.SqlOutputCollection">
+  <xs:complexType name="Outputs.Sql.SqlOutputCollection">
     <xs:annotation>
       <xs:documentation>Innehåller en lista av sqluOutput som anger output som SQL kod i angiven dialekt, tex: TSQL eller Spark SQL.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="sqlOutput" type="Storage.Data.v5.Outputs.Sql.SqlOutput" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="sqlOutput" type="Outputs.Sql.SqlOutput" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:simpleType name="Storage.Data.v5.Data.DCatAccessRightsType">
+  <xs:simpleType name="Data.DCatAccessRightsType">
     <xs:annotation>
       <xs:documentation>Anger vilka åtkomsträttigheter som finns för dataprodukten i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en</xs:documentation>
     </xs:annotation>
@@ -236,7 +236,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="Storage.Data.v5.Data.DCatAvailabilityType">
+  <xs:simpleType name="Data.DCatAvailabilityType">
     <xs:annotation>
       <xs:documentation>Anger dataproduktens tillgänglighet i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en</xs:documentation>
     </xs:annotation>
@@ -263,7 +263,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="Storage.Data.v5.Data.DCatDataThemeType">
+  <xs:simpleType name="Data.DCatDataThemeType">
     <xs:annotation>
       <xs:documentation>Anger vilket datatema dataprodukten tillhör i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en</xs:documentation>
     </xs:annotation>
@@ -335,7 +335,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="Storage.Data.v5.Data.DCatStatusType">
+  <xs:simpleType name="Data.DCatStatusType">
     <xs:annotation>
       <xs:documentation>Anger dataproduktens status i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en</xs:documentation>
     </xs:annotation>
@@ -362,7 +362,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="Storage.Data.v5.Data.DCatUpdateFrequencyType">
+  <xs:simpleType name="Data.DCatUpdateFrequencyType">
     <xs:annotation>
       <xs:documentation>Anger dataproduktens uppdateringsfrekvens i datakatalogen. Följer standarden DCAT-AP, mer information finns här: https://docs.dataportal.se/dcat/en</xs:documentation>
     </xs:annotation>
@@ -502,7 +502,7 @@
       </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Tabular.DataProductTable">
+  <xs:complexType name="Tabular.DataProductTable">
     <xs:annotation>
       <xs:documentation>Beskriver en tabell i en tabulär dataprodukt.</xs:documentation>
     </xs:annotation>
@@ -510,17 +510,17 @@
       <xs:element name="aliases" minOccurs="0" maxOccurs="1">
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="alias" type="Storage.Data.v5.Tabular.Alias" />
+            <xs:element name="alias" type="Tabular.Alias" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:element name="businessKey" type="Storage.Data.v5.Tabular.BusinessKeyCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="columns" type="Storage.Data.v5.Tabular.DataProductColumnCollection" minOccurs="1" maxOccurs="1" />
+      <xs:element name="businessKey" type="Tabular.BusinessKeyCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="columns" type="Tabular.DataProductColumnCollection" minOccurs="1" maxOccurs="1" />
       <xs:element name="descriptions" type="Core.Descriptions.DescriptionCollection" minOccurs="0" maxOccurs="1" />
       <xs:element name="names" type="Core.Names.NameCollection" minOccurs="1" maxOccurs="1" />
-      <xs:element name="sampleData" type="Storage.Data.v5.Tabular.SampleDataRowCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="tableRelations" type="Storage.Data.v5.Tabular.TableRelationCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="traits" type="Storage.Data.v5.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="sampleData" type="Tabular.SampleDataRowCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="tableRelations" type="Tabular.TableRelationCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="traits" type="Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="existsFromStageId" type="xs:string" use="optional">
       <xs:annotation>
@@ -538,11 +538,11 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Traits.Trait">
+  <xs:complexType name="Traits.Trait">
     <xs:annotation>
       <xs:documentation>Används för att specificera egenskaper (traits) på ett Diml-objekt.</xs:documentation>
     </xs:annotation>
-    <xs:attribute name="id" type="Storage.Data.v5.Traits.TraitType" use="required">
+    <xs:attribute name="id" type="Traits.TraitType" use="required">
       <xs:annotation>
         <xs:documentation>The type of trait.</xs:documentation>
       </xs:annotation>
@@ -553,12 +553,12 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Data.DataIngest">
+  <xs:complexType name="Data.DataIngest">
     <xs:annotation>
       <xs:documentation>Instruktioner för hur data ska läsas in från källa till destination.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="tableToTableMappings" type="Storage.Data.v5.Tabular.TableToTableMappingCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="tableToTableMappings" type="Tabular.TableToTableMappingCollection" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="dataInputId" type="xs:string" use="required">
       <xs:annotation>
@@ -571,22 +571,22 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Data.DataStage">
+  <xs:complexType name="Data.DataStage">
     <xs:annotation>
       <xs:documentation>Anger de olika stadien för data och dess egenskaper, tex. Om en tabell ska materialiseras eller inte, hur data ska uppdateras osv.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="ingestPolicy" type="Storage.Data.v5.Data.IngestPolicy" minOccurs="0" maxOccurs="1" />
-      <xs:element name="logicDataStageTables" type="Storage.Data.v5.Tabular.LogicDataStageTableCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="traits" type="Storage.Data.v5.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="validationPolicy" type="Storage.Data.v5.ValidationPolicies.ValidationPolicy" minOccurs="0" maxOccurs="1" />
+      <xs:element name="ingestPolicy" type="Data.IngestPolicy" minOccurs="0" maxOccurs="1" />
+      <xs:element name="logicDataStageTables" type="Tabular.LogicDataStageTableCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="traits" type="Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="validationPolicy" type="ValidationPolicies.ValidationPolicy" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>Unikt id för dataStage.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="materialization" type="Storage.Data.v5.Data.DataStageMaterialization" use="required">
+    <xs:attribute name="materialization" type="Data.DataStageMaterialization" use="required">
       <xs:annotation>
         <xs:documentation>Anger om data ska materialiseras eller inte.</xs:documentation>
       </xs:annotation>
@@ -596,22 +596,22 @@
         <xs:documentation>OBSOLETE: Anger ordningen på dataStage, dvs vilket steg som ska ske först.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="role" type="Storage.Data.v5.Data.DataStageRole" use="optional">
+    <xs:attribute name="role" type="Data.DataStageRole" use="optional">
       <xs:annotation>
         <xs:documentation>Anger vad som ska hända i dataStage t.ex transformation,input,output.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="type" type="Storage.Data.v5.Data.DataStageType" use="required">
+    <xs:attribute name="type" type="Data.DataStageType" use="required">
       <xs:annotation>
         <xs:documentation>Anger vilken typ av dataStage t.ex tempStore,permaStore,validate.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Outputs.Api.ApiOutput">
+  <xs:complexType name="Outputs.Api.ApiOutput">
     <xs:annotation>
       <xs:documentation>Anger API som utdataformat enligt en angiven standard.</xs:documentation>
     </xs:annotation>
-    <xs:attribute name="apiOutputType" type="Storage.Data.v5.Outputs.Api.ApiOutputType" use="required">
+    <xs:attribute name="apiOutputType" type="Outputs.Api.ApiOutputType" use="required">
       <xs:annotation>
         <xs:documentation>API utdataformat</xs:documentation>
       </xs:annotation>
@@ -622,7 +622,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Outputs.File.FileOutput">
+  <xs:complexType name="Outputs.File.FileOutput">
     <xs:annotation>
       <xs:documentation>Anger en fil som destination för utdata med ett antal obligatoriska parametrar.</xs:documentation>
     </xs:annotation>
@@ -646,7 +646,7 @@
         <xs:documentation>Teckenkodningen för utdatafilen, t.ex. UTF-8.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="fileFormat" type="Storage.Data.v5.Outputs.File.FileFormat" use="required">
+    <xs:attribute name="fileFormat" type="Outputs.File.FileFormat" use="required">
       <xs:annotation>
         <xs:documentation>Anger filformatet av utdatafilen.</xs:documentation>
       </xs:annotation>
@@ -672,7 +672,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Outputs.Sql.SqlOutput">
+  <xs:complexType name="Outputs.Sql.SqlOutput">
     <xs:annotation>
       <xs:documentation>Anger output som SQL kod i angiven dialekt, tex: TSQL eller Spark SQL.</xs:documentation>
     </xs:annotation>
@@ -681,7 +681,7 @@
         <xs:documentation>Anger ett unikt id för varje utkanaltyp t.ex sql,sql2 etc.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="sqlOutputType" type="Storage.Data.v5.Outputs.Sql.SqlOutputType" use="required">
+    <xs:attribute name="sqlOutputType" type="Outputs.Sql.SqlOutputType" use="required">
       <xs:annotation>
         <xs:documentation>Anger utdatatyper som är kompatibla med sqlOutput.</xs:documentation>
       </xs:annotation>
@@ -723,7 +723,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="Storage.Data.v5.Tabular.Alias">
+  <xs:complexType name="Tabular.Alias">
     <xs:annotation>
       <xs:documentation>Anger att ett objekt ska byta namn i en eller flera dataStage.</xs:documentation>
     </xs:annotation>
@@ -743,39 +743,39 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Tabular.BusinessKeyCollection">
+  <xs:complexType name="Tabular.BusinessKeyCollection">
     <xs:annotation>
       <xs:documentation>Innehåller en lista av businessKey som beskriver vilken kolumn som ska användas som BusinessKey</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="value" type="Storage.Data.v5.Tabular.BusinessKey" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="value" type="Tabular.BusinessKey" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Tabular.DataProductColumnCollection">
+  <xs:complexType name="Tabular.DataProductColumnCollection">
     <xs:annotation>
       <xs:documentation>Innehåller en lista av dataProductColumn som beskriver en kolumn i en tabulär dataprodukt.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="column" type="Storage.Data.v5.Tabular.DataProductColumn" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="column" type="Tabular.DataProductColumn" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Tabular.SampleDataRowCollection">
+  <xs:complexType name="Tabular.SampleDataRowCollection">
     <xs:annotation>
       <xs:documentation>Innehåller en lista av sampleDataRow som anger exempeldata.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="sampleDataRow" type="Storage.Data.v5.Tabular.SampleDataRow" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="sampleDataRow" type="Tabular.SampleDataRow" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Tabular.TableRelationCollection">
+  <xs:complexType name="Tabular.TableRelationCollection">
     <xs:annotation>
       <xs:documentation>Innehåller en lista av tableRelation som anger eventuella tabellrelationer och hur de relaterar via relationsColumns.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="tableRelation" type="Storage.Data.v5.Tabular.TableRelation" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="tableRelation" type="Tabular.TableRelation" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:simpleType name="Storage.Data.v5.Traits.TraitType">
+  <xs:simpleType name="Traits.TraitType">
     <xs:annotation>
       <xs:documentation>The type of trait.</xs:documentation>
     </xs:annotation>
@@ -857,32 +857,32 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="Storage.Data.v5.Tabular.TableToTableMappingCollection">
+  <xs:complexType name="Tabular.TableToTableMappingCollection">
     <xs:annotation>
       <xs:documentation>Innehåller en lista av tabellmappning mellan en källa och en destination som används vid datainläsning.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="tableToTableMapping" type="Storage.Data.v5.Tabular.TableToTableMapping" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="tableToTableMapping" type="Tabular.TableToTableMapping" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Data.IngestPolicy">
+  <xs:complexType name="Data.IngestPolicy">
     <xs:annotation>
       <xs:documentation>Sets rules that controls the behaviour of the ingestStore data stage.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="ingestStoreDataStageTables" type="Storage.Data.v5.Tabular.IngestStoreDataStageTableCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="ingestStoreDataStageTables" type="Tabular.IngestStoreDataStageTableCollection" minOccurs="0" maxOccurs="1" />
     </xs:all>
-    <xs:attribute name="loadType" type="Storage.Data.v5.Data.LoadType" use="required" />
+    <xs:attribute name="loadType" type="Data.LoadType" use="required" />
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Tabular.LogicDataStageTableCollection">
+  <xs:complexType name="Tabular.LogicDataStageTableCollection">
     <xs:annotation>
       <xs:documentation>Innehåller en lista av logicDataStageTable som beskriver hur tabeller ska transformeras.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="logicDataStageTable" type="Storage.Data.v5.Tabular.LogicDataStageTable" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="logicDataStageTable" type="Tabular.LogicDataStageTable" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:simpleType name="Storage.Data.v5.Data.DataStageMaterialization">
+  <xs:simpleType name="Data.DataStageMaterialization">
     <xs:annotation>
       <xs:documentation>Anger om data ska materialiseras eller virtualiseras.</xs:documentation>
     </xs:annotation>
@@ -909,7 +909,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="Storage.Data.v5.Data.DataStageRole">
+  <xs:simpleType name="Data.DataStageRole">
     <xs:annotation>
       <xs:documentation>Anger vad som sker i dataStage.</xs:documentation>
     </xs:annotation>
@@ -936,7 +936,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="Storage.Data.v5.Data.DataStageType">
+  <xs:simpleType name="Data.DataStageType">
     <xs:annotation>
       <xs:documentation>Anger vilken typ av dataStage .</xs:documentation>
     </xs:annotation>
@@ -951,18 +951,18 @@
       <xs:enumeration value="validate" />
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="Storage.Data.v5.ValidationPolicies.ValidationPolicy">
+  <xs:complexType name="ValidationPolicies.ValidationPolicy">
     <xs:annotation>
       <xs:documentation>TODO</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="businessKeyDuplicate" type="Storage.Data.v5.ValidationPolicies.BusinessKeyDuplicatePolicy" minOccurs="0" maxOccurs="1" />
-      <xs:element name="businessKeyNull" type="Storage.Data.v5.ValidationPolicies.BusinessKeyNullPolicy" minOccurs="0" maxOccurs="1" />
-      <xs:element name="qualityValidation" type="Storage.Data.v5.ValidationPolicies.QualityValidationPolicy" minOccurs="0" maxOccurs="1" />
-      <xs:element name="validateDataStageTables" type="Storage.Data.v5.Tabular.ValidateDataStageTableCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="businessKeyDuplicate" type="ValidationPolicies.BusinessKeyDuplicatePolicy" minOccurs="0" maxOccurs="1" />
+      <xs:element name="businessKeyNull" type="ValidationPolicies.BusinessKeyNullPolicy" minOccurs="0" maxOccurs="1" />
+      <xs:element name="qualityValidation" type="ValidationPolicies.QualityValidationPolicy" minOccurs="0" maxOccurs="1" />
+      <xs:element name="validateDataStageTables" type="Tabular.ValidateDataStageTableCollection" minOccurs="0" maxOccurs="1" />
     </xs:all>
   </xs:complexType>
-  <xs:simpleType name="Storage.Data.v5.Outputs.Api.ApiOutputType">
+  <xs:simpleType name="Outputs.Api.ApiOutputType">
     <xs:annotation>
       <xs:documentation>Anger utdatatyper som är kompatibla med apiOutput.</xs:documentation>
     </xs:annotation>
@@ -974,7 +974,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="Storage.Data.v5.Outputs.File.FileFormat">
+  <xs:simpleType name="Outputs.File.FileFormat">
     <xs:annotation>
       <xs:documentation>Anger kompatibla filformat.</xs:documentation>
     </xs:annotation>
@@ -996,7 +996,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="Storage.Data.v5.Outputs.Sql.SqlOutputType">
+  <xs:simpleType name="Outputs.Sql.SqlOutputType">
     <xs:annotation>
       <xs:documentation>Anger utdatatyper som är kompatibla med sqlOutput.</xs:documentation>
     </xs:annotation>
@@ -1013,10 +1013,10 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="Storage.Data.v5.Tabular.BusinessKey">
+  <xs:simpleType name="Tabular.BusinessKey">
     <xs:restriction base="xs:string" />
   </xs:simpleType>
-  <xs:complexType name="Storage.Data.v5.Tabular.DataProductColumn">
+  <xs:complexType name="Tabular.DataProductColumn">
     <xs:annotation>
       <xs:documentation>Beskriver en kolumn i en tabulär dataprodukt.</xs:documentation>
     </xs:annotation>
@@ -1024,14 +1024,14 @@
       <xs:element name="aliases" minOccurs="0" maxOccurs="1">
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="alias" type="Storage.Data.v5.Tabular.Alias" />
+            <xs:element name="alias" type="Tabular.Alias" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
       <xs:element name="descriptions" type="Core.Descriptions.DescriptionCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="dimlDataType" type="Storage.Data.v5.Columns.ColumnDimlDataType" minOccurs="0" maxOccurs="1" />
+      <xs:element name="dimlDataType" type="Columns.ColumnDimlDataType" minOccurs="0" maxOccurs="1" />
       <xs:element name="names" type="Core.Names.NameCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="traits" type="Storage.Data.v5.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="traits" type="Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="existsFromStageId" type="xs:string" use="optional">
       <xs:annotation>
@@ -1049,7 +1049,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Tabular.SampleDataRow">
+  <xs:complexType name="Tabular.SampleDataRow">
     <xs:annotation>
       <xs:documentation>Anger exempeldata.</xs:documentation>
     </xs:annotation>
@@ -1057,12 +1057,12 @@
       <xs:element name="value" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Tabular.TableRelation">
+  <xs:complexType name="Tabular.TableRelation">
     <xs:annotation>
       <xs:documentation>Anger eventuella tabellrelationer och hur de relaterar via relationsColumns.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="relationColumns" type="Storage.Data.v5.Tabular.RelationColumns" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="relationColumns" type="Tabular.RelationColumns" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
@@ -1075,12 +1075,12 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Tabular.TableToTableMapping">
+  <xs:complexType name="Tabular.TableToTableMapping">
     <xs:annotation>
       <xs:documentation>En tabellmappning mellan en källa och en destination som används vid datainläsning.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="columnMappings" type="Storage.Data.v5.Tabular.ColumnMappingCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="columnMappings" type="Tabular.ColumnMappingCollection" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="sourceTableId" type="xs:string" use="required">
       <xs:annotation>
@@ -1093,23 +1093,23 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Tabular.IngestStoreDataStageTableCollection">
+  <xs:complexType name="Tabular.IngestStoreDataStageTableCollection">
     <xs:sequence>
-      <xs:element name="ingestStoreDataStageTable" type="Storage.Data.v5.Tabular.IngestStoreDataStageTable" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="ingestStoreDataStageTable" type="Tabular.IngestStoreDataStageTable" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:simpleType name="Storage.Data.v5.Data.LoadType">
+  <xs:simpleType name="Data.LoadType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="changeTracking" />
       <xs:enumeration value="full" />
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="Storage.Data.v5.Tabular.LogicDataStageTable">
+  <xs:complexType name="Tabular.LogicDataStageTable">
     <xs:annotation>
       <xs:documentation>Beskriver hur tabeller ska transformeras.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="logicColumnMappings" type="Storage.Data.v5.Tabular.LogicColumnMappingCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="logicColumnMappings" type="Tabular.LogicColumnMappingCollection" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="filterSqlExpression" type="xs:string" use="optional">
       <xs:annotation>
@@ -1127,11 +1127,11 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.ValidationPolicies.BusinessKeyDuplicatePolicy">
+  <xs:complexType name="ValidationPolicies.BusinessKeyDuplicatePolicy">
     <xs:annotation>
       <xs:documentation>Defines the policy for handling duplicate business keys.</xs:documentation>
     </xs:annotation>
-    <xs:attribute name="action" type="Storage.Data.v5.ValidationPolicies.BusinessKeyDuplicateAction" use="required">
+    <xs:attribute name="action" type="ValidationPolicies.BusinessKeyDuplicateAction" use="required">
       <xs:annotation>
         <xs:documentation>Defines the action to be taken for handling duplicate BusinessKeys.</xs:documentation>
       </xs:annotation>
@@ -1142,52 +1142,52 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.ValidationPolicies.BusinessKeyNullPolicy">
+  <xs:complexType name="ValidationPolicies.BusinessKeyNullPolicy">
     <xs:annotation>
       <xs:documentation>Defines the policy for handling business keys with null values.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="defaultValues" type="Storage.Data.v5.ValidationPolicies.DefaultValueCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="defaultValues" type="ValidationPolicies.DefaultValueCollection" minOccurs="0" maxOccurs="1" />
     </xs:all>
-    <xs:attribute name="action" type="Storage.Data.v5.ValidationPolicies.BusinessKeyNullAction" use="required">
+    <xs:attribute name="action" type="ValidationPolicies.BusinessKeyNullAction" use="required">
       <xs:annotation>
         <xs:documentation>Defines the action to be taken for handling null values in the BusinessKey.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.ValidationPolicies.QualityValidationPolicy">
+  <xs:complexType name="ValidationPolicies.QualityValidationPolicy">
     <xs:annotation>
       <xs:documentation>Defines the policy for handling when something is not valid.</xs:documentation>
     </xs:annotation>
-    <xs:attribute name="action" type="Storage.Data.v5.ValidationPolicies.QualityValidationAction" use="required">
+    <xs:attribute name="action" type="ValidationPolicies.QualityValidationAction" use="required">
       <xs:annotation>
         <xs:documentation>Defines the action to be taken for quality validation.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Tabular.ValidateDataStageTableCollection">
+  <xs:complexType name="Tabular.ValidateDataStageTableCollection">
     <xs:sequence>
-      <xs:element name="validateDataStageTable" type="Storage.Data.v5.Tabular.ValidateDataStageTable" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="validateDataStageTable" type="Tabular.ValidateDataStageTable" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Columns.ColumnDimlDataType">
+  <xs:complexType name="Columns.ColumnDimlDataType">
     <xs:annotation>
       <xs:documentation>Anger en Diml-datatyp baserat på dom typer som finns definierade i datatypsspecifikationen.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="dimlDataTypeOverride" type="Storage.Data.v5.Columns.ColumnDimlDataTypeOverride" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="dimlDataTypeOverride" type="Columns.ColumnDimlDataTypeOverride" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
     <xs:attribute name="bits" type="xs:int" use="optional">
       <xs:annotation>
         <xs:documentation>Anger antalet bitar som används för att lagra heltal.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="format" type="Storage.Data.v5.DataTypesConfig.DimlDataTypeFormat" use="optional">
+    <xs:attribute name="format" type="DataTypesConfig.DimlDataTypeFormat" use="optional">
       <xs:annotation>
         <xs:documentation>Anger formatet på datan. T.ex. Xml eller Json.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="id" type="Storage.Data.v5.DataTypesConfig.DimlDataTypes" use="required">
+    <xs:attribute name="id" type="DataTypesConfig.DimlDataTypes" use="required">
       <xs:annotation>
         <xs:documentation>Anger datatypens typ. T.ex. String eller Integer.</xs:documentation>
       </xs:annotation>
@@ -1243,7 +1243,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Tabular.RelationColumns">
+  <xs:complexType name="Tabular.RelationColumns">
     <xs:annotation>
       <xs:documentation>Anger med vilka kolumner en tabell relaterar till en annan.</xs:documentation>
     </xs:annotation>
@@ -1258,16 +1258,16 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Tabular.ColumnMappingCollection">
+  <xs:complexType name="Tabular.ColumnMappingCollection">
     <xs:annotation>
       <xs:documentation>Innehåller en lista av ColumnMapping som är en kolumnmappning mellan en källa och en destination som används vid datainläsning.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="columnMapping" type="Storage.Data.v5.Tabular.ColumnMapping" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="columnMapping" type="Tabular.ColumnMapping" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Tabular.IngestStoreDataStageTable">
-    <xs:attribute name="loadType" type="Storage.Data.v5.Data.LoadType" use="required">
+  <xs:complexType name="Tabular.IngestStoreDataStageTable">
+    <xs:attribute name="loadType" type="Data.LoadType" use="required">
       <xs:annotation>
         <xs:documentation>Sets how the data should be loaded for a given table, e.g. 'full' or 'changeTracking'.</xs:documentation>
       </xs:annotation>
@@ -1278,15 +1278,15 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Tabular.LogicColumnMappingCollection">
+  <xs:complexType name="Tabular.LogicColumnMappingCollection">
     <xs:annotation>
       <xs:documentation>Innehåller en lista av logicColumnMapping som beskriver hur kolumner ska transformeras.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="logicColumnMapping" type="Storage.Data.v5.Tabular.LogicColumnMapping" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="logicColumnMapping" type="Tabular.LogicColumnMapping" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:simpleType name="Storage.Data.v5.ValidationPolicies.BusinessKeyDuplicateAction">
+  <xs:simpleType name="ValidationPolicies.BusinessKeyDuplicateAction">
     <xs:annotation>
       <xs:documentation>Actions for business key duplicate policy</xs:documentation>
     </xs:annotation>
@@ -1303,7 +1303,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="Storage.Data.v5.ValidationPolicies.BusinessKeyNullAction">
+  <xs:simpleType name="ValidationPolicies.BusinessKeyNullAction">
     <xs:annotation>
       <xs:documentation>Actions for business key null policy</xs:documentation>
     </xs:annotation>
@@ -1320,12 +1320,12 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="Storage.Data.v5.ValidationPolicies.DefaultValueCollection">
+  <xs:complexType name="ValidationPolicies.DefaultValueCollection">
     <xs:sequence>
-      <xs:element name="defaultValue" type="Storage.Data.v5.ValidationPolicies.DefaultValue" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="defaultValue" type="ValidationPolicies.DefaultValue" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:simpleType name="Storage.Data.v5.ValidationPolicies.QualityValidationAction">
+  <xs:simpleType name="ValidationPolicies.QualityValidationAction">
     <xs:annotation>
       <xs:documentation>Actions for quality validation policy</xs:documentation>
     </xs:annotation>
@@ -1336,11 +1336,11 @@
       <xs:enumeration value="stop" />
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="Storage.Data.v5.Tabular.ValidateDataStageTable">
+  <xs:complexType name="Tabular.ValidateDataStageTable">
     <xs:all>
-      <xs:element name="businessKeyDuplicate" type="Storage.Data.v5.ValidationPolicies.BusinessKeyDuplicatePolicy" minOccurs="0" maxOccurs="1" />
-      <xs:element name="businessKeyNull" type="Storage.Data.v5.ValidationPolicies.BusinessKeyNullPolicy" minOccurs="0" maxOccurs="1" />
-      <xs:element name="qualityValidation" type="Storage.Data.v5.ValidationPolicies.QualityValidationPolicy" minOccurs="0" maxOccurs="1" />
+      <xs:element name="businessKeyDuplicate" type="ValidationPolicies.BusinessKeyDuplicatePolicy" minOccurs="0" maxOccurs="1" />
+      <xs:element name="businessKeyNull" type="ValidationPolicies.BusinessKeyNullPolicy" minOccurs="0" maxOccurs="1" />
+      <xs:element name="qualityValidation" type="ValidationPolicies.QualityValidationPolicy" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="tableId" type="xs:string" use="required">
       <xs:annotation>
@@ -1348,7 +1348,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Columns.ColumnDimlDataTypeOverride">
+  <xs:complexType name="Columns.ColumnDimlDataTypeOverride">
     <xs:annotation>
       <xs:documentation>Anger en datatypändring av en kolumn i en tabulär dataprodukt.</xs:documentation>
     </xs:annotation>
@@ -1357,7 +1357,7 @@
         <xs:documentation>Anger antalet bitar som används för att lagra heltal.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="format" type="Storage.Data.v5.DataTypesConfig.DimlDataTypeFormat" use="optional">
+    <xs:attribute name="format" type="DataTypesConfig.DimlDataTypeFormat" use="optional">
       <xs:annotation>
         <xs:documentation>Anger formatet på datan. T.ex. Xml eller Json.</xs:documentation>
       </xs:annotation>
@@ -1367,7 +1367,7 @@
         <xs:documentation>Anger från och med vilket dataStage som kolumnen ska byta datatyp i. Om inget anges gäller första dataStage i specifikationen.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="id" type="Storage.Data.v5.DataTypesConfig.DimlDataTypes" use="required">
+    <xs:attribute name="id" type="DataTypesConfig.DimlDataTypes" use="required">
       <xs:annotation>
         <xs:documentation>Anger datatypens typ. T.ex. String eller Integer.</xs:documentation>
       </xs:annotation>
@@ -1428,13 +1428,13 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:simpleType name="Storage.Data.v5.DataTypesConfig.DimlDataTypeFormat">
+  <xs:simpleType name="DataTypesConfig.DimlDataTypeFormat">
     <xs:restriction base="xs:string">
       <xs:enumeration value="json" />
       <xs:enumeration value="xml" />
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="Storage.Data.v5.DataTypesConfig.DimlDataTypes">
+  <xs:simpleType name="DataTypesConfig.DimlDataTypes">
     <xs:restriction base="xs:string">
       <xs:enumeration value="binary" />
       <xs:enumeration value="boolean" />
@@ -1449,7 +1449,7 @@
       <xs:enumeration value="time" />
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="Storage.Data.v5.Tabular.ColumnMapping">
+  <xs:complexType name="Tabular.ColumnMapping">
     <xs:annotation>
       <xs:documentation>En kolumnmappning mellan en källa och en destination som används vid datainläsning.</xs:documentation>
     </xs:annotation>
@@ -1464,7 +1464,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.Tabular.LogicColumnMapping">
+  <xs:complexType name="Tabular.LogicColumnMapping">
     <xs:annotation>
       <xs:documentation>Beskriver hur kolumner ska transformeras.</xs:documentation>
     </xs:annotation>
@@ -1484,7 +1484,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.v5.ValidationPolicies.DefaultValue">
+  <xs:complexType name="ValidationPolicies.DefaultValue">
     <xs:annotation>
       <xs:documentation>Defines a default value for a column.</xs:documentation>
     </xs:annotation>
