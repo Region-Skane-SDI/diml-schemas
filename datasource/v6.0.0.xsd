@@ -76,7 +76,7 @@
   </xs:complexType>
   <xs:complexType name="Traits.TraitCollection">
     <xs:annotation>
-      <xs:documentation>En lista av egenskaper på ett Diml-objekt.</xs:documentation>
+      <xs:documentation>En samling av egenskaper på ett DIML-objekt.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="trait" type="Traits.Trait" minOccurs="0" maxOccurs="unbounded" />
