@@ -51,11 +51,6 @@
         <xs:documentation>A globally unique identifier for the API product.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="uniqueName" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>A unique name for the API product across all API products in an environment. Must be less than 128 chars, only contain a-z, 0-9, '-', '_' chars and must start with a letter and cannot be empty.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
   </xs:complexType>
   <xs:complexType name="Apis.Rest.RestApi">
     <xs:annotation>
@@ -647,11 +642,6 @@
     <xs:attribute name="operation" type="Core.Transforms.PathTransformOperation" use="required">
       <xs:annotation>
         <xs:documentation>The type of path transform to apply.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="order" type="xs:int" use="optional">
-      <xs:annotation>
-        <xs:documentation>OBSOLETE: The order in which the transform is applied.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="value" type="xs:string" use="required">
