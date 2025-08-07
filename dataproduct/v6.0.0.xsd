@@ -27,11 +27,6 @@
         <xs:documentation>Vilken plattform som ska användas.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="uniqueName" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>Ett globalt unikt namn för en dataspecifikation.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
   </xs:complexType>
   <xs:complexType name="Data.DataFlow">
     <xs:annotation>
