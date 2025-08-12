@@ -2,33 +2,33 @@
     DIML XSD Schema for datasource v6.0.0
 -->
 <xs:schema xmlns="https://github.com/Region-Skane-SDI/diml/datasource" targetNamespace="https://github.com/Region-Skane-SDI/diml/datasource" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
-  <xs:element name="dataSource" type="DataSourceSpecification" />
-  <xs:complexType name="DataSourceSpecification">
+  <xs:element name="dataSource" type="Storage.Data.Source.v6.DataSourceSpecification" />
+  <xs:complexType name="Storage.Data.Source.v6.DataSourceSpecification">
     <xs:annotation>
       <xs:documentation>Beskrivning av en datakälla (som kan användas av dataprodukter).</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="dataOutputs" type="Data.DataSourceOutputs" minOccurs="0" maxOccurs="1" />
+      <xs:element name="dataOutputs" type="Storage.Data.Source.v6.DataOutputs" minOccurs="0" maxOccurs="1" />
       <xs:element name="descriptions" type="Core.Descriptions.DescriptionCollection" minOccurs="1" maxOccurs="1" />
       <xs:element name="names" type="Core.Names.NameCollection" minOccurs="1" maxOccurs="1" />
-      <xs:element name="tables" type="Tabular.DataSourceTableCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="traits" type="Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="tables" type="Storage.Data.Source.v6.TableCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="traits" type="Storage.Data.Source.v6.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="dimlId" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>En globalt unik identifierare för Diml-objektet.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="sourcePlatform" type="Data.SourcePlatformType" use="required">
+    <xs:attribute name="sourcePlatform" type="Storage.Data.Source.v6.SourcePlatformType" use="required">
       <xs:annotation>
         <xs:documentation>Anger vilken källplattformstyp som ska användas.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Data.DataSourceOutputs">
+  <xs:complexType name="Storage.Data.Source.v6.DataOutputs">
     <xs:all>
-      <xs:element name="fileOutputs" type="Outputs.File.FileOutputCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="sqlOutputs" type="Outputs.Sql.SqlOutputCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="fileOutputs" type="Storage.Data.Source.v6.Outputs.File.FileOutputCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="sqlOutputs" type="Storage.Data.Source.v6.Outputs.Sql.SqlOutputCollection" minOccurs="0" maxOccurs="1" />
     </xs:all>
   </xs:complexType>
   <xs:complexType name="Core.Descriptions.DescriptionCollection">
@@ -47,7 +47,7 @@
       <xs:element name="name" type="Core.Names.Name" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:simpleType name="Data.SourcePlatformType">
+  <xs:simpleType name="Storage.Data.Source.v6.SourcePlatformType">
     <xs:annotation>
       <xs:documentation>Anger vilken källplattformstyp som ska användas.</xs:documentation>
     </xs:annotation>
@@ -64,33 +64,33 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="Tabular.DataSourceTableCollection">
+  <xs:complexType name="Storage.Data.Source.v6.TableCollection">
     <xs:sequence>
-      <xs:element name="table" type="Tabular.DataSourceTable" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="table" type="Storage.Data.Source.v6.Table" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="Traits.TraitCollection">
+  <xs:complexType name="Storage.Data.Source.v6.Traits.TraitCollection">
     <xs:annotation>
       <xs:documentation>En samling av egenskaper på ett DIML-objekt.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="trait" type="Traits.Trait" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="trait" type="Storage.Data.Source.v6.Traits.Trait" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="Outputs.File.FileOutputCollection">
+  <xs:complexType name="Storage.Data.Source.v6.Outputs.File.FileOutputCollection">
     <xs:annotation>
       <xs:documentation>Innehåller en lista av fildestinationer för utdata med ett antal obligatoriska parametrar.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="fileOutput" type="Outputs.File.FileOutput" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="fileOutput" type="Storage.Data.Source.v6.Outputs.File.FileOutput" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="Outputs.Sql.SqlOutputCollection">
+  <xs:complexType name="Storage.Data.Source.v6.Outputs.Sql.SqlOutputCollection">
     <xs:annotation>
       <xs:documentation>Innehåller en lista av sqluOutput som anger output som SQL kod i angiven dialekt, tex: TSQL eller Spark SQL.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="sqlOutput" type="Outputs.Sql.SqlOutput" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="sqlOutput" type="Storage.Data.Source.v6.Outputs.Sql.SqlOutput" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="Core.Descriptions.Description">
@@ -126,18 +126,18 @@
       </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
-  <xs:complexType name="Tabular.DataSourceTable">
+  <xs:complexType name="Storage.Data.Source.v6.Table">
     <xs:annotation>
       <xs:documentation>Beskriver en tabell i en tabulär datakälla.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="businessKey" type="Tabular.BusinessKeyCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="columns" type="Tabular.DataSourceColumnCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="businessKey" type="Storage.Data.Source.v6.BusinessKeyCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="columns" type="Storage.Data.Source.v6.ColumnCollection" minOccurs="0" maxOccurs="1" />
       <xs:element name="descriptions" type="Core.Descriptions.DescriptionCollection" minOccurs="0" maxOccurs="1" />
       <xs:element name="names" type="Core.Names.NameCollection" minOccurs="1" maxOccurs="1" />
-      <xs:element name="sampleData" type="Tabular.SampleDataRowCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="tableRelations" type="Tabular.TableRelationCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="traits" type="Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="sampleData" type="Storage.Data.Source.v6.SampleDataRowCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="tableRelations" type="Storage.Data.Source.v6.TableRelationCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="trait" type="Storage.Data.Source.v6.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
@@ -155,11 +155,11 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Traits.Trait">
+  <xs:complexType name="Storage.Data.Source.v6.Traits.Trait">
     <xs:annotation>
       <xs:documentation>Används för att specificera egenskaper (traits) på ett Diml-objekt.</xs:documentation>
     </xs:annotation>
-    <xs:attribute name="id" type="Traits.TraitType" use="required">
+    <xs:attribute name="id" type="Storage.Data.Source.v6.Traits.TraitType" use="required">
       <xs:annotation>
         <xs:documentation>The type of trait.</xs:documentation>
       </xs:annotation>
@@ -170,7 +170,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Outputs.File.FileOutput">
+  <xs:complexType name="Storage.Data.Source.v6.Outputs.File.FileOutput">
     <xs:annotation>
       <xs:documentation>Anger en fil som destination för utdata med ett antal obligatoriska parametrar.</xs:documentation>
     </xs:annotation>
@@ -194,7 +194,7 @@
         <xs:documentation>Teckenkodningen för utdatafilen, t.ex. UTF-8.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="fileFormat" type="Outputs.File.FileFormat" use="required">
+    <xs:attribute name="fileFormat" type="Storage.Data.Source.v6.Outputs.File.FileFormat" use="required">
       <xs:annotation>
         <xs:documentation>Anger filformatet av utdatafilen.</xs:documentation>
       </xs:annotation>
@@ -220,7 +220,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Outputs.Sql.SqlOutput">
+  <xs:complexType name="Storage.Data.Source.v6.Outputs.Sql.SqlOutput">
     <xs:annotation>
       <xs:documentation>Anger output som SQL kod i angiven dialekt, tex: TSQL eller Spark SQL.</xs:documentation>
     </xs:annotation>
@@ -229,7 +229,7 @@
         <xs:documentation>Anger ett unikt id för varje utkanaltyp t.ex sql,sql2 etc.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="sqlOutputType" type="Outputs.Sql.SqlOutputType" use="required">
+    <xs:attribute name="sqlOutputType" type="Storage.Data.Source.v6.Outputs.Sql.SqlOutputType" use="required">
       <xs:annotation>
         <xs:documentation>Anger utdatatyper som är kompatibla med sqlOutput.</xs:documentation>
       </xs:annotation>
@@ -271,36 +271,36 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="Tabular.BusinessKeyCollection">
+  <xs:complexType name="Storage.Data.Source.v6.BusinessKeyCollection">
     <xs:annotation>
       <xs:documentation>Innehåller en lista av businessKey som beskriver vilken kolumn som ska användas som BusinessKey</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="value" type="Tabular.BusinessKey" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="value" type="Storage.Data.Source.v6.BusinessKey" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="Tabular.DataSourceColumnCollection">
+  <xs:complexType name="Storage.Data.Source.v6.ColumnCollection">
     <xs:sequence>
-      <xs:element name="column" type="Tabular.DataSourceColumn" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="column" type="Storage.Data.Source.v6.Column" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="Tabular.SampleDataRowCollection">
+  <xs:complexType name="Storage.Data.Source.v6.SampleDataRowCollection">
     <xs:annotation>
       <xs:documentation>Innehåller en lista av sampleDataRow som anger exempeldata.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="sampleDataRow" type="Tabular.SampleDataRow" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="sampleDataRow" type="Storage.Data.Source.v6.SampleDataRow" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="Tabular.TableRelationCollection">
+  <xs:complexType name="Storage.Data.Source.v6.TableRelationCollection">
     <xs:annotation>
       <xs:documentation>Innehåller en lista av tableRelation som anger eventuella tabellrelationer och hur de relaterar via relationsColumns.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="tableRelation" type="Tabular.TableRelation" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="tableRelation" type="Storage.Data.Source.v6.TableRelation" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:simpleType name="Traits.TraitType">
+  <xs:simpleType name="Storage.Data.Source.v6.Traits.TraitType">
     <xs:annotation>
       <xs:documentation>The type of trait.</xs:documentation>
     </xs:annotation>
@@ -382,7 +382,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="Outputs.File.FileFormat">
+  <xs:simpleType name="Storage.Data.Source.v6.Outputs.File.FileFormat">
     <xs:annotation>
       <xs:documentation>Anger kompatibla filformat.</xs:documentation>
     </xs:annotation>
@@ -404,7 +404,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="Outputs.Sql.SqlOutputType">
+  <xs:simpleType name="Storage.Data.Source.v6.Outputs.Sql.SqlOutputType">
     <xs:annotation>
       <xs:documentation>Anger utdatatyper som är kompatibla med sqlOutput.</xs:documentation>
     </xs:annotation>
@@ -421,18 +421,18 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="Tabular.BusinessKey">
+  <xs:simpleType name="Storage.Data.Source.v6.BusinessKey">
     <xs:restriction base="xs:string" />
   </xs:simpleType>
-  <xs:complexType name="Tabular.DataSourceColumn">
+  <xs:complexType name="Storage.Data.Source.v6.Column">
     <xs:annotation>
       <xs:documentation>Beskriver en kolumn i en tabulär datakälla.</xs:documentation>
     </xs:annotation>
     <xs:all>
       <xs:element name="descriptions" type="Core.Descriptions.DescriptionCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="dimlDataType" type="DataTypesConfig.DimlDataType" minOccurs="0" maxOccurs="1" />
+      <xs:element name="dimlDataType" type="Storage.Data.Source.v6.DataTypes.DimlDataType" minOccurs="0" maxOccurs="1" />
       <xs:element name="names" type="Core.Names.NameCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="traits" type="Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="trait" type="Storage.Data.Source.v6.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
@@ -440,7 +440,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Tabular.SampleDataRow">
+  <xs:complexType name="Storage.Data.Source.v6.SampleDataRow">
     <xs:annotation>
       <xs:documentation>Anger exempeldata.</xs:documentation>
     </xs:annotation>
@@ -448,12 +448,12 @@
       <xs:element name="value" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="Tabular.TableRelation">
+  <xs:complexType name="Storage.Data.Source.v6.TableRelation">
     <xs:annotation>
       <xs:documentation>Anger eventuella tabellrelationer och hur de relaterar via relationsColumns.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="relationColumns" type="Tabular.RelationColumns" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="relationColumns" type="Storage.Data.Source.v6.RelationColumns" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
@@ -466,7 +466,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="DataTypesConfig.DimlDataType">
+  <xs:complexType name="Storage.Data.Source.v6.DataTypes.DimlDataType">
     <xs:annotation>
       <xs:documentation>Anger en Diml-datatyp baserat på dom typer som finns definierade i datatypsspecifikationen.</xs:documentation>
     </xs:annotation>
@@ -475,12 +475,12 @@
         <xs:documentation>Anger antalet bitar som används för att lagra heltal.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="format" type="DataTypesConfig.DimlDataTypeFormat" use="optional">
+    <xs:attribute name="format" type="Storage.Data.Source.v6.DataTypes.DimlDataTypeFormat" use="optional">
       <xs:annotation>
         <xs:documentation>Anger formatet på datan. T.ex. Xml eller Json.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="id" type="DataTypesConfig.DimlDataTypes" use="required">
+    <xs:attribute name="id" type="Storage.Data.Source.v6.DataTypes.DimlDataTypes" use="required">
       <xs:annotation>
         <xs:documentation>Anger datatypens typ. T.ex. String eller Integer.</xs:documentation>
       </xs:annotation>
@@ -536,7 +536,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Tabular.RelationColumns">
+  <xs:complexType name="Storage.Data.Source.v6.RelationColumns">
     <xs:annotation>
       <xs:documentation>Anger med vilka kolumner en tabell relaterar till en annan.</xs:documentation>
     </xs:annotation>
@@ -551,13 +551,13 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:simpleType name="DataTypesConfig.DimlDataTypeFormat">
+  <xs:simpleType name="Storage.Data.Source.v6.DataTypes.DimlDataTypeFormat">
     <xs:restriction base="xs:string">
       <xs:enumeration value="json" />
       <xs:enumeration value="xml" />
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="DataTypesConfig.DimlDataTypes">
+  <xs:simpleType name="Storage.Data.Source.v6.DataTypes.DimlDataTypes">
     <xs:restriction base="xs:string">
       <xs:enumeration value="binary" />
       <xs:enumeration value="boolean" />
