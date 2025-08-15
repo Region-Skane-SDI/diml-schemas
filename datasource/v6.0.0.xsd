@@ -9,10 +9,34 @@
     </xs:annotation>
     <xs:all>
       <xs:element name="dataOutputs" type="Storage.Data.Source.v6.DataOutputs" minOccurs="0" maxOccurs="1" />
-      <xs:element name="descriptions" type="Core.Descriptions.DescriptionCollection" minOccurs="1" maxOccurs="1" />
-      <xs:element name="names" type="Core.Names.NameCollection" minOccurs="1" maxOccurs="1" />
-      <xs:element name="tables" type="Storage.Data.Source.v6.TableCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="traits" type="Storage.Data.Source.v6.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="descriptions" minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="description" type="Core.Description" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="names" minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="name" type="Core.Name" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="tables" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="table" type="Storage.Data.Source.v6.Table" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="traits" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="trait" type="Storage.Data.Source.v6.Traits.Trait" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
     </xs:all>
     <xs:attribute name="dimlId" type="xs:string" use="required">
       <xs:annotation>
@@ -27,25 +51,54 @@
   </xs:complexType>
   <xs:complexType name="Storage.Data.Source.v6.DataOutputs">
     <xs:all>
-      <xs:element name="fileOutputs" type="Storage.Data.Source.v6.Outputs.File.FileOutputCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="sqlOutputs" type="Storage.Data.Source.v6.Outputs.Sql.SqlOutputCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="fileOutputs" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="fileOutput" type="Storage.Data.Source.v6.Outputs.File.FileOutput" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="sqlOutputs" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="sqlOutput" type="Storage.Data.Source.v6.Outputs.Sql.SqlOutput" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
     </xs:all>
   </xs:complexType>
-  <xs:complexType name="Core.Descriptions.DescriptionCollection">
-    <xs:annotation>
-      <xs:documentation>A collection of descriptions of the object in different languages and formats.</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="description" type="Core.Descriptions.Description" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
+  <xs:complexType name="Core.Description">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:annotation>
+          <xs:documentation>Used to give a DIML object a description in a given language and format.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="language" type="Core.Language" use="required">
+          <xs:annotation>
+            <xs:documentation>The language of the description.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="type" type="Core.DescriptionType" use="required">
+          <xs:annotation>
+            <xs:documentation>The format of the description.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
   </xs:complexType>
-  <xs:complexType name="Core.Names.NameCollection">
-    <xs:annotation>
-      <xs:documentation>A collection of names of the object in different languages.</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="name" type="Core.Names.Name" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
+  <xs:complexType name="Core.Name">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:annotation>
+          <xs:documentation>Represents a name of a DIML object in a specific language.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="language" type="Core.Language" use="required">
+          <xs:annotation>
+            <xs:documentation>The language of the name.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
   </xs:complexType>
   <xs:simpleType name="Storage.Data.Source.v6.SourcePlatformType">
     <xs:annotation>
@@ -64,80 +117,54 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="Storage.Data.Source.v6.TableCollection">
-    <xs:sequence>
-      <xs:element name="table" type="Storage.Data.Source.v6.Table" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Source.v6.Traits.TraitCollection">
-    <xs:annotation>
-      <xs:documentation>En samling av egenskaper på ett DIML-objekt.</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="trait" type="Storage.Data.Source.v6.Traits.Trait" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Source.v6.Outputs.File.FileOutputCollection">
-    <xs:annotation>
-      <xs:documentation>Innehåller en lista av fildestinationer för utdata med ett antal obligatoriska parametrar.</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="fileOutput" type="Storage.Data.Source.v6.Outputs.File.FileOutput" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Source.v6.Outputs.Sql.SqlOutputCollection">
-    <xs:annotation>
-      <xs:documentation>Innehåller en lista av sqluOutput som anger output som SQL kod i angiven dialekt, tex: TSQL eller Spark SQL.</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="sqlOutput" type="Storage.Data.Source.v6.Outputs.Sql.SqlOutput" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="Core.Descriptions.Description">
-    <xs:simpleContent>
-      <xs:extension base="xs:string">
-        <xs:annotation>
-          <xs:documentation>Used to give a DIML object a description in a given language and format.</xs:documentation>
-        </xs:annotation>
-        <xs:attribute name="language" type="Core.Language" use="required">
-          <xs:annotation>
-            <xs:documentation>The language of the description.</xs:documentation>
-          </xs:annotation>
-        </xs:attribute>
-        <xs:attribute name="type" type="Core.Descriptions.DescriptionType" use="required">
-          <xs:annotation>
-            <xs:documentation>The format of the description.</xs:documentation>
-          </xs:annotation>
-        </xs:attribute>
-      </xs:extension>
-    </xs:simpleContent>
-  </xs:complexType>
-  <xs:complexType name="Core.Names.Name">
-    <xs:simpleContent>
-      <xs:extension base="xs:string">
-        <xs:annotation>
-          <xs:documentation>Represents a name of a DIML object in a specific language.</xs:documentation>
-        </xs:annotation>
-        <xs:attribute name="language" type="Core.Language" use="required">
-          <xs:annotation>
-            <xs:documentation>The language of the name.</xs:documentation>
-          </xs:annotation>
-        </xs:attribute>
-      </xs:extension>
-    </xs:simpleContent>
-  </xs:complexType>
   <xs:complexType name="Storage.Data.Source.v6.Table">
     <xs:annotation>
       <xs:documentation>Beskriver en tabell i en tabulär datakälla.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="businessKey" type="Storage.Data.Source.v6.BusinessKeyCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="columns" type="Storage.Data.Source.v6.ColumnCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="descriptions" type="Core.Descriptions.DescriptionCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="names" type="Core.Names.NameCollection" minOccurs="1" maxOccurs="1" />
-      <xs:element name="sampleData" type="Storage.Data.Source.v6.SampleDataRowCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="tableRelations" type="Storage.Data.Source.v6.TableRelationCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="trait" type="Storage.Data.Source.v6.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="businessKey" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="value" type="Storage.Data.Source.v6.BusinessKey" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="columns" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="column" type="Storage.Data.Source.v6.Column" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="descriptions" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="description" type="Core.Description" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="names" minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="name" type="Core.Name" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="sampleData" type="Storage.Data.Source.v6.SampleDataRow" minOccurs="0" maxOccurs="1" />
+      <xs:element name="tableRelations" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="tableRelation" type="Storage.Data.Source.v6.TableRelation" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="traits" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="trait" type="Storage.Data.Source.v6.Traits.Trait" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
     </xs:all>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
@@ -249,7 +276,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="Core.Descriptions.DescriptionType">
+  <xs:simpleType name="Core.DescriptionType">
     <xs:annotation>
       <xs:documentation>The format of the description.</xs:documentation>
     </xs:annotation>
@@ -271,34 +298,68 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="Storage.Data.Source.v6.BusinessKeyCollection">
+  <xs:simpleType name="Storage.Data.Source.v6.BusinessKey">
+    <xs:restriction base="xs:string" />
+  </xs:simpleType>
+  <xs:complexType name="Storage.Data.Source.v6.Column">
     <xs:annotation>
-      <xs:documentation>Innehåller en lista av businessKey som beskriver vilken kolumn som ska användas som BusinessKey</xs:documentation>
+      <xs:documentation>Beskriver en kolumn i en tabulär datakälla.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="descriptions" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="description" type="Core.Description" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="dimlDataType" type="Storage.Data.Source.v6.DataTypes.DimlDataType" minOccurs="0" maxOccurs="1" />
+      <xs:element name="names" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="name" type="Core.Name" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="traits" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="trait" type="Storage.Data.Source.v6.Traits.Trait" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="id" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Kolumnens id.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Storage.Data.Source.v6.SampleDataRow">
+    <xs:annotation>
+      <xs:documentation>Anger exempeldata.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="value" type="Storage.Data.Source.v6.BusinessKey" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="value" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.Source.v6.ColumnCollection">
-    <xs:sequence>
-      <xs:element name="column" type="Storage.Data.Source.v6.Column" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Source.v6.SampleDataRowCollection">
+  <xs:complexType name="Storage.Data.Source.v6.TableRelation">
     <xs:annotation>
-      <xs:documentation>Innehåller en lista av sampleDataRow som anger exempeldata.</xs:documentation>
+      <xs:documentation>Anger eventuella tabellrelationer och hur de relaterar via relationsColumns.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="sampleDataRow" type="Storage.Data.Source.v6.SampleDataRow" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="relationColumns" type="Storage.Data.Source.v6.RelationColumns" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Source.v6.TableRelationCollection">
-    <xs:annotation>
-      <xs:documentation>Innehåller en lista av tableRelation som anger eventuella tabellrelationer och hur de relaterar via relationsColumns.</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="tableRelation" type="Storage.Data.Source.v6.TableRelation" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
+    <xs:attribute name="id" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Ett unikt id för tabellrelationen.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="targetTableId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger vilken tabell som tabellrelationen relaterar till.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
   <xs:simpleType name="Storage.Data.Source.v6.Traits.TraitType">
     <xs:annotation>
@@ -421,51 +482,6 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="Storage.Data.Source.v6.BusinessKey">
-    <xs:restriction base="xs:string" />
-  </xs:simpleType>
-  <xs:complexType name="Storage.Data.Source.v6.Column">
-    <xs:annotation>
-      <xs:documentation>Beskriver en kolumn i en tabulär datakälla.</xs:documentation>
-    </xs:annotation>
-    <xs:all>
-      <xs:element name="descriptions" type="Core.Descriptions.DescriptionCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="dimlDataType" type="Storage.Data.Source.v6.DataTypes.DimlDataType" minOccurs="0" maxOccurs="1" />
-      <xs:element name="names" type="Core.Names.NameCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="trait" type="Storage.Data.Source.v6.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
-    </xs:all>
-    <xs:attribute name="id" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Kolumnens id.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Source.v6.SampleDataRow">
-    <xs:annotation>
-      <xs:documentation>Anger exempeldata.</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="value" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Source.v6.TableRelation">
-    <xs:annotation>
-      <xs:documentation>Anger eventuella tabellrelationer och hur de relaterar via relationsColumns.</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="relationColumns" type="Storage.Data.Source.v6.RelationColumns" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-    <xs:attribute name="id" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Ett unikt id för tabellrelationen.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="targetTableId" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Anger vilken tabell som tabellrelationen relaterar till.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-  </xs:complexType>
   <xs:complexType name="Storage.Data.Source.v6.DataTypes.DimlDataType">
     <xs:annotation>
       <xs:documentation>Anger en Diml-datatyp baserat på dom typer som finns definierade i datatypsspecifikationen.</xs:documentation>

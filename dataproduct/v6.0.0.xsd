@@ -9,13 +9,43 @@
     </xs:annotation>
     <xs:all>
       <xs:element name="dataFlow" type="Storage.Data.Product.v6.DataFlow" minOccurs="0" maxOccurs="1" />
-      <xs:element name="dataInputs" type="Storage.Data.Product.v6.DataInputCollection" minOccurs="1" maxOccurs="1" />
+      <xs:element name="dataInputs" minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="dataInput" type="Storage.Data.Product.v6.DataInput" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="dataOutputs" type="Storage.Data.Product.v6.Outputs.DataOutputs" minOccurs="0" maxOccurs="1" />
       <xs:element name="dcat" type="Storage.Data.Product.v6.Dcat" minOccurs="1" maxOccurs="1" />
-      <xs:element name="descriptions" type="Core.Descriptions.DescriptionCollection" minOccurs="1" maxOccurs="1" />
-      <xs:element name="names" type="Core.Names.NameCollection" minOccurs="1" maxOccurs="1" />
-      <xs:element name="tables" type="Storage.Data.Product.v6.TableCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="traits" type="Storage.Data.Product.v6.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="descriptions" minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="description" type="Core.Description" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="names" minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="name" type="Core.Name" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="tables" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="table" type="Storage.Data.Product.v6.Table" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="traits" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="trait" type="Storage.Data.Product.v6.Traits.Trait" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
     </xs:all>
     <xs:attribute name="dimlId" type="xs:string" use="required">
       <xs:annotation>
@@ -33,26 +63,68 @@
       <xs:documentation>Anger flödet av data genom alla lager, samt egenskaper t.ex om en tabell ska materialiseras, uppdateras osv.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="dataIngests" type="Storage.Data.Product.v6.DataIngestCollection" minOccurs="1" maxOccurs="1" />
-      <xs:element name="dataStages" type="Storage.Data.Product.v6.DataStages.DataStageCollection" minOccurs="1" maxOccurs="1" />
+      <xs:element name="dataIngests" minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="dataIngest" type="Storage.Data.Product.v6.DataIngest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="dataStages" minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="dataStage" type="Storage.Data.Product.v6.DataStages.DataStage" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
     </xs:all>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.DataInputCollection">
+  <xs:complexType name="Storage.Data.Product.v6.DataInput">
     <xs:annotation>
-      <xs:documentation>Innehåller en list av indatakällor för en dataproduktsspecifikation, t.ex. en DataSource eller en annan DataProduct.</xs:documentation>
+      <xs:documentation>Anger en indatakälla för en dataproduktsspecifikation, t.ex. en DataSource eller en annan DataProduct.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element name="dataInput" type="Storage.Data.Product.v6.DataInput" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
+    <xs:attribute name="channelId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger vilken typ av data som ska hämtas och i vilket format.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="dimlId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Ett globalt unikt dimlId för indatakällan.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="id" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Ett id för indatakällan. Detta måste vara unikt inom en DataProduct då det kommer att användas som ett alias.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
   <xs:complexType name="Storage.Data.Product.v6.Outputs.DataOutputs">
     <xs:annotation>
       <xs:documentation>Innehåller en lista av utdataformat.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="apiOutputs" type="Storage.Data.Product.v6.Outputs.Api.ApiOutputCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="fileOutputs" type="Storage.Data.Product.v6.Outputs.File.FileOutputCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="sqlOutputs" type="Storage.Data.Product.v6.Outputs.Sql.SqlOutputCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="apiOutputs" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="apiOutput" type="Storage.Data.Product.v6.Outputs.Api.ApiOutput" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="fileOutputs" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="fileOutput" type="Storage.Data.Product.v6.Outputs.File.FileOutput" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="sqlOutputs" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="sqlOutput" type="Storage.Data.Product.v6.Outputs.Sql.SqlOutput" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
     </xs:all>
   </xs:complexType>
   <xs:complexType name="Storage.Data.Product.v6.Dcat">
@@ -85,29 +157,116 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Core.Descriptions.DescriptionCollection">
-    <xs:annotation>
-      <xs:documentation>A collection of descriptions of the object in different languages and formats.</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="description" type="Core.Descriptions.Description" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
+  <xs:complexType name="Core.Description">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:annotation>
+          <xs:documentation>Used to give a DIML object a description in a given language and format.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="language" type="Core.Language" use="required">
+          <xs:annotation>
+            <xs:documentation>The language of the description.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="type" type="Core.DescriptionType" use="required">
+          <xs:annotation>
+            <xs:documentation>The format of the description.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
   </xs:complexType>
-  <xs:complexType name="Core.Names.NameCollection">
-    <xs:annotation>
-      <xs:documentation>A collection of names of the object in different languages.</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="name" type="Core.Names.Name" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
+  <xs:complexType name="Core.Name">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:annotation>
+          <xs:documentation>Represents a name of a DIML object in a specific language.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="language" type="Core.Language" use="required">
+          <xs:annotation>
+            <xs:documentation>The language of the name.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.TableCollection">
+  <xs:complexType name="Storage.Data.Product.v6.Table">
     <xs:annotation>
-      <xs:documentation>Innehåller en lista av tabeller i en tabulär dataprodukt.</xs:documentation>
+      <xs:documentation>Beskriver en tabell i en tabulär dataprodukt.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element name="table" type="Storage.Data.Product.v6.Table" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
+    <xs:all>
+      <xs:element name="aliases" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="alias" type="Storage.Data.Product.v6.Alias" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="businessKey" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="value" type="Storage.Data.Product.v6.BusinessKey" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="columns" minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="column" type="Storage.Data.Product.v6.Column" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="descriptions" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="description" type="Core.Description" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="names" minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="name" type="Core.Name" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="sampleData" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="sampleDataRow" type="Storage.Data.Product.v6.SampleDataRow" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="tableRelations" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="tableRelation" type="Storage.Data.Product.v6.TableRelation" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="traits" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="trait" type="Storage.Data.Product.v6.Traits.Trait" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="existsFromStageId" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger från och med vilket dataStage som tabellen kommer att existera i. Om inget anges gäller fösta dataStage i specifikationen.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="existsToStageId" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger till och med vilket dataStage som tabellen kommer att existera i. Om inget anges gäller sista dataStage i specifikationen.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="id" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Tabellens id.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
   <xs:simpleType name="Storage.Data.Product.v6.TargetPlatformType">
     <xs:annotation>
@@ -141,73 +300,172 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="Storage.Data.Product.v6.Traits.TraitCollection">
+  <xs:complexType name="Storage.Data.Product.v6.Traits.Trait">
     <xs:annotation>
-      <xs:documentation>En samling av egenskaper på ett DIML-objekt.</xs:documentation>
+      <xs:documentation>Används för att specificera egenskaper (traits) på ett Diml-objekt.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element name="trait" type="Storage.Data.Product.v6.Traits.Trait" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.DataIngestCollection">
-    <xs:annotation>
-      <xs:documentation>Innehåller en lista av Instruktioner för hur data ska läsas in från källa till destination.</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="dataIngest" type="Storage.Data.Product.v6.DataIngest" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.DataStages.DataStageCollection">
-    <xs:annotation>
-      <xs:documentation>Innehåller en lista av datastages som anger de olika stadien för data och dess egenskaper, tex. Om en tabell ska materialiseras eller inte, hur data ska uppdateras osv.</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="dataStage" type="Storage.Data.Product.v6.DataStages.DataStage" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.DataInput">
-    <xs:annotation>
-      <xs:documentation>Anger en indatakälla för en dataproduktsspecifikation, t.ex. en DataSource eller en annan DataProduct.</xs:documentation>
-    </xs:annotation>
-    <xs:attribute name="channelId" type="xs:string" use="required">
+    <xs:attribute name="id" type="Storage.Data.Product.v6.Traits.TraitType" use="required">
       <xs:annotation>
-        <xs:documentation>Anger vilken typ av data som ska hämtas och i vilket format.</xs:documentation>
+        <xs:documentation>The type of trait.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="dimlId" type="xs:string" use="required">
+    <xs:attribute name="value" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>Ett globalt unikt dimlId för indatakällan.</xs:documentation>
+        <xs:documentation>Värdet för egenskapen.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Storage.Data.Product.v6.DataIngest">
+    <xs:annotation>
+      <xs:documentation>Instruktioner för hur data ska läsas in från källa till destination.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="tableToTableMappings" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="tableToTableMapping" type="Storage.Data.Product.v6.TableToTableMapping" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="dataInputId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Ett unikt id som respesenterar en källa.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
-        <xs:documentation>Ett id för indatakällan. Detta måste vara unikt inom en DataProduct då det kommer att användas som ett alias.</xs:documentation>
+        <xs:documentation>Ett unikt id som representerar ett dataIngest-flöde.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.Outputs.Api.ApiOutputCollection">
+  <xs:complexType name="Storage.Data.Product.v6.DataStages.DataStage">
     <xs:annotation>
-      <xs:documentation>Innehåller en lista av apiOutput som anger API som utdataformat enligt en angiven standard.</xs:documentation>
+      <xs:documentation>Anger de olika stadien för data och dess egenskaper, tex. Om en tabell ska materialiseras eller inte, hur data ska uppdateras osv.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element name="apiOutput" type="Storage.Data.Product.v6.Outputs.Api.ApiOutput" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
+    <xs:all>
+      <xs:element name="ingestPolicy" type="Storage.Data.Product.v6.DataStages.Ingest.IngestPolicy" minOccurs="0" maxOccurs="1" />
+      <xs:element name="logicDataStageTables" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="logicDataStageTable" type="Storage.Data.Product.v6.DataStages.Logic.LogicDataStageTable" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="traits" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="trait" type="Storage.Data.Product.v6.Traits.Trait" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="validationPolicy" type="Storage.Data.Product.v6.DataStages.Validate.ValidationPolicy" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+    <xs:attribute name="id" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Unikt id för dataStage.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="materialization" type="Storage.Data.Product.v6.DataStages.DataStageMaterialization" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger om data ska materialiseras eller inte.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="order" type="xs:int" use="optional">
+      <xs:annotation>
+        <xs:documentation>OBSOLETE: Anger ordningen på dataStage, dvs vilket steg som ska ske först.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="role" type="Storage.Data.Product.v6.DataStages.DataStageRole" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger vad som ska hända i dataStage t.ex transformation,input,output.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="type" type="Storage.Data.Product.v6.DataStages.DataStageType" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger vilken typ av dataStage t.ex tempStore,permaStore,validate.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.Outputs.File.FileOutputCollection">
+  <xs:complexType name="Storage.Data.Product.v6.Outputs.Api.ApiOutput">
     <xs:annotation>
-      <xs:documentation>Innehåller en lista av fildestinationer för utdata med ett antal obligatoriska parametrar.</xs:documentation>
+      <xs:documentation>Anger API som utdataformat enligt en angiven standard.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element name="fileOutput" type="Storage.Data.Product.v6.Outputs.File.FileOutput" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
+    <xs:attribute name="apiOutputType" type="Storage.Data.Product.v6.Outputs.Api.ApiOutputType" use="required">
+      <xs:annotation>
+        <xs:documentation>API utdataformat</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="channelId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>API Id</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.Outputs.Sql.SqlOutputCollection">
+  <xs:complexType name="Storage.Data.Product.v6.Outputs.File.FileOutput">
     <xs:annotation>
-      <xs:documentation>Innehåller en lista av sqluOutput som anger output som SQL kod i angiven dialekt, tex: TSQL eller Spark SQL.</xs:documentation>
+      <xs:documentation>Anger en fil som destination för utdata med ett antal obligatoriska parametrar.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element name="sqlOutput" type="Storage.Data.Product.v6.Outputs.Sql.SqlOutput" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
+    <xs:attribute name="channelId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger ett unikt id för varje utkanaltyp t.ex sql,sql2 etc.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="columnSeparator" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger vilket/vilka tecken som ska användas som kolumnavskiljare i utdatafilen, om filformatet är csv.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="customFormatId" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger utdataformatet genom att referera till egendefinierat utdataformat i customFormats.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="encoding" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Teckenkodningen för utdatafilen, t.ex. UTF-8.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="fileFormat" type="Storage.Data.Product.v6.Outputs.File.FileFormat" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger filformatet av utdatafilen.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="path" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Sökvägen för utdatafilen.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="quoteCharacter" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger vilket tecken som ska användas som citationstecken i utdatafilen, om filformatet är csv.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="rowSeparator" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger vilket/vilka tecken som ska användas som radavskiljare i utdatafilen, om filformatet är csv.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="table" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger vilken källtabell som utdatafilen ska baseras på.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Storage.Data.Product.v6.Outputs.Sql.SqlOutput">
+    <xs:annotation>
+      <xs:documentation>Anger output som SQL kod i angiven dialekt, tex: TSQL eller Spark SQL.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="channelId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger ett unikt id för varje utkanaltyp t.ex sql,sql2 etc.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="sqlOutputType" type="Storage.Data.Product.v6.Outputs.Sql.SqlOutputType" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger utdatatyper som är kompatibla med sqlOutput.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
   <xs:simpleType name="Storage.Data.Product.v6.DCatAccessRightsType">
     <xs:annotation>
@@ -464,224 +722,6 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="Core.Descriptions.Description">
-    <xs:simpleContent>
-      <xs:extension base="xs:string">
-        <xs:annotation>
-          <xs:documentation>Used to give a DIML object a description in a given language and format.</xs:documentation>
-        </xs:annotation>
-        <xs:attribute name="language" type="Core.Language" use="required">
-          <xs:annotation>
-            <xs:documentation>The language of the description.</xs:documentation>
-          </xs:annotation>
-        </xs:attribute>
-        <xs:attribute name="type" type="Core.Descriptions.DescriptionType" use="required">
-          <xs:annotation>
-            <xs:documentation>The format of the description.</xs:documentation>
-          </xs:annotation>
-        </xs:attribute>
-      </xs:extension>
-    </xs:simpleContent>
-  </xs:complexType>
-  <xs:complexType name="Core.Names.Name">
-    <xs:simpleContent>
-      <xs:extension base="xs:string">
-        <xs:annotation>
-          <xs:documentation>Represents a name of a DIML object in a specific language.</xs:documentation>
-        </xs:annotation>
-        <xs:attribute name="language" type="Core.Language" use="required">
-          <xs:annotation>
-            <xs:documentation>The language of the name.</xs:documentation>
-          </xs:annotation>
-        </xs:attribute>
-      </xs:extension>
-    </xs:simpleContent>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.Table">
-    <xs:annotation>
-      <xs:documentation>Beskriver en tabell i en tabulär dataprodukt.</xs:documentation>
-    </xs:annotation>
-    <xs:all>
-      <xs:element name="aliases" minOccurs="0" maxOccurs="1">
-        <xs:complexType>
-          <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="alias" type="Storage.Data.Product.v6.Alias" />
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="businessKey" type="Storage.Data.Product.v6.BusinessKeyCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="columns" type="Storage.Data.Product.v6.ColumnCollection" minOccurs="1" maxOccurs="1" />
-      <xs:element name="descriptions" type="Core.Descriptions.DescriptionCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="names" type="Core.Names.NameCollection" minOccurs="1" maxOccurs="1" />
-      <xs:element name="sampleData" type="Storage.Data.Product.v6.SampleDataRowCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="tableRelations" type="Storage.Data.Product.v6.TableRelationCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="trait" type="Storage.Data.Product.v6.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
-    </xs:all>
-    <xs:attribute name="existsFromStageId" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>Anger från och med vilket dataStage som tabellen kommer att existera i. Om inget anges gäller fösta dataStage i specifikationen.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="existsToStageId" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>Anger till och med vilket dataStage som tabellen kommer att existera i. Om inget anges gäller sista dataStage i specifikationen.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="id" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Tabellens id.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.Traits.Trait">
-    <xs:annotation>
-      <xs:documentation>Används för att specificera egenskaper (traits) på ett Diml-objekt.</xs:documentation>
-    </xs:annotation>
-    <xs:attribute name="id" type="Storage.Data.Product.v6.Traits.TraitType" use="required">
-      <xs:annotation>
-        <xs:documentation>The type of trait.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="value" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>Värdet för egenskapen.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.DataIngest">
-    <xs:annotation>
-      <xs:documentation>Instruktioner för hur data ska läsas in från källa till destination.</xs:documentation>
-    </xs:annotation>
-    <xs:all>
-      <xs:element name="tableToTableMappings" type="Storage.Data.Product.v6.TableToTableMappingCollection" minOccurs="0" maxOccurs="1" />
-    </xs:all>
-    <xs:attribute name="dataInputId" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Ett unikt id som respesenterar en källa.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="id" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Ett unikt id som representerar ett dataIngest-flöde.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.DataStages.DataStage">
-    <xs:annotation>
-      <xs:documentation>Anger de olika stadien för data och dess egenskaper, tex. Om en tabell ska materialiseras eller inte, hur data ska uppdateras osv.</xs:documentation>
-    </xs:annotation>
-    <xs:all>
-      <xs:element name="ingestPolicy" type="Storage.Data.Product.v6.DataStages.Ingest.IngestPolicy" minOccurs="0" maxOccurs="1" />
-      <xs:element name="logicDataStageTables" type="Storage.Data.Product.v6.DataStages.Logic.LogicDataStageTableCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="traits" type="Storage.Data.Product.v6.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="validationPolicy" type="Storage.Data.Product.v6.DataStages.Validate.ValidationPolicy" minOccurs="0" maxOccurs="1" />
-    </xs:all>
-    <xs:attribute name="id" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Unikt id för dataStage.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="materialization" type="Storage.Data.Product.v6.DataStages.DataStageMaterialization" use="required">
-      <xs:annotation>
-        <xs:documentation>Anger om data ska materialiseras eller inte.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="order" type="xs:int" use="optional">
-      <xs:annotation>
-        <xs:documentation>OBSOLETE: Anger ordningen på dataStage, dvs vilket steg som ska ske först.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="role" type="Storage.Data.Product.v6.DataStages.DataStageRole" use="optional">
-      <xs:annotation>
-        <xs:documentation>Anger vad som ska hända i dataStage t.ex transformation,input,output.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="type" type="Storage.Data.Product.v6.DataStages.DataStageType" use="required">
-      <xs:annotation>
-        <xs:documentation>Anger vilken typ av dataStage t.ex tempStore,permaStore,validate.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.Outputs.Api.ApiOutput">
-    <xs:annotation>
-      <xs:documentation>Anger API som utdataformat enligt en angiven standard.</xs:documentation>
-    </xs:annotation>
-    <xs:attribute name="apiOutputType" type="Storage.Data.Product.v6.Outputs.Api.ApiOutputType" use="required">
-      <xs:annotation>
-        <xs:documentation>API utdataformat</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="channelId" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>API Id</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.Outputs.File.FileOutput">
-    <xs:annotation>
-      <xs:documentation>Anger en fil som destination för utdata med ett antal obligatoriska parametrar.</xs:documentation>
-    </xs:annotation>
-    <xs:attribute name="channelId" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Anger ett unikt id för varje utkanaltyp t.ex sql,sql2 etc.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="columnSeparator" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>Anger vilket/vilka tecken som ska användas som kolumnavskiljare i utdatafilen, om filformatet är csv.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="customFormatId" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>Anger utdataformatet genom att referera till egendefinierat utdataformat i customFormats.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="encoding" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>Teckenkodningen för utdatafilen, t.ex. UTF-8.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="fileFormat" type="Storage.Data.Product.v6.Outputs.File.FileFormat" use="required">
-      <xs:annotation>
-        <xs:documentation>Anger filformatet av utdatafilen.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="path" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Sökvägen för utdatafilen.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="quoteCharacter" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>Anger vilket tecken som ska användas som citationstecken i utdatafilen, om filformatet är csv.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="rowSeparator" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>Anger vilket/vilka tecken som ska användas som radavskiljare i utdatafilen, om filformatet är csv.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="table" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>Anger vilken källtabell som utdatafilen ska baseras på.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.Outputs.Sql.SqlOutput">
-    <xs:annotation>
-      <xs:documentation>Anger output som SQL kod i angiven dialekt, tex: TSQL eller Spark SQL.</xs:documentation>
-    </xs:annotation>
-    <xs:attribute name="channelId" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Anger ett unikt id för varje utkanaltyp t.ex sql,sql2 etc.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="sqlOutputType" type="Storage.Data.Product.v6.Outputs.Sql.SqlOutputType" use="required">
-      <xs:annotation>
-        <xs:documentation>Anger utdatatyper som är kompatibla med sqlOutput.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-  </xs:complexType>
   <xs:simpleType name="Core.Language">
     <xs:restriction base="xs:string">
       <xs:enumeration value="en">
@@ -696,7 +736,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="Core.Descriptions.DescriptionType">
+  <xs:simpleType name="Core.DescriptionType">
     <xs:annotation>
       <xs:documentation>The format of the description.</xs:documentation>
     </xs:annotation>
@@ -738,37 +778,85 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.BusinessKeyCollection">
+  <xs:simpleType name="Storage.Data.Product.v6.BusinessKey">
+    <xs:restriction base="xs:string" />
+  </xs:simpleType>
+  <xs:complexType name="Storage.Data.Product.v6.Column">
     <xs:annotation>
-      <xs:documentation>Innehåller en lista av businessKey som beskriver vilken kolumn som ska användas som BusinessKey</xs:documentation>
+      <xs:documentation>Beskriver en kolumn i en tabulär dataprodukt.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="aliases" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="alias" type="Storage.Data.Product.v6.Alias" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="descriptions" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="description" type="Core.Description" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="dimlDataType" type="Storage.Data.Product.v6.ColumnDimlDataType" minOccurs="0" maxOccurs="1" />
+      <xs:element name="names" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="name" type="Core.Name" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="traits" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="trait" type="Storage.Data.Product.v6.Traits.Trait" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="existsFromStageId" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger från och med vilket dataStage som kolumnen ska existera i. Om inget anges gäller första dataStage i specifikationen.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="existsToStageId" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger till och med vilket dataStage som kolumnen ska existera i. Om inget anges gäller sista dataStage i specifikationen.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="id" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Kolumnens id.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Storage.Data.Product.v6.SampleDataRow">
+    <xs:annotation>
+      <xs:documentation>Anger exempeldata.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="value" type="Storage.Data.Product.v6.BusinessKey" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="value" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.ColumnCollection">
+  <xs:complexType name="Storage.Data.Product.v6.TableRelation">
     <xs:annotation>
-      <xs:documentation>Innehåller en lista av dataProductColumn som beskriver en kolumn i en tabulär dataprodukt.</xs:documentation>
+      <xs:documentation>Anger eventuella tabellrelationer och hur de relaterar via relationsColumns.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="column" type="Storage.Data.Product.v6.Column" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="relationColumns" type="Storage.Data.Product.v6.RelationColumns" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.SampleDataRowCollection">
-    <xs:annotation>
-      <xs:documentation>Innehåller en lista av sampleDataRow som anger exempeldata.</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="sampleDataRow" type="Storage.Data.Product.v6.SampleDataRow" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.TableRelationCollection">
-    <xs:annotation>
-      <xs:documentation>Innehåller en lista av tableRelation som anger eventuella tabellrelationer och hur de relaterar via relationsColumns.</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="tableRelation" type="Storage.Data.Product.v6.TableRelation" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
+    <xs:attribute name="id" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Ett unikt id för tabellrelationen.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="targetTableId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger vilken tabell som tabellrelationen relaterar till.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
   <xs:simpleType name="Storage.Data.Product.v6.Traits.TraitType">
     <xs:annotation>
@@ -852,30 +940,73 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="Storage.Data.Product.v6.TableToTableMappingCollection">
+  <xs:complexType name="Storage.Data.Product.v6.TableToTableMapping">
     <xs:annotation>
-      <xs:documentation>Innehåller en lista av tabellmappning mellan en källa och en destination som används vid datainläsning.</xs:documentation>
+      <xs:documentation>En tabellmappning mellan en källa och en destination som används vid datainläsning.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element name="tableToTableMapping" type="Storage.Data.Product.v6.TableToTableMapping" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
+    <xs:all>
+      <xs:element name="columnMappings" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="columnMapping" type="Storage.Data.Product.v6.ColumnMapping" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="sourceTableId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Tabellens id i källan.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="tableId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Tabellens id i destinationen.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
   <xs:complexType name="Storage.Data.Product.v6.DataStages.Ingest.IngestPolicy">
     <xs:annotation>
       <xs:documentation>Sets rules that controls the behaviour of the ingestStore data stage.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="ingestStoreDataStageTables" type="Storage.Data.Product.v6.DataStages.Ingest.IngestStoreDataStageTableCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="ingestStoreDataStageTables" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="ingestStoreDataStageTable" type="Storage.Data.Product.v6.DataStages.Ingest.IngestStoreDataStageTable" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
     </xs:all>
     <xs:attribute name="loadType" type="Storage.Data.Product.v6.DataStages.Ingest.LoadType" use="required" />
   </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.DataStages.Logic.LogicDataStageTableCollection">
+  <xs:complexType name="Storage.Data.Product.v6.DataStages.Logic.LogicDataStageTable">
     <xs:annotation>
-      <xs:documentation>Innehåller en lista av logicDataStageTable som beskriver hur tabeller ska transformeras.</xs:documentation>
+      <xs:documentation>Beskriver hur tabeller ska transformeras.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element name="logicDataStageTable" type="Storage.Data.Product.v6.DataStages.Logic.LogicDataStageTable" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
+    <xs:all>
+      <xs:element name="logicColumnMappings" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="logicColumnMapping" type="Storage.Data.Product.v6.DataStages.Logic.LogicColumnMapping" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="filterSqlExpression" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger om tabellrader ska filtreras.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="tableId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger tabellid på tabell vars värden ska transformeras.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="trim" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger om tabellens kolumnvärden ska trimmas om inte en specifik kolumn trim anges.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
   <xs:simpleType name="Storage.Data.Product.v6.DataStages.DataStageMaterialization">
     <xs:annotation>
@@ -954,7 +1085,13 @@
       <xs:element name="businessKeyDuplicate" type="Storage.Data.Product.v6.DataStages.Validate.BusinessKeyDuplicatePolicy" minOccurs="0" maxOccurs="1" />
       <xs:element name="businessKeyNull" type="Storage.Data.Product.v6.DataStages.Validate.BusinessKeyNullPolicy" minOccurs="0" maxOccurs="1" />
       <xs:element name="qualityValidation" type="Storage.Data.Product.v6.DataStages.Validate.QualityValidationPolicy" minOccurs="0" maxOccurs="1" />
-      <xs:element name="validateDataStageTables" type="Storage.Data.Product.v6.DataStages.Validate.ValidateDataStageTableCollection" minOccurs="0" maxOccurs="1" />
+      <xs:element name="validateDataStageTables" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="validateDataStageTable" type="Storage.Data.Product.v6.DataStages.Validate.ValidateDataStageTable" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
     </xs:all>
   </xs:complexType>
   <xs:simpleType name="Storage.Data.Product.v6.Outputs.Api.ApiOutputType">
@@ -1008,163 +1145,6 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="Storage.Data.Product.v6.BusinessKey">
-    <xs:restriction base="xs:string" />
-  </xs:simpleType>
-  <xs:complexType name="Storage.Data.Product.v6.Column">
-    <xs:annotation>
-      <xs:documentation>Beskriver en kolumn i en tabulär dataprodukt.</xs:documentation>
-    </xs:annotation>
-    <xs:all>
-      <xs:element name="aliases" minOccurs="0" maxOccurs="1">
-        <xs:complexType>
-          <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="alias" type="Storage.Data.Product.v6.Alias" />
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="descriptions" type="Core.Descriptions.DescriptionCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="dimlDataType" type="Storage.Data.Product.v6.ColumnDimlDataType" minOccurs="0" maxOccurs="1" />
-      <xs:element name="names" type="Core.Names.NameCollection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="traits" type="Storage.Data.Product.v6.Traits.TraitCollection" minOccurs="0" maxOccurs="1" />
-    </xs:all>
-    <xs:attribute name="existsFromStageId" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>Anger från och med vilket dataStage som kolumnen ska existera i. Om inget anges gäller första dataStage i specifikationen.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="existsToStageId" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>Anger till och med vilket dataStage som kolumnen ska existera i. Om inget anges gäller sista dataStage i specifikationen.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="id" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Kolumnens id.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.SampleDataRow">
-    <xs:annotation>
-      <xs:documentation>Anger exempeldata.</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="value" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.TableRelation">
-    <xs:annotation>
-      <xs:documentation>Anger eventuella tabellrelationer och hur de relaterar via relationsColumns.</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="relationColumns" type="Storage.Data.Product.v6.RelationColumns" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-    <xs:attribute name="id" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Ett unikt id för tabellrelationen.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="targetTableId" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Anger vilken tabell som tabellrelationen relaterar till.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.TableToTableMapping">
-    <xs:annotation>
-      <xs:documentation>En tabellmappning mellan en källa och en destination som används vid datainläsning.</xs:documentation>
-    </xs:annotation>
-    <xs:all>
-      <xs:element name="columnMappings" type="Storage.Data.Product.v6.ColumnMappingCollection" minOccurs="0" maxOccurs="1" />
-    </xs:all>
-    <xs:attribute name="sourceTableId" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Tabellens id i källan.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="tableId" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Tabellens id i destinationen.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.DataStages.Ingest.IngestStoreDataStageTableCollection">
-    <xs:sequence>
-      <xs:element name="ingestStoreDataStageTable" type="Storage.Data.Product.v6.DataStages.Ingest.IngestStoreDataStageTable" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:simpleType name="Storage.Data.Product.v6.DataStages.Ingest.LoadType">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="changeTracking" />
-      <xs:enumeration value="full" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:complexType name="Storage.Data.Product.v6.DataStages.Logic.LogicDataStageTable">
-    <xs:annotation>
-      <xs:documentation>Beskriver hur tabeller ska transformeras.</xs:documentation>
-    </xs:annotation>
-    <xs:all>
-      <xs:element name="logicColumnMappings" type="Storage.Data.Product.v6.DataStages.Logic.LogicColumnMappingCollection" minOccurs="0" maxOccurs="1" />
-    </xs:all>
-    <xs:attribute name="filterSqlExpression" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>Anger om tabellrader ska filtreras.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="tableId" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Anger tabellid på tabell vars värden ska transformeras.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="trim" type="xs:boolean" use="optional">
-      <xs:annotation>
-        <xs:documentation>Anger om tabellens kolumnvärden ska trimmas om inte en specifik kolumn trim anges.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.DataStages.Validate.BusinessKeyDuplicatePolicy">
-    <xs:annotation>
-      <xs:documentation>Defines the policy for handling duplicate business keys.</xs:documentation>
-    </xs:annotation>
-    <xs:attribute name="action" type="Storage.Data.Product.v6.DataStages.Validate.BusinessKeyDuplicateAction" use="required">
-      <xs:annotation>
-        <xs:documentation>Defines the action to be taken for handling duplicate BusinessKeys.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="rowNoOrderBy" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>Specifies the sorting expression applied to the table for duplicate removal.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.DataStages.Validate.BusinessKeyNullPolicy">
-    <xs:annotation>
-      <xs:documentation>Defines the policy for handling business keys with null values.</xs:documentation>
-    </xs:annotation>
-    <xs:all>
-      <xs:element name="defaultValues" type="Storage.Data.Product.v6.DataStages.Validate.DefaultValueCollection" minOccurs="0" maxOccurs="1" />
-    </xs:all>
-    <xs:attribute name="action" type="Storage.Data.Product.v6.DataStages.Validate.BusinessKeyNullAction" use="required">
-      <xs:annotation>
-        <xs:documentation>Defines the action to be taken for handling null values in the BusinessKey.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.DataStages.Validate.QualityValidationPolicy">
-    <xs:annotation>
-      <xs:documentation>Defines the policy for handling when something is not valid.</xs:documentation>
-    </xs:annotation>
-    <xs:attribute name="action" type="Storage.Data.Product.v6.DataStages.Validate.QualityValidationAction" use="required">
-      <xs:annotation>
-        <xs:documentation>Defines the action to be taken for quality validation.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.DataStages.Validate.ValidateDataStageTableCollection">
-    <xs:sequence>
-      <xs:element name="validateDataStageTable" type="Storage.Data.Product.v6.DataStages.Validate.ValidateDataStageTable" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-  </xs:complexType>
   <xs:complexType name="Storage.Data.Product.v6.ColumnDimlDataType">
     <xs:annotation>
       <xs:documentation>Anger en Diml-datatyp baserat på dom typer som finns definierade i datatypsspecifikationen.</xs:documentation>
@@ -1253,13 +1233,20 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.ColumnMappingCollection">
+  <xs:complexType name="Storage.Data.Product.v6.ColumnMapping">
     <xs:annotation>
-      <xs:documentation>Innehåller en lista av ColumnMapping som är en kolumnmappning mellan en källa och en destination som används vid datainläsning.</xs:documentation>
+      <xs:documentation>En kolumnmappning mellan en källa och en destination som används vid datainläsning.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element name="columnMapping" type="Storage.Data.Product.v6.ColumnMapping" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
+    <xs:attribute name="columnId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Kolumnens id i destinationen.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="sourceColumnId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Kolumnens id i källan.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
   <xs:complexType name="Storage.Data.Product.v6.DataStages.Ingest.IngestStoreDataStageTable">
     <xs:attribute name="loadType" type="Storage.Data.Product.v6.DataStages.Ingest.LoadType" use="required">
@@ -1273,64 +1260,76 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.DataStages.Logic.LogicColumnMappingCollection">
+  <xs:simpleType name="Storage.Data.Product.v6.DataStages.Ingest.LoadType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="changeTracking" />
+      <xs:enumeration value="full" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Storage.Data.Product.v6.DataStages.Logic.LogicColumnMapping">
     <xs:annotation>
-      <xs:documentation>Innehåller en lista av logicColumnMapping som beskriver hur kolumner ska transformeras.</xs:documentation>
+      <xs:documentation>Beskriver hur kolumner ska transformeras.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element name="logicColumnMapping" type="Storage.Data.Product.v6.DataStages.Logic.LogicColumnMapping" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
+    <xs:attribute name="columnId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Anger kolumnid i tabellen.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="customSqlExpression" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger ett SQL-uttryck för transformeringen.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="trim" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>Anger om kolumnens värden ska trimmas.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
-  <xs:simpleType name="Storage.Data.Product.v6.DataStages.Validate.BusinessKeyDuplicateAction">
+  <xs:complexType name="Storage.Data.Product.v6.DataStages.Validate.BusinessKeyDuplicatePolicy">
     <xs:annotation>
-      <xs:documentation>Actions for business key duplicate policy</xs:documentation>
+      <xs:documentation>Defines the policy for handling duplicate business keys.</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="eliminate">
-        <xs:annotation>
-          <xs:documentation>Eliminate duplicates</xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="flag">
-        <xs:annotation>
-          <xs:documentation>Only flag duplicates</xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:simpleType name="Storage.Data.Product.v6.DataStages.Validate.BusinessKeyNullAction">
-    <xs:annotation>
-      <xs:documentation>Actions for business key null policy</xs:documentation>
-    </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="flag">
-        <xs:annotation>
-          <xs:documentation>Only flag null values</xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="setDefaultValue">
-        <xs:annotation>
-          <xs:documentation>Set default values on null values</xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:complexType name="Storage.Data.Product.v6.DataStages.Validate.DefaultValueCollection">
-    <xs:sequence>
-      <xs:element name="defaultValue" type="Storage.Data.Product.v6.DataStages.Validate.DefaultValue" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
+    <xs:attribute name="action" type="Storage.Data.Product.v6.DataStages.Validate.BusinessKeyDuplicateAction" use="required">
+      <xs:annotation>
+        <xs:documentation>Defines the action to be taken for handling duplicate BusinessKeys.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="rowNoOrderBy" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Specifies the sorting expression applied to the table for duplicate removal.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
-  <xs:simpleType name="Storage.Data.Product.v6.DataStages.Validate.QualityValidationAction">
+  <xs:complexType name="Storage.Data.Product.v6.DataStages.Validate.BusinessKeyNullPolicy">
     <xs:annotation>
-      <xs:documentation>Actions for quality validation policy</xs:documentation>
+      <xs:documentation>Defines the policy for handling business keys with null values.</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="eliminateOnly" />
-      <xs:enumeration value="filterValid" />
-      <xs:enumeration value="ignoreValid" />
-      <xs:enumeration value="stop" />
-    </xs:restriction>
-  </xs:simpleType>
+    <xs:all>
+      <xs:element name="defaultValues" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="defaultValue" type="Storage.Data.Product.v6.DataStages.Validate.DefaultValue" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="action" type="Storage.Data.Product.v6.DataStages.Validate.BusinessKeyNullAction" use="required">
+      <xs:annotation>
+        <xs:documentation>Defines the action to be taken for handling null values in the BusinessKey.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Storage.Data.Product.v6.DataStages.Validate.QualityValidationPolicy">
+    <xs:annotation>
+      <xs:documentation>Defines the policy for handling when something is not valid.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="action" type="Storage.Data.Product.v6.DataStages.Validate.QualityValidationAction" use="required">
+      <xs:annotation>
+        <xs:documentation>Defines the action to be taken for quality validation.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
   <xs:complexType name="Storage.Data.Product.v6.DataStages.Validate.ValidateDataStageTable">
     <xs:all>
       <xs:element name="businessKeyDuplicate" type="Storage.Data.Product.v6.DataStages.Validate.BusinessKeyDuplicatePolicy" minOccurs="0" maxOccurs="1" />
@@ -1444,41 +1443,40 @@
       <xs:enumeration value="time" />
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="Storage.Data.Product.v6.ColumnMapping">
+  <xs:simpleType name="Storage.Data.Product.v6.DataStages.Validate.BusinessKeyDuplicateAction">
     <xs:annotation>
-      <xs:documentation>En kolumnmappning mellan en källa och en destination som används vid datainläsning.</xs:documentation>
+      <xs:documentation>Actions for business key duplicate policy</xs:documentation>
     </xs:annotation>
-    <xs:attribute name="columnId" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Kolumnens id i destinationen.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="sourceColumnId" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Kolumnens id i källan.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-  </xs:complexType>
-  <xs:complexType name="Storage.Data.Product.v6.DataStages.Logic.LogicColumnMapping">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="eliminate">
+        <xs:annotation>
+          <xs:documentation>Eliminate duplicates</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="flag">
+        <xs:annotation>
+          <xs:documentation>Only flag duplicates</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Storage.Data.Product.v6.DataStages.Validate.BusinessKeyNullAction">
     <xs:annotation>
-      <xs:documentation>Beskriver hur kolumner ska transformeras.</xs:documentation>
+      <xs:documentation>Actions for business key null policy</xs:documentation>
     </xs:annotation>
-    <xs:attribute name="columnId" type="xs:string" use="required">
-      <xs:annotation>
-        <xs:documentation>Anger kolumnid i tabellen.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="customSqlExpression" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>Anger ett SQL-uttryck för transformeringen.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="trim" type="xs:boolean" use="optional">
-      <xs:annotation>
-        <xs:documentation>Anger om kolumnens värden ska trimmas.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-  </xs:complexType>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="flag">
+        <xs:annotation>
+          <xs:documentation>Only flag null values</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="setDefaultValue">
+        <xs:annotation>
+          <xs:documentation>Set default values on null values</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
   <xs:complexType name="Storage.Data.Product.v6.DataStages.Validate.DefaultValue">
     <xs:annotation>
       <xs:documentation>Defines a default value for a column.</xs:documentation>
@@ -1494,4 +1492,15 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
+  <xs:simpleType name="Storage.Data.Product.v6.DataStages.Validate.QualityValidationAction">
+    <xs:annotation>
+      <xs:documentation>Actions for quality validation policy</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="eliminateOnly" />
+      <xs:enumeration value="filterValid" />
+      <xs:enumeration value="ignoreValid" />
+      <xs:enumeration value="stop" />
+    </xs:restriction>
+  </xs:simpleType>
 </xs:schema>
