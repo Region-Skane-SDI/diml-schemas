@@ -150,7 +150,13 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:element name="sampleData" type="Storage.Data.Source.v6.SampleDataRow" minOccurs="0" maxOccurs="1" />
+      <xs:element name="sampleData" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="sampleDataRow" type="Storage.Data.Source.v6.SampleDataRow" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="tableRelations" minOccurs="0" maxOccurs="1">
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
