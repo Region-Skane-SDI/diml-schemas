@@ -9,6 +9,9 @@
     </xs:annotation>
     <xs:all>
       <xs:element name="apis" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A list of restApi or soapApi API definitions.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:choice>
@@ -19,6 +22,9 @@
         </xs:complexType>
       </xs:element>
       <xs:element name="backends" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A list of restBackend or soapBackend definitions.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:choice>
@@ -29,6 +35,9 @@
         </xs:complexType>
       </xs:element>
       <xs:element name="channels" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A collection of messaging channel definitions that specify how messages are produced, consumed, and configured in the system, independent of the underlying messaging platform.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:element name="channel" type="Channels.Channel" />
@@ -36,6 +45,9 @@
         </xs:complexType>
       </xs:element>
       <xs:element name="dependencies" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>List of APIs that this API product consumes in other API products.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:element name="apiProduct" type="Core.ApiProductDependency" />
@@ -43,6 +55,9 @@
         </xs:complexType>
       </xs:element>
       <xs:element name="descriptions" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A collection of descriptions of the object in different languages and formats.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:element name="description" type="Meta.Description" />
@@ -50,6 +65,9 @@
         </xs:complexType>
       </xs:element>
       <xs:element name="names" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A collection of names of the object in different languages.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:element name="name" type="Meta.Name" />
@@ -57,6 +75,9 @@
         </xs:complexType>
       </xs:element>
       <xs:element name="traits" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A list of metadata properties.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:element name="trait" type="Traits.Trait" />
@@ -77,6 +98,9 @@
     <xs:all>
       <xs:element name="authorization" type="Core.Authorization.Authorization" minOccurs="0" maxOccurs="1" />
       <xs:element name="routes" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A list of routes that this API exposes.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:element name="route" type="Apis.Rest.Route" />
@@ -84,6 +108,9 @@
         </xs:complexType>
       </xs:element>
       <xs:element name="traits" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A list of metadata properties.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:element name="trait" type="Traits.Trait" />
@@ -121,6 +148,9 @@
     <xs:all>
       <xs:element name="authorization" type="Core.Authorization.Authorization" minOccurs="0" maxOccurs="1" />
       <xs:element name="operations" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A list of operations that this API exposes.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:element name="operation" type="Apis.Soap.Operation" />
@@ -128,6 +158,9 @@
         </xs:complexType>
       </xs:element>
       <xs:element name="traits" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A list of metadata properties.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:element name="trait" type="Traits.Trait" />
@@ -184,6 +217,9 @@
     </xs:annotation>
     <xs:all>
       <xs:element name="bindings" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A collection of bindings that define how messages are routed through this channel. Each binding specifies routing criteria and configuration details for message delivery.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:element name="binding" type="Channels.Binding" />
@@ -220,6 +256,9 @@
   <xs:complexType name="Core.ApiProductDependency">
     <xs:all>
       <xs:element name="apis" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A list of APIs that this API product consumes in other API products.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:element name="api" type="Core.ApiReference" />
@@ -297,6 +336,9 @@
       <xs:element name="authorization" type="Core.Authorization.Authorization" minOccurs="0" maxOccurs="1" />
       <xs:element name="match" type="Apis.Rest.RestApiMatch" minOccurs="1" maxOccurs="1" />
       <xs:element name="traits" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A list of metadata properties.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:element name="trait" type="Traits.Trait" />
@@ -337,6 +379,9 @@
     <xs:all>
       <xs:element name="authorization" type="Core.Authorization.Authorization" minOccurs="0" maxOccurs="1" />
       <xs:element name="traits" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A list of metadata properties.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:element name="trait" type="Traits.Trait" />
@@ -473,6 +518,9 @@
     </xs:annotation>
     <xs:all>
       <xs:element name="headers" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A list of headers that must match for this operation.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:element name="header" type="Apis.Rest.HeaderMatch" />
@@ -497,6 +545,9 @@
     </xs:annotation>
     <xs:all>
       <xs:element name="headers" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A list of header transforms that can be applied to the request headers.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:element name="header" type="Core.Transforms.HeaderTransform" />
@@ -504,6 +555,9 @@
         </xs:complexType>
       </xs:element>
       <xs:element name="paths" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A list of path transforms that can be applied to the request path.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:element name="path" type="Core.Transforms.PathTransform" />
@@ -518,6 +572,9 @@
     </xs:annotation>
     <xs:all>
       <xs:element name="headers" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A list of header transforms that will be applied to the response headers.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:element name="header" type="Core.Transforms.HeaderTransform" />
@@ -532,6 +589,9 @@
     </xs:annotation>
     <xs:all>
       <xs:element name="headers" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>HeaderValidations contains header validations for the API. It is used to validate headers in requests and responses before they are processed by the API.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:element name="header" type="Core.Validations.HeaderValidation" />
@@ -543,6 +603,9 @@
   <xs:complexType name="Core.Validations.ResponseValidations">
     <xs:all>
       <xs:element name="headers" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>HeaderValidations contains header validations for the API. It is used to validate headers in requests and responses before they are processed by the API.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:element name="header" type="Core.Validations.HeaderValidation" />
@@ -574,6 +637,9 @@
     </xs:annotation>
     <xs:all>
       <xs:element name="values" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A list of values to match against the header. Required for Contains and NotContains modes.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:element name="value" type="xs:string" />
