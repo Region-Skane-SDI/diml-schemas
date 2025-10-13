@@ -54,36 +54,7 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:element name="descriptions" minOccurs="0" maxOccurs="1">
-        <xs:annotation>
-          <xs:documentation>A collection of descriptions of the object in different languages and formats.</xs:documentation>
-        </xs:annotation>
-        <xs:complexType>
-          <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="description" type="Meta.Description" />
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="names" minOccurs="1" maxOccurs="1">
-        <xs:annotation>
-          <xs:documentation>A collection of names of the object in different languages.</xs:documentation>
-        </xs:annotation>
-        <xs:complexType>
-          <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="name" type="Meta.Name" />
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="traits" minOccurs="0" maxOccurs="1">
-        <xs:annotation>
-          <xs:documentation>A list of metadata properties.</xs:documentation>
-        </xs:annotation>
-        <xs:complexType>
-          <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="trait" type="Traits.Trait" />
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
+      <xs:element name="metaData" type="ApiProductSpecificationMetaData" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="dimlId" type="xs:string" use="required">
       <xs:annotation>
@@ -103,16 +74,6 @@
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:element name="route" type="Apis.Rest.Route" />
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="traits" minOccurs="0" maxOccurs="1">
-        <xs:annotation>
-          <xs:documentation>A list of metadata properties.</xs:documentation>
-        </xs:annotation>
-        <xs:complexType>
-          <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="trait" type="Traits.Trait" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -152,16 +113,6 @@
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:element name="operation" type="Apis.Soap.Operation" />
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="traits" minOccurs="0" maxOccurs="1">
-        <xs:annotation>
-          <xs:documentation>A list of metadata properties.</xs:documentation>
-        </xs:annotation>
-        <xs:complexType>
-          <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="trait" type="Traits.Trait" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -270,53 +221,12 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Meta.Description">
-    <xs:simpleContent>
-      <xs:extension base="xs:string">
-        <xs:annotation>
-          <xs:documentation>Used to give a DIML object a description in a given language and format.</xs:documentation>
-        </xs:annotation>
-        <xs:attribute name="language" type="Meta.Language" use="required">
-          <xs:annotation>
-            <xs:documentation>The language of the description.</xs:documentation>
-          </xs:annotation>
-        </xs:attribute>
-        <xs:attribute name="type" type="Meta.DescriptionType" use="required">
-          <xs:annotation>
-            <xs:documentation>The format of the description.</xs:documentation>
-          </xs:annotation>
-        </xs:attribute>
-      </xs:extension>
-    </xs:simpleContent>
-  </xs:complexType>
-  <xs:complexType name="Meta.Name">
-    <xs:simpleContent>
-      <xs:extension base="xs:string">
-        <xs:annotation>
-          <xs:documentation>Represents a name of a DIML object in a specific language.</xs:documentation>
-        </xs:annotation>
-        <xs:attribute name="language" type="Meta.Language" use="required">
-          <xs:annotation>
-            <xs:documentation>The language of the name.</xs:documentation>
-          </xs:annotation>
-        </xs:attribute>
-      </xs:extension>
-    </xs:simpleContent>
-  </xs:complexType>
-  <xs:complexType name="Traits.Trait">
-    <xs:annotation>
-      <xs:documentation>A metadata property for a DIML object.</xs:documentation>
-    </xs:annotation>
-    <xs:attribute name="id" type="Traits.TraitType" use="required">
-      <xs:annotation>
-        <xs:documentation>The type of trait.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="value" type="xs:string" use="optional">
-      <xs:annotation>
-        <xs:documentation>The value of the trait.</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
+  <xs:complexType name="ApiProductSpecificationMetaData">
+    <xs:all>
+      <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1" />
+      <xs:element name="infoClass" type="xs:string" minOccurs="0" maxOccurs="1" />
+      <xs:element name="name" type="xs:string" minOccurs="0" maxOccurs="1" />
+    </xs:all>
   </xs:complexType>
   <xs:complexType name="Apis.Rest.Route">
     <xs:annotation>
@@ -324,16 +234,6 @@
     </xs:annotation>
     <xs:all>
       <xs:element name="match" type="Apis.Rest.RestApiMatch" minOccurs="1" maxOccurs="1" />
-      <xs:element name="traits" minOccurs="0" maxOccurs="1">
-        <xs:annotation>
-          <xs:documentation>A list of metadata properties.</xs:documentation>
-        </xs:annotation>
-        <xs:complexType>
-          <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="trait" type="Traits.Trait" />
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
       <xs:element name="transforms" type="Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
       <xs:element name="validations" type="Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
     </xs:all>
@@ -366,16 +266,6 @@
       <xs:documentation>Operation represents a single operation in a SOAP API.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="traits" minOccurs="0" maxOccurs="1">
-        <xs:annotation>
-          <xs:documentation>A list of metadata properties.</xs:documentation>
-        </xs:annotation>
-        <xs:complexType>
-          <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="trait" type="Traits.Trait" />
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
       <xs:element name="transforms" type="Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
       <xs:element name="validations" type="Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
     </xs:all>
@@ -442,54 +332,6 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:simpleType name="Meta.Language">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="en">
-        <xs:annotation>
-          <xs:documentation>English.</xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="sv">
-        <xs:annotation>
-          <xs:documentation>Svenska.</xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:simpleType name="Meta.DescriptionType">
-    <xs:annotation>
-      <xs:documentation>The format of the description.</xs:documentation>
-    </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="logicMd">
-        <xs:annotation>
-          <xs:documentation>Logic markdown format.</xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="md">
-        <xs:annotation>
-          <xs:documentation>Markdown format.</xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="plain">
-        <xs:annotation>
-          <xs:documentation>Plain text format.</xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:simpleType name="Traits.TraitType">
-    <xs:annotation>
-      <xs:documentation>The type of trait.</xs:documentation>
-    </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="classification.infoClass">
-        <xs:annotation>
-          <xs:documentation>Informationclass.</xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
-    </xs:restriction>
-  </xs:simpleType>
   <xs:complexType name="Apis.Rest.RestApiMatch">
     <xs:annotation>
       <xs:documentation>RestApiMatch defines a match for a REST API operation, including the path, HTTP methods, and optional headers.</xs:documentation>
