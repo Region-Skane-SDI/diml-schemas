@@ -65,7 +65,13 @@
   <xs:complexType name="ApiProductSpecificationMetaData">
     <xs:all>
       <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1" />
-      <xs:element name="infoClass" type="xs:string" minOccurs="0" maxOccurs="1" />
+      <xs:element name="infoClass" minOccurs="0" maxOccurs="1">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:pattern value="K[0-4]R[0-4]T[0-4]" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
       <xs:element name="name" type="xs:string" minOccurs="0" maxOccurs="1" />
     </xs:all>
   </xs:complexType>
