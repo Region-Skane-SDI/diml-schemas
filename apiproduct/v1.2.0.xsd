@@ -175,7 +175,7 @@
         <xs:documentation>A unique identifier for the API within the API product.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="openApi" type="xs:string" use="required">
+    <xs:attribute name="openApi" type="xs:string" use="optional">
       <xs:annotation>
         <xs:documentation>Relative path to a open-api-file containing the specification for the api.</xs:documentation>
       </xs:annotation>
@@ -276,9 +276,9 @@
         <xs:documentation>A unique identifier for the API within the API product.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="wsdl" type="xs:string" use="required">
+    <xs:attribute name="wsdl" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>Relative path to a wsdl-file containing the contract for the operation.</xs:documentation>
+        <xs:documentation>Relative path to a wsdl-file containing the contract for the api.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
@@ -343,7 +343,7 @@
         </xs:complexType>
       </xs:element>
     </xs:all>
-    <xs:attribute name="asyncApi" type="xs:string" use="required">
+    <xs:attribute name="asyncApi" type="xs:string" use="optional">
       <xs:annotation>
         <xs:documentation>Relative path to the AsyncAPI specification file describing the message schema, operations, and metadata for this channel.</xs:documentation>
       </xs:annotation>
