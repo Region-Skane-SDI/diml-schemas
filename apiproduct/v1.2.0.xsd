@@ -61,6 +61,11 @@
         <xs:documentation>A unique identifier for the API product.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
+    <xs:attribute name="status" type="ApiProductSpecificationStatus" use="optional">
+      <xs:annotation>
+        <xs:documentation>The status of the API product.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
   <xs:complexType name="ApiProductSpecificationMetaData">
     <xs:all>
@@ -75,6 +80,33 @@
       <xs:element name="name" type="xs:string" minOccurs="0" maxOccurs="1" />
     </xs:all>
   </xs:complexType>
+  <xs:simpleType name="ApiProductSpecificationStatus">
+    <xs:annotation>
+      <xs:documentation>An enumeration representing the valid status values for an API product.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="archived">
+        <xs:annotation>
+          <xs:documentation>The API product is archived and cannot be modified and will only be exported to the service portal and thus will not be available in gateways or queueing systems.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="deprecated">
+        <xs:annotation>
+          <xs:documentation>The API product is considered deprecated and consumers should migrate away from using it.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="experimental">
+        <xs:annotation>
+          <xs:documentation>The API product is experimental and may change without warning.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="production">
+        <xs:annotation>
+          <xs:documentation>The API product is considered production ready and will not break any consumers.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
   <xs:complexType name="Apis.ApiMetaData">
     <xs:all>
       <xs:element name="name" type="xs:string" minOccurs="0" maxOccurs="1" />
