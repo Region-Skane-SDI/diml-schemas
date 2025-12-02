@@ -56,6 +56,11 @@
         <xs:documentation>The status of the API product.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
+    <xs:attribute name="type" type="ApiProductSpecificationType" use="optional">
+      <xs:annotation>
+        <xs:documentation>The type of the API product.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
   <xs:complexType name="ApiProductSpecificationMetaData">
     <xs:all>
@@ -93,6 +98,23 @@
       <xs:enumeration value="production">
         <xs:annotation>
           <xs:documentation>The API product is considered production ready and will not break any consumers.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ApiProductSpecificationType">
+    <xs:annotation>
+      <xs:documentation>The type of API Product.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="external">
+        <xs:annotation>
+          <xs:documentation>The API Product represents an external service that is only consumed.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="internal">
+        <xs:annotation>
+          <xs:documentation>The API Product represents an internal service that's exposed via the Gateway.</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
     </xs:restriction>
