@@ -64,15 +64,26 @@
   </xs:complexType>
   <xs:complexType name="ApiProductSpecificationMetaData">
     <xs:all>
-      <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1" />
+      <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The description of the API product.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
       <xs:element name="infoClass" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Informationclassification for the API product.</xs:documentation>
+        </xs:annotation>
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:pattern value="K[0-4]R[0-4]T[0-4]" />
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
-      <xs:element name="name" type="xs:string" minOccurs="0" maxOccurs="1" />
+      <xs:element name="name" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The name of the API product.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
     </xs:all>
   </xs:complexType>
   <xs:simpleType name="ApiProductSpecificationStatus">
@@ -122,13 +133,20 @@
   <xs:complexType name="Apis.ApiMetaData">
     <xs:all>
       <xs:element name="infoClass" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Informationclassification for the API.</xs:documentation>
+        </xs:annotation>
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:pattern value="K[0-4]R[0-4]T[0-4]" />
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
-      <xs:element name="name" type="xs:string" minOccurs="0" maxOccurs="1" />
+      <xs:element name="name" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The name of the API.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
     </xs:all>
   </xs:complexType>
   <xs:complexType name="Apis.Rest.HeaderMatch">
