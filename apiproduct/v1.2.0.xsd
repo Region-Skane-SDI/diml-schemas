@@ -149,6 +149,40 @@
       </xs:element>
     </xs:all>
   </xs:complexType>
+  <xs:simpleType name="Apis.RateLimiterPolicy">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="concurrencyHigh">
+        <xs:annotation>
+          <xs:documentation>Concurrency limiter profile with the highest threshold.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="concurrencyLow">
+        <xs:annotation>
+          <xs:documentation>Concurrency limiter profile with the lowest threshold.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="concurrencyMedium">
+        <xs:annotation>
+          <xs:documentation>Concurrency limiter profile with a moderate threshold.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="tokenBucketHigh">
+        <xs:annotation>
+          <xs:documentation>Token bucket profile tuned for highest sustained rates and bursts.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="tokenBucketLow">
+        <xs:annotation>
+          <xs:documentation>Token bucket profile tuned for low sustained rates and small bursts.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="tokenBucketMedium">
+        <xs:annotation>
+          <xs:documentation>Token bucket profile tuned for moderate sustained rates and bursts.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
   <xs:complexType name="Apis.Rest.HeaderMatch">
     <xs:annotation>
       <xs:documentation>HeaderMatch represents a match condition for HTTP headers in a REST API.</xs:documentation>
@@ -249,6 +283,11 @@
         <xs:documentation>Relative path to a open-api-file containing the specification for the api.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
+    <xs:attribute name="rateLimitPolicy" type="Apis.RateLimiterPolicy" use="optional">
+      <xs:annotation>
+        <xs:documentation>Default rate limit for each route or operation in API.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
   <xs:complexType name="Apis.Rest.RestApiMatch">
     <xs:annotation>
@@ -291,6 +330,11 @@
         <xs:documentation>Unique identifier for the route within the API.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
+    <xs:attribute name="rateLimitPolicy" type="Apis.RateLimiterPolicy" use="optional">
+      <xs:annotation>
+        <xs:documentation>Rate limit.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
   <xs:complexType name="Apis.Soap.Operation">
     <xs:annotation>
@@ -308,6 +352,11 @@
     <xs:attribute name="path" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>The path that this operation matches.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="rateLimitPolicy" type="Apis.RateLimiterPolicy" use="optional">
+      <xs:annotation>
+        <xs:documentation>Rate limit.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="targetPath" type="xs:string" use="optional">
@@ -343,6 +392,11 @@
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>A unique identifier for the API within the API product.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="rateLimitPolicy" type="Apis.RateLimiterPolicy" use="optional">
+      <xs:annotation>
+        <xs:documentation>Default rate limit for each route or operation in API.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="wsdl" type="xs:string" use="optional">
