@@ -1,0 +1,737 @@
+<!--
+    DIML XSD Schema for apiproduct v1.2.2
+-->
+<xs:schema xmlns="https://github.com/Region-Skane-SDI/diml/apiproduct" targetNamespace="https://github.com/Region-Skane-SDI/diml/apiproduct" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
+  <xs:element name="apiProduct" type="ApiProductSpecification" />
+  <xs:complexType name="ApiProductSpecification">
+    <xs:annotation>
+      <xs:documentation>A metadata representation of a service.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="metaData" type="ApiProductSpecificationMetaData" minOccurs="0" maxOccurs="1" />
+      <xs:element name="dependencies" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>List of APIs that this API product consumes in other API products.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="apiProduct" type="Core.ApiProductDependency" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="apis" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A list of restApi or soapApi API definitions.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:choice>
+              <xs:element name="restApi" type="Apis.Rest.RestApi" />
+              <xs:element name="soapApi" type="Apis.Soap.SoapApi" />
+            </xs:choice>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="backends" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A list of restBackend or soapBackend definitions.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:choice>
+              <xs:element name="restBackend" type="Backends.Rest.RestBackend" />
+              <xs:element name="soapBackend" type="Backends.Soap.SoapBackend" />
+            </xs:choice>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="dimlId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>A unique identifier for the API product.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="type" type="ApiProductSpecificationType" use="optional">
+      <xs:annotation>
+        <xs:documentation>The type of the API product.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="ApiProductSpecificationMetaData">
+    <xs:all>
+      <xs:element name="infoClass" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Informationclassification for the API product.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:pattern value="K[0-4]R[0-4]T[0-4]" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="name" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The name of the API product.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The description of the API product.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:simpleType name="ApiProductSpecificationType">
+    <xs:annotation>
+      <xs:documentation>The type of API Product.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="internal">
+        <xs:annotation>
+          <xs:documentation>The API Product represents an internal service that's exposed via the Gateway.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="external">
+        <xs:annotation>
+          <xs:documentation>The API Product represents an external service that is only consumed.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Apis.ApiLifecycle">
+    <xs:annotation>
+      <xs:documentation>An enumeration representing the valid lifecycle values for an API.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="experimental">
+        <xs:annotation>
+          <xs:documentation>The API is experimental and may change without warning.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="production">
+        <xs:annotation>
+          <xs:documentation>The API is considered production ready and will not break any consumers.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="deprecated">
+        <xs:annotation>
+          <xs:documentation>The API is considered deprecated and consumers should migrate away from using it.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="archived">
+        <xs:annotation>
+          <xs:documentation>The API is archived and will only be exported to the service portal and thus will not be available in gateways or queueing systems.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Apis.ApiMetaData">
+    <xs:all>
+      <xs:element name="infoClass" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Informationclassification for the API.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:pattern value="K[0-4]R[0-4]T[0-4]" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="name" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The name of the API.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:simpleType name="Apis.RateLimiterPolicy">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="concurrencyLow">
+        <xs:annotation>
+          <xs:documentation>Concurrency limiter profile with the lowest threshold.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="concurrencyMedium">
+        <xs:annotation>
+          <xs:documentation>Concurrency limiter profile with a moderate threshold.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="concurrencyHigh">
+        <xs:annotation>
+          <xs:documentation>Concurrency limiter profile with the highest threshold.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="tokenBucketLow">
+        <xs:annotation>
+          <xs:documentation>Token bucket profile tuned for low sustained rates and small bursts.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="tokenBucketMedium">
+        <xs:annotation>
+          <xs:documentation>Token bucket profile tuned for moderate sustained rates and bursts.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="tokenBucketHigh">
+        <xs:annotation>
+          <xs:documentation>Token bucket profile tuned for highest sustained rates and bursts.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Apis.Rest.HeaderMatch">
+    <xs:annotation>
+      <xs:documentation>HeaderMatch represents a match condition for HTTP headers in a REST API.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="values" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A list of values to match against the header. Required for Contains and NotContains modes.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="value" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="mode" type="Apis.Rest.HeaderMatchMode" use="required">
+      <xs:annotation>
+        <xs:documentation>Specifies how the header match should be evaluated.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="name" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>The name of the header to match against.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="isCaseSensitive" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>Indicates whether the header match is case-sensitive. Defaults to false.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:simpleType name="Apis.Rest.HeaderMatchMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="exactHeader">
+        <xs:annotation>
+          <xs:documentation>Any of the headers with the given name must match in its entirety.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="headerPrefix">
+        <xs:annotation>
+          <xs:documentation>Any of the headers with the given name must match by prefix.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="contains">
+        <xs:annotation>
+          <xs:documentation>Any of the headers with the given name must contain any of the match values.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="notContains">
+        <xs:annotation>
+          <xs:documentation>The header must exist and the value must be non-empty. None of the headers with the given name may contain any of the match values.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="exists">
+        <xs:annotation>
+          <xs:documentation>The header must exist and contain any non-empty value. If there are multiple headers with the same name, the rule will also match.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="notExists">
+        <xs:annotation>
+          <xs:documentation>The header must not exist.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Apis.Rest.RestApi">
+    <xs:annotation>
+      <xs:documentation>RestApi represents a RESTful API that can be used in API products.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="metaData" type="Apis.ApiMetaData" minOccurs="0" maxOccurs="1" />
+      <xs:element name="transforms" type="Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
+      <xs:element name="validations" type="Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
+      <xs:element name="routes" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A list of routes that this API exposes.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="route" type="Apis.Rest.Route" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="id" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>A unique identifier for the API within the API product.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="backendId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>The identifier for the Backend for this API, must correspond to an existing backend id.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="rateLimitPolicy" type="Apis.RateLimiterPolicy" use="optional">
+      <xs:annotation>
+        <xs:documentation>Default rate limit for each route or operation in API.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="lifecycle" type="Apis.ApiLifecycle" use="optional">
+      <xs:annotation>
+        <xs:documentation>The lifecycle of the API.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="openApi" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Relative path to a open-api-file containing the specification for the api.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Apis.Rest.RestApiMatch">
+    <xs:annotation>
+      <xs:documentation>RestApiMatch defines a match for a REST API operation, including the path, HTTP methods, and optional headers.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="headers" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A list of headers that must match for this operation.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="header" type="Apis.Rest.HeaderMatch" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="path" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>The REST API match path.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="methods" type="Core.HttpMethods" use="required">
+      <xs:annotation>
+        <xs:documentation>HTTP defines a set of request methods to indicate the purpose of the request and what is expected if the request is successful. Although they can also be nouns, these request methods are sometimes referred to as HTTP verbs. Each request method has its own semantics, but some characteristics are shared across multiple methods, specifically request methods can be safe, idempotent, or cacheable.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Apis.Rest.Route">
+    <xs:annotation>
+      <xs:documentation>Represents a logical messaging channel in the system. A channel defines how messages are produced, consumed, and configured, independent of the underlying messaging platform (such as RabbitMQ or Kafka).</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="transforms" type="Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
+      <xs:element name="match" type="Apis.Rest.RestApiMatch" minOccurs="1" maxOccurs="1" />
+      <xs:element name="validations" type="Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+    <xs:attribute name="id" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Unique identifier for the route within the API.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="rateLimitPolicy" type="Apis.RateLimiterPolicy" use="optional">
+      <xs:annotation>
+        <xs:documentation>Rate limit.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Apis.Soap.Operation">
+    <xs:annotation>
+      <xs:documentation>Operation represents a single operation in a SOAP API.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="transforms" type="Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
+      <xs:element name="validations" type="Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+    <xs:attribute name="id" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Unique identifier for the operation.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="path" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>The path that this operation matches.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="targetPath" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Optional in-line paths transform, which replaces the value in the Path attribute for the target path.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="rateLimitPolicy" type="Apis.RateLimiterPolicy" use="optional">
+      <xs:annotation>
+        <xs:documentation>Rate limit.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Apis.Soap.SoapApi">
+    <xs:annotation>
+      <xs:documentation>SoapApi represents a SOAP API that can be used in API products.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="metaData" type="Apis.ApiMetaData" minOccurs="0" maxOccurs="1" />
+      <xs:element name="transforms" type="Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
+      <xs:element name="validations" type="Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
+      <xs:element name="operations" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A list of operations that this API exposes.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="operation" type="Apis.Soap.Operation" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="id" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>A unique identifier for the API within the API product.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="backendId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>The identifier for the Backend for this API, must correspond to an existing backend id.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="rateLimitPolicy" type="Apis.RateLimiterPolicy" use="optional">
+      <xs:annotation>
+        <xs:documentation>Default rate limit for each route or operation in API.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="lifecycle" type="Apis.ApiLifecycle" use="optional">
+      <xs:annotation>
+        <xs:documentation>The lifecycle of the API.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="wsdl" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Relative path to a wsdl-file containing the contract for the api.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Backends.Rest.RestBackend">
+    <xs:annotation>
+      <xs:documentation>RestBackend represents a REST backend service that can be used in API products.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="id" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>A unique identifier for the Backend within the API product. Must be less than 128 chars, only contain a-z, 0-9, '-', '_' chars and must start with a letter and cannot be empty.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Backends.Soap.SoapBackend">
+    <xs:annotation>
+      <xs:documentation>SoapBackend represents a SOAP backend service that can be used in API products.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="id" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>A unique identifier for the Backend within the API product. Must be less than 128 chars, only contain a-z, 0-9, '-', '_' chars and must start with a letter and cannot be empty.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Core.ApiProductDependency">
+    <xs:all>
+      <xs:element name="apis" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A list of APIs that this API product consumes in other API products.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="api" type="Core.ApiReference" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="dimlId" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>Unique identifier of the referenced API product.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Core.ApiReference">
+    <xs:annotation>
+      <xs:documentation>ApiReference represents a reference to an API in another API product.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="id" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>The Api id in the referenced API product.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:simpleType name="Core.HttpMethods">
+    <xs:annotation>
+      <xs:documentation>HTTP defines a set of request methods to indicate the purpose of the request and what is expected if the request is successful. Although they can also be nouns, these request methods are sometimes referred to as HTTP verbs. Each request method has its own semantics, but some characteristics are shared across multiple methods, specifically request methods can be safe, idempotent, or cacheable.</xs:documentation>
+    </xs:annotation>
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="GET">
+            <xs:annotation>
+              <xs:documentation>The GET HTTP method requests a representation of the specified resource. Requests using GET should only be used to request data and shouldn't contain a body.</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="POST">
+            <xs:annotation>
+              <xs:documentation>The POST method submits an entity to the specified resource, often causing a change in state or side effects on the server.</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="PUT">
+            <xs:annotation>
+              <xs:documentation>The PUT method replaces all current representations of the target resource with the request content.</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="DELETE">
+            <xs:annotation>
+              <xs:documentation>The DELETE method deletes the specified resource.</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="CONNECT">
+            <xs:annotation>
+              <xs:documentation>The CONNECT method establishes a tunnel to the server identified by the target resource.</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="HEAD">
+            <xs:annotation>
+              <xs:documentation>The HEAD method asks for a response identical to a GET request, but without a response body.</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="PATCH">
+            <xs:annotation>
+              <xs:documentation>The PATCH method applies partial modifications to a resource.</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="TRACE">
+            <xs:annotation>
+              <xs:documentation>The TRACE method performs a message loop-back test along the path to the target resource.</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="OPTIONS">
+            <xs:annotation>
+              <xs:documentation>The OPTIONS method describes the communication options for the target resource.</xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:complexType name="Core.Transforms.HeaderTransform">
+    <xs:annotation>
+      <xs:documentation>HeaderTransforms contains header transforms for the API. It is used to transform headers in requests and responses before they are processed by the API.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="operation" type="Core.Transforms.HeaderTransformOperation" use="required">
+      <xs:annotation>
+        <xs:documentation>Specifies the header transform operations.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="name" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>The name of the header to transform in requests or responses.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="overwrite" type="Core.Transforms.HeaderTransformOverwrite" use="optional">
+      <xs:annotation>
+        <xs:documentation>Specifies whether the header value should be overwritten or not.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="value" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>Specifies the header value to transform.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:simpleType name="Core.Transforms.HeaderTransformOperation">
+    <xs:annotation>
+      <xs:documentation>Specifies the header transform operations.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="remove">
+        <xs:annotation>
+          <xs:documentation>Remove the header from the request or response.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="set">
+        <xs:annotation>
+          <xs:documentation>Set the header to a specific value in the request or response.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Core.Transforms.HeaderTransformOverwrite">
+    <xs:annotation>
+      <xs:documentation>Specifies whether the header value should be overwritten or not.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="true">
+        <xs:annotation>
+          <xs:documentation>The header value should be overwritten if it already exists.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="false">
+        <xs:annotation>
+          <xs:documentation>The header value should not be overwritten if it already exists.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Core.Transforms.PathTransform">
+    <xs:attribute name="operation" type="Core.Transforms.PathTransformOperation" use="required">
+      <xs:annotation>
+        <xs:documentation>The type of path transform to apply.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="value" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>A path starting with a '/'.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:simpleType name="Core.Transforms.PathTransformOperation">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="addPrefix">
+        <xs:annotation>
+          <xs:documentation>Modifies the request path adding a prefix value.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="removePrefix">
+        <xs:annotation>
+          <xs:documentation>Modifies the request path removing a prefix value.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="set">
+        <xs:annotation>
+          <xs:documentation>Replaces the request path with the specified value.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="setWithPattern">
+        <xs:annotation>
+          <xs:documentation>Replaces the request path using a pattern template.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Core.Transforms.RequestTransforms">
+    <xs:annotation>
+      <xs:documentation>RequestTransforms represents a collection of transforms that can be applied to the request before it is sent to the API.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="paths" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A list of path transforms that can be applied to the request path.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="path" type="Core.Transforms.PathTransform" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="headers" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A list of header transforms that can be applied to the request headers.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="header" type="Core.Transforms.HeaderTransform" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="Core.Transforms.ResponseTransforms">
+    <xs:annotation>
+      <xs:documentation>ResponseTransforms contains response header transforms for the API. It is used to transform headers in responses before they are sent back to the client.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="headers" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A list of header transforms that will be applied to the response headers.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="header" type="Core.Transforms.HeaderTransform" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="Core.Transforms.Transforms">
+    <xs:annotation>
+      <xs:documentation>Transforms contains request and response transforms for the API.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="request" type="Core.Transforms.RequestTransforms" minOccurs="0" maxOccurs="1" />
+      <xs:element name="response" type="Core.Transforms.ResponseTransforms" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="Core.Validations.HeaderValidation">
+    <xs:annotation>
+      <xs:documentation>HeaderValidation defines a validation for a specific header in requests or responses.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="name" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>The name of the header validation, either request or response.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="isRequired" type="xs:boolean" use="required">
+      <xs:annotation>
+        <xs:documentation>IsRequired defines whether a header is required or optional in requests or responses.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="log" type="Microsoft.Extensions.Logging.LogLevel" use="required">
+      <xs:annotation>
+        <xs:documentation>Specifies how validations should be logged</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Core.Validations.RequestValidations">
+    <xs:annotation>
+      <xs:documentation>RequestValidations contains request validations for the API. It is used to validate incoming requests before they are processed by the API.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="headers" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>HeaderValidations contains header validations for the API. It is used to validate headers in requests and responses before they are processed by the API.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="header" type="Core.Validations.HeaderValidation" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="Core.Validations.ResponseValidations">
+    <xs:all>
+      <xs:element name="headers" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>HeaderValidations contains header validations for the API. It is used to validate headers in requests and responses before they are processed by the API.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="header" type="Core.Validations.HeaderValidation" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="Core.Validations.Validations">
+    <xs:annotation>
+      <xs:documentation>Validations contains request and response validations for the API.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="request" type="Core.Validations.RequestValidations" minOccurs="0" maxOccurs="1" />
+      <xs:element name="response" type="Core.Validations.ResponseValidations" minOccurs="0" maxOccurs="1" />
+    </xs:all>
+  </xs:complexType>
+  <xs:simpleType name="Microsoft.Extensions.Logging.LogLevel">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="trace" />
+      <xs:enumeration value="debug" />
+      <xs:enumeration value="information" />
+      <xs:enumeration value="warning" />
+      <xs:enumeration value="error" />
+      <xs:enumeration value="critical" />
+      <xs:enumeration value="none" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
