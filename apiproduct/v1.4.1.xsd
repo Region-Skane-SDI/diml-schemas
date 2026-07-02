@@ -2,13 +2,24 @@
     DIML XSD Schema for apiproduct v1.4.1
 -->
 <xs:schema xmlns="https://github.com/Region-Skane-SDI/diml/apiproduct" targetNamespace="https://github.com/Region-Skane-SDI/diml/apiproduct" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
-  <xs:element name="apiProduct" type="ApiProductSpecification" />
-  <xs:complexType name="ApiProductSpecification">
+  <xs:element name="apiProduct" type="Storage.Services.v1.ApiProductSpecification" />
+  <xs:simpleType name="Microsoft.Extensions.Logging.LogLevel">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="trace" />
+      <xs:enumeration value="debug" />
+      <xs:enumeration value="information" />
+      <xs:enumeration value="warning" />
+      <xs:enumeration value="error" />
+      <xs:enumeration value="critical" />
+      <xs:enumeration value="none" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Storage.Services.v1.ApiProductSpecification">
     <xs:annotation>
       <xs:documentation>En metadatabeskrivning av en tjänst.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="metaData" type="ApiProductSpecificationMetaData" minOccurs="0" maxOccurs="1" />
+      <xs:element name="metaData" type="Storage.Services.v1.ApiProductSpecificationMetaData" minOccurs="0" maxOccurs="1" />
       <xs:element name="apis" minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>En lista med api-definitioner av typen `restApi` eller `soapApi`.</xs:documentation>
@@ -16,8 +27,8 @@
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:choice>
-              <xs:element name="restApi" type="Apis.Rest.RestApi" />
-              <xs:element name="soapApi" type="Apis.Soap.SoapApi" />
+              <xs:element name="restApi" type="Storage.Services.v1.Apis.Rest.RestApi" />
+              <xs:element name="soapApi" type="Storage.Services.v1.Apis.Soap.SoapApi" />
             </xs:choice>
           </xs:sequence>
         </xs:complexType>
@@ -28,7 +39,7 @@
         </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="channel" type="Channels.Channel" />
+            <xs:element name="channel" type="Storage.Services.v1.Channels.Channel" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -38,7 +49,7 @@
         </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="backend" type="Backend" />
+            <xs:element name="backend" type="Storage.Services.v1.Backend" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -48,13 +59,13 @@
         <xs:documentation>En unik identifierare för api-produkten.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="type" type="ApiProductSpecificationType" use="optional">
+    <xs:attribute name="type" type="Storage.Services.v1.ApiProductSpecificationType" use="optional">
       <xs:annotation>
         <xs:documentation>Api-produktens typ.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="ApiProductSpecificationMetaData">
+  <xs:complexType name="Storage.Services.v1.ApiProductSpecificationMetaData">
     <xs:all>
       <xs:element name="infoClass" minOccurs="0" maxOccurs="1">
         <xs:annotation>
@@ -66,7 +77,7 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
-      <xs:element name="sla" type="ApiProductSpecificationSlaType" minOccurs="0" maxOccurs="1" />
+      <xs:element name="sla" type="Storage.Services.v1.ApiProductSpecificationSlaType" minOccurs="0" maxOccurs="1" />
       <xs:element name="name" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>Namnet på api-produkten.</xs:documentation>
@@ -99,7 +110,7 @@
       </xs:element>
     </xs:all>
   </xs:complexType>
-  <xs:simpleType name="ApiProductSpecificationSlaType">
+  <xs:simpleType name="Storage.Services.v1.ApiProductSpecificationSlaType">
     <xs:annotation>
       <xs:documentation>SLA-nivå för api-produkter.</xs:documentation>
     </xs:annotation>
@@ -131,7 +142,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="ApiProductSpecificationType">
+  <xs:simpleType name="Storage.Services.v1.ApiProductSpecificationType">
     <xs:annotation>
       <xs:documentation>Typ för api-produkt.</xs:documentation>
     </xs:annotation>
@@ -148,7 +159,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="Apis.ApiLifecycle">
+  <xs:simpleType name="Storage.Services.v1.Apis.ApiLifecycle">
     <xs:annotation>
       <xs:documentation>En enum som representerar giltiga livscykelvärden för et API.</xs:documentation>
     </xs:annotation>
@@ -175,7 +186,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="Apis.ApiMetaData">
+  <xs:complexType name="Storage.Services.v1.Apis.ApiMetaData">
     <xs:all>
       <xs:element name="infoClass" minOccurs="0" maxOccurs="1">
         <xs:annotation>
@@ -199,7 +210,7 @@
       </xs:element>
     </xs:all>
   </xs:complexType>
-  <xs:simpleType name="Apis.RateLimiterPolicy">
+  <xs:simpleType name="Storage.Services.v1.Apis.RateLimiterPolicy">
     <xs:restriction base="xs:string">
       <xs:enumeration value="concurrencyLow">
         <xs:annotation>
@@ -233,7 +244,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="Apis.Rest.HeaderMatch">
+  <xs:complexType name="Storage.Services.v1.Apis.Rest.HeaderMatch">
     <xs:annotation>
       <xs:documentation>HeaderMatch representerar ett matchvillkor för HTTP-headers i ett REST API.</xs:documentation>
     </xs:annotation>
@@ -249,7 +260,7 @@
         </xs:complexType>
       </xs:element>
     </xs:all>
-    <xs:attribute name="mode" type="Apis.Rest.HeaderMatchMode" use="required">
+    <xs:attribute name="mode" type="Storage.Services.v1.Apis.Rest.HeaderMatchMode" use="required">
       <xs:annotation>
         <xs:documentation>Anger hur header-matchningen ska utvärderas.</xs:documentation>
       </xs:annotation>
@@ -265,7 +276,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:simpleType name="Apis.Rest.HeaderMatchMode">
+  <xs:simpleType name="Storage.Services.v1.Apis.Rest.HeaderMatchMode">
     <xs:restriction base="xs:string">
       <xs:enumeration value="exactHeader">
         <xs:annotation>
@@ -299,31 +310,31 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="Apis.Rest.RestApi">
+  <xs:complexType name="Storage.Services.v1.Apis.Rest.RestApi">
     <xs:annotation>
       <xs:documentation>RestApi representerar ett REST API som kan användas i api-produkter.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="metaData" type="Apis.ApiMetaData" minOccurs="0" maxOccurs="1" />
+      <xs:element name="metaData" type="Storage.Services.v1.Apis.ApiMetaData" minOccurs="0" maxOccurs="1" />
       <xs:element name="dependencies" minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>Lista på beroenden som api:et har mot andra api-produkter.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="apiProduct" type="Core.ApiProductDependency" />
+            <xs:element name="apiProduct" type="Storage.Services.v1.Core.ApiProductDependency" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:element name="transforms" type="Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
-      <xs:element name="validations" type="Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
+      <xs:element name="transforms" type="Storage.Services.v1.Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
+      <xs:element name="validations" type="Storage.Services.v1.Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
       <xs:element name="routes" minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>En lista över routes som detta API exponerar.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="route" type="Apis.Rest.Route" />
+            <xs:element name="route" type="Storage.Services.v1.Apis.Rest.Route" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -338,12 +349,12 @@
         <xs:documentation>Identifieraren för backend för denna API; måste motsvara ett befintligt backend-id.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="rateLimitPolicy" type="Apis.RateLimiterPolicy" use="optional">
+    <xs:attribute name="rateLimitPolicy" type="Storage.Services.v1.Apis.RateLimiterPolicy" use="optional">
       <xs:annotation>
         <xs:documentation>Standard rate limit för varje route eller operation i APIet.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="lifecycle" type="Apis.ApiLifecycle" use="optional">
+    <xs:attribute name="lifecycle" type="Storage.Services.v1.Apis.ApiLifecycle" use="optional">
       <xs:annotation>
         <xs:documentation>APIets livscykel.</xs:documentation>
       </xs:annotation>
@@ -354,7 +365,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Apis.Rest.RestApiMatch">
+  <xs:complexType name="Storage.Services.v1.Apis.Rest.RestApiMatch">
     <xs:annotation>
       <xs:documentation>RestApiMatch definierar en matchning för ett REST API-operation, inklusive path, HTTP methods och valfria headers.</xs:documentation>
     </xs:annotation>
@@ -365,7 +376,7 @@
         </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="header" type="Apis.Rest.HeaderMatch" />
+            <xs:element name="header" type="Storage.Services.v1.Apis.Rest.HeaderMatch" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -375,39 +386,39 @@
         <xs:documentation>Match-path för REST APIet.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="methods" type="Core.HttpMethods" use="required">
+    <xs:attribute name="methods" type="Storage.Services.v1.Core.HttpMethods" use="required">
       <xs:annotation>
         <xs:documentation>HTTP definierar en uppsättning request methods som anger syftet med requesten och vad som förväntas om requesten lyckas. Även om de också kan vara substantiv kallas dessa request methods ibland för HTTP verbs. Varje request method har sin egen semantik, men vissa egenskaper delas mellan flera metoder; i synnerhet kan request methods vara safe, idempotent eller cachebara.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Apis.Rest.Route">
+  <xs:complexType name="Storage.Services.v1.Apis.Rest.Route">
     <xs:annotation>
       <xs:documentation>Representerar en route i ett REST API. En route definierar hur requests matchas och kan ha transforms, validations och rate limit.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="transforms" type="Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
-      <xs:element name="match" type="Apis.Rest.RestApiMatch" minOccurs="1" maxOccurs="1" />
-      <xs:element name="validations" type="Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
+      <xs:element name="transforms" type="Storage.Services.v1.Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
+      <xs:element name="match" type="Storage.Services.v1.Apis.Rest.RestApiMatch" minOccurs="1" maxOccurs="1" />
+      <xs:element name="validations" type="Storage.Services.v1.Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>Unik identifierare för route:n inom APIet.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="rateLimitPolicy" type="Apis.RateLimiterPolicy" use="optional">
+    <xs:attribute name="rateLimitPolicy" type="Storage.Services.v1.Apis.RateLimiterPolicy" use="optional">
       <xs:annotation>
         <xs:documentation>Rate limit (begränsning av anropsfrekvens).</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Apis.Soap.Operation">
+  <xs:complexType name="Storage.Services.v1.Apis.Soap.Operation">
     <xs:annotation>
       <xs:documentation>Operation representerar en enskild operation i en SOAP API.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="transforms" type="Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
-      <xs:element name="validations" type="Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
+      <xs:element name="transforms" type="Storage.Services.v1.Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
+      <xs:element name="validations" type="Storage.Services.v1.Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
@@ -424,37 +435,37 @@
         <xs:documentation>Valfri in-line path-transform som ersätter värdet i Path-attributet för target path.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="rateLimitPolicy" type="Apis.RateLimiterPolicy" use="optional">
+    <xs:attribute name="rateLimitPolicy" type="Storage.Services.v1.Apis.RateLimiterPolicy" use="optional">
       <xs:annotation>
         <xs:documentation>Rate limit (begränsning av anropsfrekvens).</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Apis.Soap.SoapApi">
+  <xs:complexType name="Storage.Services.v1.Apis.Soap.SoapApi">
     <xs:annotation>
       <xs:documentation>SoapApi representerar ett SOAP API som kan användas i api-produkter.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="metaData" type="Apis.ApiMetaData" minOccurs="0" maxOccurs="1" />
+      <xs:element name="metaData" type="Storage.Services.v1.Apis.ApiMetaData" minOccurs="0" maxOccurs="1" />
       <xs:element name="dependencies" minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>Lista på beroenden som api:et har mot andra api-produkter.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="apiProduct" type="Core.ApiProductDependency" />
+            <xs:element name="apiProduct" type="Storage.Services.v1.Core.ApiProductDependency" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:element name="transforms" type="Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
-      <xs:element name="validations" type="Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
+      <xs:element name="transforms" type="Storage.Services.v1.Core.Transforms.Transforms" minOccurs="0" maxOccurs="1" />
+      <xs:element name="validations" type="Storage.Services.v1.Core.Validations.Validations" minOccurs="0" maxOccurs="1" />
       <xs:element name="operations" minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>En lista över operationer som denna API exponerar.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="operation" type="Apis.Soap.Operation" />
+            <xs:element name="operation" type="Storage.Services.v1.Apis.Soap.Operation" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -469,12 +480,12 @@
         <xs:documentation>Identifieraren för backend för denna API; måste motsvara ett befintligt backend-id.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="rateLimitPolicy" type="Apis.RateLimiterPolicy" use="optional">
+    <xs:attribute name="rateLimitPolicy" type="Storage.Services.v1.Apis.RateLimiterPolicy" use="optional">
       <xs:annotation>
         <xs:documentation>Standard rate limit för varje route eller operation i APIet.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="lifecycle" type="Apis.ApiLifecycle" use="optional">
+    <xs:attribute name="lifecycle" type="Storage.Services.v1.Apis.ApiLifecycle" use="optional">
       <xs:annotation>
         <xs:documentation>APIets livscykel.</xs:documentation>
       </xs:annotation>
@@ -485,22 +496,22 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Backend">
+  <xs:complexType name="Storage.Services.v1.Backend">
     <xs:all>
-      <xs:element name="metaData" type="BackendMetaData" minOccurs="0" maxOccurs="1" />
+      <xs:element name="metaData" type="Storage.Services.v1.BackendMetaData" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>En unik identifierare för backend inom api-produkten. Måste vara kortare än 128 tecken, endast innehålla a-z, 0-9, '-', '_' och måste börja med en bokstav och får inte vara tom.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="type" type="BackendType" use="optional">
+    <xs:attribute name="type" type="Storage.Services.v1.BackendType" use="optional">
       <xs:annotation>
         <xs:documentation>Typen av backend.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="BackendMetaData">
+  <xs:complexType name="Storage.Services.v1.BackendMetaData">
     <xs:annotation>
       <xs:documentation>Metadata för en backend.</xs:documentation>
     </xs:annotation>
@@ -517,7 +528,7 @@
       </xs:element>
     </xs:all>
   </xs:complexType>
-  <xs:simpleType name="BackendType">
+  <xs:simpleType name="Storage.Services.v1.BackendType">
     <xs:annotation>
       <xs:documentation>Typen av backend.</xs:documentation>
     </xs:annotation>
@@ -534,12 +545,12 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="Channels.Channel">
+  <xs:complexType name="Storage.Services.v1.Channels.Channel">
     <xs:annotation>
       <xs:documentation>Representerar en logisk meddelandekanal i systemet. En kanal definierar hur meddelanden produceras, konsumeras och konfigureras, oberoende av den underliggande meddelandeplattformen (som RabbitMQ eller Kafka).</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="metaData" type="Channels.ChannelMetaData" minOccurs="0" maxOccurs="1" />
+      <xs:element name="metaData" type="Storage.Services.v1.Channels.ChannelMetaData" minOccurs="0" maxOccurs="1" />
     </xs:all>
     <xs:attribute name="id" type="xs:string" use="required">
       <xs:annotation>
@@ -551,13 +562,13 @@
         <xs:documentation>Relativ sökväg till AsyncAPI-specifikationsfilen som beskriver meddelandeschema, operationer och metadata för denna kanal.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="lifecycle" type="Channels.ChannelLifecycle" use="optional">
+    <xs:attribute name="lifecycle" type="Storage.Services.v1.Channels.ChannelLifecycle" use="optional">
       <xs:annotation>
         <xs:documentation>Kanalens livscykel.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:simpleType name="Channels.ChannelLifecycle">
+  <xs:simpleType name="Storage.Services.v1.Channels.ChannelLifecycle">
     <xs:annotation>
       <xs:documentation>En enum som representerar giltiga livscykelvärden för en kanal.</xs:documentation>
     </xs:annotation>
@@ -584,7 +595,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="Channels.ChannelMetaData">
+  <xs:complexType name="Storage.Services.v1.Channels.ChannelMetaData">
     <xs:all>
       <xs:element name="infoClass" minOccurs="0" maxOccurs="1">
         <xs:annotation>
@@ -608,7 +619,7 @@
       </xs:element>
     </xs:all>
   </xs:complexType>
-  <xs:complexType name="Core.ApiProductDependency">
+  <xs:complexType name="Storage.Services.v1.Core.ApiProductDependency">
     <xs:all>
       <xs:element name="apis" minOccurs="0" maxOccurs="1">
         <xs:annotation>
@@ -616,7 +627,7 @@
         </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="api" type="Core.ApiReference" />
+            <xs:element name="api" type="Storage.Services.v1.Core.ApiReference" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -627,7 +638,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Core.ApiReference">
+  <xs:complexType name="Storage.Services.v1.Core.ApiReference">
     <xs:annotation>
       <xs:documentation>ApiReference representerar en referens till ett API i en annan api-produkt.</xs:documentation>
     </xs:annotation>
@@ -637,7 +648,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:simpleType name="Core.HttpMethods">
+  <xs:simpleType name="Storage.Services.v1.Core.HttpMethods">
     <xs:annotation>
       <xs:documentation>HTTP definierar en uppsättning request methods som anger syftet med requesten och vad som förväntas om requesten lyckas. Även om de också kan vara substantiv kallas dessa request methods ibland för HTTP verbs. Varje request method har sin egen semantik, men vissa egenskaper delas mellan flera metoder; i synnerhet kan request methods vara safe, idempotent eller cachebara.</xs:documentation>
     </xs:annotation>
@@ -683,11 +694,11 @@
       </xs:simpleType>
     </xs:list>
   </xs:simpleType>
-  <xs:complexType name="Core.Transforms.HeaderTransform">
+  <xs:complexType name="Storage.Services.v1.Core.Transforms.HeaderTransform">
     <xs:annotation>
       <xs:documentation>HeaderTransforms innehåller header-transformationer för APIet. Den används för att transformera headers i requests och responses innan de hanteras av APIet.</xs:documentation>
     </xs:annotation>
-    <xs:attribute name="operation" type="Core.Transforms.HeaderTransformOperation" use="required">
+    <xs:attribute name="operation" type="Storage.Services.v1.Core.Transforms.HeaderTransformOperation" use="required">
       <xs:annotation>
         <xs:documentation>Anger operation för header-transformationen.</xs:documentation>
       </xs:annotation>
@@ -697,7 +708,7 @@
         <xs:documentation>Namnet på headern som ska transformeras i requests eller responses.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="overwrite" type="Core.Transforms.HeaderTransformOverwrite" use="optional">
+    <xs:attribute name="overwrite" type="Storage.Services.v1.Core.Transforms.HeaderTransformOverwrite" use="optional">
       <xs:annotation>
         <xs:documentation>Anger om header-värdet ska skrivas över eller inte.</xs:documentation>
       </xs:annotation>
@@ -708,7 +719,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:simpleType name="Core.Transforms.HeaderTransformOperation">
+  <xs:simpleType name="Storage.Services.v1.Core.Transforms.HeaderTransformOperation">
     <xs:annotation>
       <xs:documentation>Anger operationer för header-transformationer.</xs:documentation>
     </xs:annotation>
@@ -725,7 +736,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="Core.Transforms.HeaderTransformOverwrite">
+  <xs:simpleType name="Storage.Services.v1.Core.Transforms.HeaderTransformOverwrite">
     <xs:annotation>
       <xs:documentation>Anger om header-värdet ska skrivas över eller inte.</xs:documentation>
     </xs:annotation>
@@ -742,8 +753,8 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="Core.Transforms.PathTransform">
-    <xs:attribute name="operation" type="Core.Transforms.PathTransformOperation" use="required">
+  <xs:complexType name="Storage.Services.v1.Core.Transforms.PathTransform">
+    <xs:attribute name="operation" type="Storage.Services.v1.Core.Transforms.PathTransformOperation" use="required">
       <xs:annotation>
         <xs:documentation>Typ av path-transform som ska tillämpas.</xs:documentation>
       </xs:annotation>
@@ -754,7 +765,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:simpleType name="Core.Transforms.PathTransformOperation">
+  <xs:simpleType name="Storage.Services.v1.Core.Transforms.PathTransformOperation">
     <xs:restriction base="xs:string">
       <xs:enumeration value="addPrefix">
         <xs:annotation>
@@ -778,7 +789,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="Core.Transforms.RequestTransforms">
+  <xs:complexType name="Storage.Services.v1.Core.Transforms.RequestTransforms">
     <xs:annotation>
       <xs:documentation>RequestTransforms representerar en samling transforms som kan tillämpas på requesten innan den skickas till APIet.</xs:documentation>
     </xs:annotation>
@@ -789,7 +800,7 @@
         </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="path" type="Core.Transforms.PathTransform" />
+            <xs:element name="path" type="Storage.Services.v1.Core.Transforms.PathTransform" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -799,13 +810,13 @@
         </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="header" type="Core.Transforms.HeaderTransform" />
+            <xs:element name="header" type="Storage.Services.v1.Core.Transforms.HeaderTransform" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
     </xs:all>
   </xs:complexType>
-  <xs:complexType name="Core.Transforms.ResponseTransforms">
+  <xs:complexType name="Storage.Services.v1.Core.Transforms.ResponseTransforms">
     <xs:annotation>
       <xs:documentation>ResponseTransforms innehåller header-transformationer för responses för APIet. Den används för att transformera headers i responses innan de skickas tillbaka till klienten.</xs:documentation>
     </xs:annotation>
@@ -816,22 +827,22 @@
         </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="header" type="Core.Transforms.HeaderTransform" />
+            <xs:element name="header" type="Storage.Services.v1.Core.Transforms.HeaderTransform" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
     </xs:all>
   </xs:complexType>
-  <xs:complexType name="Core.Transforms.Transforms">
+  <xs:complexType name="Storage.Services.v1.Core.Transforms.Transforms">
     <xs:annotation>
       <xs:documentation>Transforms innehåller transforms för request och response för APIet.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="request" type="Core.Transforms.RequestTransforms" minOccurs="0" maxOccurs="1" />
-      <xs:element name="response" type="Core.Transforms.ResponseTransforms" minOccurs="0" maxOccurs="1" />
+      <xs:element name="request" type="Storage.Services.v1.Core.Transforms.RequestTransforms" minOccurs="0" maxOccurs="1" />
+      <xs:element name="response" type="Storage.Services.v1.Core.Transforms.ResponseTransforms" minOccurs="0" maxOccurs="1" />
     </xs:all>
   </xs:complexType>
-  <xs:complexType name="Core.Validations.HeaderValidation">
+  <xs:complexType name="Storage.Services.v1.Core.Validations.HeaderValidation">
     <xs:annotation>
       <xs:documentation>HeaderValidation definierar en validering för en specifik header i requests eller responses.</xs:documentation>
     </xs:annotation>
@@ -851,7 +862,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:complexType name="Core.Validations.RequestValidations">
+  <xs:complexType name="Storage.Services.v1.Core.Validations.RequestValidations">
     <xs:annotation>
       <xs:documentation>RequestValidations innehåller request-valideringar för APIet. Den används för att validera inkommande requests innan de hanteras av APIet.</xs:documentation>
     </xs:annotation>
@@ -862,13 +873,13 @@
         </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="header" type="Core.Validations.HeaderValidation" />
+            <xs:element name="header" type="Storage.Services.v1.Core.Validations.HeaderValidation" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
     </xs:all>
   </xs:complexType>
-  <xs:complexType name="Core.Validations.ResponseValidations">
+  <xs:complexType name="Storage.Services.v1.Core.Validations.ResponseValidations">
     <xs:all>
       <xs:element name="headers" minOccurs="0" maxOccurs="1">
         <xs:annotation>
@@ -876,30 +887,19 @@
         </xs:annotation>
         <xs:complexType>
           <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="header" type="Core.Validations.HeaderValidation" />
+            <xs:element name="header" type="Storage.Services.v1.Core.Validations.HeaderValidation" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
     </xs:all>
   </xs:complexType>
-  <xs:complexType name="Core.Validations.Validations">
+  <xs:complexType name="Storage.Services.v1.Core.Validations.Validations">
     <xs:annotation>
       <xs:documentation>Validations innehåller valideringar för request och response för APIet.</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="request" type="Core.Validations.RequestValidations" minOccurs="0" maxOccurs="1" />
-      <xs:element name="response" type="Core.Validations.ResponseValidations" minOccurs="0" maxOccurs="1" />
+      <xs:element name="request" type="Storage.Services.v1.Core.Validations.RequestValidations" minOccurs="0" maxOccurs="1" />
+      <xs:element name="response" type="Storage.Services.v1.Core.Validations.ResponseValidations" minOccurs="0" maxOccurs="1" />
     </xs:all>
   </xs:complexType>
-  <xs:simpleType name="Microsoft.Extensions.Logging.LogLevel">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="trace" />
-      <xs:enumeration value="debug" />
-      <xs:enumeration value="information" />
-      <xs:enumeration value="warning" />
-      <xs:enumeration value="error" />
-      <xs:enumeration value="critical" />
-      <xs:enumeration value="none" />
-    </xs:restriction>
-  </xs:simpleType>
 </xs:schema>
